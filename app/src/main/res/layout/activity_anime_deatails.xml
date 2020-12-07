@@ -53,7 +53,8 @@
                     app:layout_constraintHorizontal_bias="0.065"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/anime_pictures"
-                    app:srcCompat="@drawable/si_logo" />
+                    app:srcCompat="@drawable/si_logo"
+                    android:scaleType="centerCrop"/>
 
                 <TextView
                     android:id="@+id/anime_title_eng"
@@ -108,7 +109,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/anime_genres" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/anime_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -177,6 +178,59 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="4dp"
                     android:text="Unknown" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="4dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="Premier"
+                        android:textStyle="bold"
+                        tools:layout_editor_absoluteX="11dp"
+                        tools:layout_editor_absoluteY="21dp" />
+
+                    <TextView
+                        android:id="@+id/anime_premier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="Unknown" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="60dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="Broadcast"
+                        android:textStyle="bold"
+                        tools:layout_editor_absoluteX="11dp"
+                        tools:layout_editor_absoluteY="21dp" />
+
+                    <TextView
+                        android:id="@+id/anime_broadcast"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="4dp"
+                        android:text="Unknown" />
+
+                </LinearLayout>
+            </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -208,7 +262,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="70dp"
+                        android:layout_marginStart="80dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -292,7 +346,171 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
                     android:text="MAPPA" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Trailers"
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                android:padding="4dp"
+                android:textSize="18dp"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/anime_trailer_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginTop="8dp"
+                android:text="Cluster"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:padding="4dp"
+                android:textSize="20dp"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:padding="4dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="left">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prequel"
+                        android:textSize="18dp"
+                        android:padding="6dp"
+                        android:layout_gravity="center_horizontal"
+                        android:textStyle="bold"
+                        tools:layout_editor_absoluteX="11dp"
+                        tools:layout_editor_absoluteY="21dp" />
+
+                    <Button
+                        android:id="@+id/anime_prequel"
+                        android:background="#fff"
+                        android:elevation="4dp"
+                        android:layout_width="180dp"
+                        android:layout_height="100dp"
+                        android:paddingTop="4dp"
+                        android:text="9.04" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="20dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sequel"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="18dp"
+                        android:padding="6dp"
+                        android:textStyle="bold"
+                        tools:layout_editor_absoluteX="11dp"
+                        tools:layout_editor_absoluteY="21dp" />
+
+                    <Button
+                        android:background="#fff"
+                        android:id="@+id/anime_sequel"
+                        android:layout_width="180dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:paddingTop="4dp"
+                        android:text="581" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:padding="4dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="left">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Side-Story"
+                        android:textSize="18dp"
+                        android:padding="6dp"
+                        android:layout_gravity="center_horizontal"
+                        android:textStyle="bold"
+                        tools:layout_editor_absoluteX="11dp"
+                        tools:layout_editor_absoluteY="21dp" />
+
+                    <Button
+                        android:id="@+id/anime_sideStory"
+                        android:background="#fff"
+                        android:elevation="4dp"
+                        android:layout_width="180dp"
+                        android:layout_height="100dp"
+                        android:paddingTop="4dp"
+                        android:text="9.04" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="20dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Summery"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="18dp"
+                        android:padding="6dp"
+                        android:textStyle="bold"
+                        tools:layout_editor_absoluteX="11dp"
+                        tools:layout_editor_absoluteY="21dp" />
+
+                    <Button
+                        android:background="#fff"
+                        android:id="@+id/anime_summery"
+                        android:layout_width="180dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:paddingTop="4dp"
+                        android:text="581" />
+                </LinearLayout>
+
 
 
             </LinearLayout>
