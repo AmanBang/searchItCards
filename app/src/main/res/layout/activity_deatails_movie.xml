@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Anime.AnimeDeatails"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--        <com.google.android.youtube.player.YouTubePlayerView-->
+            <!--            android:id="@+id/youtubePlayer"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content">-->
+
+            <!--        </com.google.android.youtube.player.YouTubePlayerView>-->
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:id="@+id/posterMovieView"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_chrome_reader_mode_24"/>
+
+
+            <!--                        <ImageView-->
+            <!--                            android:id="@+id/full_screen"-->
+            <!--                            android:layout_height="40dp"-->
+            <!--                            android:layout_width="40dp"-->
+            <!--                            android:src="@drawable/ic_fullscreen"-->
+            <!--                            android:layout_gravity="right"-->
+            <!--                            android:layout_marginEnd="20dp"-->
+            <!--                            android:layout_marginTop="5dp"-->
+            <!--                            />-->
+
+
+
+            <TextView
+                android:id="@+id/movies_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/buenard_bold"
+                android:gravity="fill"
+                android:padding="15dp"
+                android:text="Loading..."
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/videoLayout"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Videos"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/buenard_bold"
+                    android:paddingStart="20dp"
+                    android:paddingBottom="10dp"
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/movies_Video"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/short_details_movie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/actor"
+                android:padding="10dp"
+                android:textSize="18dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/airDateMovie"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/actor"
+                android:padding="10dp"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/MoviesDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/actor"
+                android:padding="10dp"
+                android:textSize="18dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="20dp">
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
