@@ -16,7 +16,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:background="#252a34">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -36,7 +37,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:background="#E1CDCD"
+                            android:background="#08d9d6"
                             android:backgroundTintMode="src_in"
                             android:fontFamily="@font/bad_script"
                             android:paddingStart="10dp"
@@ -98,7 +99,7 @@
                             android:paddingStart="18dp"
                             android:text="Top Anime Ranking"
 
-                            android:textColor="#020202"
+                            android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
                         <TextView
@@ -133,7 +134,7 @@ android:textSize="10dp"
                             android:id="@+id/top_anime_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F6E7FF" />
+                            android:background="#ff2e63" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -147,7 +148,7 @@ android:textSize="10dp"
                             android:fontFamily="sans-serif"
                             android:paddingStart="18dp"
                             android:text="Top Anime Airing"
-                            android:textColor="#020202"
+                            android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
                         <TextView
@@ -181,7 +182,7 @@ android:textSize="10dp"
                             android:id="@+id/top_anime_airing_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F6E7FF" />
+                            android:background="#ff2e63" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -195,7 +196,7 @@ android:textSize="10dp"
                             android:fontFamily="sans-serif"
                             android:paddingStart="18dp"
                             android:text="Top Upcoming Anime"
-                            android:textColor="#020202"
+                            android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
                         <TextView
@@ -230,7 +231,7 @@ android:textSize="10dp"
                             android:id="@+id/top_upcoming_anime_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F6E7FF" />
+                            android:background="#ff2e63" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -246,7 +247,7 @@ android:textSize="10dp"
                             android:paddingStart="18dp"
                             android:text="Popular Anime"
 
-                            android:textColor="#020202"
+                            android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
                         <TextView
@@ -281,7 +282,7 @@ android:textSize="10dp"
                             android:id="@+id/popular_anime_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F6E7FF" />
+                            android:background="#ff2e63" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -295,7 +296,7 @@ android:textSize="10dp"
                             android:fontFamily="sans-serif"
                             android:paddingStart="18dp"
                             android:text="Top Anime Movie"
-                            android:textColor="#020202"
+                            android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
                         <TextView
@@ -330,7 +331,7 @@ android:textSize="10dp"
                             android:id="@+id/top_movie_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F6E7FF" />
+                            android:background="#ff2e63" />
                     </RelativeLayout>
 
 
@@ -345,8 +346,8 @@ android:textSize="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
+       android:background="#393e46"
         app:menu="@menu/bottom_navigation" />
 
-
+<!--    android:background="?android:attr/windowBackground"-->
 </RelativeLayout>

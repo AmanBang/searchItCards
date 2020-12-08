@@ -7,5 +7,7 @@
         <item>@font/bad_script</item>
         <item>@font/bubblegum_sans</item>
         <item>@font/buenard_bold</item>
+        <item>@font/roboto</item>
+        <item>@font/roboto_bold</item>
     </array>
 </resources>

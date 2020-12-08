@@ -28,6 +28,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.searchitcards.Anime.Adapter.AdapterClass.Promo;
+import com.example.searchitcards.Anime.Adapter.YoutubeVideoAdapter;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeIntents;
@@ -57,8 +61,7 @@ public class AnimeDeatails extends AppCompatActivity {
 String forImage;
     String itemUrl;
 
-    Button prequelButton;
-    Button sequelButton;
+
     String prequelId ="";
     String sequelId ="";
     JSONObject related;
@@ -68,6 +71,8 @@ String forImage;
     boolean firstVideoPlay = true;
     boolean flag = true;
     List<String> playlistUrl;
+    String urlp;
+    String Urlv;
 
 
    //------------------------------------------------------------------------------------------------------- ------------------------------------
@@ -87,6 +92,9 @@ String forImage;
     TextView animeProducer;
     TextView animeLisensor;
     TextView animeStudios;
+    TextView animeEpisodes;
+    TextView animeAired;
+
 
     Button animePrequel;
     Button animeSequel;
@@ -104,7 +112,19 @@ String forImage;
     String addSide_story = "";
     String addSummary = "";
 
+
     JSONObject cluster;
+
+    LinearLayout prequelLaout;
+    LinearLayout sequelLaout;
+    LinearLayout sideStoryLaout;
+    LinearLayout summeryLaout;
+
+    List<SlideModel> modelList;
+    List<Promo> Yvideos;
+    ImageSlider slider;
+    YoutubeVideoAdapter youtubeVideoAdapter;
+
 
 //    YouTubePlayerView youTubePlayerView;
 //    YouTubePlayer.OnInitializedListener onInitializedListener;
@@ -118,6 +138,7 @@ String forImage;
             pass ="";
             prequelId ="";
             sequelId = "";
+            addGenres = "";
 
 
 
@@ -129,7 +150,7 @@ String forImage;
 
                     try {
                         Picasso.get().load(response.getString("image_url")).into(animePoster);
-                        animeRank.setText(response.getString("rank"));
+//                        animeRank.setText("#"+response.getString("rank"));
                         if(!response.getString("title_english").isEmpty()){
                             animeTitleEng.setText(response.getString("title_english"));
                         }else {
@@ -152,8 +173,10 @@ String forImage;
                        animeBroadcast.setText(response.getString("broadcast"));
                        animeScore.setText(response.getString("score"));
                        animePopularity.setText(response.getString("popularity"));
+                       animeEpisodes.setText(response.getString("episodes"));
 
-
+                       JSONObject aired = response.getJSONObject("aired");
+                       animeAired.setText(aired.getString("string"));
 
                        JSONArray producer = response.getJSONArray("producers");
                        for (int i = 0;i<producer.length();i++){
@@ -178,81 +201,21 @@ String forImage;
                         //Json object for culster
                          cluster = response.getJSONObject("related");
 
+                        JSONArray prequel = cluster.getJSONArray("Prequel");
+                        for (int i = 0;i<prequel.length();i++){
+                            JSONObject prequelList = prequel.getJSONObject(i);
+                            addPrequel = prequelList.getString("name");
+                            prequelId = prequelList.getString("mal_id");
+                        }
+                        animePrequel.setText(addPrequel);
 
-
-
-
-
-
-
-
-
-
-
-
-//                        forImage = response.getString("image_url");
-//
-//
-////                        Log.i("Titile",jsonArray.toString());
-//                         itemUrl = response.getString("trailer_url");
-//                        String sDeatil = "";
-//                               sDeatil += "Status :"+response.getString("status") +"\n";
-//                               sDeatil += "Episodes :"+response.getString("episodes") +"\n";
-//                               sDeatil += "Duration :"+response.getString("duration") +"\n";
-//                               sDeatil += "Rating :"+response.getString("rating") +"\n";
-//                               sDeatil += "Score :"+response.getString("score") +"\n";
-//
-//                               shortDeatil.append(sDeatil);
-//                           deatils.setText(response.getString("synopsis"));
-//
-//                         related = response.getJSONObject("related");
-//
-//
-//
-//                       // Log.i("related",pass);
-//                        for (int i= 30;i<=40;i++){
-//                            char c = itemUrl.charAt(i);
-//                            pass = pass + c;
-//                            playlistUrl.add(pass);
-//
-//                        }
-//////
-////                            if (itemUrl != null){
-////                                Log.i("erro","showing info only");
-////
-////
-////                            }else {
-////                              youTubePlayerView.setVisibility(View.GONE);
-////
-////                            }
-//
-//
-//                        youTubePlayerView.initialize("AIzaSyCXIXfoD0Vm50mL6f-Dsdax5-IhRGXIOds",onInitializedListener);
-//
-//                        if(!firstVideoPlay){
-//
-//                            youTubePlayer.next();
-//                            Log.i("cue","cue Complete");
-//
-//                            }
-//                        if (!related.getString("Prequel").isEmpty()){
-//                            JSONArray prequel = related.getJSONArray("Prequel");
-//                            for (int i=0;i<prequel.length();i++){
-//                                JSONObject prequelJSONObject = prequel.getJSONObject(i);
-//                                prequelId = prequelJSONObject.getString("mal_id");
-//                                prequelButton.setText(prequelJSONObject.getString("name"));
-//                                Log.i("related",prequelJSONObject.getString("name"));
-//                            }
-//                        }
-//                        if(!related.getString("Sequel").isEmpty()){
-//                            JSONArray sequel = related.getJSONArray("Sequel");
-//                            for (int i=0;i<sequel.length();i++){
-//                                JSONObject sequelJSONObject = sequel.getJSONObject(i);
-//                                sequelId = sequelJSONObject.getString("mal_id");
-//                                sequelButton.setText(sequelJSONObject.getString("name"));
-//                                Log.i("related",sequelJSONObject.getString("name"));
-//                            }
-//                        }
+                        JSONArray sequel = cluster.getJSONArray("Sequel");
+                        for (int i = 0;i<sequel.length();i++){
+                            JSONObject sequelList = sequel.getJSONObject(i);
+                            addSequel = sequelList.getString("name");
+                            sequelId = sequelList.getString("mal_id");
+                        }
+                        animeSequel.setText(addSequel );
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -260,26 +223,18 @@ String forImage;
 
                     try {
 
-                        JSONArray prequel = cluster.getJSONArray("Prequel");
-                        for (int i = 0;i<prequel.length();i++){
-                            JSONObject prequelList = prequel.getJSONObject(i);
-                            addPrequel = prequelList.getString("name")+", ";
-                        }
-                        animePrequel.setText(addPrequel);
+
                     }catch (Exception e){
                         e.printStackTrace();
+                        prequelLaout.setVisibility(View.GONE);
                     }
                     try {
 
-                        JSONArray sequel = cluster.getJSONArray("Sequel");
-                        for (int i = 0;i<sequel.length();i++){
-                            JSONObject sequelList = sequel.getJSONObject(i);
-                            addSequel = sequelList.getString("name")+", ";
-                        }
-                        animeSequel.setText(addSequel
-                        );
+
+
                     }catch (Exception e){
                         e.printStackTrace();
+                        sequelLaout.setVisibility(View.GONE);
                     }
                     try {
                         JSONArray side_story = cluster.getJSONArray("Side story");
@@ -290,6 +245,7 @@ String forImage;
                         animeSideStory.setText(addSide_story);
                     }catch (Exception e){
                         e.printStackTrace();
+                        sideStoryLaout.setVisibility(View.GONE);
                     }
                     try {
 
@@ -300,7 +256,9 @@ String forImage;
                         }
                         animeSummery.setText(addSummary);
                     }catch (Exception e){
+
                         e.printStackTrace();
+                        summeryLaout.setVisibility(View.GONE);
                     }
 
                 }
@@ -315,6 +273,96 @@ String forImage;
         }
 
     }
+
+
+    public void ImagesSlideShow(String pic){
+        modelList.clear();
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, pic, null, new Response.Listener<JSONObject>() {
+            private SlideModel SlideModel;
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.i("resasda",response.toString());
+                try {
+                    JSONArray pictures = response.getJSONArray("pictures");
+
+
+                    for (int i = 0;i<pictures.length();i++){
+
+                        if(i<6){
+                            JSONObject pics = pictures.getJSONObject(i);
+                            String s=  "";
+                            s = pics.getString("large");
+                            modelList.add(new SlideModel(s));
+                        }else {
+                            Log.i("not","to add");
+                        }
+
+
+                    }
+                    slider.setImageList(modelList,false);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        queue.add(request);
+
+    }
+
+    public void youtube(String Urly){
+        Yvideos.clear();
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, Urly, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    JSONArray jsonArray = response.getJSONArray("promo");
+                    for (int i = 0;i<jsonArray.length();i++){
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        Promo p = new Promo();
+                        p.setVideo_url(object.getString("video_url"));
+                        p.setImage_url(object.getString("image_url"));;
+                        p.setTitle(object.getString("title"));
+
+                        Yvideos.add(p);
+
+                    }
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+//                topAnimeRecycle.setLayoutManager(new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false));
+//                topAnime = new TopAnime(MainActivity.this,animeResult);
+//                topAnimeRecycle.setAdapter(topAnime);
+                animeTrailerRecycle.setLayoutManager(new LinearLayoutManager(AnimeDeatails.this,LinearLayoutManager.HORIZONTAL,false));
+                youtubeVideoAdapter = new YoutubeVideoAdapter(AnimeDeatails.this,Yvideos);
+                animeTrailerRecycle.setAdapter(youtubeVideoAdapter);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        requestQueue.add(objectRequest);
+    }
+
+
 
     //  -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -343,11 +391,22 @@ String forImage;
         animeSequel = findViewById(R.id.anime_sequel);
         animeSideStory = findViewById(R.id.anime_sideStory);
         animeSummery = findViewById(R.id.anime_summery);
+        animeEpisodes = findViewById(R.id.anime_episodes);
+        animeAired = findViewById(R.id.anime_aired);
 
         animeTrailerRecycle = findViewById(R.id.anime_trailer_recycle);
 
+        prequelLaout = findViewById(R.id.anime_prequel_layout);
+        sequelLaout = findViewById(R.id.anime_sequel_layout);
+        sideStoryLaout = findViewById(R.id.anime_sideStory_layout);
+        summeryLaout = findViewById(R.id.anime_summery_layout);
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------------
+        modelList = new ArrayList<>();
+        Yvideos = new ArrayList<>();
+
+         slider = findViewById(R.id.anime_pictures);
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------
 //        textView = findViewById(R.id.title_Eng);
 //        shortDeatil = findViewById(R.id.short_details);
 //        deatils = findViewById(R.id.deatils);
@@ -371,11 +430,19 @@ String forImage;
 //        textView.setText(searchId);
         if (searchIdv == null ){
              Url = "https://api.jikan.moe/v3/anime/" + searchId;
+             urlp ="https://api.jikan.moe/v3/anime/"+searchId+"/pictures";
+             Urlv = "https://api.jikan.moe/v3/anime/" + searchId+"/videos";
         }else {
             Url = "https://api.jikan.moe/v3/anime/" + searchIdv;
+            urlp ="https://api.jikan.moe/v3/anime/"+searchIdv+"/pictures";
+            Urlv = "https://api.jikan.moe/v3/anime/" + searchIdv+"/videos";
         }
+        ImagesSlideShow(urlp);
         DetailsAnime detailsAnime = new DetailsAnime(Url);
         detailsAnime.start();
+        youtube(Urlv);
+
+
 
 
 //            onInitializedListener = new YouTubePlayer.OnInitializedListener() {
@@ -402,60 +469,48 @@ String forImage;
 
 
 
-//        prequelButton.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-////                        if(!prequelId.isEmpty()){
-//                            String  Urlp = "https://api.jikan.moe/v3/anime/" + prequelId;
-//                            final Handler handler = new Handler();
-//                            handler.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//
-//
-//                                    firstVideoPlay = false;
-//                                    DetailsAnime detailsAnime = new DetailsAnime(Urlp);
-//                                    detailsAnime.start();
-//
-//                                }
-//                            }, 500);
-//                        }
-//                   // }
-//                });
+        animePrequel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Url = "https://api.jikan.moe/v3/anime/" + prequelId;
+                        urlp ="https://api.jikan.moe/v3/anime/"+prequelId+"/pictures";
+                        Urlv = "https://api.jikan.moe/v3/anime/" + prequelId+"/videos";
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    ImagesSlideShow(urlp);
+                                    DetailsAnime detailsAnime = new DetailsAnime(Url);
+                                    detailsAnime.start();
+                                    youtube(Urlv);
+                                }
+                            }, 500);
+                        }
+
+                });
 ////
-//                sequelButton.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//
-//                        if (!sequelId.isEmpty()){
-//                            firstVideoPlay =false;
-//                            String  Urls = "https://api.jikan.moe/v3/anime/" + sequelId;
-//                            final Handler handler = new Handler();
-//                            handler.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    firstVideoPlay = false;
-//
-//
-//                                    DetailsAnime detailsAnime = new DetailsAnime(Urls);
-//                                    detailsAnime.start();
-//
-//                                }
-//                            }, 500);
-//                        }
-//                    }
-//                });
-////
-//
-//
-//        fullScreen.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-//                Toast.makeText(AnimeDeatails.this,"Press Back Button to exit full screen",Toast.LENGTH_LONG).show();
-//            }
-//        });
+                animeSequel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Url = "https://api.jikan.moe/v3/anime/" + sequelId;
+                        urlp ="https://api.jikan.moe/v3/anime/"+sequelId+"/pictures";
+                        Urlv = "https://api.jikan.moe/v3/anime/" + sequelId+"/videos";
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ImagesSlideShow(urlp);
+                                    DetailsAnime detailsAnime = new DetailsAnime(Url);
+                                    detailsAnime.start();
+                                    youtube(Urlv);
+                                }
+                            }, 500);
+                        }
+
+                });
 
     }
 
