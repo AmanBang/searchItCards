@@ -48,7 +48,7 @@ public class SearchMethod extends Thread {
 
                         Topresults searchIdk = new Topresults();
                         searchIdk.setTitle(Searchshow.getString("title"));
-                        searchIdk.setScore(Searchshow.getInt("score"));
+//                        searchIdk.setScore(Searchshow.getInt("score"));
                        // searchIdk.setEpisode(Searchshow.getInt("episodes"));
                         searchIdk.setType(Searchshow.getString("type"));
                         searchIdk.setMal_id(Searchshow.getInt("mal_id"));

@@ -7,6 +7,7 @@
     android:background="#FFFFFF"
     tools:context=".MainActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,12 +17,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:background="#252a34">
+            android:background="#252a34"
+            android:padding="20dp">
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -30,7 +32,23 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:id="@+id/menu_bar_layout"
+                        android:padding="0dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_menu_opner" />
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:padding="5dp"
+                            android:src="@drawable/ic_account" />
 
                         <TextView
                             android:id="@+id/app_name"
@@ -39,21 +57,27 @@
                             android:layout_centerHorizontal="true"
                             android:background="#08d9d6"
                             android:backgroundTintMode="src_in"
+                            android:elevation="4dp"
                             android:fontFamily="@font/bad_script"
                             android:paddingStart="10dp"
                             android:paddingEnd="10dp"
                             android:text="Search It"
                             android:textColor="#753535"
-                            android:textSize="28sp"
-                            android:elevation="4dp"/>
+                            android:textSize="28sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:layout_below="@id/app_name"
-                            android:layout_marginLeft="40dp"
+                            android:layout_marginLeft="30dp"
                             android:layout_marginTop="20dp"
-                            android:layout_marginRight="40dp"
+                            android:layout_marginRight="30dp"
                             android:layout_marginBottom="20dp"
                             android:background="@color/white"
                             android:elevation="8dp">
@@ -98,25 +122,24 @@
                             android:fontFamily="sans-serif"
                             android:paddingStart="18dp"
                             android:text="Top Anime Ranking"
-
                             android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
-                        <TextView
-                            android:id="@+id/show_topAnime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="255dp"
-                            android:background="#C7ECBD"
-                            android:gravity="center_vertical"
-android:textSize="10dp"
-                            android:paddingStart="4dp"
-                            android:paddingTop="10dp"
-                            android:paddingEnd="4dp"
-                            android:paddingBottom="7dp"
-                            android:text="Updated"
-                            android:textAllCaps="true"
-                            android:textColor="#18354E" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/show_topAnime"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_marginStart="255dp"-->
+<!--                            android:background="#C7ECBD"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:paddingStart="4dp"-->
+<!--                            android:paddingTop="10dp"-->
+<!--                            android:paddingEnd="4dp"-->
+<!--                            android:paddingBottom="7dp"-->
+<!--                            android:text="Updated"-->
+<!--                            android:textAllCaps="true"-->
+<!--                            android:textColor="#18354E"-->
+<!--                            android:textSize="10dp" />-->
 
 
                     </RelativeLayout>
@@ -134,7 +157,7 @@ android:textSize="10dp"
                             android:id="@+id/top_anime_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#ff2e63" />
+                             />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -151,21 +174,21 @@ android:textSize="10dp"
                             android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
-                        <TextView
-                            android:id="@+id/show_airing"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="255dp"
-                            android:background="#C7ECBD"
-                            android:gravity="center_vertical"
-                            android:textSize="10dp"
-                            android:paddingStart="4dp"
-                            android:paddingTop="10dp"
-                            android:paddingEnd="4dp"
-                            android:paddingBottom="7dp"
-                            android:text="Updated"
-                            android:textAllCaps="true"
-                            android:textColor="#18354E" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/show_airing"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_marginStart="255dp"-->
+<!--                            android:background="#C7ECBD"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:paddingStart="4dp"-->
+<!--                            android:paddingTop="10dp"-->
+<!--                            android:paddingEnd="4dp"-->
+<!--                            android:paddingBottom="7dp"-->
+<!--                            android:text="Updated"-->
+<!--                            android:textAllCaps="true"-->
+<!--                            android:textColor="#18354E"-->
+<!--                            android:textSize="10dp" />-->
 
 
                     </RelativeLayout>
@@ -182,7 +205,7 @@ android:textSize="10dp"
                             android:id="@+id/top_anime_airing_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#ff2e63" />
+                            android:background="#F4EFEF"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -199,22 +222,22 @@ android:textSize="10dp"
                             android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
-                        <TextView
-                            android:id="@+id/show_upcoming"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="255dp"
-                            android:background="#C7ECBD"
-                            android:gravity="center_vertical"
-                            android:textSize="10dp"
-                            android:paddingTop="10dp"
-                            android:paddingStart="4dp"
+<!--                        <TextView-->
+<!--                            android:id="@+id/show_upcoming"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_marginStart="255dp"-->
+<!--                            android:background="#C7ECBD"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:paddingStart="4dp"-->
+<!--                            android:paddingTop="10dp"-->
+<!--                            android:paddingEnd="4dp"-->
 
-                            android:paddingEnd="4dp"
-                            android:paddingBottom="7dp"
-                            android:text="Updated"
-                            android:textAllCaps="true"
-                            android:textColor="#18354E" />
+<!--                            android:paddingBottom="7dp"-->
+<!--                            android:text="Updated"-->
+<!--                            android:textAllCaps="true"-->
+<!--                            android:textColor="#18354E"-->
+<!--                            android:textSize="10dp" />-->
 
 
                     </RelativeLayout>
@@ -231,7 +254,8 @@ android:textSize="10dp"
                             android:id="@+id/top_upcoming_anime_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#ff2e63" />
+                            android:background="#F4EFEF"
+                             />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -250,22 +274,22 @@ android:textSize="10dp"
                             android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
-                        <TextView
-                            android:id="@+id/show_popular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="255dp"
-                            android:background="#C7ECBD"
-                            android:gravity="center_vertical"
-                            android:textSize="10dp"
-                            android:paddingTop="10dp"
-                            android:paddingStart="4dp"
+<!--                        <TextView-->
+<!--                            android:id="@+id/show_popular"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_marginStart="255dp"-->
+<!--                            android:background="#C7ECBD"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:paddingStart="4dp"-->
+<!--                            android:paddingTop="10dp"-->
+<!--                            android:paddingEnd="4dp"-->
 
-                            android:paddingEnd="4dp"
-                            android:paddingBottom="7dp"
-                            android:text="Updated"
-                            android:textAllCaps="true"
-                            android:textColor="#18354E" />
+<!--                            android:paddingBottom="7dp"-->
+<!--                            android:text="Updated"-->
+<!--                            android:textAllCaps="true"-->
+<!--                            android:textColor="#18354E"-->
+<!--                            android:textSize="10dp" />-->
 
 
                     </RelativeLayout>
@@ -282,7 +306,8 @@ android:textSize="10dp"
                             android:id="@+id/popular_anime_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#ff2e63" />
+                            android:background="#F4EFEF"
+                             />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -299,22 +324,22 @@ android:textSize="10dp"
                             android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
-                        <TextView
-                            android:id="@+id/show_movie"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="255dp"
-                            android:background="#C7ECBD"
-                            android:gravity="center_vertical"
+<!--                        <TextView-->
+<!--                            android:id="@+id/show_movie"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_marginStart="255dp"-->
+<!--                            android:background="#C7ECBD"-->
+<!--                            android:gravity="center_vertical"-->
 
-                            android:paddingStart="4dp"
-                            android:textSize="10dp"
-                            android:paddingTop="10dp"
-                            android:paddingEnd="4dp"
-                            android:paddingBottom="7dp"
-                            android:text="Updated"
-                            android:textAllCaps="true"
-                            android:textColor="#18354E" />
+<!--                            android:paddingStart="4dp"-->
+<!--                            android:paddingTop="10dp"-->
+<!--                            android:paddingEnd="4dp"-->
+<!--                            android:paddingBottom="7dp"-->
+<!--                            android:text="Updated"-->
+<!--                            android:textAllCaps="true"-->
+<!--                            android:textColor="#18354E"-->
+<!--                            android:textSize="10dp" />-->
 
 
                     </RelativeLayout>
@@ -331,7 +356,7 @@ android:textSize="10dp"
                             android:id="@+id/top_movie_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#ff2e63" />
+                            android:background="#F4EFEF" />
                     </RelativeLayout>
 
 
@@ -346,8 +371,8 @@ android:textSize="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-       android:background="#393e46"
+        android:background="#393e46"
         app:menu="@menu/bottom_navigation" />
 
-<!--    android:background="?android:attr/windowBackground"-->
+    <!--    android:background="?android:attr/windowBackground"-->
 </RelativeLayout>

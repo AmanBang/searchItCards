@@ -44,7 +44,7 @@ public class SearchShow extends RecyclerView.Adapter<SearchShow.AnimeHolder> {
       //  holder.Episode.setText(String.valueOf(animeResultSearch.get(position).getType()));
         holder.Episode.setText((animeResultSearch.get(position).getType()));
         holder.Mal_Id.setText(String.valueOf(animeResultSearch.get(position).getMal_id()));
-        holder.ratingBar.setRating(animeResultSearch.get(position).getScore()/2);
+//        holder.ratingBar.setRating(animeResultSearch.get(position).getScore()/2);
         Picasso.get().load(animeResultSearch.get(position).getImage_url()).into(holder.AnimeCover);
     }
 

@@ -102,11 +102,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                             Topresults topresults = new Topresults();
                             topresults.setTitle(search.getString("title"));
-                            topresults.setScore(search.getInt("score"));
+//                            topresults.setScore(search.getInt("score"));
                             topresults.setStart_date(search.getString("start_date"));
                             topresults.setType(search.getString("type"));
                             topresults.setMal_id(search.getInt("mal_id"));
-                            topresults.setRank((search.getInt("rank")));
+//                            topresults.setRank((search.getInt("rank")));
                             topresults.setImage_url(search.getString("image_url"));
 
                             animeResult.add(topresults);
@@ -159,11 +159,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                             Topresults upcomingResults = new Topresults();
                         upcomingResults.setTitle(upcomingSearch.getString("title"));
-                        upcomingResults.setScore(upcomingSearch.getInt("score"));
+//                        upcomingResults.setScore(upcomingSearch.getInt("score"));
                      upcomingResults.setStart_date(upcomingSearch.getString("start_date"));
                      upcomingResults.setType(upcomingSearch.getString("type"));
                         upcomingResults.setMal_id(upcomingSearch.getInt("mal_id"));
-                        upcomingResults.setRank((upcomingSearch.getInt("rank")));
+//                        upcomingResults.setRank((upcomingSearch.getInt("rank")));
                         upcomingResults.setImage_url(upcomingSearch.getString("image_url"));
 
                         upcomingAnimeList.add(upcomingResults);
@@ -210,13 +210,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                         Topresults airingResult = new Topresults();
                         airingResult.setTitle(airingSearch.getString("title"));
-                        airingResult.setScore(airingSearch.getInt("score"));
+//                        airingResult.setScore(airingSearch.getInt("score"));
 //
                         airingResult.setType(airingSearch.getString("type"));
                         airingResult.setStart_date(airingSearch.getString("start_date"));
 
                         airingResult.setMal_id(airingSearch.getInt("mal_id"));
-                        airingResult.setRank((airingSearch.getInt("rank")));
+//                        airingResult.setRank((airingSearch.getInt("rank")));
                         airingResult.setImage_url(airingSearch.getString("image_url"));
 
                         topAiringList.add(airingResult);
@@ -262,11 +262,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                         Topresults popularResult = new Topresults();
                         popularResult.setTitle(popularSearch.getString("title"));
-                        popularResult.setScore(popularSearch.getInt("score"));
+//                        popularResult.setScore(popularSearch.getInt("score"));
                         popularResult.setType(popularSearch.getString("type"));
                         popularResult.setStart_date(popularSearch.getString("start_date"));
                         popularResult.setMal_id(popularSearch.getInt("mal_id"));
-                        popularResult.setRank((popularSearch.getInt("rank")));
+//                        popularResult.setRank((popularSearch.getInt("rank")));
                         popularResult.setImage_url(popularSearch.getString("image_url"));
 
                         popularAnimeList.add(popularResult);
@@ -312,11 +312,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                         Topresults movieResult = new Topresults();
                         movieResult.setTitle(movieSearch.getString("title"));
-                        movieResult.setScore(movieSearch.getInt("score"));
+//                        movieResult.setScore(movieSearch.getInt("score"));
                         movieResult.setStart_date(movieSearch.getString("start_date"));
                         movieResult.setType(movieSearch.getString("type"));
                         movieResult.setMal_id(movieSearch.getInt("mal_id"));
-                        movieResult.setRank((movieSearch.getInt("rank")));
+//                        movieResult.setRank((movieSearch.getInt("rank")));
                         movieResult.setImage_url(movieSearch.getString("image_url"));
 
                         animeMovieList.add(movieResult);
@@ -363,8 +363,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         topAiringRecycle = findViewById(R.id.top_anime_airing_recycle);
         popularAnimeRecycle = findViewById(R.id.popular_anime_recycle);
         animeMovieRecycle = findViewById(R.id.top_movie_recycle);
-        episodeLL = findViewById(R.id.episode_ll);
-        releasedLL =findViewById(R.id.released_ll);
+//        episodeLL = findViewById(R.id.episode_ll);
+    //  releasedLL =findViewById(R.id.released_ll);
         typeLL = findViewById(R.id.type_ll);
 
         animeResult = new ArrayList<>();

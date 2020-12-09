@@ -13,10 +13,10 @@ public class Topresults {
 //        "members": 2034891,
 //        "score": 9.22
     private int mal_id;
-    private int rank;
-    private String episode;
+//    private int rank;
+//    private String episode;
     private String title;
-    private float score;
+//    private float score;
     private String image_url;
     private String type;
     private String start_date;
@@ -53,21 +53,21 @@ public class Topresults {
         this.mal_id = mal_id;
     }
 
-    public int getRank() {
-        return rank;
-    }
-
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
-    public String getEpisode() {
-        return episode;
-    }
-
-    public void setEpisode(String episode) {
-        this.episode = episode;
-    }
+//    public int getRank() {
+//        return rank;
+//    }
+//
+//    public void setRank(int rank) {
+//        this.rank = rank;
+//    }
+//
+//    public String getEpisode() {
+//        return episode;
+//    }
+//
+//    public void setEpisode(String episode) {
+//        this.episode = episode;
+//    }
 
     public String getTitle() {
         return title;
@@ -76,12 +76,12 @@ public class Topresults {
     public void setTitle(String title) {
         this.title = title;
     }
-
-    public float getScore() {
-        return score;
-    }
-
-    public void setScore(float score) {
-        this.score = score;
-    }
+//
+//    public float getScore() {
+//        return score;
+//    }
+//
+//    public void setScore(float score) {
+//        this.score = score;
+//    }
 }

@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AnimeDeatails"
     android:orientation="vertical">
-
-<!--    app:iss_auto_cycle="true"-->
-<!--    app:iss_delay="0"-->
-<!--    app:iss_period="1000"-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,129 +24,146 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FF699F">
+                android:background="#14274e"
+                android:elevation="2dp">
 
-                <RelativeLayout
+                <com.denzcoskun.imageslider.ImageSlider
                     android:id="@+id/anime_pictures"
                     android:layout_width="match_parent"
-                    android:layout_height="210dp"
-                    android:background="#C9FF90"
+                    android:layout_height="240dp"
+                    android:background="#000"
+                    app:delay="0"
+                    app:error_image="@color/design_default_color_error"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
+                    app:layout_constraintVertical_bias="0.0"
+                    app:period="1000"
+                    app:placeholder="@color/black"
+                    app:selected_dot="@drawable/default_selected_dot">
 
-                </RelativeLayout>
+                </com.denzcoskun.imageslider.ImageSlider>
 
                 <ImageView
                     android:id="@+id/anime_poster"
-                    android:layout_width="150dp"
-                    android:layout_height="190dp"
-                    android:layout_marginTop="144dp"
+                    android:layout_width="140dp"
+                    android:layout_height="170dp"
+                    android:layout_marginTop="208dp"
                     android:background="#F38585"
+                    android:elevation="8dp"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.065"
+                    app:layout_constraintHorizontal_bias="0.059"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/anime_pictures"
-                    app:srcCompat="@drawable/si_logo"
-                    android:scaleType="centerCrop"/>
+                    app:srcCompat="@drawable/si_logo" />
 
                 <TextView
                     android:id="@+id/anime_title_eng"
-                    android:layout_width="175dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="4dp"
-                    android:fontFamily="sans-serif-condensed-medium"
+                    android:fontFamily="@font/roboto_bold"
+                    android:paddingStart="6dp"
                     android:text="Attack on Titan Final Season"
+                    android:textColor="#FFF"
                     android:textSize="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/anime_rank"
-                    app:layout_constraintTop_toBottomOf="@+id/anime_pictures" />
-
-                <TextView
-                    android:id="@+id/anime_rank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
-                    android:text="#1"
-                    android:textSize="24sp"
                     app:layout_constraintStart_toEndOf="@+id/anime_poster"
                     app:layout_constraintTop_toBottomOf="@+id/anime_pictures" />
+
 
                 <TextView
                     android:id="@+id/anime_genres"
-                    android:layout_width="200dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="19dp"
-                    android:fontFamily="sans-serif-condensed"
+                    android:fontFamily="@font/roboto"
                     android:text="Action, Military, Super Power"
-                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.411"
                     app:layout_constraintStart_toEndOf="@+id/anime_poster"
                     app:layout_constraintTop_toBottomOf="@+id/anime_title_eng" />
 
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="Status : "
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toEndOf="@+id/anime_poster"
-                    app:layout_constraintTop_toBottomOf="@+id/anime_genres" />
 
                 <TextView
                     android:id="@+id/anime_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="103dp"
-                    android:fontFamily="sans-serif-condensed"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/roboto"
+                    android:paddingBottom="8dp"
                     android:text="Currently Airing"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/textView4"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/anime_type"
+                    app:layout_constraintTop_toBottomOf="@+id/anime_genres" />
+
+                <TextView
+                    android:id="@+id/anime_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/roboto"
+                    android:paddingBottom="8dp"
+                    android:text="TextView"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/anime_poster"
                     app:layout_constraintTop_toBottomOf="@+id/anime_genres" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            <TextView
+            <com.borjabravo.readmoretextview.ReadMoreTextView
                 android:id="@+id/anime_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
                 android:text="With Eren and company now at the shoreline and the threat of Marley looming, what’s next for the Scouts and their quest to unravel the mysteries of the Titans, humanity, and more? (Source: Funimation)"
-                android:fontFamily="sans-serif-condensed"
+                android:fontFamily="@font/roboto"
                 android:padding="16dp"
                 android:paddingTop="10dp"
+                app:trimExpandedText="@string/read_less"
+                app:trimCollapsedText="@string/read_more"
+                app:trimMode="trimModeLength"
+                app:trimLines="80"
+                app:colorClickableText="#039BE5"
                 />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#B8FFFE"
+                android:background="#d0e8f2"
                 android:orientation="vertical"
-                android:padding="8dp">
+                android:padding="8dp"
+                android:paddingStart="16dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:padding="10dp"
+                    android:textColor="#000"
+                    android:paddingStart="0dp"
+                    android:text="Facts"
+                    android:textSize="24dp" />
 
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="#000"
                     android:paddingTop="4dp"
                     android:text="Original Title"
                     android:textStyle="bold"
@@ -161,14 +174,41 @@
                     android:id="@+id/anime_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
+                    android:textColor="#393e46"
                     android:text="Shingeki no Kyojin: The Final Season" />
+
+                <TextView
+                    android:id="@+id/txtView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:paddingTop="4dp"
+                    android:text="Episodes"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="11dp"
+                    tools:layout_editor_absoluteY="21dp" />
+
+                <TextView
+                    android:id="@+id/anime_episodes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="#393e46"
+
+                    android:paddingTop="4dp"
+                    android:text="88" />
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:text="Duration"
+                    android:textColor="#000"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="11dp"
                     tools:layout_editor_absoluteY="21dp" />
@@ -177,8 +217,12 @@
                     android:id="@+id/anime_duration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="#393e46"
+
                     android:paddingTop="4dp"
                     android:text="Unknown" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -193,8 +237,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:paddingTop="4dp"
                             android:text="Premier"
+                            android:textColor="#000"
                             android:textStyle="bold"
                             tools:layout_editor_absoluteX="11dp"
                             tools:layout_editor_absoluteY="21dp" />
@@ -203,7 +249,10 @@
                             android:id="@+id/anime_premier"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:paddingTop="4dp"
+                            android:textColor="#393e46"
+
                             android:text="Unknown" />
                     </LinearLayout>
 
@@ -216,8 +265,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:paddingTop="4dp"
                             android:text="Broadcast"
+                            android:textColor="#000"
                             android:textStyle="bold"
                             tools:layout_editor_absoluteX="11dp"
                             tools:layout_editor_absoluteY="21dp" />
@@ -226,7 +277,10 @@
                             android:id="@+id/anime_broadcast"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:paddingTop="4dp"
+                            android:textColor="#393e46"
+
                             android:text="Unknown" />
 
                     </LinearLayout>
@@ -247,7 +301,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:text="Score"
+                            android:textColor="#000"
                             android:textStyle="bold"
                             tools:layout_editor_absoluteX="11dp"
                             tools:layout_editor_absoluteY="21dp" />
@@ -256,6 +312,9 @@
                             android:id="@+id/anime_score"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="#393e46"
+
+                            android:fontFamily="@font/roboto"
                             android:paddingTop="4dp"
                             android:text="9.04" />
                     </LinearLayout>
@@ -269,7 +328,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:text="Popularity"
+                            android:textColor="#000"
                             android:textStyle="bold"
                             tools:layout_editor_absoluteX="11dp"
                             tools:layout_editor_absoluteY="21dp" />
@@ -279,6 +340,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:fontFamily="@font/roboto"
+                            android:textColor="#393e46"
+
                             android:paddingTop="4dp"
                             android:text="581" />
                     </LinearLayout>
@@ -288,8 +352,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:text="Aired"
+                    android:textColor="#000"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="11dp"
                     tools:layout_editor_absoluteY="21dp" />
@@ -298,14 +364,19 @@
                     android:id="@+id/anime_aired"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="#393e46"
+
                     android:paddingTop="4dp"
                     android:text="Dec 7, 2020 to ?" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:text="Producers"
+                    android:textColor="#000"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="11dp"
                     tools:layout_editor_absoluteY="21dp" />
@@ -314,14 +385,19 @@
                     android:id="@+id/anime_producers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="#393e46"
+
                     android:paddingTop="4dp"
                     android:text="Pony Canyon, Techno Sound" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:text="Licensors"
+                    android:textColor="#000"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="11dp"
                     tools:layout_editor_absoluteY="21dp" />
@@ -330,14 +406,19 @@
                     android:id="@+id/anime_licensors"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="#393e46"
+
                     android:paddingTop="4dp"
                     android:text="Funimation" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:text="Studios"
+                    android:textColor="#000"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="11dp"
                     tools:layout_editor_absoluteY="21dp" />
@@ -346,8 +427,11 @@
                     android:id="@+id/anime_studios"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
+                    android:textColor="#393e46"
+
                     android:text="MAPPA" />
 
 
@@ -356,11 +440,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
                 android:text="Trailers"
+                android:textColor="#000"
+                android:fontFamily="@font/roboto"
                 android:textStyle="bold"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:padding="4dp"
+                android:paddingBottom="0dp"
                 android:textSize="18dp"
                 />
 
@@ -368,154 +455,198 @@
                 android:id="@+id/anime_trailer_recycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:background="#fff" />
+
+            <LinearLayout
+                android:id="@+id/anime_custer_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginTop="8dp"
+                    android:text="Cluster"
+                    android:textColor="#000"
+                    android:layout_gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:padding="4dp"
+                    android:textSize="20dp"
+                    />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="4dp">
+
+                    <LinearLayout
+                        android:id="@+id/anime_prequel_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="left">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Prequel"
+                            android:textSize="18dp"
+                            android:padding="6dp"
+                            android:fontFamily="@font/roboto"
+                            android:layout_gravity="center_horizontal"
+                            android:textStyle="bold"
+                            tools:layout_editor_absoluteX="11dp"
+                            tools:layout_editor_absoluteY="21dp" />
+
+                        <Button
+                            android:id="@+id/anime_prequel"
+                            android:background="#fff"
+                            android:elevation="4dp"
+                            android:layout_width="180dp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/roboto"
+                            android:layout_height="57dp"
+                            android:paddingTop="4dp"
+                            android:text="No Prequel Released" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/anime_sequel_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sequel"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/roboto"
+                            android:padding="6dp"
+                            android:textStyle="bold"
+                            tools:layout_editor_absoluteX="11dp"
+                            tools:layout_editor_absoluteY="21dp" />
+
+                        <Button
+                            android:background="#fff"
+                            android:id="@+id/anime_sequel"
+                            android:layout_width="180dp"
+                            android:layout_height="57dp"
+                            android:fontFamily="@font/roboto"
+                            android:layout_gravity="center"
+                            android:textColor="@color/black"
+
+                            android:paddingTop="4dp"
+                            android:text="No Sequel Released" />
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="4dp">
+
+                    <LinearLayout
+                        android:id="@+id/anime_sideStory_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="left">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Side-Story"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/roboto"
+                            android:padding="6dp"
+                            android:layout_gravity="center_horizontal"
+                            android:textStyle="bold"
+                            tools:layout_editor_absoluteX="11dp"
+                            tools:layout_editor_absoluteY="21dp" />
+
+                        <Button
+                            android:id="@+id/anime_sideStory"
+                            android:background="#fff"
+                            android:elevation="4dp"
+                            android:layout_width="180dp"
+                            android:fontFamily="@font/roboto"
+                            android:textColor="@color/black"
+
+                            android:layout_height="57dp"
+                            android:paddingTop="4dp"
+                            android:text="9.04" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/anime_summery_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Summery"
+                            android:layout_gravity="center_horizontal"
+                            android:textSize="18dp"
+                            android:padding="6dp"
+                            android:fontFamily="@font/roboto"
+                            android:textStyle="bold"
+                            tools:layout_editor_absoluteX="11dp"
+                            tools:layout_editor_absoluteY="21dp" />
+
+                        <Button
+                            android:background="#fff"
+                            android:id="@+id/anime_summery"
+                            android:layout_width="180dp"
+                            android:layout_height="57dp"
+                            android:fontFamily="@font/roboto"
+                            android:textColor="@color/black"
+                            android:layout_gravity="center"
+                            android:paddingTop="4dp"
+                            android:text="581" />
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed"
-                android:layout_marginTop="8dp"
-                android:text="Cluster"
-                android:layout_gravity="center_horizontal"
-                android:textStyle="bold"
-                android:padding="4dp"
-                android:textSize="20dp"
+                android:text="Recommended"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="24dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="6dp"
+                android:layout_marginStart="16dp"
                 />
-
-
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/anime_recommendation_recycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:padding="4dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="left">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Prequel"
-                        android:textSize="18dp"
-                        android:padding="6dp"
-                        android:layout_gravity="center_horizontal"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="11dp"
-                        tools:layout_editor_absoluteY="21dp" />
-
-                    <Button
-                        android:id="@+id/anime_prequel"
-                        android:background="#fff"
-                        android:elevation="4dp"
-                        android:layout_width="180dp"
-                        android:layout_height="100dp"
-                        android:paddingTop="4dp"
-                        android:text="9.04" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="20dp"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sequel"
-                        android:layout_gravity="center_horizontal"
-                        android:textSize="18dp"
-                        android:padding="6dp"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="11dp"
-                        tools:layout_editor_absoluteY="21dp" />
-
-                    <Button
-                        android:background="#fff"
-                        android:id="@+id/anime_sequel"
-                        android:layout_width="180dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="4dp"
-                        android:text="581" />
-                </LinearLayout>
-
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                android:padding="4dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="left">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Side-Story"
-                        android:textSize="18dp"
-                        android:padding="6dp"
-                        android:layout_gravity="center_horizontal"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="11dp"
-                        tools:layout_editor_absoluteY="21dp" />
-
-                    <Button
-                        android:id="@+id/anime_sideStory"
-                        android:background="#fff"
-                        android:elevation="4dp"
-                        android:layout_width="180dp"
-                        android:layout_height="100dp"
-                        android:paddingTop="4dp"
-                        android:text="9.04" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="20dp"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Summery"
-                        android:layout_gravity="center_horizontal"
-                        android:textSize="18dp"
-                        android:padding="6dp"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="11dp"
-                        tools:layout_editor_absoluteY="21dp" />
-
-                    <Button
-                        android:background="#fff"
-                        android:id="@+id/anime_summery"
-                        android:layout_width="180dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center"
-                        android:paddingTop="4dp"
-                        android:text="581" />
-                </LinearLayout>
-
-
-
-            </LinearLayout>
-
+                />
 
 
         </LinearLayout>
@@ -632,4 +763,4 @@
         <!--                </LinearLayout>-->
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

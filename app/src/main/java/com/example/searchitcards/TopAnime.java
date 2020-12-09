@@ -38,11 +38,11 @@ List<Topresults> animeResult;
     @Override
     public void onBindViewHolder(@NonNull AnimeHolder holder, int position) {
         holder.Title.setText(animeResult.get(position).getTitle());
-        holder.rank.setText(String.valueOf(animeResult.get(position).getRank()));
-        holder.Episode.setText(String.valueOf(animeResult.get(position).getEpisode()));
+//        holder.rank.setText(String.valueOf(animeResult.get(position).getRank()));
+//        holder.Episode.setText(String.valueOf(animeResult.get(position).getEpisode()));
        // holder.Episode.setText((animeResult.get(position).getEpisode()));
         holder.Mal_Id.setText(String.valueOf(animeResult.get(position).getMal_id()));
-        holder.ratingBar.setRating(animeResult.get(position).getScore()/2);
+//        holder.ratingBar.setRating(animeResult.get(position).getScore()/2);
         holder.Released.setText(animeResult.get(position).getStart_date());
         holder.Type.setText(animeResult.get(position).getType());
         Picasso.get().load(animeResult.get(position).getImage_url()).into(holder.AnimeCover);
@@ -54,7 +54,7 @@ List<Topresults> animeResult;
     }
 
     public class AnimeHolder extends RecyclerView.ViewHolder {
-        RatingBar ratingBar;
+//        RatingBar ratingBar;
         TextView Title,rank,Episode,Mal_Id,Type,Released;
         ImageView AnimeCover;
 
@@ -76,11 +76,11 @@ List<Topresults> animeResult;
 
 
 
-            ratingBar = itemView.findViewById(R.id.rating_search);
+//            ratingBar = itemView.findViewById(R.id.rating_search);
             Title =  itemView.findViewById(R.id.title_search);
-            rank = itemView.findViewById(R.id.animeRank);
+//            rank = itemView.findViewById(R.id.animeRank);
             AnimeCover = itemView.findViewById(R.id.image);
-            Episode = itemView.findViewById(R.id.search_episode);
+//            Episode = itemView.findViewById(R.id.search_episode);
             Mal_Id = itemView.findViewById(R.id.search_mal_id);
             Type =itemView.findViewById(R.id.search_type);
             Released = itemView.findViewById(R.id.search_released);
