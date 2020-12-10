@@ -100,8 +100,9 @@ public class AnimeDeatails extends AppCompatActivity {
 
     Button animePrequel;
     Button animeSequel;
-    Button animeSideStory;
-    Button animeSummery;
+    Button episodeButton;
+//    Button animeSideStory;
+//    Button animeSummery;
 
 
     String addGenres = "";
@@ -110,8 +111,10 @@ public class AnimeDeatails extends AppCompatActivity {
     String addLisensor = "";
     String addPrequel = "";
     String addSequel = "";
-    String addSide_story = "";
-    String addSummary = "";
+    String searchId;
+    String searchIdv;
+//    String addSide_story = "";
+//    String addSummary = "";
 
 
     JSONObject cluster;
@@ -119,22 +122,26 @@ public class AnimeDeatails extends AppCompatActivity {
     LinearLayout prequelLaout;
     LinearLayout sequelLaout;
     LinearLayout sideStoryLaout;
-    LinearLayout summeryLaout;
     LinearLayout clusterLayout;
 
     List<SlideModel> modelList;
     List<Promo> Yvideos;
     List<RecommendedAnime> Ranime;
+    List<SStory> storyList;
 
     ImageSlider slider;
 
     RecyclerView animeTrailerRecycle;
     RecyclerView animeRecommendationRecycle;
+    RecyclerView SSRecycle;
 
 
     YoutubeVideoAdapter youtubeVideoAdapter;
     RecommendationAdapter Radapter;
+    SideStoryAdapter SAdapter;
+
     private String Urlr;
+     String passId ="";
 
 //    YouTubePlayerView youTubePlayerView;
 //    YouTubePlayer.OnInitializedListener onInitializedListener;
@@ -149,6 +156,11 @@ public class AnimeDeatails extends AppCompatActivity {
             prequelId = "";
             sequelId = "";
             addGenres = "";
+            addProducer = "";
+            addLisensor = "";
+            addStudios = "";
+
+          Log.i("hoole",passId);
 
 
             RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
@@ -195,22 +207,22 @@ public class AnimeDeatails extends AppCompatActivity {
                         JSONArray producer = response.getJSONArray("producers");
                         for (int i = 0; i < producer.length(); i++) {
                             JSONObject producerList = producer.getJSONObject(i);
-                            addProducer = producerList.getString("name") + ", ";
+                            addProducer += producerList.getString("name") + ", ";
                         }
                         animeProducer.setText(addProducer);
 
-                        JSONArray lisensor = response.getJSONArray("producers");
+                        JSONArray lisensor = response.getJSONArray("licensors");
                         for (int i = 0; i < lisensor.length(); i++) {
                             JSONObject lisensorList = lisensor.getJSONObject(i);
-                            addLisensor = lisensorList.getString("name") + ", ";
+                            addLisensor += lisensorList.getString("name") + ", ";
                         }
-                        animeProducer.setText(addLisensor);
-                        JSONArray studios = response.getJSONArray("producers");
+                        animeLisensor.setText(addLisensor);
+                        JSONArray studios = response.getJSONArray("studios");
                         for (int i = 0; i < studios.length(); i++) {
                             JSONObject studiosList = studios.getJSONObject(i);
-                            addStudios = studiosList.getString("name") + ", ";
+                            addStudios += studiosList.getString("name") + ", ";
                         }
-                        animeProducer.setText(addStudios);
+                        animeStudios.setText(addStudios);
 
                         //Json object for culster
                         cluster = response.getJSONObject("related");
@@ -253,26 +265,38 @@ public class AnimeDeatails extends AppCompatActivity {
                         JSONArray side_story = cluster.getJSONArray("Side story");
                         for (int i = 0; i < side_story.length(); i++) {
                             JSONObject side_storylList = side_story.getJSONObject(i);
-                            addSide_story = side_storylList.getString("name") + ", ";
+//                            addSide_story = side_storylList.getString("name") + ", ";
+
+                            SStory sStory = new SStory();
+
+                            sStory.setMal_id(side_storylList.getString("mal_id"));
+                            sStory.setName(side_storylList.getString("name"));
+
+                            storyList.add(sStory);
+
                         }
-                        animeSideStory.setText(addSide_story);
+//                        animeSideStory.setText(addSide_story);
                     } catch (Exception e) {
                         e.printStackTrace();
                         sideStoryLaout.setVisibility(View.GONE);
                     }
-                    try {
 
-                        JSONArray summary = cluster.getJSONArray("Summary");
-                        for (int i = 0; i < summary.length(); i++) {
-                            JSONObject summaryList = summary.getJSONObject(i);
-                            addSummary = summaryList.getString("name") + ", ";
-                        }
-                        animeSummery.setText(addSummary);
-                    } catch (Exception e) {
-
-                        e.printStackTrace();
-                        summeryLaout.setVisibility(View.GONE);
-                    }
+                    SSRecycle.setLayoutManager(new LinearLayoutManager(AnimeDeatails.this, LinearLayoutManager.HORIZONTAL, false));
+                    SAdapter = new SideStoryAdapter(AnimeDeatails.this, storyList);
+                    SSRecycle.setAdapter(SAdapter);
+//                    try {
+//
+//                        JSONArray summary = cluster.getJSONArray("Summary");
+//                        for (int i = 0; i < summary.length(); i++) {
+//                            JSONObject summaryList = summary.getJSONObject(i);
+//                            addSummary = summaryList.getString("name") + ", ";
+//                        }
+//                        animeSummery.setText(addSummary);
+//                    } catch (Exception e) {
+//
+//                        e.printStackTrace();
+//                        summeryLaout.setVisibility(View.GONE);
+//                    }
 
                 }
             }, new Response.ErrorListener() {
@@ -441,24 +465,27 @@ public class AnimeDeatails extends AppCompatActivity {
         animeStudios = findViewById(R.id.anime_studios);
         animePrequel = findViewById(R.id.anime_prequel);
         animeSequel = findViewById(R.id.anime_sequel);
-        animeSideStory = findViewById(R.id.anime_sideStory);
-        animeSummery = findViewById(R.id.anime_summery);
+//        animeSideStory = findViewById(R.id.anime_sideStory);
+//        animeSummery = findViewById(R.id.anime_summery);
         animeEpisodes = findViewById(R.id.anime_episodes);
         animeAired = findViewById(R.id.anime_aired);
         animeType = findViewById(R.id.anime_type);
+        episodeButton = findViewById(R.id.anime_episodes_button);
 
         animeTrailerRecycle = findViewById(R.id.anime_trailer_recycle);
         animeRecommendationRecycle = findViewById(R.id.anime_recommendation_recycle);
+        SSRecycle = findViewById(R.id.anime_sideStory_recycle);
 
         prequelLaout = findViewById(R.id.anime_prequel_layout);
         sequelLaout = findViewById(R.id.anime_sequel_layout);
         sideStoryLaout = findViewById(R.id.anime_sideStory_layout);
-        summeryLaout = findViewById(R.id.anime_summery_layout);
+//        summeryLaout = findViewById(R.id.anime_summery_layout);
         clusterLayout = findViewById(R.id.anime_custer_check);
 
         modelList = new ArrayList<>();
         Yvideos = new ArrayList<>();
         Ranime = new ArrayList<>();
+        storyList = new ArrayList<>();
 
         slider = findViewById(R.id.anime_pictures);
 
@@ -479,8 +506,8 @@ public class AnimeDeatails extends AppCompatActivity {
         Intent i = getIntent();
         Intent x = getIntent();
         Intent y = getIntent();
-        String searchId = i.getStringExtra("title_Id_Pass");
-        String searchIdv = x.getStringExtra("passing_id");
+         searchId = i.getStringExtra("title_Id_Pass");
+         searchIdv = x.getStringExtra("passing_id");
         //  String   newRefresh = y.getStringExtra("refreshUrl");
 
 //        textView.setText(searchId);
@@ -489,17 +516,44 @@ public class AnimeDeatails extends AppCompatActivity {
             urlp = "https://api.jikan.moe/v3/anime/" + searchId + "/pictures";
             Urlv = "https://api.jikan.moe/v3/anime/" + searchId + "/videos";
             Urlr = "https://api.jikan.moe/v3/anime/" + searchId + "/recommendations";
+            passId = "https://api.jikan.moe/v3/anime/" + searchId;
         } else {
             Url = "https://api.jikan.moe/v3/anime/" + searchIdv;
             urlp = "https://api.jikan.moe/v3/anime/" + searchIdv + "/pictures";
             Urlv = "https://api.jikan.moe/v3/anime/" + searchIdv + "/videos";
             Urlr = "https://api.jikan.moe/v3/anime/" + searchIdv + "/recommendations";
+            passId = "https://api.jikan.moe/v3/anime/" + searchIdv;
         }
-        ImagesSlideShow(urlp);
+        Handler handler = new Handler();
+
         DetailsAnime detailsAnime = new DetailsAnime(Url);
         detailsAnime.start();
-        youtube(Urlv);
-        Recommend(Urlr);
+
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ImagesSlideShow(urlp);
+            }
+        },100);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                youtube(Urlv);
+            }
+        },500);
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Recommend(Urlr);
+            }
+        },300);
+
+
+
+
+
 
 
 //            onInitializedListener = new YouTubePlayer.OnInitializedListener() {
@@ -534,12 +588,29 @@ public class AnimeDeatails extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
-                        ImagesSlideShow(urlp);
                         DetailsAnime detailsAnime = new DetailsAnime(Url);
                         detailsAnime.start();
-                        youtube(Urlv);
-                        Recommend(Urlr);
+
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                ImagesSlideShow(urlp);
+                            }
+                        },100);
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                youtube(Urlv);
+                            }
+                        },400);
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Recommend(Urlr);
+                            }
+                        },800);
                     }
                 }, 100);
             }
@@ -558,15 +629,43 @@ public class AnimeDeatails extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ImagesSlideShow(urlp);
                         DetailsAnime detailsAnime = new DetailsAnime(Url);
                         detailsAnime.start();
-                        youtube(Urlv);
-                        Recommend(Urlr);
+
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                ImagesSlideShow(urlp);
+                            }
+                        },100);
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                youtube(Urlv);
+                            }
+                        },400);
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Recommend(Urlr);
+                            }
+                        },800);
                     }
                 }, 100);
             }
 
+        });
+
+        episodeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent op = new Intent(AnimeDeatails.this, EpisodeList.class);
+                op.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                op.putExtra("episodeList_1", passId);
+                AnimeDeatails.this.startActivity(op);
+            }
         });
 
     }

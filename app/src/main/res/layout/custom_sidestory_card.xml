@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:elevation="8dp"
+        android:layout_margin="4dp"
+        android:background="@color/white"
+        >
+        <TextView
+            android:id="@+id/anime_sideStory_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black"
+            android:gravity="center"/>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
