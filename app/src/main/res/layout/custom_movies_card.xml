@@ -27,6 +27,7 @@
                 android:layout_height="180dp"
                 android:id="@+id/moviePoster"
                 android:scaleType="centerCrop"
+                android:src="@drawable/si_logo"
                 />
 
             <TextView

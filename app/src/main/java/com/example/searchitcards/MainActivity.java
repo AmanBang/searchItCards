@@ -359,10 +359,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
         topAnimeRecycle = findViewById(R.id.top_anime_recycle);
+        topAnimeRecycle.setHasFixedSize(true);
         upcomingAnimeRecycle = findViewById(R.id.top_upcoming_anime_recycle);
+        upcomingAnimeRecycle.setHasFixedSize(true);
         topAiringRecycle = findViewById(R.id.top_anime_airing_recycle);
+        topAiringRecycle.setHasFixedSize(true);
         popularAnimeRecycle = findViewById(R.id.popular_anime_recycle);
+        popularAnimeRecycle.setHasFixedSize(true);
         animeMovieRecycle = findViewById(R.id.top_movie_recycle);
+        animeMovieRecycle.setHasFixedSize(true);
+        animeMovieRecycle.isAnimating();
 //        episodeLL = findViewById(R.id.episode_ll);
     //  releasedLL =findViewById(R.id.released_ll);
         typeLL = findViewById(R.id.type_ll);

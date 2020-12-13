@@ -123,6 +123,7 @@ public class AnimeDeatails extends AppCompatActivity {
     LinearLayout sequelLaout;
     LinearLayout sideStoryLaout;
     LinearLayout clusterLayout;
+    LinearLayout trailerLayout;
 
     List<SlideModel> modelList;
     List<Promo> Yvideos;
@@ -142,6 +143,8 @@ public class AnimeDeatails extends AppCompatActivity {
 
     private String Urlr;
      String passId ="";
+     String eNumb;
+     Boolean reequestCashed;
 
 //    YouTubePlayerView youTubePlayerView;
 //    YouTubePlayer.OnInitializedListener onInitializedListener;
@@ -195,10 +198,12 @@ public class AnimeDeatails extends AppCompatActivity {
                         animeScore.setText(response.getString("score"));
                         animePopularity.setText(response.getString("popularity"));
                         animeEpisodes.setText(response.getString("episodes"));
+                        eNumb = response.getString("episodes");
                         animeType.setText(response.getString("type"));
 
                         if (response.getString("type").equals("Movie")) {
                             clusterLayout.setVisibility(View.GONE);
+                            episodeButton.setVisibility(View.GONE);
                         }
 
                         JSONObject aired = response.getJSONObject("aired");
@@ -364,6 +369,12 @@ public class AnimeDeatails extends AppCompatActivity {
             public void onResponse(JSONObject response) {
 
                 try {
+
+                    String epis = response.getString("promo");
+                    Log.i("epis",epis);
+                    if (epis.equals("[]")){
+                        trailerLayout.setVisibility(View.GONE);
+                    }
                     JSONArray jsonArray = response.getJSONArray("promo");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
@@ -473,13 +484,16 @@ public class AnimeDeatails extends AppCompatActivity {
         episodeButton = findViewById(R.id.anime_episodes_button);
 
         animeTrailerRecycle = findViewById(R.id.anime_trailer_recycle);
+        animeTrailerRecycle.setHasFixedSize(true);
         animeRecommendationRecycle = findViewById(R.id.anime_recommendation_recycle);
+        animeRecommendationRecycle.setHasFixedSize(true);
         SSRecycle = findViewById(R.id.anime_sideStory_recycle);
+        SSRecycle.setHasFixedSize(true);
 
         prequelLaout = findViewById(R.id.anime_prequel_layout);
         sequelLaout = findViewById(R.id.anime_sequel_layout);
         sideStoryLaout = findViewById(R.id.anime_sideStory_layout);
-//        summeryLaout = findViewById(R.id.anime_summery_layout);
+        trailerLayout = findViewById(R.id.anime_trailer_Layout);
         clusterLayout = findViewById(R.id.anime_custer_check);
 
         modelList = new ArrayList<>();
@@ -664,6 +678,7 @@ public class AnimeDeatails extends AppCompatActivity {
                 Intent op = new Intent(AnimeDeatails.this, EpisodeList.class);
                 op.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 op.putExtra("episodeList_1", passId);
+               // op.putExtra("episodes_number",eNumb);
                 AnimeDeatails.this.startActivity(op);
             }
         });

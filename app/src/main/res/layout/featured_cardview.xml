@@ -3,47 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="150dp"
     android:layout_height="250dp"
-    android:layout_margin="10dp"
-    app:cardCornerRadius="2dp"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="4dp"
     app:cardElevation="8dp">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_gravity="center"
-        android:background="#eaeaea"
-        android:paddingBottom="5dp"
+        android:background="#f6f6f6"
+        android:orientation="vertical"
         android:paddingTop="5dp"
-        >
+        android:paddingBottom="5dp">
 
 
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content">-->
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content">-->
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:fontFamily="@font/atomic_age"-->
+        <!--                android:textColor="@color/black"-->
+        <!--                android:text="Rank : "-->
+        <!--                android:textSize="18dp"-->
+        <!--                android:textStyle="bold" />-->
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:fontFamily="@font/atomic_age"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:text="Rank : "-->
-<!--                android:textSize="18dp"-->
-<!--                android:textStyle="bold" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/animeRank"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:fontFamily="@font/bubblegum_sans"-->
-<!--                android:paddingStart="5dp"-->
-<!--                android:paddingEnd="5dp"-->
-<!--                android:text="1"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textStyle="bold" />-->
-<!--        </LinearLayout>-->
+        <!--            <TextView-->
+        <!--                android:id="@+id/animeRank"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:textColor="@color/black"-->
+        <!--                android:fontFamily="@font/bubblegum_sans"-->
+        <!--                android:paddingStart="5dp"-->
+        <!--                android:paddingEnd="5dp"-->
+        <!--                android:text="1"-->
+        <!--                android:textSize="18sp"-->
+        <!--                android:textStyle="bold" />-->
+        <!--        </LinearLayout>-->
 
         <ImageView
             android:id="@+id/image"
@@ -52,50 +51,50 @@
             android:scaleType="centerCrop" />
 
         <!--        <RatingBar-->
-<!--            android:id="@+id/rating_search"-->
-<!--            style="@style/Widget.AppCompat.RatingBar.Small"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:rating="3.5" />-->
-<!--        <LinearLayout-->
-<!--            android:id="@+id/episode_ll"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            -->
-<!--            android:visibility="gone">-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Episode : "-->
-<!--                android:textStyle="bold" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/search_episode"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="50"-->
-<!--                android:textStyle="bold" />-->
-<!--        </LinearLayout>-->
+        <!--            android:id="@+id/rating_search"-->
+        <!--            style="@style/Widget.AppCompat.RatingBar.Small"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="5dp"-->
+        <!--            android:rating="3.5" />-->
         <!--        <LinearLayout-->
-<!--            android:id="@+id/released_ll"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:visibility="visible">-->
+        <!--            android:id="@+id/episode_ll"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="5dp"-->
+        <!--            -->
+        <!--            android:visibility="gone">-->
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Release Date : "-->
-<!--                android:textColor="@color/black"-->
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="Episode : "-->
+        <!--                android:textStyle="bold" />-->
 
-<!--                android:textStyle="bold" />-->
+        <!--            <TextView-->
+        <!--                android:id="@+id/search_episode"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="50"-->
+        <!--                android:textStyle="bold" />-->
+        <!--        </LinearLayout>-->
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/released_ll"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="5dp"-->
+        <!--            android:visibility="visible">-->
 
-<!--           -->
-<!--        </LinearLayout>-->
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="Release Date : "-->
+        <!--                android:textColor="@color/black"-->
+
+        <!--                android:textStyle="bold" />-->
+
+        <!--           -->
+        <!--        </LinearLayout>-->
         <TextView
             android:id="@+id/title_search"
             android:layout_width="match_parent"
@@ -115,8 +114,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="5dp"
-            android:paddingStart="4dp"
             android:layout_marginEnd="8dp"
+            android:paddingStart="4dp"
             android:paddingTop="4dp"
             android:visibility="visible">
 
@@ -139,8 +138,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_break"
-                />
+                android:src="@drawable/ic_break" />
 
             <TextView
                 android:id="@+id/search_released"
@@ -152,12 +150,10 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/search_mal_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/search_mal_id"
-            android:textSize="1dp"/>
-
-
+            android:textSize="1dp" />
 
 
     </LinearLayout>

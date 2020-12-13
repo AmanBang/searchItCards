@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".AnimeDeatails"
-    android:background="@color/white">
+    tools:context=".AnimeDeatails">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -131,9 +131,9 @@
                 android:fontFamily="@font/roboto"
                 android:padding="16dp"
                 android:paddingTop="10dp"
-                android:textColor="@color/black"
                 android:text="With Eren and company now at the shoreline and the threat of Marley looming, what’s next for the Scouts and their quest to unravel the mysteries of the Titans, humanity, and more? (Source: Funimation)"
-                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:textSize="14dp"
                 app:colorClickableText="#039BE5"
                 app:trimCollapsedText="@string/read_more"
                 app:trimExpandedText="@string/read_less"
@@ -220,14 +220,13 @@
                         android:id="@+id/anime_episodes_button"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:height="40dp"
-                        android:layout_marginStart="50dp"
+                        android:layout_marginStart="100dp"
                         android:layout_marginTop="7dp"
+                        android:height="40dp"
                         android:text="Show List" />
 
 
                 </LinearLayout>
-
 
 
                 <TextView
@@ -465,25 +464,33 @@
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/roboto"
-                android:padding="4dp"
-                android:paddingBottom="0dp"
-                android:text="Trailers"
-                android:textColor="#000"
-                android:layout_gravity="center_horizontal"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/anime_trailer_recycle"
+            <LinearLayout
+                android:id="@+id/anime_trailer_Layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fff"
-                android:padding="10dp" />
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto"
+                    android:padding="4dp"
+                    android:paddingBottom="0dp"
+                    android:text="Trailers"
+                    android:textColor="#000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/anime_trailer_recycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:padding="10dp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/anime_custer_check"
@@ -578,75 +585,32 @@
                 </LinearLayout>
 
 
+                <LinearLayout
+                    android:id="@+id/anime_sideStory_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/anime_sideStory_layout"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:orientation="vertical">
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/roboto"
+                        android:padding="6dp"
+                        android:text="Side-Story"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        tools:layout_editor_absoluteX="11dp"
+                        tools:layout_editor_absoluteY="21dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/roboto"
-                            android:padding="6dp"
-                            android:text="Side-Story"
-                            android:textSize="20dp"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            tools:layout_editor_absoluteX="11dp"
-                            tools:layout_editor_absoluteY="21dp" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/anime_sideStory_recycle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/anime_sideStory_recycle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                        <!--                        <Button-->
-<!--                            android:id="@+id/anime_sideStory"-->
-<!--                            android:layout_width="180dp"-->
-<!--                            android:layout_height="57dp"-->
-<!--                            android:background="#fff"-->
-<!--                            android:elevation="4dp"-->
-<!--                            android:fontFamily="@font/roboto"-->
-
-<!--                            android:paddingTop="4dp"-->
-<!--                            android:text="9.04"-->
-<!--                            android:textColor="@color/black" />-->
-                    </LinearLayout>
-
-<!--                    <LinearLayout-->
-<!--                        android:id="@+id/anime_summery_layout"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="20dp"-->
-<!--                        android:orientation="vertical">-->
-
-<!--                        <TextView-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_gravity="center_horizontal"-->
-<!--                            android:fontFamily="@font/roboto"-->
-<!--                            android:padding="6dp"-->
-<!--                            android:text="Summery"-->
-<!--                            android:textSize="18dp"-->
-<!--                            android:textStyle="bold"-->
-<!--                            tools:layout_editor_absoluteX="11dp"-->
-<!--                            tools:layout_editor_absoluteY="21dp" />-->
-
-<!--                        <Button-->
-<!--                            android:id="@+id/anime_summery"-->
-<!--                            android:layout_width="180dp"-->
-<!--                            android:layout_height="57dp"-->
-<!--                            android:layout_gravity="center"-->
-<!--                            android:background="#fff"-->
-<!--                            android:fontFamily="@font/roboto"-->
-<!--                            android:paddingTop="4dp"-->
-<!--                            android:text="581"-->
-<!--                            android:textColor="@color/black" />-->
-<!--                    </LinearLayout>-->
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -659,6 +623,7 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="6dp"
                 android:text="Recommended"
+                android:textColor="@color/black"
                 android:textSize="24dp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -668,117 +633,7 @@
 
 
         </LinearLayout>
-        <!--                <LinearLayout-->
-        <!--                    android:layout_width="match_parent"-->
-        <!--                    android:layout_height="match_parent"-->
-        <!--                    android:orientation="vertical">-->
 
-
-        <!--                    <ImageView-->
-        <!--                        android:id="@+id/animeImageView2"-->
-        <!--                        android:layout_width="match_parent"-->
-        <!--                        android:layout_height="wrap_content"-->
-        <!--                        android:visibility="gone" />-->
-
-        <!--                    <TextView-->
-        <!--                        android:id="@+id/title_Eng"-->
-        <!--                        android:layout_width="match_parent"-->
-        <!--                        android:layout_height="wrap_content"-->
-        <!--                        android:fontFamily="@font/buenard_bold"-->
-        <!--                        android:gravity="fill"-->
-        <!--                        android:padding="15dp"-->
-        <!--                        android:text="hello world"-->
-        <!--                        android:textSize="24dp"-->
-        <!--                        android:textStyle="bold" />-->
-
-        <!--                    <TextView-->
-        <!--                        android:id="@+id/short_details"-->
-        <!--                        android:layout_width="match_parent"-->
-        <!--                        android:layout_height="wrap_content"-->
-        <!--                        android:layout_margin="5dp"-->
-        <!--                        android:fontFamily="@font/actor"-->
-        <!--                        android:padding="10dp"-->
-        <!--                        android:textSize="18dp" />-->
-
-        <!--                    <TextView-->
-        <!--                        android:id="@+id/deatils"-->
-        <!--                        android:layout_width="match_parent"-->
-        <!--                        android:layout_height="wrap_content"-->
-        <!--                        android:layout_margin="5dp"-->
-        <!--                        android:fontFamily="@font/actor"-->
-        <!--                        android:padding="10dp"-->
-        <!--                        android:textSize="18dp" />-->
-
-        <!--                    <LinearLayout-->
-        <!--                        android:layout_width="match_parent"-->
-        <!--                        android:layout_height="wrap_content"-->
-        <!--                        android:gravity="center">-->
-
-        <!--                        <LinearLayout-->
-        <!--                            android:layout_width="wrap_content"-->
-        <!--                            android:layout_height="match_parent"-->
-        <!--                            android:orientation="vertical"-->
-        <!--                            android:paddingEnd="10dp">-->
-
-        <!--                            <TextView-->
-        <!--                                android:layout_width="wrap_content"-->
-        <!--                                android:layout_height="wrap_content"-->
-        <!--                                android:fontFamily="@font/actor"-->
-        <!--                                android:paddingStart="10dp"-->
-        <!--                                android:paddingBottom="5dp"-->
-        <!--                                android:text="Prequel"-->
-        <!--                                android:textSize="20dp"-->
-        <!--                                android:textStyle="bold" />-->
-
-        <!--                            <Button-->
-        <!--                                android:id="@+id/prequel"-->
-        <!--                                android:layout_width="170dp"-->
-        <!--                                android:layout_height="100dp"-->
-        <!--                                android:background="@drawable/my_button"-->
-        <!--                                android:elevation="8dp"-->
-        <!--                                android:fontFamily="@font/actor"-->
-        <!--                                android:gravity="center"-->
-        <!--                                android:paddingStart="10dp"-->
-        <!--                                android:text="No\nprequel"-->
-        <!--                                android:textColor="@color/white"-->
-        <!--                                android:textStyle="bold" />-->
-        <!--                        </LinearLayout>-->
-
-        <!--                        <LinearLayout-->
-
-        <!--                            android:layout_width="wrap_content"-->
-        <!--                            android:layout_height="match_parent"-->
-        <!--                            android:orientation="vertical"-->
-        <!--                            android:paddingStart="10dp">-->
-
-        <!--                            <TextView-->
-        <!--                                android:layout_width="match_parent"-->
-        <!--                                android:layout_height="wrap_content"-->
-        <!--                                android:fontFamily="@font/actor"-->
-        <!--                                android:gravity="right"-->
-        <!--                                android:paddingEnd="20dp"-->
-        <!--                                android:paddingBottom="5dp"-->
-        <!--                                android:text="Sequel"-->
-        <!--                                android:textSize="20dp"-->
-        <!--                                android:textStyle="bold" />-->
-
-        <!--                            <Button-->
-        <!--                                android:id="@+id/sequel"-->
-        <!--                                android:layout_width="170dp"-->
-        <!--                                android:layout_height="100dp"-->
-        <!--                                android:background="@drawable/my_button"-->
-        <!--                                android:elevation="8dp"-->
-        <!--                                android:fontFamily="@font/actor"-->
-        <!--                                android:gravity="center"-->
-        <!--                                android:padding="5dp"-->
-        <!--                                android:text="No \nsequeal"-->
-        <!--                                android:textColor="@color/white"-->
-        <!--                                android:textStyle="bold" />-->
-        <!--                        </LinearLayout>-->
-        <!--                    </LinearLayout>-->
-
-
-        <!--                </LinearLayout>-->
     </ScrollView>
 
 </RelativeLayout>

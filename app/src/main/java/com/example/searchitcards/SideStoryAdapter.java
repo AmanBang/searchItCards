@@ -2,6 +2,7 @@ package com.example.searchitcards;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,16 @@ public class SideStoryAdapter extends RecyclerView.Adapter<SideStoryAdapter.SSVi
 
     public SSViewHolder(@NonNull View itemView) {
         super(itemView);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(),AnimeDeatails.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("title_Id_Pass", String.valueOf(SSList.get(getAdapterPosition()).getMal_id()));
+                v.getContext().startActivity(i);
+            }
+        });
         title = itemView.findViewById(R.id.anime_sideStory_title);
     }
 }

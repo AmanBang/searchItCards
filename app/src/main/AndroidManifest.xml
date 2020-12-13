@@ -17,6 +17,7 @@
         <activity android:name=".Movies_activity" />
         <activity android:name=".AnimeDeatails" />
         <activity android:name=".Anime.Youtube" />
+        <activity android:name=".Movie.mAdapter.DeatailsMovie" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
