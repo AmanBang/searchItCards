@@ -512,7 +512,7 @@
                     android:textStyle="bold" />
 
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -554,6 +554,7 @@
                         android:id="@+id/anime_sequel_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginStart="20dp"
                         android:orientation="vertical">
 
@@ -582,7 +583,7 @@
                     </LinearLayout>
 
 
-                </LinearLayout>
+                </RelativeLayout>
 
 
                 <LinearLayout

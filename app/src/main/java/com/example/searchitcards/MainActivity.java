@@ -431,6 +431,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                                ,News_activity.class));
                        overridePendingTransition(0, 0);
                        return true;
+                   case R.id.nav_tv:
+                       startActivity(new Intent(getApplicationContext()
+                               ,TVShows.class));
+                       overridePendingTransition(0, 0);
+                       return true;
                }
                return false;
             }

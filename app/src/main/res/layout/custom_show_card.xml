@@ -25,13 +25,14 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:id="@+id/moviePoster"
+                android:id="@+id/showPoster"
                 android:scaleType="centerCrop"
                 android:src="@drawable/si_logo"
                 />
 
+
             <TextView
-                android:id="@+id/cardMovieTitle"
+                android:id="@+id/showName"
                 android:layout_width="160dp"
                 android:layout_height="40dp"
                 android:fontFamily="@font/actor"
@@ -40,7 +41,6 @@
                 android:gravity="center_horizontal"
                 android:text="VideoTitle"
                 android:textSize="14dp" />
-
 
         </LinearLayout>
 

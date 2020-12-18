@@ -2,26 +2,42 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="90dp">
+    android:layout_height="wrap_content"
+    android:background="@color/black">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/episode_cardView"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_margin="4dp"
-        android:layout_marginTop="6dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginTop="10dp"
         android:elevation="8dp"
         app:cardCornerRadius="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#f6ecf0">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:id="@+id/episode_image"
+                android:scaleType="centerCrop"
+                />
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#f6f6f6">
+            android:background="#f6ecf0">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="0dp"
                 android:orientation="vertical"
                 android:padding="5dp">
 
@@ -39,7 +55,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="139"
-                    android:textColor="@color/black"
+                    android:padding="4dp"
+                    android:textColor="@color/white"
+                    android:background="#0a043c"
                     android:textSize="30dp" />
             </LinearLayout>
 
@@ -57,7 +75,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/roboto"
-                    android:gravity="start"
                     android:text="Mystery of the Targeted Merchants"
                     android:textColor="@color/black"
                     android:textSize="18dp" />
@@ -71,6 +88,7 @@
                         android:layout_width="95dp"
                         android:layout_height="20dp"
                         android:layout_marginTop="4dp"
+                        android:layout_marginStart="20dp"
                         android:fontFamily="@font/roboto"
                         android:text="2006-06-07T00:00:00+00:00"
                         android:textColor="@color/black"
@@ -82,7 +100,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="40dp"
                         android:layout_marginTop="4dp"
-                        android:background="#ff7e67"
+                        android:background="#fa7f72"
                         android:fontFamily="@font/roboto"
                         android:text="Filler Episode"
                         android:textColor="@color/black"
@@ -94,6 +112,15 @@
             </LinearLayout>
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/episode_details"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:textSize="17dp"
+            />
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

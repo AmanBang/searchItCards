@@ -10,10 +10,13 @@ import android.graphics.Movie;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -48,6 +51,17 @@ List<Movies> nList;
 List<Movies> tList;
 List<Movies> uList;
 
+ImageView Search;
+
+
+public void SMovies(View view){
+    EditText searchText = findViewById(R.id.searchEditTextMovie);
+    String search = searchText.getText().toString();
+
+    Intent myIntent = new Intent(this, MovieSearchResult.class);
+ myIntent.putExtra("key-123", search); //Optional parameters
+    this.startActivity(myIntent);
+}
 
 public void pMethod(String top){
 
@@ -251,6 +265,7 @@ public void pMethod(String top){
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -267,6 +282,9 @@ public void pMethod(String top){
         uList = new ArrayList<>();
         tList = new ArrayList<>();
         nList = new ArrayList<>();
+
+        Search = findViewById(R.id.movieSearchIcon);
+
 
         Date date = new Date();
         String modifiedDate= new SimpleDateFormat("yyyy-MM-dd").format(date);
@@ -300,6 +318,11 @@ public void pMethod(String top){
                     case R.id.nav_news:
                         startActivity(new Intent(getApplicationContext()
                                 ,News_activity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.nav_tv:
+                        startActivity(new Intent(getApplicationContext()
+                                ,TVShows.class));
                         overridePendingTransition(0, 0);
                         return true;
                 }

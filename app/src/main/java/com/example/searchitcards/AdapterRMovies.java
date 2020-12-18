@@ -2,6 +2,7 @@ package com.example.searchitcards;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.searchitcards.Movie.mAdapter.DeatailsMovie;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -50,6 +52,17 @@ public class AdapterRMovies  extends RecyclerView.Adapter<AdapterRMovies.RMViewH
 
         public RMViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(v.getContext(), DeatailsMovie.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("movieId", String.valueOf(RMList.get(getAdapterPosition()).getId()));
+                    v.getContext().startActivity(i);
+
+                }
+            });
 
             Tiltle = itemView.findViewById(R.id.anime_r_title);
             Poster = itemView.findViewById(R.id.anime_r_poster);

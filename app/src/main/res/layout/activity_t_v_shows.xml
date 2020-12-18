@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-    
-
-    
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
->
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="#08d9d6"
-        app:headerLayout=""
-        />
+    tools:context=".TVShows">
 
 
     <LinearLayout
@@ -30,10 +16,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#252a34"
-            android:padding="4dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp">
+            android:background="#48466d"
+            android:padding="20dp">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -49,7 +33,6 @@
                         android:id="@+id/menu_bar_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:elevation="8dp"
                         android:padding="0dp">
 
                         <ImageView
@@ -96,32 +79,33 @@
                             android:layout_marginRight="30dp"
                             android:layout_marginBottom="20dp"
                             android:background="@color/white"
-                            android:elevation="50dp"
-                            android:outlineAmbientShadowColor="@color/white">
+                            android:elevation="8dp">
 
                             <EditText
-                                android:id="@+id/searchEditText"
+                                android:id="@+id/showQuery"
                                 android:layout_width="220dp"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_marginStart="15dp"
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginEnd="11dp"
-                                android:layout_toStartOf="@+id/animeSearchIcon"
-                                android:fontFamily="@font/roboto"
-                                android:hint="Anime..."
+                                android:layout_toStartOf="@+id/showSearchIcon"
+                                android:fontFamily="@font/bubblegum_sans"
+                                android:hint="Shows..."
                                 android:textColor="#000000"
                                 android:textSize="18sp" />
 
                             <ImageView
-                                android:id="@+id/animeSearchIcon"
+                                android:id="@+id/showSearchIcon"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
                                 android:layout_marginRight="15dp"
-                                android:onClick="searchOnClick"
+                                android:onClick="searchShows"
                                 android:src="@drawable/search_icon" />
+                            <!--                                android:onClick="searchOnClick"-->
+
 
                         </RelativeLayout>
 
@@ -138,7 +122,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
                             android:paddingStart="18dp"
-                            android:text="Top Anime Ranking"
+                            android:text="Upcoming Show"
                             android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
@@ -155,7 +139,7 @@
 
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/top_anime_recycle"
+                            android:id="@+id/Upcoming_show_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                     </RelativeLayout>
@@ -170,7 +154,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
                             android:paddingStart="18dp"
-                            android:text="Top Anime Airing"
+                            android:text="Shows Airing Today"
                             android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
@@ -186,7 +170,7 @@
 
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/top_anime_airing_recycle"
+                            android:id="@+id/todays_show_airing_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#F4EFEF" />
@@ -202,7 +186,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
                             android:paddingStart="18dp"
-                            android:text="Top Upcoming Anime"
+                            android:text="Top Rated Shows"
                             android:textColor="#eaeaea"
                             android:textSize="22dp" />
 
@@ -218,7 +202,7 @@
 
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/top_upcoming_anime_recycle"
+                            android:id="@+id/top_rated_shows_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#F4EFEF" />
@@ -235,7 +219,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
                             android:paddingStart="18dp"
-                            android:text="Popular Anime"
+                            android:text="Popular TV Shows"
 
                             android:textColor="#eaeaea"
                             android:textSize="22dp" />
@@ -252,39 +236,7 @@
 
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/popular_anime_recycle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#F4EFEF" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:paddingStart="18dp"
-                            android:text="Top Anime Movie"
-                            android:textColor="#eaeaea"
-                            android:textSize="22dp" />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
-                        android:elevation="8dp">
-
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/top_movie_recycle"
+                            android:id="@+id/popular_show_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#F4EFEF" />
@@ -304,6 +256,5 @@
         android:layout_alignParentBottom="true"
         android:background="#393e46"
         app:menu="@menu/bottom_navigation" />
+
 </RelativeLayout>
-    <!--    android:background="?android:attr/windowBackground"-->
-</androidx.drawerlayout.widget.DrawerLayout>

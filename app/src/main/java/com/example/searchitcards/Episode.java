@@ -7,6 +7,24 @@ public class Episode {
     private String title;
     private String aired;
     private String filler;
+    private String episodeImage;
+    private String episodeDetails;
+
+    public String getEpisodeImage() {
+        return episodeImage;
+    }
+
+    public void setEpisodeImage(String episodeImage) {
+        this.episodeImage = episodeImage;
+    }
+
+    public String getEpisodeDetails() {
+        return episodeDetails;
+    }
+
+    public void setEpisodeDetails(String episodeDetails) {
+        this.episodeDetails = episodeDetails;
+    }
 
     public String getEpisode_id() {
         return episode_id;

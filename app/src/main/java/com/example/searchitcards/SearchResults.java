@@ -1,6 +1,7 @@
 package com.example.searchitcards;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,6 +65,7 @@ public class SearchMethod extends Thread {
                 }
 
                 searchRecycle.setLayoutManager(new LinearLayoutManager(SearchResults.this));
+           //     searchRecycle.setLayoutManager(new GridLayoutManager(searchResultList,3));
                Sea = new SearchShow(SearchResults.this, searchResultList);
                searchRecycle.setAdapter(Sea);
 
@@ -88,7 +90,7 @@ public class SearchMethod extends Thread {
 
         Intent intent = getIntent();
         String value = intent.getStringExtra("search_url");
-
+//
         String Url = "https://api.jikan.moe/v3/search/anime?page=1&q=" + value;
 
         searchRecycle = findViewById(R.id.search_result_recycle);

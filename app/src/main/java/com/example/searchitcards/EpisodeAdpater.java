@@ -5,11 +5,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,6 +40,14 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
         holder.aired.setText(episodeList.get(position).getAired());
         holder.episodeNo.setText(episodeList.get(position).getEpisode_id());
         holder.filler.setText(episodeList.get(position).getFiller());
+        if (episodeList.get(position).getEpisodeDetails() == null){
+            holder.details.setVisibility(View.GONE);
+            holder.image.setVisibility(View.GONE);
+        }else {
+            holder.details.setText(episodeList.get(position).getEpisodeDetails());
+            Picasso.get().load("https://image.tmdb.org/t/p/w500"+ episodeList.get(position).getEpisodeImage()).into(holder.image);
+
+        }
 
     }
 
@@ -47,8 +58,8 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
 
     public class EviewHolder extends RecyclerView.ViewHolder{
 
-        TextView title, aired, episodeNo,filler;
-
+        TextView title, aired, episodeNo,filler,details;
+        ImageView image;
         public EviewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -56,6 +67,8 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
             aired = itemView.findViewById(R.id.episode_airdate);
             episodeNo = itemView.findViewById(R.id.episode_number);
             filler = itemView.findViewById(R.id.filler);
+            details = itemView.findViewById(R.id.episode_details);
+            image = itemView.findViewById(R.id.episode_image);
 
 
         }

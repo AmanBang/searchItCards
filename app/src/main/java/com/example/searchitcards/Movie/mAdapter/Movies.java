@@ -7,6 +7,9 @@ public class Movies {
     private String release_date;
     private int id;
 
+
+
+
     public String getTitle() {
         return title;
     }

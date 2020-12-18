@@ -37,7 +37,10 @@ return new MovieHolder(view);
     public void onBindViewHolder(@NonNull MovieHolder holder, int position) {
 
         Picasso.get().load("https://image.tmdb.org/t/p/w500"+moviesList.get(position).getPoster_path()).into(holder.moviePoster);
-        holder.movieTile.setText(moviesList.get(position).getTitle());
+
+            holder.movieTile.setText(moviesList.get(position).getTitle());
+
+
 
     }
 
@@ -50,7 +53,8 @@ return new MovieHolder(view);
     public class MovieHolder extends RecyclerView.ViewHolder{
 
         ImageView moviePoster;
-        TextView movieTile;
+
+        TextView movieTile,ShowName;
 
         public MovieHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +72,7 @@ return new MovieHolder(view);
 
             moviePoster = itemView.findViewById(R.id.moviePoster);
             movieTile = itemView.findViewById(R.id.cardMovieTitle);
+
 
 
         }

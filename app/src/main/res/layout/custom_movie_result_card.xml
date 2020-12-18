@@ -20,9 +20,9 @@
 
             <ImageView
                 android:id="@+id/movie_search_result_poster"
-                android:layout_width="130dp"
-                android:layout_height="155dp"
-                android:scaleType="centerCrop"/>
+                android:layout_width="118dp"
+                android:layout_height="135dp"
+                android:scaleType="centerCrop" />
 
             <LinearLayout
                 android:layout_width="261dp"
@@ -32,12 +32,12 @@
                 <TextView
                     android:id="@+id/movieSearch_titleholder"
                     android:layout_width="match_parent"
-                    android:layout_height="88dp"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/actor"
                     android:padding="5dp"
                     android:paddingStart="10dp"
                     android:text="Hello ji namste"
-                    android:textSize="24dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
                 <RatingBar
                     android:id="@+id/ratingTheMovie"

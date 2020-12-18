@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".AnimeDeatails">
 
     <ScrollView
@@ -28,7 +29,7 @@
                 android:elevation="2dp">
 
                 <com.denzcoskun.imageslider.ImageSlider
-                    android:id="@+id/moive_pictures"
+                    android:id="@+id/show_pictures"
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
                     android:background="#000"
@@ -47,7 +48,7 @@
                 </com.denzcoskun.imageslider.ImageSlider>
 
                 <ImageView
-                    android:id="@+id/moive_poster"
+                    android:id="@+id/show_poster"
                     android:layout_width="140dp"
                     android:layout_height="170dp"
                     android:layout_marginTop="208dp"
@@ -57,11 +58,11 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.059"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/moive_pictures"
+                    app:layout_constraintTop_toTopOf="@+id/show_pictures"
                     app:srcCompat="@drawable/si_logo" />
 
                 <TextView
-                    android:id="@+id/moive_title_eng"
+                    android:id="@+id/show_title_eng"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -72,12 +73,12 @@
                     android:textColor="#FFF"
                     android:textSize="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/moive_poster"
-                    app:layout_constraintTop_toBottomOf="@+id/moive_pictures" />
+                    app:layout_constraintStart_toEndOf="@+id/show_poster"
+                    app:layout_constraintTop_toBottomOf="@+id/show_pictures" />
 
 
                 <TextView
-                    android:id="@+id/moive_genres"
+                    android:id="@+id/show_genres"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -89,45 +90,42 @@
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.411"
-                    app:layout_constraintStart_toEndOf="@+id/moive_poster"
-                    app:layout_constraintTop_toBottomOf="@+id/moive_title_eng" />
+                    app:layout_constraintStart_toEndOf="@+id/show_poster"
+                    app:layout_constraintTop_toBottomOf="@+id/show_title_eng" />
 
 
                 <TextView
-                    android:id="@+id/moive_status"
+                    android:id="@+id/show_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="40dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginStart="16dp"
                     android:fontFamily="@font/roboto"
                     android:paddingBottom="8dp"
                     android:text=""
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/moive_poster"
-                    app:layout_constraintTop_toBottomOf="@+id/moive_genres" />
+                    app:layout_constraintStart_toEndOf="@+id/show_type"
+                    app:layout_constraintTop_toBottomOf="@+id/show_genres" />
+
+                <TextView
+                    android:id="@+id/show_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/roboto"
+                    android:paddingBottom="8dp"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/show_poster"
+                    app:layout_constraintTop_toBottomOf="@+id/show_genres" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-<!--                                <TextView-->
-<!--                                    android:id="@+id/moive_type"-->
-<!--                                    android:layout_width="wrap_content"-->
-<!--                                    android:layout_height="wrap_content"-->
-<!--                                    android:layout_marginStart="8dp"-->
-<!--                                    android:fontFamily="@font/roboto"-->
-<!--                                    android:paddingBottom="8dp"-->
-<!--                                    android:text=""-->
-<!--                                    android:textColor="@color/white"-->
-<!--                                    android:textSize="14sp"-->
-<!--                                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                                    app:layout_constraintStart_toEndOf="@+id/moive_poster"-->
-<!--                                    app:layout_constraintTop_toBottomOf="@+id/moive_genres" />-->
-
-<!--          -->
 
             <com.borjabravo.readmoretextview.ReadMoreTextView
-                android:id="@+id/moive_description"
+                android:id="@+id/show_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
@@ -174,7 +172,7 @@
                     tools:layout_editor_absoluteY="21dp" />
 
                 <TextView
-                    android:id="@+id/moive_title"
+                    android:id="@+id/show_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
@@ -192,40 +190,40 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/txtView6"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:fontFamily="@font/roboto"-->
-<!--                            android:paddingTop="4dp"-->
-<!--                            android:text="Directed by"-->
-<!--                            android:textColor="#000"-->
-<!--                            android:textStyle="bold"-->
-<!--                            tools:layout_editor_absoluteX="11dp"-->
-<!--                            tools:layout_editor_absoluteY="21dp" />-->
+                        <TextView
+                            android:id="@+id/txtView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:paddingTop="4dp"
+                            android:text="Episodes"
+                            android:textColor="#000"
+                            android:textStyle="bold"
+                            tools:layout_editor_absoluteX="11dp"
+                            tools:layout_editor_absoluteY="21dp" />
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/moive_director"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:fontFamily="@font/roboto"-->
-<!--                            android:paddingTop="4dp"-->
+                        <TextView
+                            android:id="@+id/show_episodes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:paddingTop="4dp"
 
-<!--                            android:text="88"-->
-<!--                            android:textColor="#393e46" />-->
+                            android:text="88"
+                            android:textColor="#393e46" />
 
 
                     </LinearLayout>
 
 
-                    <!--                    <Button-->
-                    <!--                        android:id="@+id/movie_episodes_button"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="40dp"-->
-                    <!--                        android:layout_marginStart="100dp"-->
-                    <!--                        android:layout_marginTop="7dp"-->
-                    <!--                        android:height="40dp"-->
-                    <!--                        android:text="Show List" />-->
+                    <Button
+                        android:id="@+id/show_episodes_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="100dp"
+                        android:layout_marginTop="7dp"
+                        android:height="40dp"
+                        android:text="Show List" />
 
 
                 </LinearLayout>
@@ -236,14 +234,14 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
-                    android:text="Runtime"
+                    android:text="Duration"
                     android:textColor="#000"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="11dp"
                     tools:layout_editor_absoluteY="21dp" />
 
                 <TextView
-                    android:id="@+id/movie_duration"
+                    android:id="@+id/show_duration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
@@ -268,14 +266,14 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
                             android:paddingTop="4dp"
-                            android:text="Budget"
+                            android:text="Release Date"
                             android:textColor="#000"
                             android:textStyle="bold"
                             tools:layout_editor_absoluteX="11dp"
                             tools:layout_editor_absoluteY="21dp" />
 
                         <TextView
-                            android:id="@+id/movie_budget"
+                            android:id="@+id/show_premier"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
@@ -296,14 +294,14 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
                             android:paddingTop="4dp"
-                            android:text="Revenue"
+                            android:text="Last Release Date"
                             android:textColor="#000"
                             android:textStyle="bold"
                             tools:layout_editor_absoluteX="11dp"
                             tools:layout_editor_absoluteY="21dp" />
 
                         <TextView
-                            android:id="@+id/movie_revenue"
+                            android:id="@+id/show_broadcast"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
@@ -338,10 +336,11 @@
                             tools:layout_editor_absoluteY="21dp" />
 
                         <TextView
-                            android:id="@+id/movie_score"
+                            android:id="@+id/show_score"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
+
                             android:paddingTop="4dp"
                             android:text="9.04"
                             android:textColor="#393e46" />
@@ -364,7 +363,7 @@
                             tools:layout_editor_absoluteY="21dp" />
 
                         <TextView
-                            android:id="@+id/movie_popularity"
+                            android:id="@+id/show_popularity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -377,25 +376,26 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:paddingTop="4dp"
-                    android:text="Release Date"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="11dp"
-                    tools:layout_editor_absoluteY="21dp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/roboto"-->
+<!--                    android:paddingTop="4dp"-->
+<!--                    android:text="Aired"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textStyle="bold"-->
+<!--                    tools:layout_editor_absoluteX="11dp"-->
+<!--                    tools:layout_editor_absoluteY="21dp" />-->
 
-                <TextView
-                    android:id="@+id/movie_aired"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:paddingTop="4dp"
-                    android:text="Dec 7, 2020 to ?"
-                    android:textColor="#393e46" />
+<!--                <TextView-->
+<!--                    android:id="@+id/show_aired"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/roboto"-->
+<!--                    android:paddingTop="4dp"-->
+
+<!--                    android:text="Dec 7, 2020 to ?"-->
+<!--                    android:textColor="#393e46" />-->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -409,61 +409,20 @@
                     tools:layout_editor_absoluteY="21dp" />
 
                 <TextView
-                    android:id="@+id/movie_producers"
+                    android:id="@+id/show_producers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
-                    android:text="Pony Canyon, Techno Sound"
+                    android:text=""
                     android:textColor="#393e46" />
 
-                <!--                <TextView-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:fontFamily="@font/roboto"-->
-                <!--                    android:paddingTop="4dp"-->
-                <!--                    android:text="Licensors"-->
-                <!--                    android:textColor="#000"-->
-                <!--                    android:textStyle="bold"-->
-                <!--                    tools:layout_editor_absoluteX="11dp"-->
-                <!--                    tools:layout_editor_absoluteY="21dp" />-->
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/movie_licensors"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:fontFamily="@font/roboto"-->
-                <!--                    android:paddingTop="4dp"-->
-                <!--                    android:text="Funimation"-->
-                <!--                    android:textColor="#393e46" />-->
-
-                <!--                <TextView-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:fontFamily="@font/roboto"-->
-                <!--                    android:paddingTop="4dp"-->
-                <!--                    android:text="Studios"-->
-                <!--                    android:textColor="#000"-->
-                <!--                    android:textStyle="bold"-->
-                <!--                    tools:layout_editor_absoluteX="11dp"-->
-                <!--                    tools:layout_editor_absoluteY="21dp" />-->
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/movie_studios"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:fontFamily="@font/roboto"-->
-                <!--                    android:paddingTop="4dp"-->
-                <!--                    android:paddingBottom="4dp"-->
-                <!--                    android:text="MAPPA"-->
-
-                <!--                    android:textColor="#393e46" />-->
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/movie_trailer_Layout"
+                android:id="@+id/show_trailer_Layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -483,150 +442,28 @@
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/movie_trailer_recycle"
+                    android:id="@+id/show_trailer_recycle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#fff"
                     android:padding="10dp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/movie_custer_check"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/roboto"
-                    android:padding="4dp"
-                    android:text="Cluster"
-                    android:textColor="#000"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    android:padding="4dp">
-
-                    <LinearLayout
-                        android:id="@+id/movie_prequel_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/roboto"
-                            android:padding="6dp"
-                            android:text="Prequel"
-                            android:textSize="18dp"
-                            android:textStyle="bold"
-                            tools:layout_editor_absoluteX="11dp"
-                            tools:layout_editor_absoluteY="21dp" />
-
-                        <Button
-                            android:id="@+id/movie_prequel"
-                            android:layout_width="180dp"
-                            android:layout_height="57dp"
-                            android:background="#fff"
-                            android:elevation="8dp"
-                            android:fontFamily="@font/roboto"
-                            android:paddingTop="4dp"
-                            android:text="No Prequel Released"
-                            android:textColor="@color/black" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/movie_sequel_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:fontFamily="@font/roboto"
-                            android:padding="6dp"
-                            android:text="Sequel"
-                            android:textSize="18dp"
-                            android:textStyle="bold"
-                            tools:layout_editor_absoluteX="11dp"
-                            tools:layout_editor_absoluteY="21dp" />
-
-                        <Button
-                            android:id="@+id/movie_sequel"
-                            android:layout_width="180dp"
-                            android:layout_height="57dp"
-                            android:layout_gravity="center"
-                            android:background="#fff"
-                            android:fontFamily="@font/roboto"
-                            android:paddingTop="8dp"
-                            android:text="No Sequel Released"
-                            android:textColor="@color/black" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/movie_sideStory_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:fontFamily="@font/roboto"
-                        android:padding="6dp"
-                        android:text="Side-Story"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
-                        tools:layout_editor_absoluteX="11dp"
-                        tools:layout_editor_absoluteY="21dp" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/movie_sideStory_recycle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
 
             <TextView
+                android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/roboto_bold"
                 android:paddingTop="8dp"
                 android:paddingBottom="6dp"
-                android:text="Similar Movies"
+                android:text="Recommended"
                 android:textColor="@color/black"
                 android:textSize="24dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/movie_similar_recycle"
+                android:id="@+id/show_recommendation_recycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
