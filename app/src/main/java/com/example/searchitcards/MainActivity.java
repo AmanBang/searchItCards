@@ -386,10 +386,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         HomeView homeView = new HomeView(topUrl);
         homeView.start();
 
-        AiringAnime(airingAnime);
+
 //
 //
         final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 5000ms
+                AiringAnime(airingAnime);
+
+            }
+        }, 500);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

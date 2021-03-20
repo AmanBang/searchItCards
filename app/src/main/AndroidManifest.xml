@@ -11,7 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SearchItCards">
-        <activity android:name=".ShowDetails"></activity>
+        <activity android:name=".Intro">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ShowDetails" />
         <activity android:name=".TVShows" />
         <activity android:name=".EpisodeList" />
         <activity android:name=".SearchResults" />
@@ -20,14 +27,14 @@
         <activity android:name=".AnimeDeatails" />
         <activity android:name=".Anime.Youtube" />
         <activity android:name=".Movie.mAdapter.DeatailsMovie" />
-        <activity android:name=".MovieSearchResult"/>
+        <activity android:name=".MovieSearchResult" />
         <activity android:name=".Movie.MovieTrailer" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <meta-data

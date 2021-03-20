@@ -5,9 +5,16 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,7 +36,12 @@ public class SearchResults extends AppCompatActivity {
 
     RecyclerView searchRecycle;
     List<Topresults> searchResultList;
-public class SearchMethod extends Thread {
+    private EditText edtSearchText;
+    Button btnSearch;
+ProgressBar progressBar;
+
+    SearchMethod searchMethod;
+    public class SearchMethod extends Thread {
 
 
     public SearchMethod(String top) {
@@ -68,21 +80,22 @@ public class SearchMethod extends Thread {
            //     searchRecycle.setLayoutManager(new GridLayoutManager(searchResultList,3));
                Sea = new SearchShow(SearchResults.this, searchResultList);
                searchRecycle.setAdapter(Sea);
+                progressBar.setVisibility(View.GONE);
 
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(SearchResults.this,error.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
         queue.add(request);
 //
 
-
     }
 }
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,14 +103,33 @@ public class SearchMethod extends Thread {
 
         Intent intent = getIntent();
         String value = intent.getStringExtra("search_url");
-//
+
+        edtSearchText = findViewById(R.id.edtSearch);
+progressBar = findViewById(R.id.resultProgressBar);
+
         String Url = "https://api.jikan.moe/v3/search/anime?page=1&q=" + value;
+
+        edtSearchText.setText(value);
 
         searchRecycle = findViewById(R.id.search_result_recycle);
         searchResultList = new ArrayList<>();
-        SearchMethod searchMethod = new SearchMethod(Url);
+         searchMethod = new SearchMethod(Url);
         searchMethod.start();
 
+
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    public void setBtnSearch(View view){
+    progressBar.setVisibility(View.VISIBLE);
+        if (!edtSearchText.getText().toString().equals("")){
+
+            searchResultList.clear();
+            String Url = "https://api.jikan.moe/v3/search/anime?page=1&q=" + edtSearchText.getText().toString();
+            searchMethod = new SearchMethod(Url);
+            searchMethod.start();
+
+        }
 
     }
 }
