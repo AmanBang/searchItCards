@@ -17,8 +17,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fdb827"
-            android:padding="20dp">
+            android:background="#40394a"
+           >
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -34,36 +34,35 @@
                         android:id="@+id/menu_bar_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="0dp">
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp">
 
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="50dp"
                             android:layout_centerVertical="true"
-                            android:src="@drawable/ic_menu_opner" />
+                            android:src="@drawable/ic_menu_open" />
 
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="50dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:padding="5dp"
-                            android:src="@drawable/ic_account" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="40dp"-->
+<!--                            android:layout_height="50dp"-->
+<!--                            android:layout_alignParentEnd="true"-->
+<!--                            android:layout_centerVertical="true"-->
+<!--                            android:padding="5dp"-->
+<!--                            android:src="@drawable/ic_account" />-->
 
                         <TextView
                             android:id="@+id/app_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:background="#ff4646"
-                            android:backgroundTintMode="src_in"
                             android:elevation="4dp"
-                            android:fontFamily="@font/bad_script"
+                            android:fontFamily="@font/covered_by_your_grace"
                             android:paddingStart="10dp"
                             android:paddingEnd="10dp"
                             android:text="Search It"
-                            android:textColor="#000"
-                            android:textSize="28sp" />
+                            android:textColor="@color/movieTextTheme"
+                            android:textSize="50sp" />
 
                     </RelativeLayout>
 
@@ -71,27 +70,31 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_marginBottom="20dp"
+                            app:cardCornerRadius="20dp"
+                            android:elevation="50dp">
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="30dp"
-                            android:layout_marginBottom="20dp"
                             android:background="@color/white"
                             android:elevation="8dp">
 
                             <EditText
                                 android:id="@+id/searchEditTextMovie"
-                                android:layout_width="220dp"
+                                android:layout_width="290dp"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_marginStart="15dp"
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginEnd="11dp"
                                 android:layout_toStartOf="@+id/animeSearchIcon"
-                                android:fontFamily="@font/roboto"
+                                android:fontFamily="sans-serif-smallcaps"
                                 android:hint="Movie..."
                                 android:textColor="#000000"
                                 android:textSize="18sp" />
@@ -107,7 +110,7 @@
                                 android:src="@drawable/search_icon" />
 
                         </RelativeLayout>
-
+                        </androidx.cardview.widget.CardView>
 
                     </RelativeLayout>
 
@@ -119,11 +122,11 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="sans-serif-smallcaps"
                             android:paddingStart="18dp"
                             android:text="Upcoming Movies"
-                            android:textColor="#23120b"
-                            android:textSize="22dp" />
+                            android:textColor="@color/movieTextTheme"
+                            android:textSize="24dp" />
 
 
                     </RelativeLayout>
@@ -154,8 +157,8 @@
                             android:fontFamily="sans-serif"
                             android:paddingStart="18dp"
                             android:text="Top Rated Movies"
-                            android:textColor="#23120b"
-                            android:textSize="22dp" />
+                            android:textColor="@color/movieTextTheme"
+                            android:textSize="24dp" />
 
 
                     </RelativeLayout>
@@ -186,8 +189,8 @@
                             android:fontFamily="sans-serif"
                             android:paddingStart="18dp"
                             android:text="Popular Movies"
-                            android:textColor="#23120b"
-                            android:textSize="22dp" />
+                            android:textColor="@color/movieTextTheme"
+                            android:textSize="24dp" />
 
 
                     </RelativeLayout>
@@ -218,10 +221,9 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif"
                             android:paddingStart="18dp"
-                            android:text="Now Plaing Movies"
-
-                            android:textColor="#23120b"
-                            android:textSize="22dp" />
+                            android:text="Now Playing Movies"
+                            android:textColor="@color/movieTextTheme"
+                            android:textSize="24dp" />
 
 
                     </RelativeLayout>

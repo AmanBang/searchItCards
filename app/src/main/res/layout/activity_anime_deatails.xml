@@ -52,6 +52,7 @@
                     android:layout_width="140dp"
                     android:layout_height="170dp"
                     android:layout_marginTop="208dp"
+                    android:layout_marginBottom="5dp"
                     android:background="#F38585"
                     android:elevation="8dp"
                     android:scaleType="centerCrop"
@@ -137,6 +138,7 @@
                 app:colorClickableText="#039BE5"
                 app:trimCollapsedText="@string/read_more"
                 app:trimExpandedText="@string/read_less"
+                android:background="#fcf8e8"
                 app:trimLines="80"
                 app:trimMode="trimModeLength" />
 
@@ -488,7 +490,7 @@
                     android:id="@+id/anime_trailer_recycle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#fff"
+                    android:background="#fcf8e8"
                     android:padding="10dp" />
             </LinearLayout>
 
@@ -524,6 +526,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="left"
+                        android:background="#fcf8e8"
                         android:orientation="vertical">
 
                         <TextView
@@ -556,7 +559,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="20dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:background="#fcf8e8">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -609,7 +613,8 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/anime_sideStory_recycle"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:background="#fcf8e8"/>
 
                 </LinearLayout>
 
@@ -619,6 +624,7 @@
             android:id="@+id/recommedation_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -634,7 +640,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/anime_recommendation_recycle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="#fcf8e8"/>
 
         </LinearLayout>
         </LinearLayout>

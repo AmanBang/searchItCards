@@ -289,11 +289,11 @@ public void pMethod(String top){
         Date date = new Date();
         String modifiedDate= new SimpleDateFormat("yyyy-MM-dd").format(date);
 
-        for (int p = 1;p<5;p++){
-            pMethod("https://api.themoviedb.org/3/movie/popular?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page="+p);
-            tMethod("https://api.themoviedb.org/3/movie/top_rated?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page="+p);
-            uMethod("https://api.themoviedb.org/3/discover/movie?api_key=e707c6ad620e69cda284fbbc6af06e43&language=us-US&region=US&release_date.gte="+modifiedDate+"&with_release_type=2|3&page="+p);
-            nMethod("https://api.themoviedb.org/3/movie/now_playing?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page="+p);
+        for (int p = 1;p<2;p++){
+            pMethod("https://api.themoviedb.org/3/movie/popular?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=en-US&page="+p);
+            tMethod("https://api.themoviedb.org/3/movie/top_rated?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=en-US&page="+p);
+            uMethod("https://api.themoviedb.org/3/discover/movie?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=us-US&region=US&release_date.gte="+modifiedDate+"&with_release_type=2|3&page="+p);
+            nMethod("https://api.themoviedb.org/3/movie/now_playing?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=en-US&page="+p);
 
         }
 

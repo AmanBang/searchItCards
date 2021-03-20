@@ -395,15 +395,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void run() {
                 // Do something after 5s = 5000ms
                 AnimeMovie(movie);
+
+            }
+        }, 1000);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 5000ms
+
                 AnimeUpcoming(topUpcoming);
             }
-        }, 1500);
+        }, 2000);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 PopularAnime(popularAnime);
             }
-        },3000);
+        },2000);
         // find show all button
 
 
