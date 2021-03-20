@@ -113,6 +113,7 @@ public class AnimeDeatails extends AppCompatActivity {
     String addSequel = "";
     String searchId;
     String searchIdv;
+    String Status_check;
 //    String addSide_story = "";
 //    String addSummary = "";
 
@@ -124,6 +125,7 @@ public class AnimeDeatails extends AppCompatActivity {
     LinearLayout sideStoryLaout;
     LinearLayout clusterLayout;
     LinearLayout trailerLayout;
+    LinearLayout recommendation_section;
 
     List<SlideModel> modelList;
     List<Promo> Yvideos;
@@ -189,7 +191,9 @@ public class AnimeDeatails extends AppCompatActivity {
 
                         }
                         animeGenres.setText(addGenres);
-                        animeStatus.setText(response.getString("status"));
+
+                        Status_check = response.getString("status");
+                        animeStatus.setText(Status_check);
                         animeDescription.setText(response.getString("synopsis"));
                         animeTitle.setText(response.getString("title"));
                         animeDuration.setText(response.getString("duration"));
@@ -302,7 +306,7 @@ public class AnimeDeatails extends AppCompatActivity {
 //                        e.printStackTrace();
 //                        summeryLaout.setVisibility(View.GONE);
 //                    }
-
+                    Log.i("statusCheck",Status_check);
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -311,10 +315,14 @@ public class AnimeDeatails extends AppCompatActivity {
                 }
             });
             queue.add(request);
-//
+            if( Status_check =="Not yet aired" ) {
+            recommendation_section.setVisibility(View.GONE);
+            }
         }
 
+
     }
+
 
 
     public void ImagesSlideShow(String pic) {
@@ -495,6 +503,7 @@ public class AnimeDeatails extends AppCompatActivity {
         sideStoryLaout = findViewById(R.id.anime_sideStory_layout);
         trailerLayout = findViewById(R.id.anime_trailer_Layout);
         clusterLayout = findViewById(R.id.anime_custer_check);
+        recommendation_section = findViewById(R.id.recommedation_section);
 
         modelList = new ArrayList<>();
         Yvideos = new ArrayList<>();

@@ -11,14 +11,14 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#1c1427"
 >
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="#08d9d6"
-        app:headerLayout=""
-        />
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="#08d9d6"-->
+<!--        app:headerLayout=""-->
+<!--        />-->
 
 
     <LinearLayout
@@ -30,7 +30,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#252a34"
+            android:background="#40394a"
             android:padding="4dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp">
@@ -88,6 +88,7 @@
                         android:layout_height="wrap_content">
 
 
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
@@ -97,6 +98,7 @@
                             android:layout_marginBottom="20dp"
                             android:background="@color/white"
                             android:elevation="50dp"
+                            android:requiresFadingEdge="vertical"
                             android:outlineAmbientShadowColor="@color/white">
 
                             <EditText
@@ -139,7 +141,7 @@
                             android:fontFamily="sans-serif"
                             android:paddingStart="18dp"
                             android:text="Top Anime Ranking"
-                            android:textColor="#eaeaea"
+                            android:textColor="#ccffbd"
                             android:textSize="22dp" />
 
 
