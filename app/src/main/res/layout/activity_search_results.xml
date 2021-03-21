@@ -52,6 +52,7 @@
             android:elevation="50dp">
 
             <RelativeLayout
+                android:id="@+id/searchLayoutRL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -68,7 +69,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginEnd="11dp"
                     android:layout_toStartOf="@+id/animeSearchIcon"
-                    android:fontFamily="sans-serif-smallcaps"
+                    android:fontFamily="@font/roboto"
                     android:hint="Anime..."
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -97,6 +98,12 @@
         android:layout_centerVertical="true"
         android:visibility="gone"
        />
+<View
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    tools:ignore="NotSibling"
+    android:layout_below="@+id/menu_bar_layout"
+    android:background="@color/white"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_result_recycle"
@@ -105,4 +112,12 @@
         android:layout_below="@+id/menu_bar_layout"
         android:layout_marginTop="0dp"
         android:paddingTop="2dp"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/loadmoreProgressBar"
+        android:visibility="gone"/>
 </RelativeLayout>

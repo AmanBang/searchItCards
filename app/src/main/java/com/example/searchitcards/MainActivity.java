@@ -1,5 +1,6 @@
 package com.example.searchitcards;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +13,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -357,7 +357,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-
         topAnimeRecycle = findViewById(R.id.top_anime_recycle);
         topAnimeRecycle.setHasFixedSize(true);
         upcomingAnimeRecycle = findViewById(R.id.top_upcoming_anime_recycle);
@@ -431,6 +430,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         bottomNav.setSelectedItemId(R.id.nav_home);
 
         bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                switch (item.getItemId()){
@@ -450,6 +450,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                    case R.id.nav_tv:
                        startActivity(new Intent(getApplicationContext()
                                ,TVShows.class));
+                       overridePendingTransition(0, 0);
+                       return true;
+                   case R.id.nav_dashboard:
+                       startActivity(new Intent(getApplicationContext()
+                               , DashboarduSER.class));
                        overridePendingTransition(0, 0);
                        return true;
                }

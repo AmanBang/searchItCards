@@ -9,6 +9,9 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.parse.Parse;
+import com.parse.ParseInstallation;
+
 public class Intro extends AppCompatActivity {
 
     private static final int loadtime = 3000;
@@ -22,6 +25,17 @@ public class Intro extends AppCompatActivity {
 
         setContentView(R.layout.activity_intro);
 
+        Parse.initialize(new Parse.Configuration.Builder(this)
+                .applicationId(getString(R.string.back4app_app_id))
+                .clientKey(getString(R.string.back4app_client_key))
+                .server(getString(R.string.back4app_server_url))
+                .build()
+        );
+
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+
+
+
         progressBar = new ProgressBar(Intro.this);
 textView = findViewById(R.id.searchItLogoanimation);
 
@@ -30,7 +44,7 @@ textView = findViewById(R.id.searchItLogoanimation);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(Intro.this, MainActivity.class);
+                Intent i = new Intent(Intro.this, LoginActivity.class);
                 startActivity(i);
                 finish();
 

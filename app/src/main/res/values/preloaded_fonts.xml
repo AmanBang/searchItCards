@@ -2,11 +2,13 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/actor</item>
+        <item>@font/allerta</item>
         <item>@font/arbutus_slab</item>
         <item>@font/atomic_age</item>
         <item>@font/bad_script</item>
         <item>@font/bubblegum_sans</item>
         <item>@font/buenard_bold</item>
+        <item>@font/bungee</item>
         <item>@font/covered_by_your_grace</item>
         <item>@font/roboto</item>
         <item>@font/roboto_bold</item>

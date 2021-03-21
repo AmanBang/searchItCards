@@ -48,7 +48,7 @@ public class Youtube extends YouTubeBaseActivity {
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
 
                 youTubePlayer.loadVideo(pass);
-                youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.MINIMAL);
+                youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
 
             }
 

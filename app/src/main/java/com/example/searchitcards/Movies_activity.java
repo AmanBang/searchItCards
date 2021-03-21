@@ -6,15 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Movie;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -323,6 +319,11 @@ public void pMethod(String top){
                     case R.id.nav_tv:
                         startActivity(new Intent(getApplicationContext()
                                 ,TVShows.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.nav_dashboard:
+                        startActivity(new Intent(getApplicationContext()
+                                , DashboarduSER.class));
                         overridePendingTransition(0, 0);
                         return true;
                 }

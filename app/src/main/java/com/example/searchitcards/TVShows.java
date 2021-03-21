@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Movie;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,8 +19,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.searchitcards.Movie.mAdapter.MovieAdapter;
-import com.example.searchitcards.Movie.mAdapter.Movies;
 import com.example.searchitcards.Movie.mAdapter.Show;
 import com.example.searchitcards.Movie.mAdapter.ShowAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -285,6 +282,12 @@ public class TVShows extends AppCompatActivity {
                         return true;
                     case R.id.nav_tv:
 
+                        return true;
+
+                    case R.id.nav_dashboard:
+                        startActivity(new Intent(getApplicationContext()
+                                , DashboarduSER.class));
+                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;

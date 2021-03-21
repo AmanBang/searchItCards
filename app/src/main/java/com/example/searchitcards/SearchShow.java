@@ -3,6 +3,7 @@ package com.example.searchitcards;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,8 @@ public class SearchShow extends RecyclerView.Adapter<SearchShow.AnimeHolder> {
       //  holder.Episode.setText(String.valueOf(animeResultSearch.get(position).getType()));
         holder.Episode.setText((animeResultSearch.get(position).getType()));
         holder.Mal_Id.setText(String.valueOf(animeResultSearch.get(position).getMal_id()));
-//        holder.ratingBar.setRating(animeResultSearch.get(position).getScore()/2);
+        float f = (float) animeResultSearch.get(position).getScore();
+       holder.ratingBar.setRating(f/2);
         Picasso.get().load(animeResultSearch.get(position).getImage_url()).into(holder.AnimeCover);
     }
 
@@ -52,6 +54,8 @@ public class SearchShow extends RecyclerView.Adapter<SearchShow.AnimeHolder> {
     public int getItemCount() {
         return animeResultSearch.size();
     }
+
+
 
     public class AnimeHolder extends RecyclerView.ViewHolder {
         RatingBar ratingBar;

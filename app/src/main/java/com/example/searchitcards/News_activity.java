@@ -55,6 +55,11 @@ public class News_activity extends AppCompatActivity {
                     case R.id.nav_news:
 
                         return true;
+                    case R.id.nav_dashboard:
+                        startActivity(new Intent(getApplicationContext()
+                                , DashboarduSER.class));
+                        overridePendingTransition(0, 0);
+                        return true;
                 }
                 return false;
             }

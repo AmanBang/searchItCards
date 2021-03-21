@@ -46,5 +46,14 @@ dependencies {
     implementation 'com.github.denzcoskun:ImageSlideshow:0.0.6'
     implementation 'com.borjabravo:readmoretextview:2.1.0'
 
+    implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.26.0'
+    implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.8'
 
+
+}
+
+repositories {
+    google()
+    jcenter()
+    maven {url 'https://jitpack.io'}
 }

@@ -16,7 +16,7 @@ public class Topresults {
 //    private int rank;
 //    private String episode;
     private String title;
-//    private float score;
+    private double score;
     private String image_url;
     private String type;
     private String start_date;
@@ -53,7 +53,15 @@ public class Topresults {
         this.mal_id = mal_id;
     }
 
-//    public int getRank() {
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    //    public int getRank() {
 //        return rank;
 //    }
 //
