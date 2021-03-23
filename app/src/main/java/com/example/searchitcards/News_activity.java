@@ -3,6 +3,8 @@ package com.example.searchitcards;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Build;
@@ -12,12 +14,20 @@ import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 public class News_activity extends AppCompatActivity {
 
    private WebView webView;
+
+    private TextView showName;
+    private Toolbar toolbar;
+    private TabAdapter tabAdapter;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -25,14 +35,22 @@ public class News_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_news_activity);
+//
+//        webView = findViewById(R.id.webview);
+//        webView.setWebViewClient(new WebViewClient());
+//        webView.loadUrl("https://www.animenewsnetwork.com/");
+//
+//        WebSettings webSettings = webView.getSettings();
+//        webSettings.setJavaScriptEnabled(true);
+//        webSettings.setSafeBrowsingEnabled(true);
 
-        webView = findViewById(R.id.webview);
-        webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://www.animenewsnetwork.com/");
+        toolbar = findViewById(R.id.myToolbar);
+        tabAdapter = new TabAdapter(getSupportFragmentManager());
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tabLayout);
 
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setSafeBrowsingEnabled(true);
+        viewPager.setAdapter(tabAdapter);
+        tabLayout.setupWithViewPager(viewPager);
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -67,13 +85,13 @@ public class News_activity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        if (webView.canGoBack()){
-            webView.goBack();
-        }else {
-            super.onBackPressed();
-        }
-
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (webView.canGoBack()){
+//            webView.goBack();
+//        }else {
+//            super.onBackPressed();
+//        }
+//
+//    }
 }

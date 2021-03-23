@@ -26,7 +26,8 @@
         <activity android:name=".TVShows" />
         <activity android:name=".EpisodeList" />
         <activity android:name=".SearchResults" />
-        <activity android:name=".News_activity" />
+        <activity android:name=".News_activity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
         <activity android:name=".Movies_activity" />
         <activity android:name=".AnimeDeatails" />
         <activity android:name=".Anime.Youtube" />
