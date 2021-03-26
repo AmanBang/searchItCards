@@ -1,4 +1,4 @@
-package com.example.searchitcards;
+package com.example.searchitcards.Anime;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -24,6 +25,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.searchitcards.Episode;
+import com.example.searchitcards.EpisodeAdpater;
+import com.example.searchitcards.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,6 +54,7 @@ public class EpisodeList extends AppCompatActivity implements AdapterView.OnItem
     TextView episdoeDetails;
     ImageView episodeImage;
 
+    ProgressBar progressBar;
 
     Spinner spinner;
     Spinner spinner2;
@@ -126,6 +131,7 @@ LinearLayout seasonsLayout;
                           episodeRecycle.setLayoutManager(new LinearLayoutManager(EpisodeList.this));
                           episodeAdpater = new EpisodeAdpater(EpisodeList.this, episodeList);
                           episodeRecycle.setAdapter(episodeAdpater);
+                          progressBar.setVisibility(View.GONE);
                       }
                   },200);
 
@@ -188,6 +194,7 @@ LinearLayout seasonsLayout;
                         episodeRecycle.setLayoutManager(new LinearLayoutManager(EpisodeList.this));
                         episodeAdpater = new EpisodeAdpater(EpisodeList.this, episodeList);
                         episodeRecycle.setAdapter(episodeAdpater);
+                        progressBar.setVisibility(View.GONE);
                     }
                 },500);
 
@@ -214,7 +221,7 @@ LinearLayout seasonsLayout;
 
         episodeImage = findViewById(R.id.episode_image);
         episdoeDetails = findViewById(R.id.episode_details);
-
+        progressBar = findViewById(R.id.episodelist_probressBar);
 
 
         episodeRecycle = findViewById(R.id.episode_list_recycle_hello);
@@ -225,6 +232,7 @@ LinearLayout seasonsLayout;
         seasons = new ArrayList<>();
         spinner= findViewById(R.id.episode_page_spinner);
         spinner2= findViewById(R.id.episode_season_spinner);
+
 //        filler.setVisibility(View.INVISIBLE);
      spinner.setOnItemSelectedListener(this);
      spinner2.setOnItemSelectedListener(this);

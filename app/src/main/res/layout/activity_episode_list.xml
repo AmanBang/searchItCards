@@ -5,10 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EpisodeList">
+    tools:context=".Anime.EpisodeList"
+    android:gravity="center"
+    >
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
     <LinearLayout
         android:id="@+id/page_layout"
         android:layout_width="wrap_content"
@@ -54,9 +57,19 @@
     </LinearLayout>
 
 </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/episodelist_probressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/episode_list_recycle_hello"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/episode_list_recycle_hello"/>
+        android:background="@color/black" />
 
 </LinearLayout>

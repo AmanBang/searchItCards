@@ -1,4 +1,4 @@
-package com.example.searchitcards;
+package com.example.searchitcards.Anime;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -25,6 +25,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.searchitcards.DashboarduSER;
+import com.example.searchitcards.Movies_activity;
+import com.example.searchitcards.Favourites;
+import com.example.searchitcards.R;
+import com.example.searchitcards.SearchResults;
+import com.example.searchitcards.TVShows;
+import com.example.searchitcards.TopAnime;
+import com.example.searchitcards.Topresults;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
@@ -444,12 +452,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                        return true;
                    case R.id.nav_news:
                        startActivity(new Intent(getApplicationContext()
-                               ,News_activity.class));
+                               , Favourites.class));
                        overridePendingTransition(0, 0);
                        return true;
                    case R.id.nav_tv:
                        startActivity(new Intent(getApplicationContext()
-                               ,TVShows.class));
+                               , TVShows.class));
                        overridePendingTransition(0, 0);
                        return true;
                    case R.id.nav_dashboard:

@@ -1,22 +1,19 @@
 package com.example.searchitcards;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.searchitcards.Anime.MainActivity;
 import com.parse.ParseUser;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
@@ -42,7 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         if(ParseUser.getCurrentUser() != null){
-            Intent i = new Intent(LoginActivity.this,MainActivity.class);
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(i);
             FancyToast.makeText(this,"LogIn",FancyToast.LENGTH_LONG,FancyToast.INFO,false);
             finish();
@@ -167,8 +164,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 });
         AlertDialog ok = builder.create();
         ok.show();
-        FancyToast.makeText(this,"LogIn",FancyToast.LENGTH_LONG,FancyToast.INFO,false);
-        finish();
+        FancyToast.makeText(this,"LogIn",FancyToast.LENGTH_LONG,FancyToast.INFO,false).show();
+//        finish();
 
 
     }

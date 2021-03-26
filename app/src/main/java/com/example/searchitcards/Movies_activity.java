@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.searchitcards.Anime.MainActivity;
 import com.example.searchitcards.Movie.mAdapter.MovieAdapter;
 import com.example.searchitcards.Movie.mAdapter.Movies;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -313,7 +314,7 @@ public void pMethod(String top){
                         return true;
                     case R.id.nav_news:
                         startActivity(new Intent(getApplicationContext()
-                                ,News_activity.class));
+                                , Favourites.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_tv:

@@ -1,15 +1,10 @@
-package com.example.searchitcards;
+package com.example.searchitcards.Anime;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.media.MediaCodec;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -19,13 +14,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.denzcoskun.imageslider.ImageSlider;
@@ -33,11 +26,10 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.searchitcards.Anime.Adapter.AdapterClass.Promo;
 import com.example.searchitcards.Anime.Adapter.AdapterClass.RecommendedAnime;
 import com.example.searchitcards.Anime.Adapter.YoutubeVideoAdapter;
-import com.google.android.youtube.player.YouTubeBaseActivity;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubeIntents;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerView;
+import com.example.searchitcards.R;
+import com.example.searchitcards.RecommendationAdapter;
+import com.example.searchitcards.SStory;
+import com.example.searchitcards.SideStoryAdapter;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -46,8 +38,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AnimeDeatails extends AppCompatActivity {
 

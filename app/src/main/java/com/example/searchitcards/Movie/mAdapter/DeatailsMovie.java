@@ -8,7 +8,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,15 +20,9 @@ import com.android.volley.toolbox.Volley;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.searchitcards.AdapterRMovies;
-import com.example.searchitcards.Anime.Adapter.AdapterClass.RecommendedAnime;
-import com.example.searchitcards.Anime.Adapter.YoutubeVideoAdapter;
 
-import com.example.searchitcards.AnimeDeatails;
 import com.example.searchitcards.R;
-import com.example.searchitcards.RecommendationAdapter;
 import com.example.searchitcards.RecommendedMovies;
-import com.example.searchitcards.SStory;
-import com.example.searchitcards.SideStoryAdapter;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;

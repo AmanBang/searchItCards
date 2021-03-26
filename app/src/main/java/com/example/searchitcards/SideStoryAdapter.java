@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.searchitcards.Anime.AnimeDeatails;
+
 import java.util.List;
 
 public class SideStoryAdapter extends RecyclerView.Adapter<SideStoryAdapter.SSViewHolder> {
@@ -50,7 +52,7 @@ public class SideStoryAdapter extends RecyclerView.Adapter<SideStoryAdapter.SSVi
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(),AnimeDeatails.class);
+                Intent i = new Intent(v.getContext(), AnimeDeatails.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.putExtra("title_Id_Pass", String.valueOf(SSList.get(getAdapterPosition()).getMal_id()));
                 v.getContext().startActivity(i);

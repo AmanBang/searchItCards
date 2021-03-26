@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+        <item name="android:windowAnimationStyle">@style/animation</item>
 
     </style>
 
@@ -21,5 +21,10 @@
         <item name="android:activityOpenExitAnimation">@transition/slide_out_left</item>
         <item name="android:activityCloseEnterAnimation">@transition/slide_in_left</item>
         <item name="android:activityCloseExitAnimation">@transition/slide_out_right</item>
+    </style>
+
+    <style name="animation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 </resources>

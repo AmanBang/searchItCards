@@ -2,24 +2,29 @@ package com.example.searchitcards;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.searchitcards.Anime.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.parse.ParseUser;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
-public class News_activity extends AppCompatActivity {
+public class Favourites extends AppCompatActivity {
 
    private WebView webView;
 
@@ -28,13 +33,15 @@ public class News_activity extends AppCompatActivity {
     private TabAdapter tabAdapter;
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    ProgressDialog progressDialog;
+    Button logOut;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_news_activity);
+        setContentView(R.layout.favourite_activity);
 //
 //        webView = findViewById(R.id.webview);
 //        webView.setWebViewClient(new WebViewClient());
@@ -51,6 +58,10 @@ public class News_activity extends AppCompatActivity {
 
         viewPager.setAdapter(tabAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        progressDialog = new ProgressDialog(this);
+
+
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -84,7 +95,13 @@ public class News_activity extends AppCompatActivity {
         });
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        getMenuInflater().inflate(R.menu.my_menu,menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
 //    @Override
 //    public void onBackPressed() {
 //        if (webView.canGoBack()){
@@ -94,4 +111,40 @@ public class News_activity extends AppCompatActivity {
 //        }
 //
 //    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.logout_user_icon){
+            progressDialog.show();
+            progressDialog.setMessage("Loging Out...");
+            ParseUser.logOutInBackground(e -> {
+                progressDialog.dismiss();
+                if (e == null)
+                    showAlert("So, you're going...", "Ok...Bye-bye then",false);
+            });
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showAlert(String title, String message, boolean error) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Favourites.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    dialog.cancel();
+                    // don't forget to change the line below with the names of your Activities
+                    if (!error) {
+                        Intent intent = new Intent(Favourites.this, LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+        AlertDialog ok = builder.create();
+        ok.show();
+        FancyToast.makeText(this,"LogIn",FancyToast.LENGTH_LONG,FancyToast.INFO,false);
+//        finish();
+
+    }
 }

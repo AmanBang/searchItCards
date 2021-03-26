@@ -7,12 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.searchitcards.Anime.AnimeDeatails;
+import com.shashank.sony.fancytoastlib.FancyToast;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -66,10 +67,12 @@ List<Topresults> animeResult;
                 @Override
                 public void onClick(View v) {
 
-                    Intent i = new Intent(v.getContext(), AnimeDeatails.class);
-                   i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.putExtra("title_Id_Pass", String.valueOf(animeResult.get(getAdapterPosition()).getMal_id()));
-                    v.getContext().startActivity(i);
+//                    Intent i = new Intent(v.getContext(), AnimeDeatails.class);
+//                   i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    i.putExtra("title_Id_Pass", String.valueOf(animeResult.get(getAdapterPosition()).getMal_id()));
+//                    v.getContext().startActivity(i);
+                    FancyToast.makeText(v.getContext(),"ADDED to Favourites", FancyToast.LENGTH_SHORT,FancyToast.INFO,true).show();
+
 
                 }
             });

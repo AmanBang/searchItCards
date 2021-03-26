@@ -13,13 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.searchitcards.Anime.Adapter.AdapterClass.RecommendedAnime;
-import com.example.searchitcards.Anime.Adapter.YoutubeVideoAdapter;
+import com.example.searchitcards.Anime.AnimeDeatails;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import javax.sql.DataSource;
-
 
 
 public class RecommendationAdapter extends  RecyclerView.Adapter<RecommendationAdapter.RViewHolder>{
@@ -63,7 +60,7 @@ public class RecommendationAdapter extends  RecyclerView.Adapter<RecommendationA
       itemView.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-           Intent i = new Intent(v.getContext(),AnimeDeatails.class);
+           Intent i = new Intent(v.getContext(), AnimeDeatails.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.putExtra("title_Id_Pass", String.valueOf(Ranime.get(getAdapterPosition()).getMal_id()));
             v.getContext().startActivity(i);

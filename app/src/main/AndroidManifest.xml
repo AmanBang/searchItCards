@@ -24,17 +24,20 @@
         </activity>
         <activity android:name=".ShowDetails" />
         <activity android:name=".TVShows" />
-        <activity android:name=".EpisodeList" />
-        <activity android:name=".SearchResults" />
-        <activity android:name=".News_activity"
+        <activity android:name=".Anime.EpisodeList"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+        <activity android:name=".SearchResults"
+            />
+        <activity android:name=".Favourites"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            />
         <activity android:name=".Movies_activity" />
-        <activity android:name=".AnimeDeatails" />
+        <activity android:name=".Anime.AnimeDeatails" />
         <activity android:name=".Anime.Youtube" />
         <activity android:name=".Movie.mAdapter.DeatailsMovie" />
         <activity android:name=".MovieSearchResult" />
         <activity android:name=".Movie.MovieTrailer" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Anime.MainActivity">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->

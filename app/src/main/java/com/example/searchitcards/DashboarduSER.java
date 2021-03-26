@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.searchitcards.Anime.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -57,12 +58,12 @@ public class DashboarduSER extends AppCompatActivity implements AdapterView.OnIt
                         return true;
                     case R.id.nav_home:
                         startActivity(new Intent(getApplicationContext()
-                                ,MainActivity.class));
+                                , MainActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_news:
                         startActivity(new Intent(getApplicationContext()
-                                ,News_activity.class));
+                                , Favourites.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.nav_tv:

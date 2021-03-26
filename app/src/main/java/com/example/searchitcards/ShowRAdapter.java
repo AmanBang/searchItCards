@@ -1,17 +1,23 @@
 package com.example.searchitcards;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shashank.sony.fancytoastlib.FancyToast;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -24,6 +30,9 @@ public class ShowRAdapter extends RecyclerView.Adapter<ShowRAdapter.SRViewHolder
     public ShowRAdapter(Context SInfaltor, List<RecommendedMovies> slist) {
         this.SInfaltor = LayoutInflater.from(SInfaltor);
         Slist = slist;
+
+
+
     }
 
     @NonNull
@@ -45,7 +54,6 @@ public class ShowRAdapter extends RecyclerView.Adapter<ShowRAdapter.SRViewHolder
     }
 
     public  class SRViewHolder extends RecyclerView.ViewHolder{
-
         TextView animeTitle;
         ImageView animePoster;
         public SRViewHolder(@NonNull View itemView) {
@@ -61,6 +69,8 @@ public class ShowRAdapter extends RecyclerView.Adapter<ShowRAdapter.SRViewHolder
 
                 }
             });
+
+//
 
             animeTitle = itemView.findViewById(R.id.anime_r_title);
             animePoster = itemView.findViewById(R.id.anime_r_poster);
