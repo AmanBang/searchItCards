@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.searchitcards.Anime.MainActivity;
+import com.example.searchitcards.Favoutites.Favourites;
+import com.example.searchitcards.Movie.Movies_activity;
+import com.example.searchitcards.TVshows.TVShows;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -68,7 +71,7 @@ public class DashboarduSER extends AppCompatActivity implements AdapterView.OnIt
                         return true;
                     case R.id.nav_tv:
                         startActivity(new Intent(getApplicationContext()
-                                ,TVShows.class));
+                                , TVShows.class));
                         overridePendingTransition(0, 0);
                         return true;
 

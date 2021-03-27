@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.searchitcards.Movie.DeatailsMovie;
+import com.example.searchitcards.Movie.mAdapterclasses.Movies;
 import com.example.searchitcards.R;
 import com.squareup.picasso.Picasso;
 

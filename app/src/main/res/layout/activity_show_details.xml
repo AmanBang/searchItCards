@@ -28,6 +28,8 @@
                 android:background="#14274e"
                 android:elevation="2dp">
 
+
+
                 <com.denzcoskun.imageslider.ImageSlider
                     android:id="@+id/show_pictures"
                     android:layout_width="match_parent"
@@ -40,7 +42,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintVertical_bias="0.028"
                     app:period="1000"
                     app:placeholder="@color/black"
                     app:selected_dot="@drawable/default_unselected_dot">

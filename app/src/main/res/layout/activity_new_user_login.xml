@@ -7,7 +7,7 @@
     android:onClick="rootLayout"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".NewUserLogin">
+    tools:context=".Login.NewUserLogin">
 
     <TextView
         android:id="@+id/textView2"

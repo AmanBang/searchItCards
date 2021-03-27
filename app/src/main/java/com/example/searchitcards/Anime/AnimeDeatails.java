@@ -25,11 +25,11 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.searchitcards.Anime.Adapter.AdapterClass.Promo;
 import com.example.searchitcards.Anime.Adapter.AdapterClass.RecommendedAnime;
-import com.example.searchitcards.Anime.Adapter.YoutubeVideoAdapter;
+import com.example.searchitcards.Anime.Adapter.SideStoryAdapter;
+import com.example.searchitcards.YoutubePlayer.YoutubeVideoAdapter;
+import com.example.searchitcards.Anime.AdapterCLass.SStory;
 import com.example.searchitcards.R;
 import com.example.searchitcards.RecommendationAdapter;
-import com.example.searchitcards.SStory;
-import com.example.searchitcards.SideStoryAdapter;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;

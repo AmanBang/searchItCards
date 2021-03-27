@@ -25,14 +25,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.searchitcards.Anime.AdapterCLass.Topresults;
 import com.example.searchitcards.DashboarduSER;
-import com.example.searchitcards.Movies_activity;
-import com.example.searchitcards.Favourites;
+import com.example.searchitcards.Movie.Movies_activity;
+import com.example.searchitcards.Favoutites.Favourites;
 import com.example.searchitcards.R;
-import com.example.searchitcards.SearchResults;
-import com.example.searchitcards.TVShows;
-import com.example.searchitcards.TopAnime;
-import com.example.searchitcards.Topresults;
+import com.example.searchitcards.TVshows.TVShows;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
@@ -72,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             searchText = findViewById(R.id.searchEditText);
             String search = searchText.getText().toString();
 
-        Intent myIntent = new Intent(MainActivity.this, SearchResults.class);
+        Intent myIntent = new Intent(MainActivity.this, AnimeSearchResults.class);
         myIntent.putExtra("search_url", search); //Optional parameters
         this.startActivity(myIntent);
 

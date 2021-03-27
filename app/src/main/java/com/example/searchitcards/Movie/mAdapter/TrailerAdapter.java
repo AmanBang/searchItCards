@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.searchitcards.Movie.MovieTrailer;
+import com.example.searchitcards.Movie.mAdapterclasses.Trailer;
 import com.example.searchitcards.R;
 import com.squareup.picasso.Picasso;
 

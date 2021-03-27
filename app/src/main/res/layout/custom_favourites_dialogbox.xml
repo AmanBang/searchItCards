@@ -23,29 +23,28 @@
     <RadioGroup
 
         android:id="@+id/radioGroup"
-        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/RB_pending"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pending"
             android:checked="true"
-            android:textSize="18dp"
-            />
+            android:text="Pending"
+            android:textSize="18dp" />
 
         <RadioButton
             android:id="@+id/RB_ongoing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ongoing"
-            android:textSize="18dp"
-            />
+            android:textSize="18dp" />
 
         <RadioButton
             android:id="@+id/RB_watched"
@@ -60,24 +59,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="12dp"
         android:text="Cancel"
-        app:layout_constraintHorizontal_bias="0.275"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
         android:id="@+id/dialog_addBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <TextView
         android:id="@+id/textView5"
@@ -86,10 +81,10 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="5dp"
+        android:layout_marginBottom="4dp"
         android:text="Note : More options can be found in favourites section"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        android:layout_marginBottom="4dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 </androidx.constraintlayout.widget.ConstraintLayout>
