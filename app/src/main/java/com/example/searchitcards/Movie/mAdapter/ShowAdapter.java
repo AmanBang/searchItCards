@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -38,10 +40,11 @@ public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ShowHolder> {
     LayoutInflater SInflator;
     List<Show> showList;
     Dialog dialog;
-    Switch aSwitch;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
     Button cancle;
     Button Add;
-    TextView switchText;
+    String switchText = "Pending";
 
     public ShowAdapter(Context SInflator, List<Show> showList) {
         this.SInflator = LayoutInflater.from(SInflator);
@@ -49,22 +52,42 @@ public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ShowHolder> {
         dialog = new Dialog(SInflator);
 
 
-
         dialog.setContentView(R.layout.custom_favourites_dialogbox);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = SInflator.getResources().getDrawable(R.drawable.background);
-            dialog.getWindow().setBackgroundDrawable( drawable);
+            dialog.getWindow().setBackgroundDrawable(drawable);
         }
 
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setCancelable(false);
         dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
-        aSwitch = dialog.findViewById(R.id.favSwitchWatched);
+        radioGroup = dialog.findViewById(R.id.radioGroup);
 
 
         cancle = dialog.findViewById(R.id.dialog_cancelBtn);
-         Add = dialog.findViewById(R.id.dialog_addBtn);
-         switchText = dialog.findViewById(R.id.switchTextView);
+        Add = dialog.findViewById(R.id.dialog_addBtn);
+
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.RB_pending:
+                        switchText = "";
+                        switchText = "Pending";
+                        break;
+                    case R.id.RB_ongoing:
+                        switchText = "";
+                        switchText = "Ongoing";
+                        break;
+                    case R.id.RB_watched:
+                        switchText = "";
+                        switchText = "Watched";
+                        break;
+                }
+            }
+        });
 
 
     }
@@ -72,14 +95,16 @@ public class ShowAdapter extends RecyclerView.Adapter<ShowAdapter.ShowHolder> {
     @NonNull
     @Override
     public ShowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = SInflator.inflate(R.layout.custom_show_card,parent,false);
+        View view = SInflator.inflate(R.layout.custom_show_card, parent, false);
         return new ShowHolder(view);
+
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull ShowHolder holder, int position) {
-Picasso.get().load("https://image.tmdb.org/t/p/w500"+showList.get(position).getPoster_path()).into(holder.poster);
-holder.Title.setText(showList.get(position).getName());
+        Picasso.get().load("https://image.tmdb.org/t/p/w500" + showList.get(position).getPoster_path()).into(holder.poster);
+        holder.Title.setText(showList.get(position).getName());
 
 
         cancle.setOnClickListener(new View.OnClickListener() {
@@ -92,75 +117,42 @@ holder.Title.setText(showList.get(position).getName());
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ParseQuery<ParseUser> parseQuery = new ParseQuery<ParseUser>("Favourites");
-                if (aSwitch.isChecked()){
-                    switchText.setText("Watched");
-                    parseQuery.whereMatches("tvShow",showList.get(position).getId());
-                    parseQuery.whereEqualTo("Watched",false);
-                    parseQuery.findInBackground(new FindCallback<ParseUser>() {
-                        @Override
-                        public void done(List<ParseUser> objects, ParseException e) {
-                            Log.i("objestparesd",objects+"");
 
-                            if (objects.isEmpty()){
-                                ParseObject tvShowFav = new ParseObject("Favourites");
-                                tvShowFav.put("tvShow",showList.get(position).getId());
-                                tvShowFav.put("Watched",true);
-                                tvShowFav.setACL(new ParseACL(ParseUser.getCurrentUser()));
-                                tvShowFav.saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(ParseException e) {
-                                        if (e == null){
-                                            FancyToast.makeText(v.getContext(),"ADDED to Favourites", FancyToast.LENGTH_SHORT,FancyToast.INFO,true).show();
+                ParseQuery<ParseUser> parseQuery = new ParseQuery<ParseUser>("Show");
 
-                                        }else {
-                                            FancyToast.makeText(v.getContext(),"Could Not Add to Favourites", FancyToast.LENGTH_SHORT,FancyToast.INFO,true).show();
-                                        }
+                parseQuery.whereMatches("showID", showList.get(position).getId());
+                parseQuery.findInBackground(new FindCallback<ParseUser>() {
+                    @Override
+                    public void done(List<ParseUser> objects, ParseException e) {
+//                        Log.i("objestparesd", objects + "");
+//                        Log.i("objestparesd:", switchText);
+
+                        if (objects.isEmpty()) {
+                            ParseObject tvShowFav = new ParseObject("Show");
+                            tvShowFav.put("showID", showList.get(position).getId());
+                            tvShowFav.put("type", switchText);
+                            tvShowFav.setACL(new ParseACL(ParseUser.getCurrentUser()));
+                            tvShowFav.saveInBackground(new SaveCallback() {
+                                @Override
+                                public void done(ParseException e) {
+                                    if (e == null) {
+                                        FancyToast.makeText(v.getContext(), "ADDED to Favourites", FancyToast.LENGTH_SHORT, FancyToast.INFO, true).show();
+
+                                    } else {
+                                        FancyToast.makeText(v.getContext(), "Could Not Add to Favourites:" + e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.INFO, true).show();
                                     }
-                                });
-                            }else {
-                                FancyToast.makeText(v.getContext(),"Already add in your favourite", FancyToast.LENGTH_SHORT,FancyToast.INFO,true).show();
+                                }
+                            });
+                        } else {
+                            FancyToast.makeText(v.getContext(), "Already add in your favourite", FancyToast.LENGTH_SHORT, FancyToast.INFO, true).show();
 
-                            }
                         }
-                    });
+                        dialog.dismiss();
+                    }
+                });
 
-                }else {
-                    switchText.setText("Unwatched");
-                    parseQuery.whereMatches("tvShow",showList.get(position).getId());
-                    parseQuery.whereEqualTo("Watched",false);
-                    parseQuery.findInBackground(new FindCallback<ParseUser>() {
-                        @Override
-                        public void done(List<ParseUser> objects, ParseException e) {
-                            Log.i("objestparesd",objects+"");
-
-                            if (objects.isEmpty()){
-                                ParseObject tvShowFav = new ParseObject("Favourites");
-                                tvShowFav.put("tvShow",showList.get(position).getId());
-                                tvShowFav.put("Watched", false);
-                                tvShowFav.setACL(new ParseACL(ParseUser.getCurrentUser()));
-                                tvShowFav.saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(ParseException e) {
-                                        if (e == null){
-                                            FancyToast.makeText(v.getContext(),"ADDED to Favourites", FancyToast.LENGTH_SHORT,FancyToast.INFO,true).show();
-
-                                        }else {
-                                            FancyToast.makeText(v.getContext(),"Could Not Add to Favourites", FancyToast.LENGTH_SHORT,FancyToast.INFO,true).show();
-                                        }
-                                    }
-                                });
-                            }else {
-                                FancyToast.makeText(v.getContext(),"Already add in your favourite", FancyToast.LENGTH_SHORT,FancyToast.INFO,true).show();
-
-                            }
-                        }
-                    });
-
-                }
-
-                dialog.dismiss();
             }
+
         });
 
     }
@@ -171,32 +163,32 @@ holder.Title.setText(showList.get(position).getName());
     }
 
     public class ShowHolder extends RecyclerView.ViewHolder {
-       TextView Title;
-       ImageView poster;
-       public ShowHolder(@NonNull View itemView) {
-           super(itemView);
+        TextView Title;
+        ImageView poster;
 
-           itemView.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   Intent i = new Intent(v.getContext(), ShowDetails.class);
-                   i.putExtra("show_id",showList.get(getAdapterPosition()).getId());
-                   v.getContext().startActivity(i);
-               }
-           });
-           itemView.setOnLongClickListener(new View.OnLongClickListener() {
-               @Override
-               public boolean onLongClick(View v) {
+        public ShowHolder(@NonNull View itemView) {
+            super(itemView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(v.getContext(), ShowDetails.class);
+                    i.putExtra("show_id", showList.get(getAdapterPosition()).getId());
+                    v.getContext().startActivity(i);
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
                     dialog.show();
-                 //  FancyToast.makeText(v.getContext(),"ADDED to Favourites", FancyToast.LENGTH_SHORT,FancyToast.INFO,true).show();
+                    return true;
+                }
+            });
+
+            Title = itemView.findViewById(R.id.showName);
+            poster = itemView.findViewById(R.id.showPoster);
+        }
+    }
 
 
-                   return true;
-               }
-           });
-
-           Title = itemView.findViewById(R.id.showName);
-           poster = itemView.findViewById(R.id.showPoster);
-       }
-   }
 }

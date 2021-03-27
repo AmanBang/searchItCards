@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.searchitcards">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,32 +13,55 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SearchItCards">
-        <activity android:name=".NewUserLogin"/>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".DashboarduSER" />
-        <activity android:name=".Intro">
+        <activity android:name=".NewUserLogin"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            />
+        <activity android:name=".LoginActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            />
+        <activity android:name=".DashboarduSER"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            />
+        <activity android:name=".Intro"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
+
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowDetails" />
-        <activity android:name=".TVShows" />
-        <activity android:name=".Anime.EpisodeList"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
-        <activity android:name=".SearchResults"
+        <activity android:name=".ShowDetails"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             />
+        <activity android:name=".TVShows"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            />
+        <activity android:name=".Anime.EpisodeList"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name=".SearchResults"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name=".Favourites"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            />
-        <activity android:name=".Movies_activity" />
-        <activity android:name=".Anime.AnimeDeatails" />
-        <activity android:name=".Anime.Youtube" />
-        <activity android:name=".Movie.mAdapter.DeatailsMovie" />
-        <activity android:name=".MovieSearchResult" />
-        <activity android:name=".Movie.MovieTrailer" />
-        <activity android:name=".Anime.MainActivity">
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name=".Movies_activity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name=".Anime.AnimeDeatails"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name=".Anime.Youtube"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"
+            android:turnScreenOn="true"
+            tools:targetApi="o_mr1" />
+        <activity android:name=".Movie.mAdapter.DeatailsMovie"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name=".MovieSearchResult"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name=".Movie.MovieTrailer"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name=".Anime.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
