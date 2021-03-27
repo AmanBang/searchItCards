@@ -93,7 +93,8 @@ public class ShowDetails extends AppCompatActivity {
     String addProducer = "";
     String seasonNumber = "";
     String passMe;
-
+    String posterPath ="";
+String name;
 
     Dialog dialog;
     RadioGroup radioGroup;
@@ -118,15 +119,19 @@ public class ShowDetails extends AppCompatActivity {
 
             RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, top, null, new Response.Listener<JSONObject>() {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onResponse(JSONObject response) {
 
 
                     try {
-                        Picasso.get().load("https://image.tmdb.org/t/p/w500"+response.getString("poster_path")).into(showPoster);
+                        posterPath = response.getString("poster_path");
+                        Picasso.get().load("https://image.tmdb.org/t/p/w500"+posterPath).into(showPoster);
 //                        showRank.setText("#"+response.getString("rank"));
 
-                            showTitleEng.setText(response.getString("name"));
+                        name =response.getString("name");
+
+                            showTitleEng.setText(name);
 
                         JSONArray genres = response.getJSONArray("genres");
                         for (int i = 0; i < genres.length(); i++) {
@@ -139,6 +144,8 @@ public class ShowDetails extends AppCompatActivity {
 
                         showStatus.setText(response.getString("status"));
                         showDescription.setText(response.getString("overview"));
+
+
                         showTitle.setText(response.getString("original_name"));
                         showDuration.setText(response.getString("episode_run_time")+" Min");//this
                         showPremier.setText(response.getString("first_air_date"));//first episode to air
@@ -432,17 +439,21 @@ public class ShowDetails extends AppCompatActivity {
 
                 ParseQuery<ParseUser> parseQuery = new ParseQuery<ParseUser>("Show");
 
-                parseQuery.whereMatches("showID", id);
+                parseQuery.whereMatches("showID", passId);
                 parseQuery.findInBackground(new FindCallback<ParseUser>() {
                     @Override
                     public void done(List<ParseUser> objects, ParseException e) {
 //                        Log.i("objestparesd", objects + "");
 //                        Log.i("objestparesd:", switchText);
-
+                    try {
                         if (objects.isEmpty()) {
                             ParseObject tvShowFav = new ParseObject("Show");
-                            tvShowFav.put("showID", id);
+                            tvShowFav.put("showID", passId);
                             tvShowFav.put("type", switchText);
+                            tvShowFav.put("posterPath",posterPath);
+                            tvShowFav.put("showName",name);
+                            // tvShowFav.put("posterPath",posterPath);
+                            //tvShowFav.put("");
                             tvShowFav.setACL(new ParseACL(ParseUser.getCurrentUser()));
                             tvShowFav.saveInBackground(new SaveCallback() {
                                 @Override
@@ -459,6 +470,10 @@ public class ShowDetails extends AppCompatActivity {
                             FancyToast.makeText(v.getContext(), "Already add in your favourite", FancyToast.LENGTH_SHORT, FancyToast.INFO, true).show();
 
                         }
+                    }catch (Exception e1){
+                        Log.i("errrrr",e.getMessage());
+                    }
+
                         dialog.dismiss();
                     }
                 });
