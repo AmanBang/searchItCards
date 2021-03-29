@@ -2,6 +2,7 @@ package com.example.searchitcards.Anime;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,11 +68,11 @@ List<Topresults> animeResult;
                 @Override
                 public void onClick(View v) {
 
-//                    Intent i = new Intent(v.getContext(), AnimeDeatails.class);
-//                   i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    i.putExtra("title_Id_Pass", String.valueOf(animeResult.get(getAdapterPosition()).getMal_id()));
-//                    v.getContext().startActivity(i);
-                    FancyToast.makeText(v.getContext(),"ADDED to Favourites", FancyToast.LENGTH_SHORT,FancyToast.INFO,true).show();
+                    Intent i = new Intent(v.getContext(), AnimeDeatails.class);
+                   i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("title_Id_Pass", String.valueOf(animeResult.get(getAdapterPosition()).getMal_id()));
+                    v.getContext().startActivity(i);
+//                    FancyToast.makeText(v.getContext(),"ADDED to Favourites", FancyToast.LENGTH_SHORT,FancyToast.INFO,true).show();
 
 
                 }

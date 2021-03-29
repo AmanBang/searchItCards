@@ -257,10 +257,10 @@ public class TVShows extends AppCompatActivity {
         AiringList = new ArrayList<>();
         TodayList = new ArrayList<>();
 
-        UpcomingShows("https://api.themoviedb.org/3/tv/on_the_air?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&region=IN&page=1");
-        TopRated("https://api.themoviedb.org/3/tv/top_rated?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&region=IN&page=1");
-    Popular("https://api.themoviedb.org/3/tv/popular?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&region=IN&page=1");
-       TodayShow("https://api.themoviedb.org/3/tv/airing_today?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&region=IN&page=1");
+        UpcomingShows("https://api.themoviedb.org/3/tv/on_the_air?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1");
+        TopRated("https://api.themoviedb.org/3/tv/top_rated?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1");
+    Popular("https://api.themoviedb.org/3/tv/popular?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1");
+       TodayShow("https://api.themoviedb.org/3/tv/airing_today?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1");
         //https://api.themoviedb.org/3/tv/on_the_air?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1
 
 //---------------------------------nav Bar-----------------------------------------------------------------------------------------------------------//
@@ -276,16 +276,19 @@ public class TVShows extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext()
                                 , Movies_activity.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
                     case R.id.nav_home:
                         startActivity(new Intent(getApplicationContext()
                                 , MainActivity.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
                     case R.id.nav_news:
                         startActivity(new Intent(getApplicationContext()
                                 , Favourites.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
                     case R.id.nav_tv:
 
@@ -295,6 +298,7 @@ public class TVShows extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext()
                                 , DashboarduSER.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
                 }
                 return false;

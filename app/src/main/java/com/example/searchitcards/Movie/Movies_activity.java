@@ -315,21 +315,25 @@ public void pMethod(String top){
                         startActivity(new Intent(getApplicationContext()
                                 , MainActivity.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
                     case R.id.nav_news:
                         startActivity(new Intent(getApplicationContext()
                                 , Favourites.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
                     case R.id.nav_tv:
                         startActivity(new Intent(getApplicationContext()
                                 , TVShows.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
                     case R.id.nav_dashboard:
                         startActivity(new Intent(getApplicationContext()
                                 , DashboarduSER.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
                 }
                 return false;

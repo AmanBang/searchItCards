@@ -3,8 +3,8 @@
 
     <item
         android:id="@+id/nav_news"
-        android:icon="@drawable/ic_baseline_chrome_reader_mode_24"
-        android:title="Anime News" />
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="Favourites" />
     <item
         android:id="@+id/nav_movie"
         android:icon="@drawable/ic_baseline_movie_24"

@@ -94,7 +94,8 @@ public class ShowDetails extends AppCompatActivity {
     String seasonNumber = "";
     String passMe;
     String posterPath ="";
-String name;
+String name = "";
+    private String showZid;
 
     Dialog dialog;
     RadioGroup radioGroup;
@@ -357,6 +358,8 @@ String name;
         String passId = i.getStringExtra("pass_id");
 
         if (id == null){
+            showZid = passId;
+
             String url ="https://api.themoviedb.org/3/tv/"+passId+"?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
             DetailsShow show = new DetailsShow(url);
             show.start();
@@ -365,6 +368,7 @@ String name;
             Recommend("https://api.themoviedb.org/3/tv/"+passId+"/similar?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1");
 
         }else {
+            showZid = id;
             String url ="https://api.themoviedb.org/3/tv/"+id+"?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
             DetailsShow show = new DetailsShow(url);
             show.start();
@@ -434,12 +438,13 @@ String name;
         });
 
         Add.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
                 ParseQuery<ParseUser> parseQuery = new ParseQuery<ParseUser>("Show");
 
-                parseQuery.whereMatches("showID", passId);
+                parseQuery.whereMatches("showID", showZid);
                 parseQuery.findInBackground(new FindCallback<ParseUser>() {
                     @Override
                     public void done(List<ParseUser> objects, ParseException e) {
@@ -448,7 +453,7 @@ String name;
                     try {
                         if (objects.isEmpty()) {
                             ParseObject tvShowFav = new ParseObject("Show");
-                            tvShowFav.put("showID", passId);
+                            tvShowFav.put("showID", showZid);
                             tvShowFav.put("type", switchText);
                             tvShowFav.put("posterPath",posterPath);
                             tvShowFav.put("showName",name);

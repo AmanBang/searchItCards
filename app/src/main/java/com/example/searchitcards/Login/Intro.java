@@ -15,7 +15,7 @@ import com.parse.ParseInstallation;
 
 public class Intro extends AppCompatActivity {
 
-    private static final int loadtime = 3000;
+    private static final int loadtime = 1500;
     ProgressBar progressBar;
     TextView textView;
 
@@ -40,7 +40,7 @@ public class Intro extends AppCompatActivity {
         progressBar = new ProgressBar(Intro.this);
 textView = findViewById(R.id.searchItLogoanimation);
 
-        textView.animate().translationY(450f).setDuration(2000);
+        textView.animate().translationY(450f).setDuration(800);
 
         new Handler().postDelayed(new Runnable() {
             @Override

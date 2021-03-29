@@ -23,6 +23,7 @@ import com.example.searchitcards.DashboarduSER;
 import com.example.searchitcards.Login.LoginActivity;
 import com.example.searchitcards.Movie.Movies_activity;
 import com.example.searchitcards.R;
+import com.example.searchitcards.TVshows.TVShows;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.parse.ParseUser;
@@ -79,11 +80,13 @@ public class Favourites extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext()
                                 , Movies_activity.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
                     case R.id.nav_home:
                         startActivity(new Intent(getApplicationContext()
                                 , MainActivity.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
                     case R.id.nav_news:
 
@@ -92,7 +95,14 @@ public class Favourites extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext()
                                 , DashboarduSER.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
+                    case R.id.nav_tv:
+                        startActivity(new Intent(getApplicationContext()
+                                , TVShows.class));
+                        overridePendingTransition(0, 0);
+                        finish();
+
                 }
                 return false;
             }

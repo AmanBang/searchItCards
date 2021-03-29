@@ -3,4 +3,5 @@
     <string name="back4app_server_url">https://parseapi.back4app.com</string>
     <string name="back4app_app_id">l7jgb8cgN02gNk5CaBskh2B82y65NXkbG5DiOg4o</string>
     <string name="back4app_client_key">5AMJR0ZlsrRXBUE37JL7r1Lfkm3t4qy75QzfhUpI</string>
+    <string name="roll" />
 </resources>

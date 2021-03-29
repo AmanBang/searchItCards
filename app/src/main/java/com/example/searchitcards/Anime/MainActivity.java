@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -40,7 +41,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     TopAnime topAnime;
 
@@ -63,8 +64,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     LinearLayout typeLL;
 
     //Show textView
+Button AM_top;
+Button AM_airing;
+Button AM_upcoming;
+Button AM_popular;
+Button AM_movie;
 
-
+    String topUrl;
+        String  topUpcoming;
+        String airingAnime ;
+        String popularAnime;
+        String movie;
+//=================================================================================================================================================//
 
     public void searchOnClick(View v){
             searchText = findViewById(R.id.searchEditText);
@@ -85,7 +96,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+//====================================================more Buttton onclick Listner =============================================================//
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View v) {
 
+//        }
+
+    }
+//--------------------------------------------------------------------------------------------------------------------------------------------------//
 
     public class HomeView extends Thread {
 
@@ -357,6 +376,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -378,16 +398,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     //  releasedLL =findViewById(R.id.released_ll);
         typeLL = findViewById(R.id.type_ll);
 
+//        AM_top = findViewById(R.id.AM_top);
+//        AM_airing = findViewById(R.id.AM_airing);
+//        AM_upcoming = findViewById(R.id.AM_upcoming);
+//        AM_popular = findViewById(R.id.AM_popular);
+//        AM_movie = findViewById(R.id.AM_Movie);
+
+
+//        AM_top.setOnClickListener(this);
+//        AM_airing.setOnClickListener(this);
+//        AM_upcoming.setOnClickListener(this);
+//        AM_popular.setOnClickListener(this);
+//        AM_movie.setOnClickListener(this);
+        //--------------------------------------------------------------------------------------///
+
         animeResult = new ArrayList<>();
         upcomingAnimeList = new ArrayList<>();
         topAiringList = new ArrayList<>();
         popularAnimeList = new ArrayList<>();
         animeMovieList = new ArrayList<>();
-        String topUrl = "https://api.jikan.moe/v3/top/anime";
-        String  topUpcoming ="https://api.jikan.moe/v3/top/anime/1/upcoming";
-        String airingAnime ="https://api.jikan.moe/v3/top/anime/1/airing";
-        String popularAnime ="https://api.jikan.moe/v3/top/anime/1/bypopularity";
-        String movie ="https://api.jikan.moe/v3/top/anime/1/movie";
+         topUrl = "https://api.jikan.moe/v3/top/anime";
+          topUpcoming ="https://api.jikan.moe/v3/top/anime/1/upcoming";
+         airingAnime ="https://api.jikan.moe/v3/top/anime/1/airing";
+         popularAnime ="https://api.jikan.moe/v3/top/anime/1/bypopularity";
+         movie ="https://api.jikan.moe/v3/top/anime/1/movie";
         HomeView homeView = new HomeView(topUrl);
         homeView.start();
 
@@ -444,6 +478,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                        startActivity(new Intent(getApplicationContext()
                                , Movies_activity.class));
                        overridePendingTransition(0, 0);
+                       finish();
                        return true;
                    case R.id.nav_home:
 
@@ -452,16 +487,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                        startActivity(new Intent(getApplicationContext()
                                , Favourites.class));
                        overridePendingTransition(0, 0);
+                       finish();
                        return true;
                    case R.id.nav_tv:
                        startActivity(new Intent(getApplicationContext()
                                , TVShows.class));
                        overridePendingTransition(0, 0);
+                       finish();
                        return true;
                    case R.id.nav_dashboard:
                        startActivity(new Intent(getApplicationContext()
                                , DashboarduSER.class));
                        overridePendingTransition(0, 0);
+                       finish();
                        return true;
                }
                return false;
@@ -469,6 +507,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         });
 
     }
-
+public void AMshowMore(View view){
+            Intent intent = new Intent(this, AnimeShowMore.class);
+//
+        switch (view.getId()){
+            case R.id.AM_top:
+                intent.putExtra("key_for_more",topUrl);
+                startActivity(intent);
+                break;
+            case R.id.AM_airing:
+                intent.putExtra("key_for_more",airingAnime);
+                startActivity(intent);
+                break;
+            case R.id.AM_popular:
+                intent.putExtra("key_for_more",popularAnime);
+                startActivity(intent);
+                break;
+            case R.id.AM_upcoming:
+                intent.putExtra("key_for_more",topUpcoming);
+                startActivity(intent);
+                break;
+            case R.id.AM_Movie:
+                intent.putExtra("key_for_more",movie);
+                startActivity(intent);
+                break;
+}}
 
 }
