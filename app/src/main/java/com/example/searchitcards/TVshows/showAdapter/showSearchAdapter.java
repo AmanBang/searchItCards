@@ -36,12 +36,14 @@ public class showSearchAdapter extends RecyclerView.Adapter<showSearchAdapter.Sh
         return new ShowView(view);
     }
 
+    @SuppressWarnings("IntegerDivisionInFloatingPointContext")
     @Override
     public void onBindViewHolder(@NonNull ShowView holder, int position) {
         holder.title.setText(list.get(position).getTitle());
         holder.releaseDate.setText(list.get(position).getRelease_date());
-        holder.ratu.setRating(list.get(position).getVote_average()/2);
-        holder.ratu.setNumStars(6);
+        float f = (float) list.get(position).getVote_average();
+        holder.ratu.setRating(f/2);
+
 
         Picasso.get().load("https://image.tmdb.org/t/p/w500"+list.get(position).getPoster_path()).into(holder.posterView);
 

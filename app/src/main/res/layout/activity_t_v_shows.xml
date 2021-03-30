@@ -98,7 +98,9 @@
                                 android:fontFamily="sans-serif-smallcaps"
                                 android:hint="Shows..."
                                 android:textColor="#000000"
-                                android:textSize="18sp" />
+                                android:textSize="18sp"
+                                android:inputType="text"
+                                android:imeOptions="actionSearch"/>
 
                             <ImageView
                                 android:id="@+id/showSearchIcon"
@@ -130,7 +132,22 @@
                             android:text="Upcoming Show"
                             android:textColor="@color/showTextTheam"
                             android:textSize="24dp" />
+                        <ImageView
+                            android:id="@+id/S_upcoming"
+                            android:src="@drawable/morebtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:scaleY="1.5"
+                            android:scaleX="1.5"
+                            android:layout_marginEnd="10dp"
+                            android:padding="4dp"
+                            android:gravity="center"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:onClick="SshowMore"
 
+                            />
 
                     </RelativeLayout>
 
@@ -163,7 +180,22 @@
                             android:textColor="@color/showTextTheam"
                             android:textSize="24dp" />
 
+                        <ImageView
+                            android:id="@+id/S_airing"
+                            android:src="@drawable/morebtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:scaleY="1.5"
+                            android:scaleX="1.5"
+                            android:layout_marginEnd="10dp"
+                            android:padding="4dp"
+                            android:gravity="center"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:onClick="SshowMore"
 
+                            />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -195,7 +227,22 @@
                             android:textColor="@color/showTextTheam"
                             android:textSize="24dp" />
 
+                        <ImageView
+                            android:id="@+id/S_topRated"
+                            android:src="@drawable/morebtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:scaleY="1.5"
+                            android:scaleX="1.5"
+                            android:layout_marginEnd="10dp"
+                            android:padding="4dp"
+                            android:gravity="center"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:onClick="SshowMore"
 
+                            />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -228,7 +275,22 @@
                             android:text="Popular TV Shows"
                             android:textColor="@color/showTextTheam"
                             android:textSize="24dp" />
+                        <ImageView
+                            android:id="@+id/S_popular"
+                            android:src="@drawable/morebtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:scaleY="1.5"
+                            android:scaleX="1.5"
+                            android:layout_marginEnd="10dp"
+                            android:padding="4dp"
+                            android:gravity="center"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:onClick="SshowMore"
 
+                            />
 
                     </RelativeLayout>
 

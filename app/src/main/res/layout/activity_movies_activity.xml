@@ -90,14 +90,16 @@
                                 android:layout_width="290dp"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
-                                android:layout_marginStart="15dp"
+                                android:layout_marginStart="18dp"
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginEnd="11dp"
                                 android:layout_toStartOf="@+id/animeSearchIcon"
                                 android:fontFamily="sans-serif-smallcaps"
                                 android:hint="Movie..."
                                 android:textColor="#000000"
-                                android:textSize="18sp" />
+                                android:textSize="18sp"
+                                android:inputType="text"
+                                android:imeOptions="actionSearch"/>
 
                             <ImageView
                                 android:id="@+id/movieSearchIcon"

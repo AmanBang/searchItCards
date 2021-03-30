@@ -9,11 +9,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,6 +31,7 @@ import com.example.searchitcards.Anime.AnimeSearchResults;
 import com.example.searchitcards.Movie.mAdapter.MovieShowAdapter;
 import com.example.searchitcards.Movie.mAdapterclasses.MSearchResultConst;
 import com.example.searchitcards.R;
+import com.example.searchitcards.TVshows.TVShows;
 import com.example.searchitcards.TVshows.showAdapter.showSearchAdapter;
 
 
@@ -78,8 +83,8 @@ public class MovieSearchResult extends AppCompatActivity {
                        mov.setTitle(object.getString("title"));
                         mov.setPoster_path(object.getString("poster_path"));
                         try {
-                            mov.setVote_average(object.getInt("vote_average"));
-                            if (String.valueOf(object.getInt("vote_average")).equals("0")){
+                            mov.setVote_average(object.getDouble("vote_average"));
+                            if (String.valueOf(object.getDouble("vote_average")).equals("0")){
                                 mov.setRelease_date("N/A");
                             }else{
                                 mov.setRelease_date(object.getString("release_date"));
@@ -137,7 +142,7 @@ public class MovieSearchResult extends AppCompatActivity {
                         mov.setId(object.getString("id"));
                        mov.setTitle(object.getString("name"));
                         mov.setPoster_path(object.getString("poster_path"));
-                         mov.setVote_average(object.getInt("vote_average"));
+                         mov.setVote_average(object.getDouble("vote_average"));
 //                        if (String.valueOf(object.getInt("vote_average")).equals("0")){
 //                            mov.setRelease_date("N/A");
 //                        }else{
@@ -207,8 +212,8 @@ public class MovieSearchResult extends AppCompatActivity {
                                         MSearchResultConst mov = new MSearchResultConst();
                                         mov.setTitle(object.getString("title"));
                                         mov.setPoster_path(object.getString("poster_path"));
-                                        mov.setVote_average(object.getInt("vote_average"));
-                                        if (String.valueOf(object.getInt("vote_average")).equals("0")){
+                                        mov.setVote_average(object.getDouble("vote_average"));
+                                        if (String.valueOf(object.getDouble("vote_average")).equals("0")){
                                             mov.setRelease_date("N/A");
                                         }else{
                                             mov.setRelease_date(object.getString("release_date"));
@@ -299,8 +304,8 @@ public class MovieSearchResult extends AppCompatActivity {
 
         //        String Url = "https://api.jikan.moe/v3/search/anime?page=1&q=" + value;
 
-
-
+//        InputMethodManager inputMethodManager =(InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+//        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
         showRecycleView = findViewById(R.id.movie_search_result_recycle);
         showList = new ArrayList<>();
         List = new ArrayList<>();
@@ -320,6 +325,7 @@ if (query == null){
     showMovieResult(url);
 }
         progressBar.setVisibility(View.VISIBLE);
+        edtSearchText.setOnEditorActionListener(exampleListener);
 
         showRecycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -355,22 +361,40 @@ if (query == null){
     }
     public void M_setBtnSearch(View view) {
 
+        searchclick();
+}
+    TextView.OnEditorActionListener exampleListener = new TextView.OnEditorActionListener(){
+
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH
+            ) {
+               searchclick();
+
+            }
+            return true;
+        }
+    };
+
+    public void searchclick(){
+        InputMethodManager inputMethodManager =(InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
+
         if (!edtSearchText.getText().toString().equals("")) {
             progressBar.setVisibility(View.VISIBLE);
             i = 1;
             totalItem = scrolledItems = visibleItems = 0;
             showList.clear();
-         //   String Url = "https://api.jikan.moe/v3/search/anime?page=1&q=" + edtSearchText.getText().toString();
+            //   String Url = "https://api.jikan.moe/v3/search/anime?page=1&q=" + edtSearchText.getText().toString();
 
             if (isMovie){
                 String url = "https://api.themoviedb.org/3/search/movie?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1&query="+edtSearchText.getText().toString()+"&include_adult=true";
                 showMovieResult(url);
             }else {
-                String url1 = "https://api.themoviedb.org/3/search/tv?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1&query="+edtSearchText.getText().toString();
+                String url1 = "https://api.themoviedb.org/3/search/tv?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1&include_adult=true&query="+edtSearchText.getText().toString();
                 shows(url1);
             }
 
         }
-}
-
+    }
 }

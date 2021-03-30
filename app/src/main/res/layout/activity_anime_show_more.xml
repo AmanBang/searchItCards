@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Anime.AnimeShowMore">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/RCV_animeShowMore"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

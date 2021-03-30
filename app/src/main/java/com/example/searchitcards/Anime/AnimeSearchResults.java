@@ -10,11 +10,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,8 +28,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.searchitcards.Anime.Adapter.AnimeSearchShow;
+import com.example.searchitcards.Movie.MovieSearchResult;
 import com.example.searchitcards.R;
 import com.example.searchitcards.Anime.AdapterCLass.Topresults;
+import com.example.searchitcards.TVshows.TVShows;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -206,6 +212,8 @@ if (i<=  Integer.parseInt(lastPage)) {
         String Url = "https://api.jikan.moe/v3/search/anime?page=1&q=" + value;
 
         edtSearchText.setText(value);
+        edtSearchText.setOnEditorActionListener(exampleListener);
+
 
         searchRecycle = findViewById(R.id.search_result_recycle);
         searchResultList = new ArrayList<>();
@@ -213,8 +221,10 @@ if (i<=  Integer.parseInt(lastPage)) {
         searchMethod.start();
 
 
-        progressBar.setVisibility(View.VISIBLE);
 
+        progressBar.setVisibility(View.VISIBLE);
+//        InputMethodManager inputMethodManager =(InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+//        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
         searchRecycle.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -257,7 +267,29 @@ if (i<=  Integer.parseInt(lastPage)) {
         }
 
     }
+    TextView.OnEditorActionListener exampleListener = new TextView.OnEditorActionListener(){
 
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH
+            ) {
+                InputMethodManager inputMethodManager =(InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
+               progressBar.setVisibility(View.VISIBLE);
+                if (!edtSearchText.getText().toString().equals("")) {
+                    i = 1;
+                    totalItem = scrolledItems = visibleItems = 0;
+                    searchResultList.clear();
+                    String Url = "https://api.jikan.moe/v3/search/anime?page=1&q=" + edtSearchText.getText().toString();
+                    searchMethod = new SearchMethod(Url);
+                    searchMethod.start();
+
+                }
+
+            }
+            return true;
+        }
+    };
 
 }
 

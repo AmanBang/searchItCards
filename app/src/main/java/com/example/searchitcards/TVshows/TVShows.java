@@ -8,10 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,7 +31,9 @@ import com.example.searchitcards.Movie.MovieSearchResult;
 import com.example.searchitcards.Movie.Movies_activity;
 import com.example.searchitcards.Movie.mAdapter.ShowAdapter;
 import com.example.searchitcards.R;
+import com.example.searchitcards.TMShowMore;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +42,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TVShows extends AppCompatActivity {
+public class TVShows extends AppCompatActivity implements View.OnClickListener {
     RecyclerView TodayRecycle;
     RecyclerView UpcomigRecycle;//upcoming
     RecyclerView topRatedRecycle;
@@ -47,10 +54,11 @@ public class TVShows extends AppCompatActivity {
     List<Show> AiringList;
     List<Show> TodayList;
 
-
+    EditText searchText;
+    ImageView sBtn;
 
     public void searchShows(View view){
-        EditText searchText = findViewById(R.id.showQuery);
+
         String search = searchText.getText().toString();
 
         Intent myIntent = new Intent(this, MovieSearchResult.class);
@@ -257,7 +265,27 @@ public class TVShows extends AppCompatActivity {
         AiringList = new ArrayList<>();
         TodayList = new ArrayList<>();
 
-        UpcomingShows("https://api.themoviedb.org/3/tv/on_the_air?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1");
+        searchText = findViewById(R.id.showQuery);
+
+//        searchText.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//
+//                if (keyCode == KeyEvent.KEYCODE_ENTER &&  event.getAction() == KeyEvent.ACTION_DOWN){
+//                    Toast.makeText(getApplicationContext(),"enter Pressed",Toast.LENGTH_SHORT).show();
+//
+//                    return true;
+//                }
+//
+//                return false;
+//            }
+//        });
+
+        sBtn= findViewById(R.id.showSearchIcon);
+
+        searchText.setOnEditorActionListener(exampleListener);
+
+        UpcomingShows("https://api.themoviedb.org/3/tv/on_the_air?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US");
         TopRated("https://api.themoviedb.org/3/tv/top_rated?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1");
     Popular("https://api.themoviedb.org/3/tv/popular?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1");
        TodayShow("https://api.themoviedb.org/3/tv/airing_today?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1");
@@ -306,4 +334,53 @@ public class TVShows extends AppCompatActivity {
         });
 
     }
+
+    public void SshowMore(View view){
+        Intent intent = new Intent(this, TMShowMore.class);
+
+        switch (view.getId()){
+            case R.id.S_upcoming:
+                intent.putExtra("key_175","https://api.themoviedb.org/3/tv/on_the_air?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US" );
+                intent.putExtra("title_shows","Latest Shows");
+                startActivity(intent);
+                break;
+            case R.id.S_airing:
+                intent.putExtra("key_175","https://api.themoviedb.org/3/tv/airing_today?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US" );
+                intent.putExtra("title_shows","Today Airing Shows");
+                startActivity(intent);
+                break;
+            case R.id.S_popular:
+                intent.putExtra("key_175","https://api.themoviedb.org/3/tv/popular?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US" );
+                intent.putExtra("title_shows","Popular Shows");
+                startActivity(intent);
+                break;
+            case R.id.S_topRated:
+                intent.putExtra("key_175","https://api.themoviedb.org/3/tv/top_rated?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US" );
+                intent.putExtra("title_shows","Top Rated Shows");
+                startActivity(intent);
+                break;
+        }
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+    TextView.OnEditorActionListener exampleListener = new TextView.OnEditorActionListener(){
+
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH
+                  ) {
+                String search = searchText.getText().toString();
+
+                Intent myIntent = new Intent(TVShows.this, MovieSearchResult.class);
+                myIntent.putExtra("key-show", search); //Optional parameters
+                startActivity(myIntent);
+
+            }
+            return true;
+        }
+    };
 }

@@ -7,13 +7,16 @@ import android.util.Log;
 import android.os.Handler;
 
 
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +31,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.searchitcards.Anime.AdapterCLass.Topresults;
 import com.example.searchitcards.DashboarduSER;
+import com.example.searchitcards.Movie.MovieSearchResult;
 import com.example.searchitcards.Movie.Movies_activity;
 import com.example.searchitcards.Favoutites.Favourites;
 import com.example.searchitcards.R;
@@ -398,6 +402,10 @@ Button AM_movie;
     //  releasedLL =findViewById(R.id.released_ll);
         typeLL = findViewById(R.id.type_ll);
 
+        EditText std = findViewById(R.id.searchEditText);
+
+        std.setOnEditorActionListener(exampleListener);
+
 //        AM_top = findViewById(R.id.AM_top);
 //        AM_airing = findViewById(R.id.AM_airing);
 //        AM_upcoming = findViewById(R.id.AM_upcoming);
@@ -513,24 +521,46 @@ public void AMshowMore(View view){
         switch (view.getId()){
             case R.id.AM_top:
                 intent.putExtra("key_for_more",topUrl);
+                intent.putExtra("title_SM","Top Animes");
                 startActivity(intent);
                 break;
             case R.id.AM_airing:
                 intent.putExtra("key_for_more",airingAnime);
+                intent.putExtra("title_SM","Airing Animes");
                 startActivity(intent);
                 break;
             case R.id.AM_popular:
                 intent.putExtra("key_for_more",popularAnime);
+                intent.putExtra("title_SM","Popular Animes");
                 startActivity(intent);
                 break;
             case R.id.AM_upcoming:
                 intent.putExtra("key_for_more",topUpcoming);
+                intent.putExtra("title_SM","Upcoming Animes");
                 startActivity(intent);
                 break;
             case R.id.AM_Movie:
                 intent.putExtra("key_for_more",movie);
+                intent.putExtra("title_SM","Anime Movies");
                 startActivity(intent);
                 break;
 }}
+    TextView.OnEditorActionListener exampleListener = new TextView.OnEditorActionListener(){
 
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH
+            ) {
+                searchText = findViewById(R.id.searchEditText);
+                String search = searchText.getText().toString();
+
+                Intent myIntent = new Intent(MainActivity.this, AnimeSearchResults.class);
+                myIntent.putExtra("search_url", search); //Optional parameters
+                startActivity(myIntent);
+
+
+            }
+            return true;
+        }
+    };
 }

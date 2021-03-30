@@ -53,8 +53,12 @@ public class TVShowsFragment extends Fragment {
     //====================================================================================================================================================================//
 
     List<RecommendedMovies> showRecivedList;
+    List<RecommendedMovies> showOngoing;
+    List<RecommendedMovies> showWatched;
     ShowRAdapter showRAdapter;
     RecyclerView pendingRecycleView;
+    RecyclerView ongoingRecycleView;
+    RecyclerView watchedRecycleView;
 
 
 
@@ -135,16 +139,15 @@ public class TVShowsFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_t_v_shows, container, false);
 
         pendingRecycleView = view.findViewById(R.id.FV_pending_recycleView);
+        ongoingRecycleView = view.findViewById(R.id.FV_ongoing_recycleView);
+        watchedRecycleView = view.findViewById(R.id.FV_watched_recycleView);
         showRecivedList = new ArrayList<>();
-
+        showOngoing = new ArrayList<>();
+        showWatched = new ArrayList<>();
         ParseQuery<ParseObject> parseQuery = new ParseQuery<ParseObject>("Show");
 
-      parseQuery.whereMatches("type","Pending");
-
-//        try {
-//            parseQuery.get("showID");
-
-       parseQuery.findInBackground(new FindCallback<ParseObject>() {
+        parseQuery.whereMatches("type","Pending");
+        parseQuery.findInBackground(new FindCallback<ParseObject>() {
            @Override
            public void done(List<ParseObject> objects, ParseException e) {
                for (ParseObject parseObject : objects){
@@ -162,6 +165,46 @@ public class TVShowsFragment extends Fragment {
                }
            }
        });
+
+        parseQuery.whereMatches("type","Ongoing");
+        parseQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                for (ParseObject parseObject : objects){
+                    Log.i("recivedObjects", parseObject.get("showID") +"");
+
+                    RecommendedMovies showReciver = new RecommendedMovies();
+                    showReciver.setId(parseObject.get("showID")+"");
+                    showReciver.setPoster_path(parseObject.get("posterPath")+"");
+                    showReciver.setTitle(parseObject.get("showName")+"");
+
+                    showOngoing.add(showReciver);
+                    ongoingRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    showRAdapter = new ShowRAdapter(getContext(), showOngoing);
+                    ongoingRecycleView.setAdapter(showRAdapter);
+                }
+            }
+        });
+
+        parseQuery.whereMatches("type","Watched");
+        parseQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                for (ParseObject parseObject : objects){
+                    Log.i("recivedObjects", parseObject.get("showID") +"");
+
+                    RecommendedMovies showReciver = new RecommendedMovies();
+                    showReciver.setId(parseObject.get("showID")+"");
+                    showReciver.setPoster_path(parseObject.get("posterPath")+"");
+                    showReciver.setTitle(parseObject.get("showName")+"");
+
+                    showWatched.add(showReciver);
+                    watchedRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    showRAdapter = new ShowRAdapter(getContext(), showWatched);
+                    watchedRecycleView.setAdapter(showRAdapter);
+                }
+            }
+        });
 
 
         return view;

@@ -41,7 +41,8 @@ public class MovieShowAdapter extends RecyclerView.Adapter<MovieShowAdapter.Movi
 
         holder.title.setText(showList.get(position).getTitle());
         holder.releaseDate.setText(showList.get(position).getRelease_date());
-        holder.ratu.setRating(showList.get(position).getVote_average()/2);
+        float f = (float) showList.get(position).getVote_average();
+        holder.ratu.setRating(f/2);
         holder.ratu.setNumStars(5);
 
         Picasso.get().load("https://image.tmdb.org/t/p/w500"+showList.get(position).getPoster_path()).into(holder.posterView);

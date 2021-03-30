@@ -71,7 +71,9 @@
                     android:fontFamily="@font/roboto"
                     android:hint="search..."
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"/>
 
                 <ImageView
                     android:id="@+id/M_searchbtn"

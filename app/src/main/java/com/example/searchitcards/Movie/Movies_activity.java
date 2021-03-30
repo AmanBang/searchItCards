@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -53,10 +56,10 @@ List<Movies> tList;
 List<Movies> uList;
 
 ImageView Search;
-
+    EditText searchText;
 
 public void SMovies(View view){
-    EditText searchText = findViewById(R.id.searchEditTextMovie);
+
     String search = searchText.getText().toString();
 
     Intent myIntent = new Intent(this, MovieSearchResult.class);
@@ -285,7 +288,8 @@ public void pMethod(String top){
         nList = new ArrayList<>();
 
         Search = findViewById(R.id.movieSearchIcon);
-
+        searchText = findViewById(R.id.searchEditTextMovie);
+        searchText.setOnEditorActionListener(exampleListener);
 
         Date date = new Date();
         String modifiedDate= new SimpleDateFormat("yyyy-MM-dd").format(date);
@@ -343,6 +347,22 @@ public void pMethod(String top){
 
 
     }
+    TextView.OnEditorActionListener exampleListener = new TextView.OnEditorActionListener(){
 
+        @Override
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH
+            ) {
+                searchText = findViewById(R.id.searchEditTextMovie);
+                String search = searchText.getText().toString();
+
+                Intent myIntent = new Intent(Movies_activity.this, MovieSearchResult.class);
+                myIntent.putExtra("key-123", search); //Optional parameters
+                startActivity(myIntent);
+
+            }
+            return true;
+        }
+    };
 
 }

@@ -5,7 +5,7 @@ public class MSearchResultConst {
     private String title;
     private String release_date;
     private String poster_path;
-    private int vote_average;
+    private double vote_average;
     private String id;
 
     public String getId() {
@@ -40,11 +40,11 @@ public class MSearchResultConst {
         this.poster_path = poster_path;
     }
 
-    public int getVote_average() {
+    public double getVote_average() {
         return vote_average;
     }
 
-    public void setVote_average(int vote_average) {
+    public void setVote_average(double vote_average) {
         this.vote_average = vote_average;
     }
 }

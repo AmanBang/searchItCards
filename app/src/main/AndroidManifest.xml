@@ -13,7 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SearchItCards">
-        <activity android:name=".Anime.AnimeShowMore"></activity>
+        <activity android:name=".TMShowMore"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"></activity>
+        <activity
+            android:name=".Anime.AnimeShowMore"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name=".Login.NewUserLogin"
             android:configChanges="keyboardHidden|orientation|screenSize" />
