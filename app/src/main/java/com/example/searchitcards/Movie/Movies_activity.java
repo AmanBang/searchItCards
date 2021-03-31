@@ -29,6 +29,7 @@ import com.example.searchitcards.Favoutites.Favourites;
 import com.example.searchitcards.Movie.mAdapter.MovieAdapter;
 import com.example.searchitcards.Movie.mAdapterclasses.Movies;
 import com.example.searchitcards.R;
+import com.example.searchitcards.TMShowMore;
 import com.example.searchitcards.TVshows.TVShows;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -54,7 +55,7 @@ List<Movies> pList;
 List<Movies> nList;
 List<Movies> tList;
 List<Movies> uList;
-
+    String modifiedDate;
 ImageView Search;
     EditText searchText;
 
@@ -292,7 +293,7 @@ public void pMethod(String top){
         searchText.setOnEditorActionListener(exampleListener);
 
         Date date = new Date();
-        String modifiedDate= new SimpleDateFormat("yyyy-MM-dd").format(date);
+         modifiedDate= new SimpleDateFormat("yyyy-MM-dd").format(date);
 
         for (int p = 1;p<2;p++){
             pMethod("https://api.themoviedb.org/3/movie/popular?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=en-US&page="+p);
@@ -364,5 +365,33 @@ public void pMethod(String top){
             return true;
         }
     };
+
+public void MshowMore(View view){
+    Intent intent = new Intent(this, TMShowMore.class);
+
+    switch (view.getId()){
+        case R.id.M_playing:
+            intent.putExtra("key_21","https://api.themoviedb.org/3/movie/now_playing?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=en-US" );
+            intent.putExtra("title_shows","Now Playing Movies");
+            startActivity(intent);
+            break;
+        case R.id.M_popular:
+            intent.putExtra("key_21","https://api.themoviedb.org/3/movie/popular?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=en-US" );
+            intent.putExtra("title_shows","Popular Movies");
+            startActivity(intent);
+            break;
+        case R.id.M_TopRated:
+            intent.putExtra("key_21","https://api.themoviedb.org/3/movie/top_rated?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=en-US" );
+            intent.putExtra("title_shows","Top Rated Movies");
+            startActivity(intent);
+            break;
+        case R.id.M_upcoming:
+            intent.putExtra("key_21","https://api.themoviedb.org/3/discover/movie?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=us-US&region=US&release_date.gte="+modifiedDate+"&with_release_type=2|3" );
+            intent.putExtra("title_shows","Upcoming Movies");
+            startActivity(intent);
+            break;
+    }
+
+}
 
 }

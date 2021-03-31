@@ -49,6 +49,9 @@ public class TMShowMore extends AppCompatActivity {
     String lastPage;
     String Url;
     ProgressBar TM_loadMoreProgressBar;
+    Boolean isMovie = false;
+    String UrlM;
+    String Urlw;
 
     public void TopRated(String top){
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
@@ -68,7 +71,13 @@ public class TMShowMore extends AppCompatActivity {
 
 
                         WantMCLass getshows  = new WantMCLass();
-                        getshows.setTitle(search.getString("name"));
+                        if (isMovie){
+                            getshows.setTitle(search.getString("title"));
+                            getshows.setMovie(true);
+                        }else {
+                            getshows.setTitle(search.getString("name"));
+                            getshows.setMovie(false);
+                        }
                         getshows.setId(search.getString("id"));
                         getshows.setPoster_path(search.getString("poster_path"));
 
@@ -107,7 +116,18 @@ public class TMShowMore extends AppCompatActivity {
         TM_loadMoreProgressBar = findViewById(R.id.TM_loadMoreProgressBar);
 
         Intent intent = getIntent();
+        Intent movie = getIntent();
          Url = intent.getStringExtra("key_175");
+         UrlM = movie.getStringExtra("key_21");
+
+         if (Url == null){
+             isMovie = true;
+             TopRated(UrlM);
+         }else{
+             isMovie = false;
+             TopRated(Url);
+         }
+
         String title = intent.getStringExtra("title_shows");
         manager = new GridLayoutManager(this,3);
       setTitle(title);
@@ -153,7 +173,11 @@ public class TMShowMore extends AppCompatActivity {
 //                searchResultList.remove(searchResultList.size() - 1);
 //                Sea.notifyItemRemoved(searchResultList.size());
                     Log.i("Working:", "True2");
-                    String Urlw = Url + "&page="+ i;
+                    if (isMovie){
+                        Urlw = UrlM +"&page="+ i;
+                    }else {
+                         Urlw = Url + "&page="+ i;
+                    }
 
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                     JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Urlw, null, new Response.Listener<JSONObject>() {
@@ -172,7 +196,13 @@ public class TMShowMore extends AppCompatActivity {
                                     WantMCLass tmsmAdpter= new WantMCLass();
                                     tmsmAdpter.setPoster_path(search.getString("poster_path"));
                                     tmsmAdpter.setId(search.getString("id"));
-                                    tmsmAdpter.setTitle(search.getString("name"));
+                                    if (isMovie){
+                                        tmsmAdpter.setTitle(search.getString("title"));
+                                        tmsmAdpter.setMovie(true);
+                                    }else {
+                                        tmsmAdpter.setTitle(search.getString("name"));
+                                        tmsmAdpter.setMovie(false);
+                                    }
                                     lists12.add(tmsmAdpter);
                                     adapter.notifyDataSetChanged();
                                     TM_loadMoreProgressBar.setVisibility(View.GONE);
@@ -191,7 +221,7 @@ public class TMShowMore extends AppCompatActivity {
                     queue.add(request);
 
                 }
-            }, 2000);
+            }, 1000);
 
         }
 

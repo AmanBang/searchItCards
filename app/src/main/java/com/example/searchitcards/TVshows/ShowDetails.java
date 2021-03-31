@@ -99,7 +99,7 @@ String name = "";
 
     Dialog dialog;
     RadioGroup radioGroup;
-    RadioButton radioButton;
+    RadioButton ongoingbtn;
     Button cancle;
     Button Add;
     String switchText = "Pending";
@@ -404,6 +404,8 @@ String name = "";
         dialog.setCancelable(false);
         dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
         radioGroup = dialog.findViewById(R.id.radioGroup);
+        ongoingbtn = dialog.findViewById(R.id.RB_ongoing);
+        ongoingbtn.setVisibility(View.VISIBLE);
 
 
         cancle = dialog.findViewById(R.id.dialog_cancelBtn);

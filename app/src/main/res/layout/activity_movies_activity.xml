@@ -129,7 +129,22 @@
                             android:text="Upcoming Movies"
                             android:textColor="@color/movieTextTheme"
                             android:textSize="24dp" />
+                        <ImageView
+                            android:id="@+id/M_upcoming"
+                            android:src="@drawable/morebtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:scaleY="1.5"
+                            android:scaleX="1.5"
+                            android:layout_marginEnd="10dp"
+                            android:padding="4dp"
+                            android:gravity="center"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:onClick="MshowMore"
 
+                            />
 
                     </RelativeLayout>
 
@@ -162,7 +177,22 @@
                             android:textColor="@color/movieTextTheme"
                             android:textSize="24dp" />
 
+                        <ImageView
+                            android:id="@+id/M_TopRated"
+                            android:src="@drawable/morebtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:scaleY="1.5"
+                            android:scaleX="1.5"
+                            android:layout_marginEnd="10dp"
+                            android:padding="4dp"
+                            android:gravity="center"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:onClick="MshowMore"
 
+                            />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -193,7 +223,22 @@
                             android:text="Popular Movies"
                             android:textColor="@color/movieTextTheme"
                             android:textSize="24dp" />
+                        <ImageView
+                            android:id="@+id/M_popular"
+                            android:src="@drawable/morebtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:scaleY="1.5"
+                            android:scaleX="1.5"
+                            android:layout_marginEnd="10dp"
+                            android:padding="4dp"
+                            android:gravity="center"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:onClick="MshowMore"
 
+                            />
 
                     </RelativeLayout>
 
@@ -227,7 +272,22 @@
                             android:textColor="@color/movieTextTheme"
                             android:textSize="24dp" />
 
+                        <ImageView
+                            android:id="@+id/M_playing"
+                            android:src="@drawable/morebtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:scaleY="1.5"
+                            android:scaleX="1.5"
+                            android:layout_marginEnd="10dp"
+                            android:padding="4dp"
+                            android:gravity="center"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:onClick="MshowMore"
 
+                            />
                     </RelativeLayout>
 
                     <RelativeLayout

@@ -5,6 +5,7 @@ public class WantMCLass {
     private String title;
     private String id;
     private String poster_path;
+    private Boolean isMovie;
 
 
     public String getTitle() {
@@ -29,5 +30,13 @@ public class WantMCLass {
 
     public void setPoster_path(String poster_path) {
         this.poster_path = poster_path;
+    }
+
+    public Boolean getMovie() {
+        return isMovie;
+    }
+
+    public void setMovie(Boolean movie) {
+        isMovie = movie;
     }
 }

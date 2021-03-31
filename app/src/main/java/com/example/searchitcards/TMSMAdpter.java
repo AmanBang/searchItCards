@@ -65,11 +65,17 @@ public class TMSMAdpter extends RecyclerView.Adapter<TMSMAdpter.WantMore> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(v.getContext(), ShowDetails.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.putExtra("show_id", String.valueOf(RMList.get(getAdapterPosition()).getId()));
-                    v.getContext().startActivity(i);
-
+                    if (RMList.get(getAdapterPosition()).getMovie()){
+                        Intent i = new Intent(v.getContext(), DeatailsMovie.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        i.putExtra("movieId", String.valueOf(RMList.get(getAdapterPosition()).getId()));
+                        v.getContext().startActivity(i);
+                    }else {
+                        Intent i = new Intent(v.getContext(), ShowDetails.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        i.putExtra("show_id", String.valueOf(RMList.get(getAdapterPosition()).getId()));
+                        v.getContext().startActivity(i);
+                    }
                     Log.i("pasdasdasd1:",RMList.get(getAdapterPosition()).getId());
                     Log.i("pasdasdasd",RMList.get(getAdapterPosition()).getTitle());
 

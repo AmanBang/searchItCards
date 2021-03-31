@@ -71,7 +71,8 @@
             tools:targetApi="o_mr1" />
         <activity
             android:name=".Movie.DeatailsMovie"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
         <activity
             android:name=".Movie.MovieSearchResult"
             android:configChanges="keyboardHidden|orientation|screenSize" />
