@@ -6,12 +6,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +37,14 @@ import com.example.searchitcards.Movie.mAdapter.TrailerAdapter;
 import com.example.searchitcards.Movie.mAdapterclasses.Trailer;
 import com.example.searchitcards.R;
 import com.example.searchitcards.RecommendedMovies;
+import com.parse.FindCallback;
+import com.parse.ParseACL;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+import com.shashank.sony.fancytoastlib.FancyToast;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -75,6 +91,17 @@ public class DeatailsMovie extends AppCompatActivity {
     List<SlideModel> modelList;
     List<RecommendedMovies> RMList;
 
+    private String showZid;
+
+    Dialog dialog;
+    RadioGroup radioGroup;
+    RadioButton ongoingbtn;
+    Button cancle;
+    Button Add;
+    String switchText = "Pending";
+    String posterPath ="";
+    String name = "";
+
     AdapterRMovies RMadpter;
 
 
@@ -92,10 +119,12 @@ public class DeatailsMovie extends AppCompatActivity {
 
 Log.i("responcex",response.toString());
                     try {
-                        Picasso.get().load("https://image.tmdb.org/t/p/w500"+response.getString("poster_path")).into(moviePoster);
+                        posterPath = response.getString("poster_path");
+                        Picasso.get().load("https://image.tmdb.org/t/p/w500"+posterPath).into(moviePoster);
 //                        animeRank.setText("#"+response.getString("rank"));
 //                        if (!response.getString("title_english").equals("null")) {
-                            movieTitleEng.setText(response.getString("title"));
+                        name = response.getString("title");
+                            movieTitleEng.setText(name);
 //                        } else {
 //                            movieTitle.setText(response.getString("original_title"));
 //                        }
@@ -416,7 +445,7 @@ Log.i("responcex",response.toString());
             String id2  = jio.getStringExtra("searchToDetails");
 
 if(id == null){
-
+    showZid = id2;
     String videoUrl = "https://api.themoviedb.org/3/movie/"+id2+"/videos?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
     String url = "https://api.themoviedb.org/3/movie/"+id2+"?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
     MoviesDetails moviesDetails = new MoviesDetails(url);
@@ -428,7 +457,7 @@ if(id == null){
     }
 
 }else {
-
+    showZid = id;
     String videoUrl = "https://api.themoviedb.org/3/movie/"+id+"/videos?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
     String url = "https://api.themoviedb.org/3/movie/"+id+"?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
     MoviesDetails moviesDetails = new MoviesDetails(url);
@@ -439,9 +468,104 @@ if(id == null){
         Recommend("https://api.themoviedb.org/3/movie/"+id+"/similar?api_key=e707c6ad620e69cda284fbbc6af06e43&page="+p);
     }
 }
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.custom_favourites_dialogbox);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = this.getResources().getDrawable(R.drawable.background);
+            dialog.getWindow().setBackgroundDrawable(drawable);
+        }
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+        radioGroup = dialog.findViewById(R.id.radioGroup);
+        ongoingbtn = dialog.findViewById(R.id.RB_ongoing);
 
 
+
+        cancle = dialog.findViewById(R.id.dialog_cancelBtn);
+        Add = dialog.findViewById(R.id.dialog_addBtn);
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.RB_pending:
+                        switchText = "";
+                        switchText = "Pending";
+                        break;
+                    case R.id.RB_ongoing:
+                        switchText = "";
+                        switchText = "Ongoing";
+                        break;
+                    case R.id.RB_watched:
+                        switchText = "";
+                        switchText = "Watched";
+                        break;
+                }
+            }
+        });
+
+        cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        Add.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                ParseQuery<ParseUser> parseQuery = new ParseQuery<ParseUser>("Movies");
+
+                parseQuery.whereMatches("showID", showZid);
+                parseQuery.findInBackground(new FindCallback<ParseUser>() {
+                    @Override
+                    public void done(List<ParseUser> objects, ParseException e) {
+//                        Log.i("objestparesd", objects + "");
+//                        Log.i("objestparesd:", switchText);
+                        try {
+                            if (objects.isEmpty()) {
+                                ParseObject tvShowFav = new ParseObject("Movies");
+                                tvShowFav.put("showID", showZid);
+                                tvShowFav.put("type", switchText);
+                                tvShowFav.put("posterPath",posterPath);
+                                tvShowFav.put("showName",name);
+                                // tvShowFav.put("posterPath",posterPath);
+                                //tvShowFav.put("");
+                                tvShowFav.setACL(new ParseACL(ParseUser.getCurrentUser()));
+                                tvShowFav.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(ParseException e) {
+                                        if (e == null) {
+                                            FancyToast.makeText(v.getContext(), "ADDED to Favourites", FancyToast.LENGTH_SHORT, FancyToast.INFO, true).show();
+
+                                        } else {
+                                            FancyToast.makeText(v.getContext(), "Could Not Add to Favourites:" + e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.INFO, true).show();
+                                        }
+                                    }
+                                });
+                            } else {
+                                FancyToast.makeText(v.getContext(), "Already add in your favourite", FancyToast.LENGTH_SHORT, FancyToast.INFO, true).show();
+
+                            }
+                        }catch (Exception e1){
+                            Log.i("errrrr",e.getMessage());
+                        }
+
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+
+        });
     }
+
+
 
 
     @Override
@@ -455,6 +579,7 @@ if(id == null){
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.fav_add_barbtn){
             Toast.makeText(this,"fav pressed",Toast.LENGTH_SHORT).show();
+            dialog.show();
         }
         return super.onOptionsItemSelected(item);
     }

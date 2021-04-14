@@ -37,6 +37,7 @@ import com.example.searchitcards.Favoutites.Favourites;
 import com.example.searchitcards.R;
 import com.example.searchitcards.TVshows.TVShows;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.onesignal.OneSignal;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -79,6 +80,10 @@ Button AM_movie;
         String airingAnime ;
         String popularAnime;
         String movie;
+
+
+    private static final String ONESIGNAL_APP_ID = "bd44539b-9062-44db-863c-b232079ad253";
+
 //=================================================================================================================================================//
 
     public void searchOnClick(View v){
@@ -386,6 +391,14 @@ Button AM_movie;
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+
+        // Enable verbose OneSignal logging to debug issues if needed.
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
+
+        // OneSignal Initialization
+        OneSignal.initWithContext(this);
+        OneSignal.setAppId(ONESIGNAL_APP_ID);
 
         topAnimeRecycle = findViewById(R.id.top_anime_recycle);
         topAnimeRecycle.setHasFixedSize(true);

@@ -58,21 +58,26 @@ public class DashboarduSER extends AppCompatActivity implements AdapterView.OnIt
                         startActivity(new Intent(getApplicationContext()
                                 , Movies_activity.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
+
                     case R.id.nav_home:
                         startActivity(new Intent(getApplicationContext()
                                 , MainActivity.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
                     case R.id.nav_news:
                         startActivity(new Intent(getApplicationContext()
                                 , Favourites.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
                     case R.id.nav_tv:
                         startActivity(new Intent(getApplicationContext()
                                 , TVShows.class));
                         overridePendingTransition(0, 0);
+                        finish();
                         return true;
 
                 }

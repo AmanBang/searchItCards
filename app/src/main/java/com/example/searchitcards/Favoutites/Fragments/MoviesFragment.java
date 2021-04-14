@@ -3,12 +3,24 @@ package com.example.searchitcards.Favoutites.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.searchitcards.R;
+import com.example.searchitcards.RecommendedMovies;
+import com.example.searchitcards.TVshows.showAdapter.ShowRAdapter;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +37,14 @@ public class MoviesFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    //========================================================================================================================================================//
+
+    List<RecommendedMovies> showRecivedList;
+    List<RecommendedMovies> showWatched;
+    ShowRAdapter showRAdapter;
+    RecyclerView pendingRecycleView;
+    RecyclerView watchedRecycleView;
 
     public MoviesFragment() {
         // Required empty public constructor
@@ -61,6 +81,34 @@ public class MoviesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movies, container, false);
+        View view = inflater.inflate(R.layout.fragment_movies, container, false);
+        pendingRecycleView = view.findViewById(R.id.MF_pending_recycleView);
+        watchedRecycleView = view.findViewById(R.id.MF_watched_recycleView);
+        showRecivedList = new ArrayList<>();
+        showWatched = new ArrayList<>();
+
+        ParseQuery<ParseObject> parseQuery = new ParseQuery<ParseObject>("Movies");
+
+        parseQuery.whereMatches("type","Pending");
+        parseQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                for (ParseObject parseObject : objects){
+                    Log.i("recivedObjects", parseObject.get("showID") +"");
+
+                    RecommendedMovies showReciver = new RecommendedMovies();
+                    showReciver.setId(parseObject.get("showID")+"");
+                    showReciver.setPoster_path(parseObject.get("posterPath")+"");
+                    showReciver.setTitle(parseObject.get("showName")+"");
+
+                    showRecivedList.add(showReciver);
+                    pendingRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    showRAdapter = new ShowRAdapter(getContext(), showRecivedList);
+                    pendingRecycleView.setAdapter(showRAdapter);
+                }
+            }
+        });
+
+        return view;
     }
 }

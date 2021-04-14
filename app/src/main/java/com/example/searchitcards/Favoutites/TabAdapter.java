@@ -20,12 +20,12 @@ public class TabAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-               AnimeFFragment animeFFragment = new AnimeFFragment();
-                return animeFFragment;
+                return new TVShowsFragment();
+
             case 1:
                 return new MoviesFragment();
             case 2:
-                return new TVShowsFragment();
+                return new AnimeFFragment();
 
             default:
                 return null;
@@ -44,11 +44,11 @@ public class TabAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position){
             case 0:
-                return "Anime";
+                return "TVShows";
             case 1:
                 return "Movies";
             case 2:
-                return "TVShows";
+                return "Anime";
             default:
                 return null;
         }
