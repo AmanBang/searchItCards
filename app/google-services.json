@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:878370064173:android:e2fa635da31381d3c0f5a4",
         "android_client_info": {
-          "package_name": "com.example.searchitcards"
+          "package_name": "com.animasium.searchitcards"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "878370064173-q3ijlbkhjrprrh9v8ah8ttved2lfds8e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.searchitcards",
+            "package_name": "com.animasium.searchitcards",
             "certificate_hash": "c4ac97fdd665e03108e573531d4783ac3970cd5c"
           }
         },

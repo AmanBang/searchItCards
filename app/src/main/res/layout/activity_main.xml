@@ -5,413 +5,409 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Anime.MainActivity">
-    
-
-    
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#1c1427"
->
-<!--    <com.google.android.material.navigation.NavigationView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="#08d9d6"-->
-<!--        app:headerLayout=""-->
-<!--        />-->
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation">
+        android:background="#000">
 
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#40394a"
-            android:padding="4dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp">
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottom_navigation">
 
-            <ScrollView
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="#000"
+                android:padding="4dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp">
 
-
-                <LinearLayout
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent">
 
-                    <RelativeLayout
-                        android:id="@+id/menu_bar_layout"
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:elevation="8dp"
-                        android:padding="0dp">
-
-                        <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="50dp"
-                            android:layout_centerVertical="true"
-                            android:src="@drawable/ic_menu_open"
-                            />
-
-<!--                        <ImageView-->
-<!--                            android:layout_width="40dp"-->
-<!--                            android:layout_height="50dp"-->
-<!--                            android:layout_alignParentEnd="true"-->
-<!--                            android:layout_centerVertical="true"-->
-<!--                            android:padding="5dp"-->
-<!--                            android:src="@drawable/ic_account" />-->
-
-                        <TextView
-                            android:id="@+id/app_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:backgroundTintMode="src_in"
-                            android:elevation="4dp"
-                            android:fontFamily="@font/covered_by_your_grace"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:text="Search It"
-                            android:textColor="@color/textTheme"
-                            android:textSize="50sp" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="25dp"
-                            android:layout_marginBottom="20dp"
-                            app:cardCornerRadius="20dp"
-                            android:elevation="50dp">
+                        android:orientation="vertical">
 
                         <RelativeLayout
+                            android:id="@+id/menu_bar_layout"
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:background="@color/white"
-                            android:elevation="50dp"
-                            android:requiresFadingEdge="vertical"
-                            android:outlineAmbientShadowColor="@color/white">
+                            android:layout_height="wrap_content"
+                            android:elevation="8dp"
+                            android:padding="0dp">
 
-                            <EditText
-                                android:id="@+id/searchEditText"
-                                android:layout_width="220dp"
+                            <!--                        <ImageView-->
+                            <!--                            android:layout_width="40dp"-->
+                            <!--                            android:layout_height="50dp"-->
+                            <!--                            android:layout_alignParentEnd="true"-->
+                            <!--                            android:layout_centerVertical="true"-->
+                            <!--                            android:padding="5dp"-->
+                            <!--                            android:src="@drawable/ic_account" />-->
+
+                            <TextView
+                                android:id="@+id/app_name"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginStart="15dp"
-                                android:layout_marginLeft="15dp"
-                                android:layout_marginEnd="11dp"
-                                android:layout_toStartOf="@+id/animeSearchIcon"
-                                android:fontFamily="sans-serif-smallcaps"
-                                android:hint="Anime..."
-                                android:textColor="#000000"
-                                android:textSize="18sp"
-                                android:inputType="text"
-                                android:imeOptions="actionSearch"/>
-
-                            <ImageView
-                                android:id="@+id/animeSearchIcon"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginRight="15dp"
-                                android:onClick="searchOnClick"
-                                android:src="@drawable/search_icon" />
+                                android:layout_centerHorizontal="true"
+                                android:backgroundTintMode="src_in"
+                                android:elevation="4dp"
+                                android:fontFamily="@font/covered_by_your_grace"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:text="Anime"
+                                android:textColor="@color/textTheme"
+                                android:textSize="50sp" />
 
                         </RelativeLayout>
 
-                        </androidx.cardview.widget.CardView>
-                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:elevation="8dp">
 
-                        <TextView
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginBottom="20dp"
+                                android:elevation="50dp"
+                                >
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:background="@color/white"
+                                    android:elevation="50dp"
+                                    android:outlineAmbientShadowColor="@color/white"
+                                    android:requiresFadingEdge="vertical">
+
+                                    <EditText
+                                        android:id="@+id/searchEditText"
+                                        android:layout_width="220dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_marginStart="15dp"
+                                        android:layout_marginLeft="15dp"
+                                        android:layout_marginEnd="11dp"
+                                        android:layout_toStartOf="@+id/animeSearchIcon"
+                                        android:fontFamily="sans-serif-smallcaps"
+                                        android:hint="Anime..."
+                                        android:imeOptions="actionSearch"
+                                        android:inputType="text"
+                                        android:textColor="#000000"
+                                        android:textSize="18sp" />
+
+                                    <ImageView
+                                        android:id="@+id/animeSearchIcon"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="15dp"
+                                        android:onClick="searchOnClick"
+                                        android:src="@drawable/search_icon" />
+
+                                </RelativeLayout>
+
+                            </androidx.cardview.widget.CardView>
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-smallcaps"
-                            android:paddingStart="18dp"
-                            android:text="Top Anime Ranking"
-                            android:textColor="@color/textTheme"
-                            android:textSize="24dp" />
+                            android:elevation="8dp">
 
-                        <ImageView
-                            android:id="@+id/AM_top"
-                            android:src="@drawable/morebtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
-                            android:layout_marginEnd="10dp"
-                            android:padding="4dp"
-                            android:gravity="center"
-                            android:paddingStart="4dp"
-                            android:paddingEnd="4dp"
-                            android:onClick="AMshowMore"
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:paddingStart="18dp"
+                                android:text="Top Anime Ranking"
+                                android:textColor="@color/textTheme"
+                                android:textSize="24dp" />
 
-                            />
-<!--                        <Button android:layout_width="wrap_content"-->
-<!--                            android:id="@+id/roll_button"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_gravity="center_horizontal"-->
-<!--                            android:text="@string/roll"-->
-<!--                            />-->
+                            <ImageView
+                                android:id="@+id/AM_top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:gravity="center"
+                                android:onClick="AMshowMore"
+                                android:padding="4dp"
+                                android:paddingStart="4dp"
+                                android:paddingEnd="4dp"
+                                android:scaleX="1.5"
+                                android:scaleY="1.5"
+                                android:src="@drawable/morebtn"
 
-
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
-                        android:background="#F4EFEF"
-                        android:elevation="8dp">
+                                />
+                            <!--                        <Button android:layout_width="wrap_content"-->
+                            <!--                            android:id="@+id/roll_button"-->
+                            <!--                            android:layout_height="wrap_content"-->
+                            <!--                            android:layout_gravity="center_horizontal"-->
+                            <!--                            android:text="@string/roll"-->
+                            <!--                            />-->
 
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/top_anime_recycle"
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hapticFeedbackEnabled="true"
-                            android:fitsSystemWindows="true"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-smallcaps"
-                            android:paddingStart="18dp"
-                            android:text="Top Anime Airing"
-                            android:textColor="@color/textTheme"
-                            android:textSize="24dp" />
-                        <ImageView
-                            android:id="@+id/AM_airing"
-                            android:src="@drawable/morebtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
-                            android:layout_marginEnd="10dp"
-                            android:padding="4dp"
-                            android:gravity="center"
-                            android:paddingStart="4dp"
-                            android:paddingEnd="4dp"
-                            android:onClick="AMshowMore"
-
-                            />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
-                        android:elevation="8dp">
-
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/top_anime_airing_recycle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="20dp"
                             android:background="#F4EFEF"
-                            android:hapticFeedbackEnabled="true"
-                            android:fitsSystemWindows="true"/>
-                    </RelativeLayout>
+                            android:elevation="8dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
 
-                        <TextView
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/top_anime_recycle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fitsSystemWindows="true"
+                                android:hapticFeedbackEnabled="true" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-smallcaps"
-                            android:paddingStart="18dp"
-                            android:text="Top Upcoming Anime"
-                            android:textColor="@color/textTheme"
-                            android:textSize="24dp" />
-                        <ImageView
-                            android:id="@+id/AM_upcoming"
-                            android:src="@drawable/morebtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
-                            android:layout_marginEnd="10dp"
-                            android:padding="4dp"
-                            android:gravity="center"
-                            android:paddingStart="4dp"
-                            android:paddingEnd="4dp"
-                            android:onClick="AMshowMore"
+                            android:layout_marginTop="20dp">
 
-                            />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:paddingStart="18dp"
+                                android:text="Top Anime Airing"
+                                android:textColor="@color/textTheme"
+                                android:textSize="24dp" />
 
+                            <ImageView
+                                android:id="@+id/AM_airing"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:gravity="center"
+                                android:onClick="AMshowMore"
+                                android:padding="4dp"
+                                android:paddingStart="4dp"
+                                android:paddingEnd="4dp"
+                                android:scaleX="1.5"
+                                android:scaleY="1.5"
+                                android:src="@drawable/morebtn"
 
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
-                        android:elevation="8dp">
+                                />
 
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/top_upcoming_anime_recycle"
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F4EFEF"
-                            android:hapticFeedbackEnabled="true"
-                            android:fitsSystemWindows="true"
-                            />
-                    </RelativeLayout>
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="20dp"
+                            android:elevation="8dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:elevation="8dp"
-                        android:paddingTop="20dp">
 
-                        <TextView
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/top_anime_airing_recycle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#F4EFEF"
+                                android:fitsSystemWindows="true"
+                                android:hapticFeedbackEnabled="true" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-smallcaps"
-                            android:paddingStart="18dp"
-                            android:text="Popular Anime"
-                            android:textColor="@color/textTheme"
-                            android:textSize="24dp" />
+                            android:layout_marginTop="20dp">
 
-                        <ImageView
-                            android:id="@+id/AM_popular"
-                            android:src="@drawable/morebtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
-                            android:layout_marginEnd="10dp"
-                            android:padding="4dp"
-                            android:gravity="center"
-                            android:paddingStart="4dp"
-                            android:paddingEnd="4dp"
-                            android:onClick="AMshowMore"
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:paddingStart="18dp"
+                                android:text="Top Upcoming Anime"
+                                android:textColor="@color/textTheme"
+                                android:textSize="24dp" />
 
-                            />
+                            <ImageView
+                                android:id="@+id/AM_upcoming"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:gravity="center"
+                                android:onClick="AMshowMore"
+                                android:padding="4dp"
+                                android:paddingStart="4dp"
+                                android:paddingEnd="4dp"
+                                android:scaleX="1.5"
+                                android:scaleY="1.5"
+                                android:src="@drawable/morebtn"
 
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
-                        android:elevation="8dp">
+                                />
 
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/popular_anime_recycle"
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F4EFEF"
-                            android:hapticFeedbackEnabled="true"
-                            android:fitsSystemWindows="true"/>
-                    </RelativeLayout>
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="20dp"
+                            android:elevation="8dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
 
-                        <TextView
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/top_upcoming_anime_recycle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#F4EFEF"
+                                android:fitsSystemWindows="true"
+                                android:hapticFeedbackEnabled="true" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-smallcaps"
-                            android:paddingStart="18dp"
-                            android:text="Top Anime Movie"
-                            android:textColor="@color/textTheme"
-                            android:textSize="24dp" />
+                            android:elevation="8dp"
+                            android:paddingTop="20dp">
 
-                        <ImageView
-                            android:id="@+id/AM_Movie"
-                            android:src="@drawable/morebtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
-                            android:layout_marginEnd="10dp"
-                            android:padding="4dp"
-                            android:gravity="center"
-                            android:paddingStart="4dp"
-                            android:paddingEnd="4dp"
-                            android:onClick="AMshowMore"
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:paddingStart="18dp"
+                                android:text="Popular Anime"
+                                android:textColor="@color/textTheme"
+                                android:textSize="24dp" />
 
-                            />
+                            <ImageView
+                                android:id="@+id/AM_popular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:gravity="center"
+                                android:onClick="AMshowMore"
+                                android:padding="4dp"
+                                android:paddingStart="4dp"
+                                android:paddingEnd="4dp"
+                                android:scaleX="1.5"
+                                android:scaleY="1.5"
+                                android:src="@drawable/morebtn"
 
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
-                        android:elevation="8dp">
+                                />
 
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/top_movie_recycle"
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F4EFEF" />
-                    </RelativeLayout>
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="20dp"
+                            android:elevation="8dp">
 
 
-                </LinearLayout>
-            </ScrollView>
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/popular_anime_recycle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#F4EFEF"
+                                android:fitsSystemWindows="true"
+                                android:hapticFeedbackEnabled="true" />
+                        </RelativeLayout>
 
-        </RelativeLayout>
-    </LinearLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#393e46"
-        app:menu="@menu/bottom_navigation" />
-</RelativeLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-smallcaps"
+                                android:paddingStart="18dp"
+                                android:text="Top Anime Movie"
+                                android:textColor="@color/textTheme"
+                                android:textSize="24dp" />
+
+                            <ImageView
+                                android:id="@+id/AM_Movie"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="10dp"
+                                android:gravity="center"
+                                android:onClick="AMshowMore"
+                                android:padding="4dp"
+                                android:paddingStart="4dp"
+                                android:paddingEnd="4dp"
+                                android:scaleX="1.5"
+                                android:scaleY="1.5"
+                                android:src="@drawable/morebtn"
+
+                                />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginTop="20dp"
+                            android:elevation="8dp"
+                            android:layout_marginBottom="50dp">
+
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/top_movie_recycle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#F4EFEF" />
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+                </ScrollView>
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adViewMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/bottom_navigation"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-6544805297981669/8011568723">
+        </com.google.android.gms.ads.AdView>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#393e46"
+            app:menu="@menu/bottom_navigation" />
+    </RelativeLayout>
     <!--    android:background="?android:attr/windowBackground"-->
 </androidx.drawerlayout.widget.DrawerLayout>

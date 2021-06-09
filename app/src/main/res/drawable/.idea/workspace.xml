@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d033f6e7-9e5f-43c9-8435-b12be2f600fd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../assets/favShow.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/example/searchitcards/AlarmBroadCustReciver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../java/com/example/searchitcards/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ic_smicon.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pain.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../values/alarm.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/example/searchitcards/Anime/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/example/searchitcards/Anime/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/example/searchitcards/DashboarduSER.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/example/searchitcards/DashboarduSER.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/example/searchitcards/Favoutites/Fragments/TVShowsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/example/searchitcards/Favoutites/Fragments/TVShowsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../java/com/example/searchitcards/TVshows/ShowDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../java/com/example/searchitcards/TVshows/ShowDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layout/activity_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../layout/activity_dashboard.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../build.gradle" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="ProjectId" id="1rVonS84lDkxVpT5XssLqQnwtbz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d033f6e7-9e5f-43c9-8435-b12be2f600fd" name="Default Changelist" comment="" />
+      <created>1619070784997</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619070784997</updated>
+    </task>
+    <servers />
+  </component>
+</project>

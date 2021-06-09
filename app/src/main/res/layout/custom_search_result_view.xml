@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:hapticFeedbackEnabled="true"
         android:orientation="horizontal"
+        android:background="@color/black"
         android:padding="2dp"
         android:soundEffectsEnabled="false">
 
@@ -69,7 +70,7 @@
                 android:lineHeight="23dp"
                 android:padding="3dp"
                 android:text="Title"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
@@ -78,6 +79,7 @@
                 style="@android:style/Widget.Material.Light.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:outlineAmbientShadowColor="@color/white"
                 android:layout_marginTop="5dp"
                 android:numStars="5" />
 

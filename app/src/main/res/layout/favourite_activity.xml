@@ -28,14 +28,24 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below = "@+id/appBarLayout"/>
-
+        android:layout_below = "@+id/appBarLayout"
+        android:layout_above="@+id/Favourites_ads"/>
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/Favourites_ads"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/bottom_navigation"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-6544805297981669/3481296777">
+    </com.google.android.gms.ads.AdView>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
+        android:background="#393e46"
         app:menu="@menu/bottom_navigation" />
 
 </RelativeLayout>

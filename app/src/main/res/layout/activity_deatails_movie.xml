@@ -18,7 +18,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/black">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -134,19 +135,27 @@
                 android:padding="16dp"
                 android:paddingTop="10dp"
                 android:text="With Eren and company now at the shoreline and the threat of Marley looming, what’s next for the Scouts and their quest to unravel the mysteries of the Titans, humanity, and more? (Source: Funimation)"
-                android:textColor="@color/black"
+                android:textColor="#fff"
                 android:textSize="14dp"
                 app:colorClickableText="#039BE5"
                 app:trimCollapsedText="@string/read_more"
                 app:trimExpandedText="@string/read_less"
                 app:trimLines="80"
                 app:trimMode="trimModeLength" />
-
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adMoiveDetails"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-6544805297981669/1336163941">
+            </com.google.android.gms.ads.AdView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#d0e8f2"
+                android:background="#232323"
                 android:orientation="vertical"
                 android:padding="8dp"
                 android:paddingStart="16dp">
@@ -158,7 +167,7 @@
                     android:padding="10dp"
                     android:paddingStart="0dp"
                     android:text="Facts"
-                    android:textColor="#000"
+                    android:textColor="#fff"
                     android:textSize="24dp" />
 
                 <TextView
@@ -168,7 +177,7 @@
                     android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:text="Original Title"
-                    android:textColor="#000"
+                    android:textColor="#fff"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="11dp"
                     tools:layout_editor_absoluteY="21dp" />
@@ -180,7 +189,7 @@
                     android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:text="Shingeki no Kyojin: The Final Season"
-                    android:textColor="#393e46" />
+                    android:textColor="#f9fcfb" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -192,40 +201,9 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-<!--                        <TextView-->
-<!--                            android:id="@+id/txtView6"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:fontFamily="@font/roboto"-->
-<!--                            android:paddingTop="4dp"-->
-<!--                            android:text="Directed by"-->
-<!--                            android:textColor="#000"-->
-<!--                            android:textStyle="bold"-->
-<!--                            tools:layout_editor_absoluteX="11dp"-->
-<!--                            tools:layout_editor_absoluteY="21dp" />-->
-
-<!--                        <TextView-->
-<!--                            android:id="@+id/moive_director"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:fontFamily="@font/roboto"-->
-<!--                            android:paddingTop="4dp"-->
-
-<!--                            android:text="88"-->
-<!--                            android:textColor="#393e46" />-->
 
 
                     </LinearLayout>
-
-
-                    <!--                    <Button-->
-                    <!--                        android:id="@+id/movie_episodes_button"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="40dp"-->
-                    <!--                        android:layout_marginStart="100dp"-->
-                    <!--                        android:layout_marginTop="7dp"-->
-                    <!--                        android:height="40dp"-->
-                    <!--                        android:text="Show List" />-->
 
 
                 </LinearLayout>
@@ -237,7 +215,7 @@
                     android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:text="Runtime"
-                    android:textColor="#000"
+                    android:textColor="#fff"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="11dp"
                     tools:layout_editor_absoluteY="21dp" />
@@ -250,7 +228,7 @@
                     android:paddingTop="4dp"
 
                     android:text="Unknown"
-                    android:textColor="#393e46" />
+                    android:textColor="#f9fcfb" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -269,7 +247,7 @@
                             android:fontFamily="@font/roboto"
                             android:paddingTop="4dp"
                             android:text="Budget"
-                            android:textColor="#000"
+                            android:textColor="#fff"
                             android:textStyle="bold"
                             tools:layout_editor_absoluteX="11dp"
                             tools:layout_editor_absoluteY="21dp" />
@@ -282,7 +260,7 @@
                             android:paddingTop="4dp"
                             android:text="Unknown"
 
-                            android:textColor="#393e46" />
+                            android:textColor="#f9fcfb" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -297,7 +275,7 @@
                             android:fontFamily="@font/roboto"
                             android:paddingTop="4dp"
                             android:text="Revenue"
-                            android:textColor="#000"
+                            android:textColor="#fff"
                             android:textStyle="bold"
                             tools:layout_editor_absoluteX="11dp"
                             tools:layout_editor_absoluteY="21dp" />
@@ -310,7 +288,7 @@
                             android:paddingTop="4dp"
                             android:text="Unknown"
 
-                            android:textColor="#393e46" />
+                            android:textColor="#f9fcfb" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -332,7 +310,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
                             android:text="Score"
-                            android:textColor="#000"
+                            android:textColor="#fff"
                             android:textStyle="bold"
                             tools:layout_editor_absoluteX="11dp"
                             tools:layout_editor_absoluteY="21dp" />
@@ -344,7 +322,7 @@
                             android:fontFamily="@font/roboto"
                             android:paddingTop="4dp"
                             android:text="9.04"
-                            android:textColor="#393e46" />
+                            android:textColor="#f9fcfb" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -358,7 +336,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
                             android:text="Popularity"
-                            android:textColor="#000"
+                            android:textColor="#fff"
                             android:textStyle="bold"
                             tools:layout_editor_absoluteX="11dp"
                             tools:layout_editor_absoluteY="21dp" />
@@ -372,7 +350,7 @@
                             android:paddingTop="4dp"
 
                             android:text="581"
-                            android:textColor="#393e46" />
+                            android:textColor="#f9fcfb" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -383,7 +361,7 @@
                     android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:text="Release Date"
-                    android:textColor="#000"
+                    android:textColor="#fff"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="11dp"
                     tools:layout_editor_absoluteY="21dp" />
@@ -395,7 +373,7 @@
                     android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:text="Dec 7, 2020 to ?"
-                    android:textColor="#393e46" />
+                    android:textColor="#f9fcfb" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -403,7 +381,7 @@
                     android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:text="Production Companies"
-                    android:textColor="#000"
+                    android:textColor="#fff"
                     android:textStyle="bold"
                     tools:layout_editor_absoluteX="11dp"
                     tools:layout_editor_absoluteY="21dp" />
@@ -415,50 +393,7 @@
                     android:fontFamily="@font/roboto"
                     android:paddingTop="4dp"
                     android:text="Pony Canyon, Techno Sound"
-                    android:textColor="#393e46" />
-
-                <!--                <TextView-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:fontFamily="@font/roboto"-->
-                <!--                    android:paddingTop="4dp"-->
-                <!--                    android:text="Licensors"-->
-                <!--                    android:textColor="#000"-->
-                <!--                    android:textStyle="bold"-->
-                <!--                    tools:layout_editor_absoluteX="11dp"-->
-                <!--                    tools:layout_editor_absoluteY="21dp" />-->
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/movie_licensors"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:fontFamily="@font/roboto"-->
-                <!--                    android:paddingTop="4dp"-->
-                <!--                    android:text="Funimation"-->
-                <!--                    android:textColor="#393e46" />-->
-
-                <!--                <TextView-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:fontFamily="@font/roboto"-->
-                <!--                    android:paddingTop="4dp"-->
-                <!--                    android:text="Studios"-->
-                <!--                    android:textColor="#000"-->
-                <!--                    android:textStyle="bold"-->
-                <!--                    tools:layout_editor_absoluteX="11dp"-->
-                <!--                    tools:layout_editor_absoluteY="21dp" />-->
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/movie_studios"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:fontFamily="@font/roboto"-->
-                <!--                    android:paddingTop="4dp"-->
-                <!--                    android:paddingBottom="4dp"-->
-                <!--                    android:text="MAPPA"-->
-
-                <!--                    android:textColor="#393e46" />-->
-
+                    android:textColor="#f9fcfb" />
 
             </LinearLayout>
 
@@ -478,7 +413,7 @@
                     android:padding="4dp"
                     android:paddingBottom="0dp"
                     android:text="Trailers"
-                    android:textColor="#000"
+                    android:textColor="#fff"
                     android:textSize="18dp"
                     android:textStyle="bold" />
 
@@ -486,7 +421,7 @@
                     android:id="@+id/movie_trailer_recycle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#fff"
+                    android:background="#333333"
                     android:padding="10dp" />
             </LinearLayout>
 
@@ -622,13 +557,14 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="6dp"
                 android:text="Similar Movies"
-                android:textColor="@color/black"
+                android:textColor="#fff"
                 android:textSize="24dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/movie_similar_recycle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="#333333"/>
 
 
         </LinearLayout>

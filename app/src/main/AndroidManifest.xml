@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.searchitcards">
+    package="com.animasium.searchitcards">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <application
+        android:name="com.animasium.searchitcards.App"
         android:allowBackup="true"
         android:configChanges="keyboardHidden|orientation|screenSize"
         android:icon="@mipmap/ic_launcher"
@@ -13,25 +18,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SearchItCards">
-        <activity android:name=".TMShowMore"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:configChanges="keyboardHidden|orientation|screenSize"></activity>
         <activity
-            android:name=".Anime.AnimeShowMore"
+            android:name="com.animasium.searchitcards.TMShowMore"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity
+            android:name="com.animasium.searchitcards.Anime.AnimeShowMore"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
-            android:name=".Login.NewUserLogin"
+            android:name="com.animasium.searchitcards.Login.NewUserLogin"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name=".Login.LoginActivity"
+            android:name="com.animasium.searchitcards.Login.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name=".DashboarduSER"
+            android:name="com.animasium.searchitcards.DashboarduSER"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name=".Login.Intro"
+            android:name="com.animasium.searchitcards.Login.Intro"
             android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,48 +46,51 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TVshows.ShowDetails"
+            android:name="com.animasium.searchitcards.TVshows.ShowDetails"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
-            android:name=".TVshows.TVShows"
+            android:name="com.animasium.searchitcards.TVshows.TVShows"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name=".Anime.EpisodeList"
+            android:name="com.animasium.searchitcards.Anime.EpisodeList"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
-            android:name=".Anime.AnimeSearchResults"
+            android:name="com.animasium.searchitcards.Anime.AnimeSearchResults"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name=".Favoutites.Favourites"
+            android:name="com.animasium.searchitcards.Favoutites.Favourites"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
-            android:name=".Movie.Movies_activity"
+            android:name="com.animasium.searchitcards.Movie.Movies_activity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name=".Anime.AnimeDeatails"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:name="com.animasium.searchitcards.Anime.AnimeDeatails"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:parentActivityName=".Anime.MainActivity"/>
         <activity
-            android:name=".YoutubePlayer.Youtube"
+            android:name="com.animasium.searchitcards.YoutubePlayer.Youtube"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape"
             android:turnScreenOn="true"
             tools:targetApi="o_mr1" />
         <activity
-            android:name=".Movie.DeatailsMovie"
+            android:name="com.animasium.searchitcards.Movie.DeatailsMovie"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            />
         <activity
-            android:name=".Movie.MovieSearchResult"
+            android:name="com.animasium.searchitcards.Movie.MovieSearchResult"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name=".Movie.MovieTrailer"
+            android:name="com.animasium.searchitcards.Movie.MovieTrailer"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Anime.MainActivity"
+            android:name="com.animasium.searchitcards.Anime.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize">
 
             <!-- <intent-filter> -->
@@ -91,7 +100,9 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6544805297981669~6375199212"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
@@ -104,6 +115,10 @@
         <meta-data
             android:name="com.parse.CLIENT_KEY"
             android:value="@string/back4app_client_key" />
+
+        <receiver android:name="com.animasium.searchitcards.AlarmBroadCustReciver"
+            tools:ignore="Instantiatable">
+        </receiver>
     </application>
 
 </manifest>

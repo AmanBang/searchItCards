@@ -9,22 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="8dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="4dp"
         app:cardCornerRadius="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:background="@color/black"
             >
 
             <ImageView
                 android:id="@+id/movie_search_result_poster"
-                android:layout_width="118dp"
-                android:layout_height="135dp"
+                android:layout_width="110dp"
+                android:layout_height="140dp"
                 android:scaleType="centerCrop" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="261dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -34,29 +35,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/actor"
+                    android:textColor="@color/white"
                     android:padding="5dp"
                     android:paddingStart="10dp"
                     android:text="Hello ji namste"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="21dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
 
                 <RatingBar
                     android:id="@+id/ratingTheMovie"
                     style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
                     android:layout_width="92dp"
+                    android:layout_below="@+id/movieSearch_titleholder"
                     android:layout_height="wrap_content"
-                    android:paddingStart="10dp" />
+                    android:paddingStart="10dp"
+                    android:layout_marginTop="4dp"
+                    android:outlineSpotShadowColor="@color/white"/>
 
                 <TextView
                     android:id="@+id/movieSearch_releaseDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/actor"
+                    android:fontFamily="sans-serif"
                     android:text="asdhkahdkahdd"
-                    android:textSize="20dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/white"
                     android:textStyle="bold"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="4dp"
                     android:paddingStart="10dp"/>
-            </LinearLayout>
+            </RelativeLayout>
 
 
 
