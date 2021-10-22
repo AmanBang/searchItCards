@@ -68,7 +68,7 @@ public class TMSMAdpter extends RecyclerView.Adapter<TMSMAdpter.WantMore> {
                     if (RMList.get(getAdapterPosition()).getMovie()){
                         Intent i = new Intent(v.getContext(), DeatailsMovie.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        i.putExtra("movieId", String.valueOf(RMList.get(getAdapterPosition()).getId()));
+                        i.putExtra("pass_id", String.valueOf(RMList.get(getAdapterPosition()).getId()));
                         v.getContext().startActivity(i);
                     }else {
                         Intent i = new Intent(v.getContext(), ShowDetails.class);

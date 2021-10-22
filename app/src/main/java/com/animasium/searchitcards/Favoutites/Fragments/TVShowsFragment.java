@@ -62,6 +62,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import static android.content.Context.ALARM_SERVICE;
@@ -114,6 +115,7 @@ public class TVShowsFragment extends Fragment {
     HashMap<String, String> showNxtDate;
     SimpleDateFormat sdfo;
     ParseQuery<ParseObject> parseQuery;
+    View addsomething;
 
     public static final String NOTIFICATION_CHANNEL_ID = "10001";
     private final static String default_notification_channel_id = "default";
@@ -216,8 +218,9 @@ public class TVShowsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_t_v_shows, container, false);
 
         pendingRecycleView = view.findViewById(R.id.FV_pending_recycleView);
+        addsomething = view.findViewById(R.id.addSomething);
 //        ongoingRecycleView = view.findViewById(R.id.FV_ongoing_recycleView);
-        watchedRecycleView = view.findViewById(R.id.FV_watched_recycleView);
+//        watchedRecycleView = view.findViewById(R.id.FV_watched_recycleView);
         showRecivedList = new ArrayList<>();
         showOngoing = new ArrayList<>();
         showWatched = new ArrayList<>();
@@ -227,413 +230,418 @@ public class TVShowsFragment extends Fragment {
 
         //Calender Code.............
 
-        cal = Calendar.getInstance();
-        cal.setTimeInMillis(System.currentTimeMillis());
-        cal.clear();
+//        cal = Calendar.getInstance();
+//        cal.setTimeInMillis(System.currentTimeMillis());
+//        cal.clear();
 
         //  cal.set(2021, 3, 19);
         parseQuery = new ParseQuery<ParseObject>("tShow");
 
 
-
-        getTodaysDate();
+//        getTodaysDate();
         //=============================================Date And Time============================================================================//
 
 //========================================================================================================================================================//
 
 
-            notificationManager = NotificationManagerCompat.from(getApplicationContext());
-            showNxtDate = new HashMap<String, String>();
+//        notificationManager = NotificationManagerCompat.from(getApplicationContext());
+//        showNxtDate = new HashMap<String, String>();
 
 
+        parseQuery.findInBackground(new FindCallback<ParseObject>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    for (ParseObject parseObject : objects) {
+
+                        RecommendedMovies showReciver = new RecommendedMovies();
+                        String id = parseObject.get("showID") + "";
+                        showReciver.setId(id);
+                        showReciver.setPoster_path(parseObject.get("posterPath") + "");
+                        showReciver.setTitle(parseObject.get("showName") + "");
+                        Object dt = parseObject.get("nextEpDate");
+//                        if (dt != null) {
+//                            showNxtDate.put((id), dt.toString());
+//                        }
+
+                    }
+
+                    Log.i("ShowNext", showNxtDate + "");
+                    //======================================================================================================================================//
+
+                    //Sorting Dates in List..........
+//                    sortDates();
+
+                    //Notification Date......
+//                    try {
+//                        NotificationDate = dateFirst.get(0);
+//                        //Getting the Id from date...
+//                        EpDate = sdfo.parse(NotificationDate);
+//                        Log.i("EpDates", EpDate + "");
+//
+//                        if (dateNow.compareTo(String.valueOf(EpDate)) == 0 || dateNow.compareTo(String.valueOf(EpDate)) < 0) {
+//                            Log.i("Episode Date", EpDate + "");
+//
+//                            cal.setTime(EpDate);
+////                            cal.
+//
+//                        }
+//                    } catch (Exception e1) {
+//                        e1.printStackTrace();
+//                    }
+
+//                    Log.i("TIME23", "TOBESend:" + (cal.getTimeInMillis() / 1000 - System.currentTimeMillis() / 1000));
+//
+//                    alarmManager1 = (AlarmManager) getApplicationContext().getSystemService(ALARM_SERVICE);
+//
+//                    for (String M : getKeys(showNxtDate, NotificationDate)) {
+//                        IDtoNotify.add(M);
+//                        Log.i("IND", IDtoNotify + "");
+//                    }
+
+                    ////==============================================================================================================================////
+                } else {
+                    e.printStackTrace();
+                }
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                        ServiceNotify();
+//                        SystemClock.sleep(2000);
+//                    }
+//                }).start();
+
+
+            }
+        });
+        try {
+//            parseQuery.whereMatches("type", "Ongoing");
+//            parseQuery.findInBackground(new FindCallback<ParseObject>() {
+//                @Override
+//                public void done(List<ParseObject> objects, ParseException e) {
+//
+//                    if (e == null) {
+//                        for (ParseObject parseObject : objects) {
+//                            Log.i("recivedObjects", parseObject.get("showID") + "");
+//
+//                            RecommendedMovies showReciver = new RecommendedMovies();
+//                            showReciver.setId(parseObject.get("showID") + "");
+//                            showReciver.setPoster_path(parseObject.get("posterPath") + "");
+//                            showReciver.setTitle(parseObject.get("showName") + "");
+//
+//                            showOngoing.add(showReciver);
+//                            ongoingRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+//                            showRAdapter = new ShowRAdapter(getContext(), showOngoing);
+//                            ongoingRecycleView.setAdapter(showRAdapter);
+//                        }
+//                    } else {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//            });
+//            parseQuery.whereMatches("type", "Pending");
             parseQuery.findInBackground(new FindCallback<ParseObject>() {
-                @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void done(List<ParseObject> objects, ParseException e) {
+
                     if (e == null) {
                         for (ParseObject parseObject : objects) {
-
-                            RecommendedMovies showReciver = new RecommendedMovies();
-                            String id = parseObject.get("showID") + "";
-                            showReciver.setId(id);
-                            showReciver.setPoster_path(parseObject.get("posterPath") + "");
-                            showReciver.setTitle(parseObject.get("showName") + "");
-                            Object dt = parseObject.get("nextEpDate");
-                            if (dt != null) {
-                                showNxtDate.put((id), dt.toString());
+                            Log.i("recivedObjects", parseObject.get("showID") + "");
+                            if (objects != null){
+                                RecommendedMovies showReciver = new RecommendedMovies();
+                                showReciver.setId(parseObject.get("showID") + "");
+                                showReciver.setPoster_path(parseObject.get("posterPath") + "");
+                                showReciver.setTitle(parseObject.get("showName") + "");
+                                try {
+                                    showRecivedList.add(showReciver);
+                                    pendingRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+//                        pendingRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                                    showRAdapter = new ShowRAdapter(getContext(), showRecivedList);
+                                    pendingRecycleView.setAdapter(showRAdapter);
+                                }catch (Exception z){
+                                    z.printStackTrace();
+                                }
+                            }else {
+                                addsomething.setVisibility(View.VISIBLE);
                             }
 
+
                         }
-
-                        Log.i("ShowNext", showNxtDate + "");
-                        //======================================================================================================================================//
-
-                        //Sorting Dates in List..........
-                        sortDates();
-
-                        //Notification Date......
-                        try {
-                            NotificationDate = dateFirst.get(0);
-                            //Getting the Id from date...
-                            EpDate = sdfo.parse(NotificationDate);
-                            Log.i("EpDates", EpDate + "");
-
-                            if (dateNow.compareTo(String.valueOf(EpDate)) == 0 || dateNow.compareTo(String.valueOf(EpDate)) < 0) {
-                                Log.i("Episode Date", EpDate + "");
-
-                                cal.setTime(EpDate);
-
-                            }
-                        } catch (Exception e1) {
-                            e1.printStackTrace();
-                        }
-
-                        Log.i("TIME23", "TOBESend:" + (cal.getTimeInMillis() / 1000 - System.currentTimeMillis() / 1000));
-
-                        alarmManager1 = (AlarmManager) getApplicationContext().getSystemService(ALARM_SERVICE);
-
-                        for (String M : getKeys(showNxtDate, NotificationDate)) {
-                            IDtoNotify.add(M);
-                            Log.i("IND", IDtoNotify + "");
-                        }
-
-                        ////==============================================================================================================================////
                     } else {
                         e.printStackTrace();
                     }
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            ServiceNotify();
-                            SystemClock.sleep(2000);
-                        }
-                    }).start();
-
 
                 }
             });
 
-        //               // ServiceUpdatedDates();
-        //            }
-
-        parseQuery.whereMatches("type", "Ongoing");
-        parseQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-
-                if (e == null) {
-                    for (ParseObject parseObject : objects) {
-                        Log.i("recivedObjects", parseObject.get("showID") + "");
-
-                        RecommendedMovies showReciver = new RecommendedMovies();
-                        showReciver.setId(parseObject.get("showID") + "");
-                        showReciver.setPoster_path(parseObject.get("posterPath") + "");
-                        showReciver.setTitle(parseObject.get("showName") + "");
-
-                        showOngoing.add(showReciver);
-                        ongoingRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                        showRAdapter = new ShowRAdapter(getContext(), showOngoing);
-                        ongoingRecycleView.setAdapter(showRAdapter);
-                    }
-                } else {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-        parseQuery.whereMatches("type", "Pending");
-        parseQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-
-                if (e == null) {
-                    for (ParseObject parseObject : objects) {
-                        Log.i("recivedObjects", parseObject.get("showID") + "");
-
-                        RecommendedMovies showReciver = new RecommendedMovies();
-                        showReciver.setId(parseObject.get("showID") + "");
-                        showReciver.setPoster_path(parseObject.get("posterPath") + "");
-                        showReciver.setTitle(parseObject.get("showName") + "");
-
-                        showRecivedList.add(showReciver);
-                        pendingRecycleView.setLayoutManager(new GridLayoutManager(getContext(),3));
-//                        pendingRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                        showRAdapter = new ShowRAdapter(getContext(), showRecivedList);
-                        pendingRecycleView.setAdapter(showRAdapter);
-                    }
-                } else {
-                    e.printStackTrace();
-                }
-
-            }
-        });
+//            parseQuery.whereMatches("type", "Watched");
+//            parseQuery.findInBackground(new FindCallback<ParseObject>() {
+//                @Override
+//                public void done(List<ParseObject> objects, ParseException e) {
 //
-        parseQuery.whereMatches("type", "Watched");
-        parseQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
+//                    if (e == null) {
+//                        for (ParseObject parseObject : objects) {
+//                            Log.i("recivedObjects", parseObject.get("showID") + "");
+//
+//                            RecommendedMovies showReciver = new RecommendedMovies();
+//                            showReciver.setId(parseObject.get("showID") + "");
+//                            showReciver.setPoster_path(parseObject.get("posterPath") + "");
+//                            showReciver.setTitle(parseObject.get("showName") + "");
+//
+//                            showWatched.add(showReciver);
+//                            watchedRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+//
+////                        watchedRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+//                            showRAdapter = new ShowRAdapter(getContext(), showWatched);
+//                            watchedRecycleView.setAdapter(showRAdapter);
+//                        }
+//                    } else {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//            });
 
-                if (e == null) {
-                    for (ParseObject parseObject : objects) {
-                        Log.i("recivedObjects", parseObject.get("showID") + "");
 
-                        RecommendedMovies showReciver = new RecommendedMovies();
-                        showReciver.setId(parseObject.get("showID") + "");
-                        showReciver.setPoster_path(parseObject.get("posterPath") + "");
-                        showReciver.setTitle(parseObject.get("showName") + "");
-
-                        showWatched.add(showReciver);
-                        watchedRecycleView.setLayoutManager(new GridLayoutManager(getContext(),3));
-
-//                        watchedRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                        showRAdapter = new ShowRAdapter(getContext(), showWatched);
-                        watchedRecycleView.setAdapter(showRAdapter);
-                    }
-                } else {
-                    e.printStackTrace();
-                }
-
-            }
-        });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return view;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void sortDates() {
-
-        class DateItem {
-            final String datetime;
-
-            DateItem(String date) {
-                this.datetime = date;
-            }
-        }
-        class SortByDate implements Comparator<DateItem> {
-            @Override
-            public int compare(DateItem a, DateItem b) {
-                return a.datetime.compareTo(b.datetime);
-            }
-        }
-
-        dateFirst = new ArrayList<>();
-        dateLast = new ArrayList<>();
-
-        Collection<String> valueSet = showNxtDate.values();
-        List<DateItem> Dlist = new ArrayList<DateItem>();
-        for (String v : valueSet) {
-            Dlist.add(new DateItem(v));
-        }
-        Collections.sort(Dlist, new SortByDate());
-        Dlist.forEach(date -> {
-            Log.i("sorted", date.datetime);
-            if (dateNow.compareTo(String.valueOf(date.datetime)) == 0 || dateNow.compareTo(String.valueOf(date.datetime)) < 0) {
-                dateFirst.add(date.datetime);
-            } else {
-                dateLast.add(date.datetime);
-                Log.i("DateLast0", dateLast + "");
-            }
-        });
-
-    }
-
-//    private void scheduleNotification(Notification notification,int i) {
-//        Intent notificationIntent = new Intent(getApplicationContext(), AlarmBroadCustReciver.class);
-//        notificationIntent.putExtra(AlarmBroadCustReciver.NOTIFICATION_ID, i);
-//        notificationIntent.putExtra(AlarmBroadCustReciver.NOTIFICATION, notification);
-//       // notificationIntent.putExtra(AlarmBroadCustReciver.SHOW_ID, IDtoNotify.get(0));
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-//         //long futureInMillis = System.currentTimeMillis() + (cal.getTimeInMillis() / 1000 - System.currentTimeMillis() / 1000);
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    private void sortDates() {
 //
-//        assert alarmManager != null;
-//        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+//        class DateItem {
+//            final String datetime;
+//
+//            DateItem(String date) {
+//                this.datetime = date;
+//            }
+//        }
+//        class SortByDate implements Comparator<DateItem> {
+//            @Override
+//            public int compare(DateItem a, DateItem b) {
+//                return a.datetime.compareTo(b.datetime);
+//            }
+//        }
+//
+//        dateFirst = new ArrayList<>();
+//        dateLast = new ArrayList<>();
+//
+//        Collection<String> valueSet = showNxtDate.values();
+//        List<DateItem> Dlist = new ArrayList<DateItem>();
+//        for (String v : valueSet) {
+//            Dlist.add(new DateItem(v));
+//        }
+//        Collections.sort(Dlist, new SortByDate());
+//        Dlist.forEach(date -> {
+//            Log.i("sorted", date.datetime);
+//            if (dateNow.compareTo(String.valueOf(date.datetime)) == 0) {
+//                dateFirst.add(date.datetime);
+//                Log.i("Datefirst", date.datetime + "");
+//            } else if (dateNow.compareTo(String.valueOf(date.datetime)) > 0) {
+//                if (date.datetime != "") {
+//                    dateLast.add(date.datetime);
+//                }
+//
+//                Log.i("DateLast0", dateLast + "");
+//            } else {
+//                Log.i("asd", "asda");
+//            }
+//        });
+//        if (dateLast != null) {
+//            ServiceUpdatedDates();
+//
+//        }
+//
 //    }
 
-    public void getNotification(String content, int channelId) {
-        Intent notificationIntent = new Intent(getApplicationContext(), AlarmBroadCustReciver.class);
-        Intent OpenActivity = new Intent(getApplicationContext(), Favourites.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, OpenActivity, 0);
+//    public void getNotification(String content, int channelId) {
+//        try {
+//            Intent notificationIntent = new Intent(getApplicationContext(), AlarmBroadCustReciver.class);
+//            Intent OpenActivity = new Intent(getApplicationContext(), Favourites.class);
+//            PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, OpenActivity, 0);
+//            Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_1)
+//                    .setContentTitle(Title)
+//                    .setContentText(content)
+//                    .setSmallIcon(R.drawable.ic_launcher_foreground)
+//                    .setLargeIcon(ntfPicture)
+//                    .setStyle(new NotificationCompat.BigPictureStyle()
+//                            .bigPicture(ntfPicture)
+//                            .bigLargeIcon(null))
+//                    .setContentIntent(contentIntent)
+//                    .setCategory(NotificationCompat.CATEGORY_EVENT)
+//                    .build();
+//
+//            notificationIntent.putExtra(AlarmBroadCustReciver.NOTIFICATION_ID, channelId);
+//            notificationIntent.putExtra(AlarmBroadCustReciver.NOTIFICATION, notification);
+//            int dummyuniqueInt = new Random().nextInt(5430254);
+//
+//            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), dummyuniqueInt, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//            AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+//
+//            assert alarmManager != null;
+//            alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
-        // NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), default_notification_channel_id);
-        Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_1)
-                .setContentTitle(Title)
-                .setContentText(content)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setLargeIcon(ntfPicture)
-                .setStyle(new NotificationCompat.BigPictureStyle()
-                        .bigPicture(ntfPicture)
-                        .bigLargeIcon(null))
-                .setContentIntent(contentIntent)
-                .build();
+//    public static <K, V> Set<K> getKeys(Map<K, V> map, V value) {
+//        Set<K> keys = new HashSet<>();
+//        for (Map.Entry<K, V> entry : map.entrySet()) {
+//            if (value.equals(entry.getValue())) {
+//                keys.add(entry.getKey());
+//            }
+//        }
+//        return keys;
+//    }
 
-        notificationIntent.putExtra(AlarmBroadCustReciver.NOTIFICATION_ID, channelId);
-        notificationIntent.putExtra(AlarmBroadCustReciver.NOTIFICATION, notification);
+//    public void ServiceNotify() {
+//        Log.i("doneN", "service Called");
+//        if (IDtoNotify != null) {
+//            Log.i("doneN", "GotIDto Notify");
+//
+//            for (String IDs : IDtoNotify) {
+//                IDsPass = IDs;
+//
+//                String url = "https://api.themoviedb.org/3/tv/" + IDs + "?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
+//                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+//                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+//                    @SuppressLint("SetTextI18n")
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//
+//                        try {
+//                            Log.i("doneN", "Got Json responce");
+//                            JSONObject nxtEpisode = response.getJSONObject("next_episode_to_air");
+//                            Episodetitle = nxtEpisode.getString("name");
+//                            Episode = nxtEpisode.getString("episode_number");
+//                            Season = nxtEpisode.getString("season_number");
+//                            Title = response.getString("name");
+//                            Log.i("EPisodeName", Title);
+//                            JSONObject lstEpisode = response.getJSONObject("last_episode_to_air");
+//                            ImageUrl = "https://image.tmdb.org/t/p/w500" + lstEpisode.getString("still_path");
+//                            new ntf().execute();
+//                            Log.i("ImageURL", ImageUrl);
+//                            NValue = NValue + 1;
+//                            Log.i("NVal", NValue + "");
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//
+//                    }
+//                });
+//                try {
+//                    queue.add(request);
+//                    Log.i("doneN", "Notfying");
+//                    SystemClock.sleep(2000);
+//                    getNotification("Episode " + Episode + " of Season " + Season + " is Releasing today.", NValue);
+//                    Log.i("doneN", "Notification Started");
+//                    SystemClock.sleep(2000);
+//                }catch (Exception e){
+//                    e.printStackTrace();
+//                }
+//
+//
+//
+//            }
+//
+//        }
+//        IDtoNotify.clear();
+//    }
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        //long futureInMillis = System.currentTimeMillis() + (cal.getTimeInMillis() / 1000 - System.currentTimeMillis() / 1000);
-
-        assert alarmManager != null;
-        alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
-//        builder.setContentTitle(Title);
-//        builder.setContentText(content);
-//        builder.setSmallIcon(R.drawable.ic_launcher_foreground);
-//        builder.setLargeIcon(ntfPicture);
-//        builder.setStyle(new NotificationCompat.BigPictureStyle()
-//                .bigPicture(ntfPicture)
-//                .bigLargeIcon(null));
-//        builder.setChannelId(NOTIFICATION_CHANNEL_ID);
-//        builder.setContentIntent(contentIntent);
-
-    }
-
-    public static <K, V> Set<K> getKeys(Map<K, V> map, V value) {
-        Set<K> keys = new HashSet<>();
-        for (Map.Entry<K, V> entry : map.entrySet()) {
-            if (value.equals(entry.getValue())) {
-                keys.add(entry.getKey());
-            }
-        }
-        return keys;
-    }
-
-    public void ServiceNotify() {
-        Log.i("doneN", "service Called");
-        if (IDtoNotify != null) {
-            Log.i("doneN", "GotIDto Notify");
-
-            for (String IDs : IDtoNotify) {
-                IDsPass = IDs;
-
-                String url = "https://api.themoviedb.org/3/tv/" + IDs + "?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
-                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try {
-                            Log.i("doneN", "Got Json responce");
-                            JSONObject nxtEpisode = response.getJSONObject("next_episode_to_air");
-                            Episodetitle = nxtEpisode.getString("name");
-                            Episode = nxtEpisode.getString("episode_number");
-                            Season = nxtEpisode.getString("season_number");
-                            Title = response.getString("name");
-                            Log.i("EPisodeName", Title);
-                            JSONObject lstEpisode = response.getJSONObject("last_episode_to_air");
-                            ImageUrl = "https://image.tmdb.org/t/p/w500" + lstEpisode.getString("still_path");
-                            new ntf().execute();
-                            Log.i("ImageURL", ImageUrl);
-                            NValue = NValue + 1;
-                            Log.i("NVal", NValue + "");
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-                queue.add(request);
-                Log.i("doneN", "Notfying");
-                SystemClock.sleep(2000);
-                getNotification("Episode " + Episode + " of Season " + Season + " is Released", NValue);
-                Log.i("doneN", "Notification Started");
-                SystemClock.sleep(2000);
-
-
-
-            }
-
-        }
-        IDtoNotify.clear();
-    }
-
-    public void ServiceUpdatedDates() {
-        if (dateLast != null) {
-            Log.i("doneU", "checked If");
-
-            for (String dates : dateLast) {
-
-                IDtoUpdate.addAll(getKeys(showNxtDate, dates));
-
-                Log.i("doneU", IDtoUpdate + "");
-
-                for (String id : IDtoUpdate) {
-                    Log.i("UpdateDate", "for loop started");
-                    Log.i("UpdateDate", id);
-
-                    String url1 = "https://api.themoviedb.org/3/tv/" + id + "?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
-                    RequestQueue queue1 = Volley.newRequestQueue(getApplicationContext());
-                    JsonObjectRequest request1 = new JsonObjectRequest(Request.Method.GET, url1, null, new Response.Listener<JSONObject>() {
-                        @SuppressLint("SetTextI18n")
-                        @Override
-                        public void onResponse(JSONObject response) {
-
-                            try {
-                                Log.i("UpdateDate", "Resposnce Generated");
-                                JSONObject nxtEpisode = response.getJSONObject("next_episode_to_air");
-                                updatedDate = nxtEpisode.getString("air_date");
-                                Log.i("UpdateDate", "air Generated " + nxtEpisode.getString("air_date"));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                        }
-                    });
-                    queue1.add(request1);
-                    SystemClock.sleep(500);
-                    ParseQuery<ParseUser> userParseQuery = ParseQuery.getQuery("tShow");
-                    userParseQuery.whereMatches("showID", id);
-                    userParseQuery.findInBackground(new FindCallback<ParseUser>() {
-                        @Override
-                        public void done(List<ParseUser> objects, ParseException e) {
-                            if (e == null) {
-                                ParseObject user = objects.get(0);
-                                user.put("nextEpDate", updatedDate);
-                                user.saveInBackground();
-
-                            } else {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                }
-                SystemClock.sleep(500);
-                System.out.println("Date1 is after Date2");
-            }
-        }
-
-        IDtoUpdate.clear();
-    }
+//    public void ServiceUpdatedDates() {
+//        if (dateLast != null) {
+//            Log.i("doneU", "checked If");
+//
+//            for (String dates : dateLast) {
+//
+//                IDtoUpdate.addAll(getKeys(showNxtDate, dates));
+//
+//                Log.i("doneU", IDtoUpdate + "");
+//
+//                for (String id : IDtoUpdate) {
+//                    Log.i("UpdateDate", "for loop started");
+//                    Log.i("UpdateDate", id);
+//
+//                    String url1 = "https://api.themoviedb.org/3/tv/" + id + "?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
+//                    RequestQueue queue1 = Volley.newRequestQueue(getApplicationContext());
+//                    JsonObjectRequest request1 = new JsonObjectRequest(Request.Method.GET, url1, null, new Response.Listener<JSONObject>() {
+//                        @SuppressLint("SetTextI18n")
+//                        @Override
+//                        public void onResponse(JSONObject response) {
+//
+//                            try {
+//                                Log.i("UpdateDate", "Resposnce Generated");
+//                                JSONObject nxtEpisode = response.getJSONObject("next_episode_to_air");
+//                                updatedDate = nxtEpisode.getString("air_date");
+//                                Log.i("UpdateDate", "air Generated " + nxtEpisode.getString("air_date"));
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    }, new Response.ErrorListener() {
+//                        @Override
+//                        public void onErrorResponse(VolleyError error) {
+//
+//                        }
+//                    });
+//                    queue1.add(request1);
+//                    SystemClock.sleep(500);
+//                    ParseQuery<ParseUser> userParseQuery = ParseQuery.getQuery("tShow");
+//                    userParseQuery.whereMatches("showID", id);
+//                    userParseQuery.findInBackground(new FindCallback<ParseUser>() {
+//                        @Override
+//                        public void done(List<ParseUser> objects, ParseException e) {
+//                            if (e == null) {
+//                                ParseObject user = objects.get(0);
+//                                user.put("nextEpDate", updatedDate);
+//                                user.saveInBackground();
+//
+//                            } else {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    });
+//                }
+//                SystemClock.sleep(500);
+//                System.out.println("Date1 is after Date2");
+//            }
+//        }
+//
+//        IDtoUpdate.clear();
+//    }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void getTodaysDate() {
-        sdfo = new SimpleDateFormat("yyyy-MM-dd");
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime now = LocalDateTime.now();
-        String adsd = dtf.format(now);
-
-        try {
-            dateNow = sdfo.format(sdfo.parse(adsd));
-        } catch (java.text.ParseException e) {
-            e.printStackTrace();
-        }
-        System.out.println();
-        Log.i("DateNow", dateNow + "");
-
-
-    }
+//    @RequiresApi(api = Build.VERSION_CODES.O)
+//    public void getTodaysDate() {
+//        sdfo = new SimpleDateFormat("yyyy-MM-dd");
+//
+//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        LocalDateTime now = LocalDateTime.now();
+//        String adsd = dtf.format(now);
+//
+//        try {
+//            dateNow = sdfo.format(sdfo.parse(adsd));
+//        } catch (java.text.ParseException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println();
+//        Log.i("DateNow", dateNow + "");
+//
+//
+//    }
 }
 
 

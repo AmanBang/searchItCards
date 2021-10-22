@@ -142,6 +142,32 @@
                 app:trimExpandedText="@string/read_less"
                 app:trimLines="80"
                 app:trimMode="trimModeLength" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <Button
+                    android:layout_gravity="center"
+                    android:id="@+id/movie_watch_online"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="HD"
+                    android:textAllCaps="false"
+                    />
+                <Button
+                    android:layout_gravity="center"
+                    android:id="@+id/movie_watch_online2"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="FHD"
+                    android:textAllCaps="false"
+                    />
+            </LinearLayout>
+
+
+
             <com.google.android.gms.ads.AdView
                 xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/adMoiveDetails"

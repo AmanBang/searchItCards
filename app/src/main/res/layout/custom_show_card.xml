@@ -18,8 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@color/white"
-
+            android:background="#191A19"
             >
 
             <ImageView
@@ -36,7 +35,7 @@
                 android:layout_width="200dp"
                 android:layout_height="22dp"
                 android:fontFamily="@font/actor"
-                android:textColor="@color/black"
+                android:textColor="#fff"
                 android:gravity="center"
                 android:text="VideoTitle"
                 android:textSize="12dp" />

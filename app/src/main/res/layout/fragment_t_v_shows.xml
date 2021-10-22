@@ -6,41 +6,51 @@
     tools:context=".Favoutites.Fragments.TVShowsFragment"
     android:orientation="vertical"
     >
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black">
-
+<!--<ScrollView-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="@color/black">-->
+   <TextView
+       android:visibility="gone"
+       android:id="@+id/addSomething"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Add Something"
+       android:layout_centerInParent="true"
+       android:textSize="24dp"
+       android:textColor="@color/white"
+       android:fontFamily="@font/actor"
+       />
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
       android:orientation="vertical"
        >
-   <TextView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="Pending"
-       android:textSize="24dp"
-       android:layout_margin="8dp"
-       android:textColor="@color/white"
-       android:fontFamily="@font/roboto"
-       android:textStyle="bold"
-       android:paddingStart="10dp"
-       />
+<!--   <TextView-->
+<!--       android:layout_width="match_parent"-->
+<!--       android:layout_height="wrap_content"-->
+<!--       android:text="Pending"-->
+<!--       android:textSize="24dp"-->
+<!--       android:layout_margin="8dp"-->
+<!--       android:textColor="@color/white"-->
+<!--       android:fontFamily="@font/roboto"-->
+<!--       android:textStyle="bold"-->
+<!--       android:paddingStart="10dp"-->
+<!--       />-->
 
    <androidx.recyclerview.widget.RecyclerView
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="match_parent"
        android:id="@+id/FV_pending_recycleView"
        android:layout_margin="2dp"/>
 
-   <View
-       android:layout_marginTop="16dp"
-       android:layout_marginBottom="16dp"
-       android:layout_width="match_parent"
-       android:layout_height="0.5dp"
-       tools:ignore="NotSibling"
-       android:background="@color/white"/>
+<!--   <View-->
+<!--       android:layout_marginTop="16dp"-->
+<!--       android:layout_marginBottom="16dp"-->
+<!--       android:layout_width="match_parent"-->
+<!--       android:layout_height="0.5dp"-->
+<!--       tools:ignore="NotSibling"-->
+<!--       android:background="@color/white"/>-->
 
 <!--   <TextView-->
 <!--       android:layout_width="match_parent"-->
@@ -66,27 +76,27 @@
 <!--       tools:ignore="NotSibling"-->
 <!--       android:background="@color/white"/>-->
 
-   <TextView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="Watched"
-       android:textSize="24dp"
-       android:layout_margin="8dp"
-       android:textColor="@color/white"
-       android:fontFamily="@font/roboto"
-       android:textStyle="bold"
-       android:paddingStart="10dp"
-       />
+<!--   <TextView-->
+<!--       android:layout_width="match_parent"-->
+<!--       android:layout_height="wrap_content"-->
+<!--       android:text="Watched"-->
+<!--       android:textSize="24dp"-->
+<!--       android:layout_margin="8dp"-->
+<!--       android:textColor="@color/white"-->
+<!--       android:fontFamily="@font/roboto"-->
+<!--       android:textStyle="bold"-->
+<!--       android:paddingStart="10dp"-->
+<!--       />-->
 
-      <androidx.recyclerview.widget.RecyclerView
-          android:id="@+id/FV_watched_recycleView"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_margin="2dp"
-         />
+<!--      <androidx.recyclerview.widget.RecyclerView-->
+<!--          android:id="@+id/FV_watched_recycleView"-->
+<!--          android:layout_width="match_parent"-->
+<!--          android:layout_height="wrap_content"-->
+<!--          android:layout_margin="2dp"-->
+<!--         />-->
 
    </LinearLayout>
 
-</ScrollView>
+<!--</ScrollView>-->
 
 </RelativeLayout>

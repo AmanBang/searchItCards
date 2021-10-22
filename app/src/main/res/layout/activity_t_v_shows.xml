@@ -162,7 +162,8 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/Upcoming_show_recycle"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:background="#212121"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -209,7 +210,7 @@
                             android:id="@+id/todays_show_airing_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F4EFEF" />
+                            android:background="#212121" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -256,7 +257,7 @@
                             android:id="@+id/top_rated_shows_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F4EFEF" />
+                            android:background="#212121"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -305,7 +306,7 @@
                             android:id="@+id/popular_show_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F4EFEF" />
+                            android:background="#212121"/>
                     </RelativeLayout>
 
 

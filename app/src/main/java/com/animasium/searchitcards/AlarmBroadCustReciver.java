@@ -11,6 +11,8 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationManagerCompat;
 
+import java.util.Random;
+
 import static com.parse.Parse.getApplicationContext;
 
 public class AlarmBroadCustReciver extends BroadcastReceiver {
@@ -25,21 +27,11 @@ public class AlarmBroadCustReciver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         notificationManager = NotificationManagerCompat.from(getApplicationContext());
       //  notificationManager = (NotificationManagerCompat) context.getSystemService(Context. NOTIFICATION_SERVICE );
-        int id = intent.getIntExtra(String.valueOf(NOTIFICATION_ID), 0 );
+//        int id = intent.getIntExtra(String.valueOf(NOTIFICATION_ID), 0 );
         Notification notification = intent.getParcelableExtra( NOTIFICATION );
-        Log.i("idRecived",String.valueOf(id));
-//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ) {
-//            int importance = NotificationManager. IMPORTANCE_HIGH;
-//            NotificationChannel notificationChannel = new NotificationChannel( String.valueOf(id)  , "NOTIFICATION_CHANNEL_NAME"  , importance);
-//            assert notificationManager1 != null;
-//            notificationManager1.createNotificationChannel(notificationChannel);
-//        }
-//
-      // String ShowID = intent.getStringExtra(SHOW_ID);
-//        Log.i("GetExtra",ShowID+"");
-//        assert notificationManager1 != null;
-//        notificationManager1.notify(id , notification);
-        notificationManager.notify(id, notification);
+//        Log.i("idRecived",String.valueOf(id));
+        int dummyuniqueInt = new Random().nextInt(5430254);
+//        notificationManager.notify(dummyuniqueInt, notification);
         Log.i("idRecived","Notification Called");
 
 

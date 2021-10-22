@@ -22,7 +22,7 @@ public class App extends Application {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel1 = new NotificationChannel(
                     CHANNEL_1,
-                    "episodeNotification",
+                    "episode_Notification",
                     NotificationManager.IMPORTANCE_HIGH
             );
             channel1.setDescription("This is Channel for Episode Notification");

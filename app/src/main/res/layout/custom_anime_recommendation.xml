@@ -11,11 +11,13 @@
         android:layout_width="150dp"
         android:layout_height="210dp"
         app:cardElevation="80dp"
+        android:background="#191A19"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#191A19">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="190dp"
@@ -30,6 +32,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text=""
+            android:textColor="@color/white"
             android:textSize="14dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

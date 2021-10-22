@@ -9,6 +9,8 @@ public class Episode {
     private String filler;
     private String episodeImage;
     private String episodeDetails;
+    private String ShowID;
+    private String Season;
 
     public String getEpisodeImage() {
         return episodeImage;
@@ -56,5 +58,21 @@ public class Episode {
 
     public void setFiller(String filler) {
         this.filler = filler;
+    }
+
+    public String getShowID() {
+        return ShowID;
+    }
+
+    public void setShowID(String showID) {
+        ShowID = showID;
+    }
+
+    public String getSeason() {
+        return Season;
+    }
+
+    public void setSeason(String season) {
+        Season = season;
     }
 }

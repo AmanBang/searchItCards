@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.animasium.searchitcards.WebView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.animasium.searchitcards.Movie.mAdapter.AdapterRMovies;
@@ -42,6 +44,14 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.dynamiclinks.DynamicLink;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
+import com.google.firebase.dynamiclinks.ShortDynamicLink;
 import com.parse.FindCallback;
 import com.parse.ParseACL;
 import com.parse.ParseException;
@@ -58,12 +68,15 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class DeatailsMovie extends AppCompatActivity {
 
 
     ImageView moviePoster;
-    TextView movieRank;
+    String imdb_id;
     TextView movieTitleEng;
     TextView movieGenres;
     TextView movieStatus;
@@ -82,12 +95,23 @@ public class DeatailsMovie extends AppCompatActivity {
     RecyclerView RMRecycle;
     TrailerAdapter trailerAdapter;
     List<Trailer> trailerList;
-//    List<> trailerList;
-private AdView mAdView;
+
+    Button LWatch;
+    Button HWatch;
+
+    //    List<> trailerList;
+    private AdView mAdView;
 
     String addGenres;
     String addProducer;
-    String id;
+    String id ="";
+    String tmdb_id;
+    String id2 ="";
+    Uri shortLink;
+
+
+
+    String MovieImageURl;
 
     ImageSlider slider;
     List<SlideModel> modelList;
@@ -101,14 +125,13 @@ private AdView mAdView;
     Button cancle;
     Button Add;
     String switchText = "Pending";
-    String posterPath ="";
+    String posterPath = "";
     String name = "";
 
     AdapterRMovies RMadpter;
 
 
-
-    public class MoviesDetails extends Thread{
+    public class MoviesDetails extends Thread {
         public MoviesDetails(String src) {
 
             addGenres = "";
@@ -119,14 +142,15 @@ private AdView mAdView;
                 @Override
                 public void onResponse(JSONObject response) {
 
-Log.i("responcex",response.toString());
+                    Log.i("responcex", response.toString());
                     try {
                         posterPath = response.getString("poster_path");
-                        Picasso.get().load("https://image.tmdb.org/t/p/w500"+posterPath).into(moviePoster);
+                        MovieImageURl = "https://image.tmdb.org/t/p/w500" + posterPath;
+                        Picasso.get().load(MovieImageURl).into(moviePoster);
 //                        animeRank.setText("#"+response.getString("rank"));
 //                        if (!response.getString("title_english").equals("null")) {
                         name = response.getString("title");
-                            movieTitleEng.setText(name);
+                        movieTitleEng.setText(name);
 //                        } else {
 //                            movieTitle.setText(response.getString("original_title"));
 //                        }
@@ -142,17 +166,19 @@ Log.i("responcex",response.toString());
                         movieStatus.setText(response.getString("status"));
                         movieDescription.setText(response.getString("overview"));
                         movieTitle.setText(response.getString("original_title"));
-                  // movieDirector.setText(response.getString("director"));
+                        // movieDirector.setText(response.getString("director"));
                         movieDuration.setText(response.getString("runtime"));
                         movieBudget.setText(response.getString("budget"));
                         movieRevenue.setText(response.getString("revenue"));
                         movieScore.setText(response.getString("vote_average"));
                         moviePopularity.setText(response.getString("popularity"));
                         movieAired.setText(response.getString("release_date"));
+                        imdb_id = response.getString("imdb_id");
+                        tmdb_id = response.getString("id");
 
-                       // animeEpisodes.setText(response.getString("episodes"));
-                      //  eNumb = response.getString("episodes");
-                     //   animeType.setText(response.getString("type"));
+                        // animeEpisodes.setText(response.getString("episodes"));
+                        //  eNumb = response.getString("episodes");
+                        //   animeType.setText(response.getString("type"));
 
 //                        if (response.getString("type").equals("Movie")) {
 //                            clusterLayout.setVisibility(View.GONE);
@@ -269,7 +295,7 @@ Log.i("responcex",response.toString());
         }
     }
 
-    public void trailerFetch(String src){
+    public void trailerFetch(String src) {
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, src, null, new Response.Listener<JSONObject>() {
@@ -279,14 +305,14 @@ Log.i("responcex",response.toString());
 
                 try {
                     JSONArray mJ = response.getJSONArray("results");
-                    for (int g= 0;g<mJ.length();g++){
+                    for (int g = 0; g < mJ.length(); g++) {
                         JSONObject object = mJ.getJSONObject(g);
                         Trailer trailer = new Trailer();
-                        Log.i("trailer",object.getString("key"));
-                    trailer.setKey(object.getString("key"));
-                    trailer.setName(object.getString("name"));
-                    trailer.setType(object.getString("type"));
-                    trailerList.add(trailer);
+                        Log.i("trailer", object.getString("key"));
+                        trailer.setKey(object.getString("key"));
+                        trailer.setName(object.getString("name"));
+                        trailer.setType(object.getString("type"));
+                        trailerList.add(trailer);
                     }
 
 
@@ -295,8 +321,8 @@ Log.i("responcex",response.toString());
                     e.printStackTrace();
                 }
 
-                trailerRecycle.setLayoutManager(new LinearLayoutManager(DeatailsMovie.this,LinearLayoutManager.HORIZONTAL,false));
-                trailerAdapter = new TrailerAdapter(DeatailsMovie.this,trailerList);
+                trailerRecycle.setLayoutManager(new LinearLayoutManager(DeatailsMovie.this, LinearLayoutManager.HORIZONTAL, false));
+                trailerAdapter = new TrailerAdapter(DeatailsMovie.this, trailerList);
                 trailerRecycle.setAdapter(trailerAdapter);
 
             }
@@ -328,7 +354,7 @@ Log.i("responcex",response.toString());
                         if (i < 10) {
                             JSONObject pics = pictures.getJSONObject(i);
                             String s = "";
-                            s ="https://image.tmdb.org/t/p/w500" +pics.getString("file_path");
+                            s = "https://image.tmdb.org/t/p/w500" + pics.getString("file_path");
                             modelList.add(new SlideModel(s));
                         } else {
                             Log.i("not", "to add");
@@ -373,7 +399,7 @@ Log.i("responcex",response.toString());
 
                         RMList.add(anime);
 
-                        Log.i("hjlj",RMList.toString());
+                        Log.i("hjlj", object.getString("id"));
 
                     }
 
@@ -399,21 +425,20 @@ Log.i("responcex",response.toString());
     }
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deatails_movie);
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
-        mAdView = findViewById(R.id.adMoiveDetails);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//            @Override
+//            public void onInitializationComplete(InitializationStatus initializationStatus) {
+//            }
+//        });
+//
+//        mAdView = findViewById(R.id.adMoiveDetails);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
 
         moviePoster = findViewById(R.id.moive_poster);
@@ -430,6 +455,8 @@ Log.i("responcex",response.toString());
         movieScore = findViewById(R.id.movie_score);
         moviePopularity = findViewById(R.id.movie_popularity);
         movieProducer = findViewById(R.id.movie_producers);
+        LWatch = findViewById(R.id.movie_watch_online);
+        HWatch = findViewById(R.id.movie_watch_online2);
 //        movieLisensor = findViewById(R.id.movie_licensors);
 //        movieStudios = findViewById(R.id.movie_studios);
 //        moviePrequel = findViewById(R.id.movie_prequel);
@@ -439,7 +466,7 @@ Log.i("responcex",response.toString());
 //        movieEpisodes = findViewById(R.id.movie_episodes);
         movieAired = findViewById(R.id.movie_aired);
 //        movieType = findViewById(R.id.movie_type);
-       // episodeButton = findViewById(R.id.movie_episodes_button);
+        // episodeButton = findViewById(R.id.movie_episodes_button);
         slider = findViewById(R.id.moive_pictures);
 
         modelList = new ArrayList<>();
@@ -447,40 +474,45 @@ Log.i("responcex",response.toString());
         trailerList = new ArrayList<>();
         trailerRecycle = findViewById(R.id.movie_trailer_recycle);
         RMRecycle = findViewById(R.id.movie_similar_recycle);
+//        ReciveDynamicLinks();
+
+        try {
+
+            Intent intent = getIntent();
+            Intent jio = getIntent();
+
+            id = intent.getStringExtra("pass_id");
+            id2 = jio.getStringExtra("searchToDetails");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
+        if (id == null) {
+            showZid = id2;
+            String videoUrl = "https://api.themoviedb.org/3/movie/" + id2 + "/videos?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
+            String url = "https://api.themoviedb.org/3/movie/" + id2 + "?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
+            MoviesDetails moviesDetails = new MoviesDetails(url);
+            moviesDetails.start();
+            trailerFetch(videoUrl);
+            ImagesSlideShow("https://api.themoviedb.org/3/movie/" + id2 + "/images?api_key=e707c6ad620e69cda284fbbc6af06e43");
+            for (int p = 1; p < 5; p++) {
+                Recommend("https://api.themoviedb.org/3/movie/" + id2 + "/similar?api_key=e707c6ad620e69cda284fbbc6af06e43&page=" + p);
+            }
 
-
-        Intent intent = getIntent();
-        Intent jio = getIntent();
-
-             id = intent.getStringExtra("pass_id");
-            String id2  = jio.getStringExtra("searchToDetails");
-
-if(id == null){
-    showZid = id2;
-    String videoUrl = "https://api.themoviedb.org/3/movie/"+id2+"/videos?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
-    String url = "https://api.themoviedb.org/3/movie/"+id2+"?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
-    MoviesDetails moviesDetails = new MoviesDetails(url);
-    moviesDetails.start();
-    trailerFetch(videoUrl);
-    ImagesSlideShow("https://api.themoviedb.org/3/movie/"+id2+"/images?api_key=e707c6ad620e69cda284fbbc6af06e43");
-    for (int p = 1;p<5;p++){
-        Recommend("https://api.themoviedb.org/3/movie/"+id2+"/similar?api_key=e707c6ad620e69cda284fbbc6af06e43&page="+p);
-    }
-
-}else {
-    showZid = id;
-    String videoUrl = "https://api.themoviedb.org/3/movie/"+id+"/videos?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
-    String url = "https://api.themoviedb.org/3/movie/"+id+"?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
-    MoviesDetails moviesDetails = new MoviesDetails(url);
-    moviesDetails.start();
-    trailerFetch(videoUrl);
-    ImagesSlideShow("https://api.themoviedb.org/3/movie/"+id+"/images?api_key=e707c6ad620e69cda284fbbc6af06e43");
-    for (int p = 1;p<5;p++){
-        Recommend("https://api.themoviedb.org/3/movie/"+id+"/similar?api_key=e707c6ad620e69cda284fbbc6af06e43&page="+p);
-    }
-}
+        } else {
+            showZid = id;
+            String videoUrl = "https://api.themoviedb.org/3/movie/" + id + "/videos?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
+            String url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US";
+            MoviesDetails moviesDetails = new MoviesDetails(url);
+            moviesDetails.start();
+            trailerFetch(videoUrl);
+            ImagesSlideShow("https://api.themoviedb.org/3/movie/" + id + "/images?api_key=e707c6ad620e69cda284fbbc6af06e43");
+            for (int p = 1; p < 5; p++) {
+                Recommend("https://api.themoviedb.org/3/movie/" + id + "/similar?api_key=e707c6ad620e69cda284fbbc6af06e43&page=" + p);
+            }
+        }
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.custom_favourites_dialogbox);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -495,10 +527,8 @@ if(id == null){
         ongoingbtn = dialog.findViewById(R.id.RB_ongoing);
 
 
-
         cancle = dialog.findViewById(R.id.dialog_cancelBtn);
         Add = dialog.findViewById(R.id.dialog_addBtn);
-
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
@@ -545,8 +575,8 @@ if(id == null){
                                 ParseObject tvShowFav = new ParseObject("Movies");
                                 tvShowFav.put("showID", showZid);
                                 tvShowFav.put("type", switchText);
-                                tvShowFav.put("posterPath",posterPath);
-                                tvShowFav.put("showName",name);
+                                tvShowFav.put("posterPath", posterPath);
+                                tvShowFav.put("showName", name);
                                 // tvShowFav.put("posterPath",posterPath);
                                 //tvShowFav.put("");
                                 tvShowFav.setACL(new ParseACL(ParseUser.getCurrentUser()));
@@ -565,8 +595,8 @@ if(id == null){
                                 FancyToast.makeText(v.getContext(), "Already add in your favourite", FancyToast.LENGTH_SHORT, FancyToast.INFO, true).show();
 
                             }
-                        }catch (Exception e1){
-                            Log.i("errrrr",e.getMessage());
+                        } catch (Exception e1) {
+                            Log.i("errrrr", e.getMessage());
                         }
 
                         dialog.dismiss();
@@ -576,24 +606,157 @@ if(id == null){
             }
 
         });
+
+        watchMovie();
+
+        new Thread( new Runnable() { @Override public void run() {
+            // Run whatever background code you want here.
+
+        } } ).start();
+
     }
 
+    private void ReciveDynamicLinks() {
+        FirebaseDynamicLinks.getInstance()
+                .getDynamicLink(getIntent())
+                .addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
+                    @Override
+                    public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
+                        // Get deep link from result (may be null if no link is found)
+                        Uri deepLink = null;
+                        if (pendingDynamicLinkData != null) {
+                            deepLink = pendingDynamicLinkData.getLink();
+                        }
+                        if (deepLink != null){
+                            id2 = deepLink.getQueryParameter("passID");
+                            Log.i("dynamic",id2);
+                        }
+                    }
+                })
+                .addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "getDynamicLink:onFailure", e);
+                    }
+                });
 
+    }
+
+    private void createDynamicLinks() {
+
+        Toast.makeText(this, "Link Copied", Toast.LENGTH_SHORT).show();
+
+        DynamicLink dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+                .setLink(Uri.parse("https://www.example.com?passID="+tmdb_id))
+                .setDomainUriPrefix("https://animasium.page.link")
+                // Open links with this app on Android
+                .setAndroidParameters(new DynamicLink.AndroidParameters.Builder().build())
+                // Open links with com.example.ios on iOS
+//                .setIosParameters(new DynamicLink.IosParameters.Builder("com.example.ios").build())
+                .buildDynamicLink();
+
+        Uri dynamicLinkUri = dynamicLink.getUri();
+        Log.i("DynamicLInk","Short :"+dynamicLinkUri);
+
+//        Task<ShortDynamicLink> dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+//                .setLink(Uri.parse("https://www.example.com?passID="+tmdb_id))
+//                .setDomainUriPrefix("https://searchitcards.page.link")
+////                .setAndroidParameters(
+////                        new DynamicLink.AndroidParameters.Builder("com.animasium.searchitcards.Movie.DeatailsMovie")
+////                                .setMinimumVersion(125)
+////                                .build())
+////                // Open links with this app on Android
+////                .setSocialMetaTagParameters(
+////                        new DynamicLink.SocialMetaTagParameters.Builder()
+////                                .setTitle(name)
+////                                .setDescription("Hey! Check out this Interesting Movie")
+////                                .setImageUrl(Uri.parse(MovieImageURl))
+////                                .build())
+//                .setAndroidParameters(new DynamicLink.AndroidParameters.Builder().build())
+//                // Open links with com.example.ios on iOS
+//                .setIosParameters(new DynamicLink.IosParameters.Builder("com.example.ios").build())
+//                .buildShortDynamicLink()
+//                .addOnCompleteListener(this, new OnCompleteListener<ShortDynamicLink>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<ShortDynamicLink> task) {
+//                        if (task.isSuccessful()) {
+//                            // Short link created
+//                            shortLink = Objects.requireNonNull(task.getResult()).getShortLink();
+//                            Uri flowchartLink = task.getResult().getPreviewLink();
+//
+//                            Log.i("DynamicLInk","Short :"+shortLink);
+//                            Log.i("DynamicLInk","flowchartLink :"+flowchartLink);
+//                        } else {
+//                            Toast.makeText(DeatailsMovie.this, "Something ERR :\n", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+////        Uri dynamicLinkUri = Objects.requireNonNull(dynamicLink.getResult()).getShortLink();
+////        Log.i("DynamicLInk","dynamicLinkUri :"+dynamicLinkUri);
+
+
+
+
+    }
+
+    private void watchMovie() {
+
+        LWatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DeatailsMovie.this, WebView.class);
+                i.putExtra("watchID", "https://database.gdriveplayer.io/player.php?tmdb=" + tmdb_id);
+                startActivity(i);
+            }
+        });
+        HWatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DeatailsMovie.this, WebView.class);
+//                i.putExtra("watchID","https://gomo.to/movie/"+imdb_id);
+//                i.putExtra("watchID","https://api.123movie.cc/jadeed.php?imdb="+imdb_id+"&server_name=vcu");
+                i.putExtra("watchID", "https://www.2embed.ru/embed/tmdb/movie?id=" + tmdb_id);
+
+
+                startActivity(i);
+            }
+        });
+
+    }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.fav_menu,menu);
+        getMenuInflater().inflate(R.menu.fav_menu, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.fav_add_barbtn){
-            Toast.makeText(this,"fav pressed",Toast.LENGTH_SHORT).show();
+        if (item.getItemId() == R.id.fav_add_barbtn) {
+            Toast.makeText(this, "fav pressed", Toast.LENGTH_SHORT).show();
             dialog.show();
+        }else if (item.getItemId() == R.id.share_btn){
+
+            createDynamicLinks();
+//            new Timer().schedule(new TimerTask() {
+//                @Override
+//                public void run() {
+//                    // this code will be executed after 2 seconds
+//                    shareIntent();
+//                }
+//            }, 2000);
+
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void shareIntent() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, shortLink);
+        startActivity(intent);
     }
 }

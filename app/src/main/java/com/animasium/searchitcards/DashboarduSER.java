@@ -68,6 +68,7 @@ public class DashboarduSER extends AppCompatActivity implements AdapterView.OnIt
     ParseQuery<ParseUser> parseQuery;
     int pt;
     int ear;
+    Button streamBtn;
 //    public static Bitmap getBitmapFromURL(String src) {
 //        try {
 //            URL url = new URL(src);
@@ -189,7 +190,12 @@ public class DashboarduSER extends AppCompatActivity implements AdapterView.OnIt
             }
         });
 
+        streamBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
 //======================================================ads=============================================================================================//
         mAdView = findViewById(R.id.adView);
 

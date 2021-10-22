@@ -60,7 +60,7 @@ public class AdapterRMovies  extends RecyclerView.Adapter<AdapterRMovies.RMViewH
                 public void onClick(View v) {
                     Intent i = new Intent(v.getContext(), DeatailsMovie.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.putExtra("movieId", String.valueOf(RMList.get(getAdapterPosition()).getId()));
+                    i.putExtra("pass_id", String.valueOf(RMList.get(getAdapterPosition()).getId()));
                     v.getContext().startActivity(i);
 
                 }

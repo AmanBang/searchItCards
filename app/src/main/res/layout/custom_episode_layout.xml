@@ -80,7 +80,7 @@
 
                 <TextView
                     android:id="@+id/episode_title"
-                    android:layout_width="275dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:fontFamily="@font/roboto"
@@ -119,21 +119,42 @@
 
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingLeft="8dp">
-            <CheckBox
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_gravity="end"-->
+<!--                android:gravity="end"-->
+<!--               >-->
 
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text=""
-                android:checked="true"
-                android:scaleX="1.5"
-                android:scaleY="1.5"
-                />
-            </LinearLayout>
+<!--                <ImageView-->
+<!--                    android:id="@+id/play_it"-->
+<!--                    android:layout_width="60dp"-->
+<!--                    android:layout_height="60dp"-->
+<!--                    android:src="@drawable/ic_play" />-->
+<!--            </LinearLayout>-->
+
         </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <Button
+                    android:id="@+id/play_HD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="HD"/>
+                <Button
+                    android:id="@+id/play_FHD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="FHD"/>
+
+            </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"

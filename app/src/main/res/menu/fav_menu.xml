@@ -8,4 +8,9 @@
         android:title="Favourite"
         app:showAsAction="always"
         />
+    <item
+        android:id="@+id/share_btn"
+        android:icon="@drawable/ic_baseline_share_24"
+        android:title="Share"
+        app:showAsAction="always"/>
 </menu>

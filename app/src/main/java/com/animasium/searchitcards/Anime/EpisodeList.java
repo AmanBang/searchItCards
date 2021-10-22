@@ -71,6 +71,7 @@ LinearLayout seasonsLayout;
     Handler handler;
     String seasonNumber;
     String eUrl2;
+    private String sea ="1";
 
     public void getList(String Urly){
 
@@ -170,7 +171,8 @@ LinearLayout seasonsLayout;
                         anime.setEpisodeImage(object.getString("still_path"));
                         anime.setEpisodeDetails(object.getString("overview"));
                         anime.setEpisode_id(object.getString("episode_number"));
-
+                        anime.setShowID(eUrl2);
+                        anime.setSeason(sea);
                         episodeList.add(anime);
 
 
@@ -293,6 +295,7 @@ LinearLayout seasonsLayout;
             if ((position+1) != 1){
                 String m = "https://api.themoviedb.org/3/tv/"+eUrl2+"/season/"+(position+1)+"?api_key=e707c6ad620e69cda284fbbc6af06e43";
 //                Log.i("hell",(position+1)  + "");
+                sea = position+1+"";
                 getList2(m);
             }
 

@@ -283,23 +283,23 @@ public void pMethod(String top){
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_movies_activity);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        InterstitialAd.load(this, "ca-app-pub-6544805297981669/7466458023", adRequest, new InterstitialAdLoadCallback() {
-            @Override
-            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                // The mInterstitialAd reference will be null until
-                // an ad is loaded.
-                mInterstitialAd = interstitialAd;
-                Log.i("TAG", "onAdLoaded");
-            }
-
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                // Handle the error
-                Log.i("TAG", loadAdError.getMessage());
-                mInterstitialAd = null;
-            }
-        });
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        InterstitialAd.load(this, "ca-app-pub-6544805297981669/7466458023", adRequest, new InterstitialAdLoadCallback() {
+//            @Override
+//            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+//                // The mInterstitialAd reference will be null until
+//                // an ad is loaded.
+//                mInterstitialAd = interstitialAd;
+//                Log.i("TAG", "onAdLoaded");
+//            }
+//
+//            @Override
+//            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+//                // Handle the error
+//                Log.i("TAG", loadAdError.getMessage());
+//                mInterstitialAd = null;
+//            }
+//        });
 
         popularMovieRecycle = findViewById(R.id.popular_movie_recycle);
         nowPlayingRecycle = findViewById(R.id.now_playing_recycle);
@@ -319,10 +319,10 @@ public void pMethod(String top){
          modifiedDate= new SimpleDateFormat("yyyy-MM-dd").format(date);
 
         for (int p = 1;p<2;p++){
-            pMethod("https://api.themoviedb.org/3/movie/popular?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=en-US&page="+p);
-            tMethod("https://api.themoviedb.org/3/movie/top_rated?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=en-US&page="+p);
-            uMethod("https://api.themoviedb.org/3/discover/movie?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=us-US&region=US&release_date.gte="+modifiedDate+"&with_release_type=2|3&page="+p);
-            nMethod("https://api.themoviedb.org/3/movie/now_playing?api_key=e707c6ad620e69cda284fbbc6af06e43&region=IN&language=en-US&page="+p);
+            pMethod("https://api.themoviedb.org/3/movie/popular?api_key=e707c6ad620e69cda284fbbc6af06e43&region=US&language=en-US&page="+p);
+            tMethod("https://api.themoviedb.org/3/movie/top_rated?api_key=e707c6ad620e69cda284fbbc6af06e43&region=US&language=en-US&page="+p);
+            uMethod("https://api.themoviedb.org/3/discover/movie?api_key=e707c6ad620e69cda284fbbc6af06e43&region=US&language=us-US&region=US&release_date.gte="+modifiedDate+"&with_release_type=2|3&page="+p);
+            nMethod("https://api.themoviedb.org/3/movie/now_playing?api_key=e707c6ad620e69cda284fbbc6af06e43&region=US&language=en-US&page="+p);
 
         }
 

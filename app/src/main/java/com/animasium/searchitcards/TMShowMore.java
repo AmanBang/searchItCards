@@ -36,7 +36,7 @@ public class TMShowMore extends AppCompatActivity {
     TMSMAdpter adapter;
 
     Boolean isScrolling = false;
-    int i = 1, vissibleItem, totalItem, scrolledItem;
+    int i = 2, vissibleItem, totalItem, scrolledItem;
     GridLayoutManager manager;
     String lastPage;
     String Url;

@@ -54,15 +54,15 @@ public class Favourites extends AppCompatActivity {
         setContentView(R.layout.favourite_activity);
 //
         setTitle("Favourite");
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
+//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//            @Override
+//            public void onInitializationComplete(InitializationStatus initializationStatus) {
+//            }
+//        });
 
-        mAdView = findViewById(R.id.Favourites_ads);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        mAdView = findViewById(R.id.Favourites_ads);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
 //        webView = findViewById(R.id.webview);
 //        webView.setWebViewClient(new WebViewClient());

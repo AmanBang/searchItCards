@@ -84,13 +84,14 @@ public class MoviesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_movies, container, false);
         pendingRecycleView = view.findViewById(R.id.MF_pending_recycleView);
-        watchedRecycleView = view.findViewById(R.id.MF_watched_recycleView);
+//        watchedRecycleView = view.findViewById(R.id.MF_watched_recycleView);
         showRecivedList = new ArrayList<>();
         showWatched = new ArrayList<>();
 
+
         ParseQuery<ParseObject> parseQuery = new ParseQuery<ParseObject>("Movies");
 
-        parseQuery.whereMatches("type","Pending");
+//        parseQuery.whereMatches("type","Pending");
         parseQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -103,34 +104,39 @@ public class MoviesFragment extends Fragment {
                     showReciver.setTitle(parseObject.get("showName")+"");
 
                     showRecivedList.add(showReciver);
-                    pendingRecycleView.setLayoutManager(new GridLayoutManager(getContext(),3));
+                    try {
+
+                        pendingRecycleView.setLayoutManager(new GridLayoutManager(getContext(),3));
 //                    pendingRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
                     fm_adapter = new FM_adapter(getContext(), showRecivedList);
                     pendingRecycleView.setAdapter(fm_adapter);
+                }catch (Exception z){
+                    z.printStackTrace();
+                }
                 }
             }
         });
 
-        parseQuery.whereMatches("type","Watched");
-        parseQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                for (ParseObject parseObject : objects){
-                    Log.i("recivedObjects", parseObject.get("showID") +"");
-
-                    RecommendedMovies showReciver = new RecommendedMovies();
-                    showReciver.setId(parseObject.get("showID")+"");
-                    showReciver.setPoster_path(parseObject.get("posterPath")+"");
-                    showReciver.setTitle(parseObject.get("showName")+"");
-
-                    showWatched.add(showReciver);
-                    watchedRecycleView.setLayoutManager(new GridLayoutManager(getContext(),3));
-//                    pendingRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                    fm_adapter = new FM_adapter(getContext(), showWatched);
-                    watchedRecycleView.setAdapter(fm_adapter);
-                }
-            }
-        });
+//        parseQuery.whereMatches("type","Watched");
+//        parseQuery.findInBackground(new FindCallback<ParseObject>() {
+//            @Override
+//            public void done(List<ParseObject> objects, ParseException e) {
+//                for (ParseObject parseObject : objects){
+//                    Log.i("recivedObjects", parseObject.get("showID") +"");
+//
+//                    RecommendedMovies showReciver = new RecommendedMovies();
+//                    showReciver.setId(parseObject.get("showID")+"");
+//                    showReciver.setPoster_path(parseObject.get("posterPath")+"");
+//                    showReciver.setTitle(parseObject.get("showName")+"");
+//
+//                    showWatched.add(showReciver);
+//                    watchedRecycleView.setLayoutManager(new GridLayoutManager(getContext(),3));
+////                    pendingRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+//                    fm_adapter = new FM_adapter(getContext(), showWatched);
+//                    watchedRecycleView.setAdapter(fm_adapter);
+//                }
+//            }
+//        });
 
         return view;
     }

@@ -140,7 +140,8 @@
                             android:gravity="center"
                             android:paddingStart="4dp"
                             android:paddingEnd="4dp"
-
+                            android:onClick="MshowMore"
+                            tools:ignore="OnClick"
                             />
 
                     </RelativeLayout>
@@ -157,7 +158,8 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/upcoming_movie_recycle"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:background="#212121"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -203,7 +205,7 @@
                             android:id="@+id/top_rated_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F4EFEF" />
+                            android:background="#212121" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -250,7 +252,7 @@
                             android:id="@+id/popular_movie_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F4EFEF" />
+                            android:background="#212121" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -298,7 +300,7 @@
                             android:id="@+id/now_playing_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#F4EFEF" />
+                            android:background="#212121" />
                     </RelativeLayout>
 
 <!--                    <RelativeLayout-->
