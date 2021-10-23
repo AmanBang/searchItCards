@@ -176,111 +176,18 @@ public class DeatailsMovie extends AppCompatActivity {
                         imdb_id = response.getString("imdb_id");
                         tmdb_id = response.getString("id");
 
-                        // animeEpisodes.setText(response.getString("episodes"));
-                        //  eNumb = response.getString("episodes");
-                        //   animeType.setText(response.getString("type"));
-
-//                        if (response.getString("type").equals("Movie")) {
-//                            clusterLayout.setVisibility(View.GONE);
-//                            episodeButton.setVisibility(View.GONE);
-//                        }
-//
-//                        JSONObject aired = response.getJSONObject("aired");
-//                        animeAired.setText(aired.getString("string"));
-//
                         JSONArray producer = response.getJSONArray("production_companies");
                         for (int i = 0; i < producer.length(); i++) {
                             JSONObject producerList = producer.getJSONObject(i);
                             addProducer += producerList.getString("name") + ", ";
                         }
                         movieProducer.setText(addProducer);
-//
-//                        JSONArray lisensor = response.getJSONArray("licensors");
-//                        for (int i = 0; i < lisensor.length(); i++) {
-//                            JSONObject lisensorList = lisensor.getJSONObject(i);
-//                            addLisensor += lisensorList.getString("name") + ", ";
-//                        }
-//                        animeLisensor.setText(addLisensor);
-//                        JSONArray studios = response.getJSONArray("studios");
-//                        for (int i = 0; i < studios.length(); i++) {
-//                            JSONObject studiosList = studios.getJSONObject(i);
-//                            addStudios += studiosList.getString("name") + ", ";
-//                        }
-//                        animeStudios.setText(addStudios);
-//
-//                        //Json object for culster
-//                        cluster = response.getJSONObject("related");
-//
-//                        JSONArray prequel = cluster.getJSONArray("Prequel");
-//                        for (int i = 0; i < prequel.length(); i++) {
-//                            JSONObject prequelList = prequel.getJSONObject(i);
-//                            addPrequel = prequelList.getString("name");
-//                            prequelId = prequelList.getString("mal_id");
-//                        }
-//                        animePrequel.setText(addPrequel);
-//
-//                        JSONArray sequel = cluster.getJSONArray("Sequel");
-//                        for (int i = 0; i < sequel.length(); i++) {
-//                            JSONObject sequelList = sequel.getJSONObject(i);
-//                            addSequel = sequelList.getString("name");
-//                            sequelId = sequelList.getString("mal_id");
-//                        }
-//                        animeSequel.setText(addSequel);
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-//                    try {
-//
-//
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                        prequelLaout.setVisibility(View.GONE);
-//                    }
-//                    try {
-//
-//
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                        sequelLaout.setVisibility(View.GONE);
-//                    }
-//                    try {
-//                        JSONArray side_story = cluster.getJSONArray("Side story");
-//                        for (int i = 0; i < side_story.length(); i++) {
-//                            JSONObject side_storylList = side_story.getJSONObject(i);
-////                            addSide_story = side_storylList.getString("name") + ", ";
-//
-//                            SStory sStory = new SStory();
-//
-//                            sStory.setMal_id(side_storylList.getString("mal_id"));
-//                            sStory.setName(side_storylList.getString("name"));
-//
-//                            storyList.add(sStory);
-//
-//                        }
-////                        animeSideStory.setText(addSide_story);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                        sideStoryLaout.setVisibility(View.GONE);
-//                    }
-
-//                    SSRecycle.setLayoutManager(new LinearLayoutManager(AnimeDeatails.this, LinearLayoutManager.HORIZONTAL, false));
-//                    SAdapter = new SideStoryAdapter(AnimeDeatails.this, storyList);
-//                    SSRecycle.setAdapter(SAdapter);
-//                    try {
-//
-//                        JSONArray summary = cluster.getJSONArray("Summary");
-//                        for (int i = 0; i < summary.length(); i++) {
-//                            JSONObject summaryList = summary.getJSONObject(i);
-//                            addSummary = summaryList.getString("name") + ", ";
-//                        }
-//                        animeSummery.setText(addSummary);
-//                    } catch (Exception e) {
-//
-//                        e.printStackTrace();
-//                        summeryLaout.setVisibility(View.GONE);
-//                    }
 
                 }
             }, new Response.ErrorListener() {
@@ -474,7 +381,7 @@ public class DeatailsMovie extends AppCompatActivity {
         trailerList = new ArrayList<>();
         trailerRecycle = findViewById(R.id.movie_trailer_recycle);
         RMRecycle = findViewById(R.id.movie_similar_recycle);
-//        ReciveDynamicLinks();
+        ReciveDynamicLinks();
 
         try {
 
@@ -609,10 +516,10 @@ public class DeatailsMovie extends AppCompatActivity {
 
         watchMovie();
 
-        new Thread( new Runnable() { @Override public void run() {
-            // Run whatever background code you want here.
-
-        } } ).start();
+//        new Thread( new Runnable() { @Override public void run() {
+//            // Run whatever background code you want here.
+//
+//        } } ).start();
 
     }
 
@@ -741,6 +648,7 @@ public class DeatailsMovie extends AppCompatActivity {
         }else if (item.getItemId() == R.id.share_btn){
 
             createDynamicLinks();
+            Toast.makeText(this, "Work in Progress :)", Toast.LENGTH_SHORT).show();
 //            new Timer().schedule(new TimerTask() {
 //                @Override
 //                public void run() {

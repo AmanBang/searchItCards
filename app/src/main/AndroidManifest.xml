@@ -21,12 +21,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SearchItCards">
-        <activity android:name=".WebView"
+        <activity
+            android:name=".WebView"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             tools:ignore="Instantiatable"
-            android:screenOrientation="landscape"
-            ></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".TMShowMore"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -95,7 +95,9 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
             tools:ignore="Instantiatable">
-            <intent-filter>
+            <intent-filter
+                android:autoVerify="true"
+                tools:targetApi="25">
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
@@ -105,6 +107,9 @@
                 <data
                     android:host="example.com"
                     android:scheme="http"/>
+                <data
+                    android:host="animasium.page.link"
+                    android:scheme="https" />
             </intent-filter>
 
         </activity>
