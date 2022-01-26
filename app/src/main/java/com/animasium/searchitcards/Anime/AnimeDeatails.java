@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,19 +33,22 @@ import com.animasium.searchitcards.YoutubePlayer.YoutubeVideoAdapter;
 import com.animasium.searchitcards.Anime.AdapterCLass.SStory;
 import com.animasium.searchitcards.R;
 import com.animasium.searchitcards.RecommendationAdapter;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.shashank.sony.fancytoastlib.FancyToast;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.mustafagercek.materialloadingbutton.LoadingButton;
 
 public class AnimeDeatails extends AppCompatActivity {
 
@@ -95,7 +101,7 @@ public class AnimeDeatails extends AppCompatActivity {
 
     Button animePrequel;
     Button animeSequel;
-    Button episodeButton;
+    LoadingButton episodeButton;
 //    Button animeSideStory;
 //    Button animeSummery;
 
@@ -142,11 +148,12 @@ public class AnimeDeatails extends AppCompatActivity {
      String passId ="";
      String eNumb;
      Boolean reequestCashed;
-
+    String Jname;
 //    YouTubePlayerView youTubePlayerView;
 //    YouTubePlayer.OnInitializedListener onInitializedListener;
 //    private YouTubePlayer youTubePlayer;
-
+String links;
+String links1;
 
     public class DetailsAnime extends Thread {
 
@@ -171,11 +178,14 @@ public class AnimeDeatails extends AppCompatActivity {
 
                     try {
                         Picasso.get().load(response.getString("image_url")).into(animePoster);
+                       Jname = response.getString("title");
+                        getAnimeDetails(Jname);
 //                        animeRank.setText("#"+response.getString("rank"));
                         if (!response.getString("title_english").equals("null")) {
                             animeTitleEng.setText(response.getString("title_english"));
                         } else {
-                            animeTitleEng.setText(response.getString("title"));
+
+                            animeTitleEng.setText(Jname);
                         }
 
                         JSONArray genres = response.getJSONArray("genres");
@@ -250,21 +260,14 @@ public class AnimeDeatails extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-                    try {
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        prequelLaout.setVisibility(View.GONE);
-                    }
-                    try {
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        sequelLaout.setVisibility(View.GONE);
-                    }
+                    new SearchingEpisodes().execute();
+//                    try {
+////                        AnimeScraper scraper = new AnimeScraper();
+////                        String[] detailLink = scraper.animeScraper(Jname);
+////                        Log.i("detailLink0", detailLink+"");
+//                    }catch (NullPointerException e){
+//                        e.printStackTrace();
+//                    }
                     try {
                         JSONArray side_story = cluster.getJSONArray("Side story");
                         for (int i = 0; i < side_story.length(); i++) {
@@ -310,6 +313,7 @@ public class AnimeDeatails extends AppCompatActivity {
                 }
             });
             queue.add(request);
+
             if( Status_check =="Not yet aired" ) {
             recommendation_section.setVisibility(View.GONE);
             }
@@ -318,6 +322,17 @@ public class AnimeDeatails extends AppCompatActivity {
 
     }
 
+    private void getAnimeDetails(String jname) {
+
+        try{
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
 
     public void ImagesSlideShow(String pic) {
@@ -330,7 +345,7 @@ public class AnimeDeatails extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 Log.i("resasda", response.toString());
                 try {
-                    JSONArray pictures = response.getJSONArray("pictures");
+                    JSONArray pictures = response.getJSONArray("data");
 
 
                     for (int i = 0; i < pictures.length(); i++) {
@@ -338,7 +353,8 @@ public class AnimeDeatails extends AppCompatActivity {
                         if (i < 8) {
                             JSONObject pics = pictures.getJSONObject(i);
                             String s = "";
-                            s = pics.getString("large");
+                            JSONObject jpg = pics.getJSONObject("jpg");
+                            s = jpg.getString("image_url");
                             modelList.add(new SlideModel(s));
                         } else {
                             Log.i("not", "to add");
@@ -419,13 +435,17 @@ public class AnimeDeatails extends AppCompatActivity {
             public void onResponse(JSONObject response) {
 
                 try {
-                    JSONArray jsonArray = response.getJSONArray("recommendations");
+                    JSONArray jsonArray = response.getJSONArray("data");
+                    Log.d("recommendetion", "onResponse: "+response);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
                         RecommendedAnime anime = new RecommendedAnime();
-                        anime.setMal_id(object.getString("mal_id"));
-                        anime.setImage_url(object.getString("image_url"));
-                        anime.setTitle(object.getString("title"));
+                        JSONObject entery = object.getJSONObject("entry");
+                        anime.setTitle(entery.getString("title"));
+                        anime.setMal_id(entery.getString("mal_id"));
+                        JSONObject img = entery.getJSONObject("images");
+                        JSONObject jpg = img.getJSONObject("jpg");
+                        anime.setImage_url(jpg.getString("image_url"));
 
                         Ranime.add(anime);
 
@@ -435,10 +455,6 @@ public class AnimeDeatails extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-//                topAnimeRecycle.setLayoutManager(new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false));
-//                topAnime = new TopAnime(MainActivity.this,animeResult);
-//                topAnimeRecycle.setAdapter(topAnime);
                 animeRecommendationRecycle.setLayoutManager(new LinearLayoutManager(AnimeDeatails.this, LinearLayoutManager.HORIZONTAL, false));
                 Radapter = new RecommendationAdapter(AnimeDeatails.this, Ranime);
                 animeRecommendationRecycle.setAdapter(Radapter);
@@ -508,15 +524,15 @@ public class AnimeDeatails extends AppCompatActivity {
 
         slider = findViewById(R.id.anime_pictures);
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
-        mAdView = findViewById(R.id.details_ads);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//            @Override
+//            public void onInitializationComplete(InitializationStatus initializationStatus) {
+//            }
+//        });
+//
+//        mAdView = findViewById(R.id.details_ads);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
         //-----------------------------------------------------------------------------------------------------------------------------------------------------
 //        textView = findViewById(R.id.title_Eng);
@@ -542,15 +558,16 @@ public class AnimeDeatails extends AppCompatActivity {
 //        textView.setText(searchId);
         if (searchIdv == null) {
             Url = "https://api.jikan.moe/v3/anime/" + searchId;
-            urlp = "https://api.jikan.moe/v3/anime/" + searchId + "/pictures";
+            urlp = "https://api.jikan.moe/v4/anime/"+searchId+"/pictures";
             Urlv = "https://api.jikan.moe/v3/anime/" + searchId + "/videos";
-            Urlr = "https://api.jikan.moe/v3/anime/" + searchId + "/recommendations";
+//            Urlr = "https://api.jikan.moe/v3/anime/" + searchId + "/recommendations";
+            Urlr = "https://api.jikan.moe/v4/anime/" + searchId + "/recommendations";
             passId = "https://api.jikan.moe/v3/anime/" + searchId;
         } else {
             Url = "https://api.jikan.moe/v3/anime/" + searchIdv;
-            urlp = "https://api.jikan.moe/v3/anime/" + searchIdv + "/pictures";
+            urlp = "https://api.jikan.moe/v4/anime/"+searchIdv+"/pictures";
             Urlv = "https://api.jikan.moe/v3/anime/" + searchIdv + "/videos";
-            Urlr = "https://api.jikan.moe/v3/anime/" + searchIdv + "/recommendations";
+            Urlr = "https://api.jikan.moe/v4/anime/" + searchIdv + "/recommendations";
             passId = "https://api.jikan.moe/v3/anime/" + searchIdv;
         }
         Handler handler = new Handler();
@@ -559,25 +576,21 @@ public class AnimeDeatails extends AppCompatActivity {
         detailsAnime.start();
 
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ImagesSlideShow(urlp);
-            }
-        },100);
+
+        ImagesSlideShow(urlp);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 youtube(Urlv);
             }
-        },500);
+        },50);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Recommend(Urlr);
             }
-        },300);
+        },50);
 
 
 
@@ -610,9 +623,9 @@ public class AnimeDeatails extends AppCompatActivity {
             public void onClick(View v) {
 
                 Url = "https://api.jikan.moe/v3/anime/" + prequelId;
-                urlp = "https://api.jikan.moe/v3/anime/" + prequelId + "/pictures";
+                urlp = "https://api.jikan.moe/v4/anime/"+prequelId+"/pictures";
                 Urlv = "https://api.jikan.moe/v3/anime/" + prequelId + "/videos";
-                Urlr = "https://api.jikan.moe/v3/anime/" + prequelId + "/recommendations";
+                Urlr = "https://api.jikan.moe/v4/anime/" + prequelId + "/recommendations";
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -651,9 +664,9 @@ public class AnimeDeatails extends AppCompatActivity {
             public void onClick(View v) {
 
                 Url = "https://api.jikan.moe/v3/anime/" + sequelId;
-                urlp = "https://api.jikan.moe/v3/anime/" + sequelId + "/pictures";
+                urlp = "https://api.jikan.moe/v4/anime/"+sequelId+"/pictures";
                 Urlv = "https://api.jikan.moe/v3/anime/" + sequelId + "/videos";
-                Urlr = "https://api.jikan.moe/v3/anime/" + prequelId + "/recommendations";
+                Urlr = "https://api.jikan.moe/v4/anime/" + prequelId + "/recommendations";
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -687,18 +700,76 @@ public class AnimeDeatails extends AppCompatActivity {
 
         });
 
-        episodeButton.setOnClickListener(new View.OnClickListener() {
+        episodeButton.setButtonOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent op = new Intent(AnimeDeatails.this, EpisodeList.class);
                 op.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 op.putExtra("episodeList_1", passId);
+                op.putExtra("episodeListZ", links);
+                op.putExtra("episodeListZ1", links1);
                // op.putExtra("episodes_number",eNumb);
                 AnimeDeatails.this.startActivity(op);
             }
         });
 
     }
+    private class SearchingEpisodes extends AsyncTask<Void, Void, Void> {
 
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            episodeButton.onStartLoading();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                Document document = Jsoup.connect("https://www1.gogoanime.pe//search.html?keyword=" + Jname).get();
+//
+                Elements mElementAnimeName = document.select("p[class=name]").select("a");
+//                Elements mElementAnimeNames = document.getElementsByClass("name");
+//                Log.i("detailLink0",document+"");
+//                Log.i("detailLink0",mElementAnimeName+"");
+
+                for (Element element : mElementAnimeName){
+
+                    if (Jname.equals(element.text())){
+                        links = "https://www1.gogoanime.pe"+element.attr("href");
+                        Log.i("detailLink0",element.text());
+                        Log.i("detailLink0",links);
+                    }
+                    String l = Jname + " (Dub)";
+                    Log.i("detailLink0",l);
+                    if (l.equals(element.text())){
+                        links1 ="https://www1.gogoanime.pe"+ element.attr("href");
+                        Log.i("detailLink0: else",element.text());
+                        Log.i("detailLink0",links1);
+                    }
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+
+            episodeButton.onStopLoading();
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("UI thread", "I am the UI thread");
+                    FancyToast.makeText(getApplicationContext(), "Links Found", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
+
+                }
+            });
+        }
+    }
 
 }

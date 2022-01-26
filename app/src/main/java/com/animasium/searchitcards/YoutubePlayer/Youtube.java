@@ -15,16 +15,17 @@ public class Youtube extends YouTubeBaseActivity {
     YouTubePlayer.OnInitializedListener onInitializedListener;
     YouTubePlayerView youTubePlayerView;
     private YouTubePlayer youTubePlayer;
-    String pass ="";
+    String pass = "";
     String url;
 
 
-    public void youtubeID(String urls){
+    public void youtubeID(String urls) {
 
-        for (int l= 30;l<=40;l++){
+        for (int l = 30; l <= 40; l++) {
             char c = urls.charAt(l);
-            pass = pass + c;}
-        Log.i("pass",pass);
+            pass = pass + c;
+        }
+        Log.i("pass", pass);
     }
 
     @Override
@@ -33,12 +34,12 @@ public class Youtube extends YouTubeBaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_youtube);
 
-   youTubePlayerView = findViewById(R.id.youtubeActivity);
+        youTubePlayerView = findViewById(R.id.youtubeActivity);
 
         Intent kali = getIntent();
-            url = kali.getStringExtra("youtube_url");
-            Log.i("pass",kali.getStringExtra("youtube_url"));
-            youtubeID(url);
+        url = kali.getStringExtra("youtube_url");
+        Log.i("pass", kali.getStringExtra("youtube_url"));
+        youtubeID(url);
 
 //
         onInitializedListener = new YouTubePlayer.OnInitializedListener() {
@@ -57,7 +58,7 @@ public class Youtube extends YouTubeBaseActivity {
             }
         };
 
-        youTubePlayerView.initialize("AIzaSyCXIXfoD0Vm50mL6f-Dsdax5-IhRGXIOds",onInitializedListener);
+        youTubePlayerView.initialize("AIzaSyCXIXfoD0Vm50mL6f-Dsdax5-IhRGXIOds", onInitializedListener);
     }
 
 //    @Override

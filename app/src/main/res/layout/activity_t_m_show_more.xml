@@ -15,7 +15,7 @@
         android:background="@color/black"
         />
 
-    <ProgressBar
+    <com.fevziomurtekin.customprogress.Dialog
         android:id="@+id/TM_loadMoreProgressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"

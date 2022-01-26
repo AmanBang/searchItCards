@@ -4,4 +4,8 @@
     <string name="back4app_app_id">l7jgb8cgN02gNk5CaBskh2B82y65NXkbG5DiOg4o</string>
     <string name="back4app_client_key">5AMJR0ZlsrRXBUE37JL7r1Lfkm3t4qy75QzfhUpI</string>
     <string name="roll" />
+    <string name="MyName">Made By @A_Bang</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="track_selection_title">Video Quality</string>
 </resources>

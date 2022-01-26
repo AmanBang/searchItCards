@@ -21,12 +21,10 @@ public class TabAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return new TVShowsFragment();
-
             case 1:
                 return new MoviesFragment();
             case 2:
                 return new AnimeFFragment();
-
             default:
                 return null;
         }
@@ -36,7 +34,7 @@ public class TabAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @Nullable

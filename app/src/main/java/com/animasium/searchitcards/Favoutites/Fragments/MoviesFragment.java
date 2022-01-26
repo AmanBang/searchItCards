@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -105,8 +106,9 @@ public class MoviesFragment extends Fragment {
 
                     showRecivedList.add(showReciver);
                     try {
-
-                        pendingRecycleView.setLayoutManager(new GridLayoutManager(getContext(),3));
+                        LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(),3);
+                        linearLayoutManager.setReverseLayout(true);
+                        pendingRecycleView.setLayoutManager(linearLayoutManager);
 //                    pendingRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
                     fm_adapter = new FM_adapter(getContext(), showRecivedList);
                     pendingRecycleView.setAdapter(fm_adapter);

@@ -226,14 +226,16 @@
                     </LinearLayout>
 
 
-                    <Button
+                    <de.mustafagercek.materialloadingbutton.LoadingButton
                         android:id="@+id/anime_episodes_button"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginStart="100dp"
                         android:layout_marginTop="7dp"
                         android:height="40dp"
-                        android:text="Show List" />
+                        app:buttonText="Watch List"
+                        app:buttonColor="@color/teal_200"
+                        />
 
 
                 </LinearLayout>

@@ -6,16 +6,16 @@
     tools:context=".Favoutites.Fragments.TVShowsFragment"
     android:orientation="vertical"
     >
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black">
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@color/black">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical"-->
+<!--            >-->
 <!--            <TextView-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
@@ -30,7 +30,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/MF_pending_recycleView"
                 android:layout_margin="2dp"/>
 
@@ -85,8 +85,8 @@
 <!--                android:layout_margin="2dp"-->
 <!--                />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
-    </ScrollView>
+<!--    </ScrollView>-->
 
 </RelativeLayout>

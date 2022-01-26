@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "878370064173",
-    "project_id": "search-it-cards-test",
-    "storage_bucket": "search-it-cards-test.appspot.com"
+    "project_number": "776487948221",
+    "project_id": "movie-watcher-9c554",
+    "storage_bucket": "movie-watcher-9c554.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:878370064173:android:e2fa635da31381d3c0f5a4",
+        "mobilesdk_app_id": "1:776487948221:android:984d8f42cc1c70dadc8cd4",
         "android_client_info": {
           "package_name": "com.animasium.searchitcards"
         }
       },
       "oauth_client": [
         {
-          "client_id": "878370064173-q3ijlbkhjrprrh9v8ah8ttved2lfds8e.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.animasium.searchitcards",
-            "certificate_hash": "c4ac97fdd665e03108e573531d4783ac3970cd5c"
-          }
-        },
-        {
-          "client_id": "878370064173-e22ks5qsgkadssnka2q333ob561lg5o0.apps.googleusercontent.com",
+          "client_id": "776487948221-5iokccbbsrqmp3370p57ecdb2eactuut.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA8qjM5h3zbjAuNGOzHlHoC90z6UqO-x6E"
+          "current_key": "AIzaSyAr8RXqSEDSaT2zHiOiM6kz1Kiuf3ItaEM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "878370064173-e22ks5qsgkadssnka2q333ob561lg5o0.apps.googleusercontent.com",
+              "client_id": "776487948221-5iokccbbsrqmp3370p57ecdb2eactuut.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

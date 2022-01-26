@@ -63,7 +63,7 @@
                             android:paddingEnd="10dp"
                             android:text="TV SHOW"
                             android:textColor="@color/showTextTheam"
-                            android:textSize="50sp" />
+                            android:textSize="32dp" />
 
                     </RelativeLayout>
 
@@ -126,19 +126,17 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-smallcaps"
+                            android:fontFamily="@font/roboto"
                             android:paddingStart="18dp"
                             android:text="Upcoming Show"
                             android:textColor="@color/showTextTheam"
-                            android:textSize="24dp" />
+                            android:textSize="20dp" />
                         <ImageView
                             android:id="@+id/S_upcoming"
                             android:src="@drawable/morebtn"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
                             android:layout_marginEnd="10dp"
                             android:padding="4dp"
                             android:gravity="center"
@@ -154,7 +152,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:background="#F4EFEF"
                         android:elevation="8dp">
 
@@ -163,22 +161,22 @@
                             android:id="@+id/Upcoming_show_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#212121"/>
+                            android:background="#000"/>
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
+                        android:layout_marginTop="14dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-smallcaps"
+                            android:fontFamily="@font/roboto"
                             android:paddingStart="18dp"
                             android:text="Shows Airing Today"
                             android:textColor="@color/showTextTheam"
-                            android:textSize="24dp" />
+                            android:textSize="20dp" />
 
                         <ImageView
                             android:id="@+id/S_airing"
@@ -186,8 +184,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
                             android:layout_marginEnd="10dp"
                             android:padding="4dp"
                             android:gravity="center"
@@ -202,7 +198,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:elevation="8dp">
 
 
@@ -210,22 +206,22 @@
                             android:id="@+id/todays_show_airing_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#212121" />
+                            android:background="#000" />
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
+                        android:layout_marginTop="14dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-smallcaps"
+                            android:fontFamily="@font/roboto"
                             android:paddingStart="18dp"
                             android:text="Top Rated Shows"
                             android:textColor="@color/showTextTheam"
-                            android:textSize="24dp" />
+                            android:textSize="20dp" />
 
                         <ImageView
                             android:id="@+id/S_topRated"
@@ -233,8 +229,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
                             android:layout_marginEnd="10dp"
                             android:padding="4dp"
                             android:gravity="center"
@@ -249,7 +243,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:elevation="8dp">
 
 
@@ -257,32 +251,30 @@
                             android:id="@+id/top_rated_shows_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#212121"/>
+                            android:background="#000"/>
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:elevation="8dp"
-                        android:paddingTop="20dp">
+                        android:paddingTop="14dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-smallcaps"
+                            android:fontFamily="@font/roboto"
                             android:textStyle="bold"
                             android:paddingStart="18dp"
                             android:text="Popular TV Shows"
                             android:textColor="@color/showTextTheam"
-                            android:textSize="24dp" />
+                            android:textSize="20dp" />
                         <ImageView
                             android:id="@+id/S_popular"
                             android:src="@drawable/morebtn"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
                             android:layout_marginEnd="10dp"
                             android:padding="4dp"
                             android:gravity="center"
@@ -298,7 +290,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:elevation="8dp">
 
 
@@ -306,7 +298,7 @@
                             android:id="@+id/popular_show_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#212121"/>
+                            android:background="#000"/>
                     </RelativeLayout>
 
 

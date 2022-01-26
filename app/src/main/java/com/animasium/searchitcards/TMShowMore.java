@@ -21,6 +21,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.animasium.searchitcards.Anime.AdapterCLass.WantMCLass;
+import com.fevziomurtekin.customprogress.Dialog;
+import com.fevziomurtekin.customprogress.Type;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +42,7 @@ public class TMShowMore extends AppCompatActivity {
     GridLayoutManager manager;
     String lastPage;
     String Url;
-    ProgressBar TM_loadMoreProgressBar;
+    Dialog TM_loadMoreProgressBar;
     Boolean isMovie = false;
     String UrlM;
     String Urlw;
@@ -106,6 +108,7 @@ public class TMShowMore extends AppCompatActivity {
         recyclerView = findViewById(R.id.TM_recycle);
         lists12 = new ArrayList<>();
         TM_loadMoreProgressBar = findViewById(R.id.TM_loadMoreProgressBar);
+        TM_loadMoreProgressBar.settype(Type.TRIANGLES);
 
         Intent intent = getIntent();
         Intent movie = getIntent();

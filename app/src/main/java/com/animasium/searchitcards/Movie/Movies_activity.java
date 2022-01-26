@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.util.LruCache;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,10 +21,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Cache;
+import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.animasium.searchitcards.Anime.MainActivity;
@@ -29,6 +38,7 @@ import com.animasium.searchitcards.DashboarduSER;
 import com.animasium.searchitcards.Favoutites.Favourites;
 import com.animasium.searchitcards.Movie.mAdapter.MovieAdapter;
 import com.animasium.searchitcards.Movie.mAdapterclasses.Movies;
+import com.animasium.searchitcards.MySingleton;
 import com.animasium.searchitcards.R;
 import com.animasium.searchitcards.TMShowMore;
 import com.animasium.searchitcards.TVshows.TVShows;
@@ -77,6 +87,12 @@ public void SMovies(View view){
 
 public void pMethod(String top){
 
+    Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024 *5);
+    Network network = new BasicNetwork(new HurlStack());
+
+    RequestQueue requestQueue = new RequestQueue(cache,network);
+    requestQueue.start();
+
     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
     JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, top, null, new Response.Listener<JSONObject>() {
         @Override
@@ -121,7 +137,7 @@ public void pMethod(String top){
 
         }
     });
-    queue.add(request);
+    requestQueue.add(request);
 //
 }
 
@@ -171,7 +187,8 @@ public void pMethod(String top){
 
             }
         });
-        queue.add(request);
+        MySingleton.getInstance(this).addToRequestQueue(request);
+//        queue.add(request);
 //
     }
 
@@ -361,8 +378,8 @@ public void pMethod(String top){
                         startActivity(new Intent(getApplicationContext()
                                 , DashboarduSER.class));
                         overridePendingTransition(0, 0);
-                        finish();
-                        return true;
+
+
                 }
                 return false;
             }
@@ -446,4 +463,6 @@ public void MshowMore(View view){
 //        }
 //
 //    }
+
+
 }

@@ -13,4 +13,15 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@transition/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@transition/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@transition/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@transition/slide_out_right</item>
+    </style>
+    <style parent="ThemeOverlay.AppCompat.Dialog.Alert" name="TrackSelectionDialogThemeOverlay">
+
+        <item name="windowNoTitle">false</item>
+
+    </style>
 </resources>

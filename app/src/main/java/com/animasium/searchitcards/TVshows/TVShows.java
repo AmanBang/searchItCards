@@ -324,8 +324,7 @@ public class TVShows extends AppCompatActivity implements View.OnClickListener {
                         startActivity(new Intent(getApplicationContext()
                                 , DashboarduSER.class));
                         overridePendingTransition(0, 0);
-                        finish();
-                        return true;
+
                 }
                 return false;
             }

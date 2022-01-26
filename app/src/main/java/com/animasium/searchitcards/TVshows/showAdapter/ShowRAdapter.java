@@ -43,7 +43,7 @@ public class ShowRAdapter extends RecyclerView.Adapter<ShowRAdapter.SRViewHolder
     @Override
     public void onBindViewHolder(@NonNull SRViewHolder holder, int position) {
         Picasso.get().load("https://image.tmdb.org/t/p/w500"+zList.get(position).getPoster_path()).into(holder.animePoster);
-        holder.animeTitle.setText(zList.get(position).getTitle());
+        holder.animeTitle.setText(zList.get((position)).getTitle());
     }
 
     @Override

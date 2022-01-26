@@ -52,7 +52,7 @@ public class Favourites extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.favourite_activity);
-//
+
         setTitle("Favourite");
 //        MobileAds.initialize(this, new OnInitializationCompleteListener() {
 //            @Override
@@ -78,6 +78,7 @@ public class Favourites extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
 
         viewPager.setAdapter(tabAdapter);
+
         tabLayout.setupWithViewPager(viewPager);
 
         progressDialog = new ProgressDialog(this);
@@ -111,13 +112,14 @@ public class Favourites extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext()
                                 , DashboarduSER.class));
                         overridePendingTransition(0, 0);
-                        finish();
-                        return true;
+
+
                     case R.id.nav_tv:
                         startActivity(new Intent(getApplicationContext()
                                 , TVShows.class));
                         overridePendingTransition(0, 0);
                         finish();
+                        return true;
 
                 }
                 return false;
@@ -174,7 +176,6 @@ public class Favourites extends AppCompatActivity {
         AlertDialog ok = builder.create();
         ok.show();
         FancyToast.makeText(this,"LogIn",FancyToast.LENGTH_LONG,FancyToast.INFO,false);
-//        finish();
 
     }
 }

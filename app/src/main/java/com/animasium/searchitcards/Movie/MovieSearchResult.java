@@ -316,7 +316,7 @@ if (query == null){
     edtSearchText.setText(queryShow);
 }else {
     isMovie = true;
-    String url = "https://api.themoviedb.org/3/search/movie?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1&query="+query+"&include_adult=true";
+    String url = "https://api.themoviedb.org/3/search/movie?api_key=e707c6ad620e69cda284fbbc6af06e43&language=en-US&page=1&query="+query;
     Log.i("sjshdk",url);
     edtSearchText.setText(query);
     showMovieResult(url);

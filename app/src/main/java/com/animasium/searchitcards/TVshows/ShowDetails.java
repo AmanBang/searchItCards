@@ -136,7 +136,6 @@ public class ShowDetails extends AppCompatActivity {
 //                        showRank.setText("#"+response.getString("rank"));
 
                         name = response.getString("name");
-
                         showTitleEng.setText(name);
 
                         JSONArray genres = response.getJSONArray("genres");
@@ -400,15 +399,15 @@ public class ShowDetails extends AppCompatActivity {
                 ShowDetails.this.startActivity(op);
             }
         });
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
-        mAdView = findViewById(R.id.showDetails_ads);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//            @Override
+//            public void onInitializationComplete(InitializationStatus initializationStatus) {
+//            }
+//        });
+//
+//        mAdView = findViewById(R.id.showDetails_ads);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
 
         //========================================================================================================================================================================//

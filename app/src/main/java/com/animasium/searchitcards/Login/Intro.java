@@ -10,14 +10,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.animasium.searchitcards.R;
+import com.fevziomurtekin.customprogress.Dialog;
+import com.fevziomurtekin.customprogress.Type;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 
 public class Intro extends AppCompatActivity {
 
     private static final int loadtime = 1500;
-    ProgressBar progressBar;
+    Dialog progressBar;
     TextView textView;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +29,7 @@ public class Intro extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_intro);
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId(getString(R.string.back4app_app_id))
                 .clientKey(getString(R.string.back4app_client_key))
@@ -37,7 +41,9 @@ public class Intro extends AppCompatActivity {
 
 
 
-        progressBar = new ProgressBar(Intro.this);
+        progressBar = findViewById(R.id.intro_progressbar);
+        progressBar.settype(Type.INFINITY);
+
 textView = findViewById(R.id.searchItLogoanimation);
 
         textView.animate().translationY(450f).setDuration(800);

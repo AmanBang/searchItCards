@@ -11,6 +11,13 @@
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
 
     <application
         android:name=".App"
@@ -22,11 +29,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SearchItCards">
         <activity
+            android:name=".AnimeWeb"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="userLandscape" />
+        <activity
+            android:name=".VideoPlayerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
             android:name=".WebView"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="userLandscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            tools:ignore="Instantiatable"
-            android:screenOrientation="landscape" />
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".TMShowMore"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -98,20 +116,21 @@
             <intent-filter
                 android:autoVerify="true"
                 tools:targetApi="25">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
-                    android:host="example.com"
-                    android:scheme="https"/>
+                    android:host="example.com/link"
+                    android:scheme="https" />
                 <data
-                    android:host="example.com"
-                    android:scheme="http"/>
+                    android:host="example.com/link"
+                    android:scheme="http" />
                 <data
-                    android:host="animasium.page.link"
+                    android:host="moviesium.page.link"
                     android:scheme="https" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".Movie.MovieSearchResult"

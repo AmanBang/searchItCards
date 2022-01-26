@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,17 +24,22 @@ import com.monstertechno.adblocker.AdBlockerWebView;
 import com.monstertechno.adblocker.util.AdBlocker;
 import com.unity3d.services.ads.webplayer.WebPlayerView;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
+
 public class WebView extends AppCompatActivity {
 
-//    private android.webkit.WebView webPlayerView;
+    //    private android.webkit.WebView webPlayerView;
     String id;
-    String Imdb;
+    String idWeb;
+    String p = "";
 
     private android.webkit.WebView webView;
     private FrameLayout customViewContainer;
     private WebChromeClient.CustomViewCallback customViewCallback;
     private View mCustomView;
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -45,21 +51,32 @@ public class WebView extends AppCompatActivity {
         setContentView(R.layout.activity_web_view);
 
 
-
         Intent i = getIntent();
-       id =  i.getStringExtra("watchID");
+        id = i.getStringExtra("watchID");
+//        idWeb = i.getStringExtra("watchID2");
+//
+//        if (id == null) {
+//                p = getLink(idWeb);
+//        } else {
+//            p = id;
+//        }
 
         customViewContainer = (FrameLayout) findViewById(R.id.customViewContainer);
         webView = findViewById(R.id.ASZ);
 //        new AdBlockerWebView.init(this).initializeWebView(webView);
 //        webView.setWebViewClient(new Browser_home());
-//        webView.setWebChromeClient(new MyWebClient());
+//        webView.setWebChromeClient(new WebChromeClient() {
+//        });
 //        webView.setWebViewClient(new MyBrowser());
+//        webView.getSettings().setDomStorageEnabled(true);
+        webView.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
+        webView.setWebChromeClient(new MyWebClient());
+
+
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
         webView.getSettings().setSafeBrowsingEnabled(true);
         webView.getSettings().setBlockNetworkImage(true);
-//        webView.getSettings().getForceDark();
         webView.loadUrl(id);
 
 
@@ -76,31 +93,32 @@ public class WebView extends AppCompatActivity {
 //        webView.setHorizontalScrollBarEnabled(false);
 
     }
+
     private class Browser_home extends WebViewClient {
 
-        Browser_home() {}
+        Browser_home() {
+        }
 
         @SuppressWarnings("deprecation")
         @Override
         public WebResourceResponse shouldInterceptRequest(android.webkit.WebView view, String url) {
 
-            return AdBlockerWebView.blockAds(view,url) ? AdBlocker.createEmptyResource() :
+            return AdBlockerWebView.blockAds(view, url) ? AdBlocker.createEmptyResource() :
                     super.shouldInterceptRequest(view, url);
 
         }
 
     }
 
-    class Browser extends WebViewClient
-    {
-        Browser() {}
+    class Browser extends WebViewClient {
+        Browser() {
+        }
 
 
     }
 
     public class MyWebClient
-            extends WebChromeClient
-    {
+            extends WebChromeClient {
 
         private View mCustomView;
         private WebChromeClient.CustomViewCallback mCustomViewCallback;
@@ -108,11 +126,11 @@ public class WebView extends AppCompatActivity {
         private int mOriginalOrientation;
         private int mOriginalSystemUiVisibility;
 
-        public MyWebClient() {}
+        public MyWebClient() {
+        }
 
-        public void onHideCustomView()
-        {
-            ((FrameLayout)WebView.this.getWindow().getDecorView()).removeView(this.mCustomView);
+        public void onHideCustomView() {
+            ((FrameLayout) WebView.this.getWindow().getDecorView()).removeView(this.mCustomView);
             this.mCustomView = null;
             WebView.this.getWindow().getDecorView().setSystemUiVisibility(this.mOriginalSystemUiVisibility);
             WebView.this.setRequestedOrientation(this.mOriginalOrientation);
@@ -120,10 +138,8 @@ public class WebView extends AppCompatActivity {
             this.mCustomViewCallback = null;
         }
 
-        public void onShowCustomView(View paramView, WebChromeClient.CustomViewCallback paramCustomViewCallback)
-        {
-            if (this.mCustomView != null)
-            {
+        public void onShowCustomView(View paramView, WebChromeClient.CustomViewCallback paramCustomViewCallback) {
+            if (this.mCustomView != null) {
                 onHideCustomView();
                 return;
             }
@@ -131,17 +147,17 @@ public class WebView extends AppCompatActivity {
             this.mOriginalSystemUiVisibility = WebView.this.getWindow().getDecorView().getSystemUiVisibility();
             this.mOriginalOrientation = WebView.this.getRequestedOrientation();
             this.mCustomViewCallback = paramCustomViewCallback;
-            ((FrameLayout)WebView.this.getWindow().getDecorView()).addView(this.mCustomView, new FrameLayout.LayoutParams(-1, -1));
+            ((FrameLayout) WebView.this.getWindow().getDecorView()).addView(this.mCustomView, new FrameLayout.LayoutParams(-1, -1));
             WebView.this.getWindow().getDecorView().setSystemUiVisibility(3846);
         }
 
-        public boolean shouldOverrideUrlLoading(android.webkit.WebView paramWebView, String paramString)
-        {
+        public boolean shouldOverrideUrlLoading(android.webkit.WebView paramWebView, String paramString) {
             paramWebView.loadUrl(paramString);
             return true;
         }
 
     }
+
     //
     private class MyBrowser extends WebViewClient {
         @Override
@@ -150,11 +166,24 @@ public class WebView extends AppCompatActivity {
             return true;
         }
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         finish();
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        webView.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        webView.onResume();
+        super.onResume();
+    }
 
 }

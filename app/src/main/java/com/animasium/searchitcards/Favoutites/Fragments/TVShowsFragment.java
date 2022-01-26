@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -116,6 +117,7 @@ public class TVShowsFragment extends Fragment {
     SimpleDateFormat sdfo;
     ParseQuery<ParseObject> parseQuery;
     View addsomething;
+    ProgressBar progressBar;
 
     public static final String NOTIFICATION_CHANNEL_ID = "10001";
     private final static String default_notification_channel_id = "default";
@@ -226,6 +228,7 @@ public class TVShowsFragment extends Fragment {
         showWatched = new ArrayList<>();
         IDtoNotify = new ArrayList<>();
         IDtoUpdate = new ArrayList<>();
+        progressBar = view.findViewById(R.id.fav_progressbar);
 
 
         //Calender Code.............
@@ -248,74 +251,79 @@ public class TVShowsFragment extends Fragment {
 //        showNxtDate = new HashMap<String, String>();
 
 
-        parseQuery.findInBackground(new FindCallback<ParseObject>() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
-                    for (ParseObject parseObject : objects) {
-
-                        RecommendedMovies showReciver = new RecommendedMovies();
-                        String id = parseObject.get("showID") + "";
-                        showReciver.setId(id);
-                        showReciver.setPoster_path(parseObject.get("posterPath") + "");
-                        showReciver.setTitle(parseObject.get("showName") + "");
-                        Object dt = parseObject.get("nextEpDate");
-//                        if (dt != null) {
-//                            showNxtDate.put((id), dt.toString());
+//        parseQuery.findInBackground(new FindCallback<ParseObject>() {
+//            @RequiresApi(api = Build.VERSION_CODES.N)
+//            @Override
+//            public void done(List<ParseObject> objects, ParseException e) {
+//                if (e == null) {
+//                    if (objects == null) {
+//                        progressBar.setVisibility(View.GONE);
+//                        addsomething.setVisibility(View.VISIBLE);
+//                    } else {
+//                        for (ParseObject parseObject : objects) {
+//
+//                            RecommendedMovies showReciver = new RecommendedMovies();
+//                            String id = parseObject.get("showID") + "";
+//                            showReciver.setId(id);
+//                            showReciver.setPoster_path(parseObject.get("posterPath") + "");
+//                            showReciver.setTitle(parseObject.get("showName") + "");
+//                            Object dt = parseObject.get("nextEpDate");
+////                        if (dt != null) {
+////                            showNxtDate.put((id), dt.toString());
+////                        }
 //                        }
-
-                    }
-
-                    Log.i("ShowNext", showNxtDate + "");
-                    //======================================================================================================================================//
-
-                    //Sorting Dates in List..........
-//                    sortDates();
-
-                    //Notification Date......
-//                    try {
-//                        NotificationDate = dateFirst.get(0);
-//                        //Getting the Id from date...
-//                        EpDate = sdfo.parse(NotificationDate);
-//                        Log.i("EpDates", EpDate + "");
-//
-//                        if (dateNow.compareTo(String.valueOf(EpDate)) == 0 || dateNow.compareTo(String.valueOf(EpDate)) < 0) {
-//                            Log.i("Episode Date", EpDate + "");
-//
-//                            cal.setTime(EpDate);
-////                            cal.
-//
-//                        }
-//                    } catch (Exception e1) {
-//                        e1.printStackTrace();
 //                    }
-
-//                    Log.i("TIME23", "TOBESend:" + (cal.getTimeInMillis() / 1000 - System.currentTimeMillis() / 1000));
+//                    Log.i("ShowNext", showNxtDate + "");
+//                    //======================================================================================================================================//
 //
-//                    alarmManager1 = (AlarmManager) getApplicationContext().getSystemService(ALARM_SERVICE);
+//                    //Sorting Dates in List..........
+////                    sortDates();
 //
-//                    for (String M : getKeys(showNxtDate, NotificationDate)) {
-//                        IDtoNotify.add(M);
-//                        Log.i("IND", IDtoNotify + "");
-//                    }
-
-                    ////==============================================================================================================================////
-                } else {
-                    e.printStackTrace();
-                }
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
+//                    //Notification Date......
+////                    try {
+////                        NotificationDate = dateFirst.get(0);
+////                        //Getting the Id from date...
+////                        EpDate = sdfo.parse(NotificationDate);
+////                        Log.i("EpDates", EpDate + "");
+////
+////                        if (dateNow.compareTo(String.valueOf(EpDate)) == 0 || dateNow.compareTo(String.valueOf(EpDate)) < 0) {
+////                            Log.i("Episode Date", EpDate + "");
+////
+////                            cal.setTime(EpDate);
+//////                            cal.
+////
+////                        }
+////                    } catch (Exception e1) {
+////                        e1.printStackTrace();
+////                    }
 //
-//                        ServiceNotify();
-//                        SystemClock.sleep(2000);
-//                    }
-//                }).start();
-
-
-            }
-        });
+////                    Log.i("TIME23", "TOBESend:" + (cal.getTimeInMillis() / 1000 - System.currentTimeMillis() / 1000));
+////
+////                    alarmManager1 = (AlarmManager) getApplicationContext().getSystemService(ALARM_SERVICE);
+////
+////                    for (String M : getKeys(showNxtDate, NotificationDate)) {
+////                        IDtoNotify.add(M);
+////                        Log.i("IND", IDtoNotify + "");
+////                    }
+//
+//                    ////==============================================================================================================================////
+//                } else {
+//                    progressBar.setVisibility(View.GONE);
+//                    addsomething.setVisibility(View.VISIBLE);
+//                    e.printStackTrace();
+//                }
+////                new Thread(new Runnable() {
+////                    @Override
+////                    public void run() {
+////
+////                        ServiceNotify();
+////                        SystemClock.sleep(2000);
+////                    }
+////                }).start();
+//
+//
+//            }
+//        });
         try {
 //            parseQuery.whereMatches("type", "Ongoing");
 //            parseQuery.findInBackground(new FindCallback<ParseObject>() {
@@ -346,31 +354,38 @@ public class TVShowsFragment extends Fragment {
             parseQuery.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> objects, ParseException e) {
+                    Log.i("recivedObjects", objects+"");
 
                     if (e == null) {
-                        for (ParseObject parseObject : objects) {
-                            Log.i("recivedObjects", parseObject.get("showID") + "");
-                            if (objects != null){
+                        if (!objects.isEmpty()) {
+
+                            for (ParseObject parseObject : objects) {
+                                Log.i("recivedObjects", parseObject.get("showID") + "");
                                 RecommendedMovies showReciver = new RecommendedMovies();
                                 showReciver.setId(parseObject.get("showID") + "");
                                 showReciver.setPoster_path(parseObject.get("posterPath") + "");
                                 showReciver.setTitle(parseObject.get("showName") + "");
+                                showRecivedList.add(showReciver);
                                 try {
-                                    showRecivedList.add(showReciver);
-                                    pendingRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-//                        pendingRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                                    LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(), 3);
+                                    linearLayoutManager.setReverseLayout(false);
+                                    pendingRecycleView.setLayoutManager(linearLayoutManager);
                                     showRAdapter = new ShowRAdapter(getContext(), showRecivedList);
                                     pendingRecycleView.setAdapter(showRAdapter);
-                                }catch (Exception z){
+                                    progressBar.setVisibility(View.GONE);
+                                } catch (Exception z) {
                                     z.printStackTrace();
                                 }
-                            }else {
-                                addsomething.setVisibility(View.VISIBLE);
                             }
 
 
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                            addsomething.setVisibility(View.VISIBLE);
                         }
                     } else {
+                        progressBar.setVisibility(View.GONE);
+                        addsomething.setVisibility(View.VISIBLE);
                         e.printStackTrace();
                     }
 

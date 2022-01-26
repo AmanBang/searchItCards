@@ -146,15 +146,15 @@
                 app:trimExpandedText="@string/read_less"
                 app:trimLines="80"
                 app:trimMode="trimModeLength" />
-            <com.google.android.gms.ads.AdView
-                xmlns:ads="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/showDetails_ads"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                ads:adSize="BANNER"
-                ads:adUnitId="ca-app-pub-6544805297981669/3252058456">
-            </com.google.android.gms.ads.AdView>
+<!--            <com.google.android.gms.ads.AdView-->
+<!--                xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+<!--                android:id="@+id/showDetails_ads"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                ads:adSize="BANNER"-->
+<!--                ads:adUnitId="ca-app-pub-6544805297981669/3252058456">-->
+<!--            </com.google.android.gms.ads.AdView>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -172,7 +172,7 @@
                     android:paddingStart="0dp"
                     android:text="Facts"
                     android:textColor="#fff"
-                    android:textSize="24dp" />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -232,13 +232,22 @@
 
 
                     <Button
+                        android:elevation="4dp"
+                        android:outlineProvider="background"
                         android:id="@+id/show_episodes_button"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_marginStart="100dp"
                         android:layout_marginTop="7dp"
                         android:height="40dp"
-                        android:text="Show List" />
+                        android:text="Watch Episodes"
+                        android:backgroundTintMode="src_atop"
+                        android:hapticFeedbackEnabled="true"
+                        android:textColor="#4FBDBA"
+                        android:background="#152D35"
+                        android:paddingHorizontal="8dp"
+                        android:layout_marginHorizontal="4dp"
+                       />
 
 
                 </LinearLayout>
@@ -460,7 +469,7 @@
                     android:id="@+id/show_trailer_recycle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#333333"
+                    android:background="#000"
                     android:padding="10dp" />
             </LinearLayout>
 
@@ -470,18 +479,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:fontFamily="@font/roboto_bold"
+                android:fontFamily="@font/roboto"
                 android:paddingTop="8dp"
                 android:paddingBottom="6dp"
                 android:text="Recommended"
                 android:textColor="#fff"
-                android:textSize="24dp" />
+                android:textSize="20dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/show_recommendation_recycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#333333"/>
+                android:background="#000"/>
 
 
         </LinearLayout>

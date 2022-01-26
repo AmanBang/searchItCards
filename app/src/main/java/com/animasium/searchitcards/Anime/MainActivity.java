@@ -47,7 +47,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.analytics.FirebaseAnalytics;
+
 //import com.onesignal.OneSignal;
 
 import org.json.JSONArray;
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private String TAG = "MainActivity";
     private InterstitialAd mInterstitialAd;
 
-    private FirebaseAnalytics mFirebaseAnalytics;
+    RequestQueue queue;
     private static final String ONESIGNAL_APP_ID = "bd44539b-9062-44db-863c-b232079ad253";
 
 //=================================================================================================================================================//
@@ -135,29 +135,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         public HomeView(String top) {
 
-            RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, top, null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
 
 
                     try {
-                        JSONArray jsonArray = response.getJSONArray("top");
+                        JSONArray jsonArray = response.getJSONArray("data");
 
 
                         Log.i("response", jsonArray.toString());
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject search = jsonArray.getJSONObject(i);
-
-
                             Topresults topresults = new Topresults();
                             topresults.setTitle(search.getString("title"));
 //                            topresults.setScore(search.getInt("score"));
-                            topresults.setStart_date(search.getString("start_date"));
+                            topresults.setStart_date(search.getString("status"));
                             topresults.setType(search.getString("type"));
                             topresults.setMal_id(search.getInt("mal_id"));
 //                            topresults.setRank((search.getInt("rank")));
-                            topresults.setImage_url(search.getString("image_url"));
+                            JSONObject object = search.getJSONObject("images");
+                            JSONObject jpg = object.getJSONObject("jpg");
+
+                            topresults.setImage_url(jpg.getString("image_url"));
 
                             animeResult.add(topresults);
                             //  Log.i("re", animeResult.toString());
@@ -190,8 +191,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void AnimeUpcoming(String top) {
 
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, top, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request2 = new JsonObjectRequest(Request.Method.GET, top, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             }
         });
-        queue.add(request);
+        queue.add(request2);
 //
 
 
@@ -239,8 +239,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void AiringAnime(String top) {
 
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, top, null, new Response.Listener<JSONObject>() {
+
+        JsonObjectRequest request3 = new JsonObjectRequest(Request.Method.GET, top, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             }
         });
-        queue.add(request);
+        queue.add(request3);
 //
 
 
@@ -290,8 +290,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void PopularAnime(String top) {
 
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, top, null, new Response.Listener<JSONObject>() {
+
+        JsonObjectRequest request4 = new JsonObjectRequest(Request.Method.GET, top, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
@@ -331,7 +331,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             }
         });
-        queue.add(request);
+        queue.add(request4);
 //
 
 
@@ -340,8 +340,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void AnimeMovie(String top) {
 
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, top, null, new Response.Listener<JSONObject>() {
+
+        JsonObjectRequest request5 = new JsonObjectRequest(Request.Method.GET, top, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
@@ -381,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             }
         });
-        queue.add(request);
+        queue.add(request5);
 //
 
 
@@ -394,42 +394,42 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-
-        mAdView = findViewById(R.id.adViewMain);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//            @Override
+//            public void onInitializationComplete(InitializationStatus initializationStatus) {
+//            }
+//        });
+//
+//        mAdView = findViewById(R.id.adViewMain);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
         // rewardedInterstitialAd.show(/* Activity */ MainActivity.this,/*
         // OnUserEarnedRewardListener */ (OnUserEarnedRewardListener) MainActivity.this);
 
 
-        InterstitialAd.load(this, "ca-app-pub-6544805297981669/7466458023", adRequest, new InterstitialAdLoadCallback() {
-            @Override
-            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                // The mInterstitialAd reference will be null until
-                // an ad is loaded.
-                mInterstitialAd = interstitialAd;
-                Log.i(TAG, "onAdLoaded");
-            }
+//        InterstitialAd.load(this, "ca-app-pub-6544805297981669/7466458023", adRequest, new InterstitialAdLoadCallback() {
+//            @Override
+//            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+//                // The mInterstitialAd reference will be null until
+//                // an ad is loaded.
+//                mInterstitialAd = interstitialAd;
+//                Log.i(TAG, "onAdLoaded");
+//            }
+//
+//            @Override
+//            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+//                // Handle the error
+//                Log.i(TAG, loadAdError.getMessage());
+//                mInterstitialAd = null;
+//            }
+//        });
 
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                // Handle the error
-                Log.i(TAG, loadAdError.getMessage());
-                mInterstitialAd = null;
-            }
-        });
-
-
+        queue = Volley.newRequestQueue(getApplicationContext());
         ///////////========================================================================================================/////////////////////
 // Obtain the FirebaseAnalytics instance.
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        // Enable verbose OneSignal logging to debug issues if needed.
+//        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+//        // Enable verbose OneSignal logging to debug issues if needed.
 //        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
 //
 //        // OneSignal Initialization
@@ -474,34 +474,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         topAiringList = new ArrayList<>();
         popularAnimeList = new ArrayList<>();
         animeMovieList = new ArrayList<>();
-        topUrl = "https://api.jikan.moe/v3/top/anime";
+        topUrl = "https://api.jikan.moe/v4/top/anime";
         topUpcoming = "https://api.jikan.moe/v3/top/anime/1/upcoming";
         airingAnime = "https://api.jikan.moe/v3/top/anime/1/airing";
         popularAnime = "https://api.jikan.moe/v3/top/anime/1/bypopularity";
         movie = "https://api.jikan.moe/v3/top/anime/1/movie";
         HomeView homeView = new HomeView(topUrl);
         homeView.start();
+        AiringAnime(airingAnime);
 
-
-//
-//
         final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Do something after 5s = 5000ms
-                AiringAnime(airingAnime);
-
-            }
-        }, 500);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Do something after 5s = 5000ms
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                // Do something after 5s = 5000ms
                 AnimeMovie(movie);
 
-            }
-        }, 1000);
+//            }
+//        }, 1000);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -509,13 +499,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 AnimeUpcoming(topUpcoming);
             }
-        }, 2000);
+        }, 1100);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 PopularAnime(popularAnime);
             }
-        }, 2000);
+        }, 1000);
 //        handler.postDelayed(new Runnable() {
 //            @Override
 //            public void run() {

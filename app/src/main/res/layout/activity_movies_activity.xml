@@ -58,7 +58,7 @@
                             android:paddingEnd="10dp"
                             android:text="MOVIES"
                             android:textColor="@color/movieTextTheme"
-                            android:textSize="50sp" />
+                            android:textSize="32dp" />
 
                     </RelativeLayout>
 
@@ -85,16 +85,15 @@
                                 android:layout_width="290dp"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
-                                android:layout_marginStart="18dp"
+                                android:layout_marginStart="4dp"
                                 android:layout_marginLeft="15dp"
-                                android:layout_marginEnd="11dp"
-                                android:layout_toStartOf="@+id/animeSearchIcon"
-                                android:fontFamily="sans-serif-smallcaps"
-                                android:hint="Movie..."
-                                android:textColor="#000000"
-                                android:textSize="18sp"
+                                android:fontFamily="@font/roboto"
+                                android:hint="Search Movie..."
+                                android:imeOptions="actionSearch"
                                 android:inputType="text"
-                                android:imeOptions="actionSearch"/>
+                                android:textColor="#000000"
+                                android:textColorHint="@color/black"
+                                android:textSize="18sp" />
 
                             <ImageView
                                 android:id="@+id/movieSearchIcon"
@@ -102,9 +101,11 @@
                                 android:layout_height="30dp"
                                 android:layout_alignParentRight="true"
                                 android:layout_centerVertical="true"
+                                android:layout_marginStart="8dp"
                                 android:layout_marginRight="15dp"
-                                android:src="@drawable/search_icon"
+                                android:layout_toEndOf="@+id/searchEditTextMovie"
                                 android:onClick="SMovies"
+                                android:src="@drawable/search_icon"
                                 tools:ignore="OnClick" />
 
                         </RelativeLayout>
@@ -115,34 +116,30 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:elevation="8dp">
+                        android:layout_marginTop="14dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-smallcaps"
+                            android:fontFamily="@font/roboto"
                             android:paddingStart="18dp"
-                            android:text="Upcoming Movies"
+                            android:text="Popular Movies"
                             android:textColor="@color/movieTextTheme"
-                            android:textSize="24dp"
-                            android:onClick="MshowMore"
-                            tools:ignore="OnClick" />
+                            android:textSize="20dp" />
                         <ImageView
-                            android:id="@+id/M_upcoming"
+                            android:id="@+id/M_popular"
                             android:src="@drawable/morebtn"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
                             android:layout_marginEnd="10dp"
                             android:padding="4dp"
                             android:gravity="center"
                             android:paddingStart="4dp"
                             android:paddingEnd="4dp"
                             android:onClick="MshowMore"
-                            tools:ignore="OnClick"
-                            />
+
+                            tools:ignore="OnClick" />
 
                     </RelativeLayout>
 
@@ -150,7 +147,54 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
+                        android:elevation="8dp">
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/popular_movie_recycle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#000" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:paddingStart="18dp"
+                            android:text="Upcoming Movies"
+                            android:textColor="@color/movieTextTheme"
+                            android:textSize="20dp"
+                            android:onClick="MshowMore"
+                            tools:ignore="OnClick" />
+
+                        <ImageView
+                            android:id="@+id/M_upcoming"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="center"
+                            android:onClick="MshowMore"
+                            android:padding="4dp"
+                            android:paddingStart="4dp"
+                            android:paddingEnd="4dp"
+                            android:src="@drawable/morebtn"
+                            tools:ignore="OnClick" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="10dp"
                         android:background="#F4EFEF"
                         android:elevation="8dp">
 
@@ -159,22 +203,27 @@
                             android:id="@+id/upcoming_movie_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#212121"/>
+                            android:background="#000"/>
                     </RelativeLayout>
-
+                    <LinearLayout
+                        android:gravity="center"
+                        android:id="@+id/banner_ad_home"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
+                        android:layout_marginTop="14dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/roboto"
                             android:paddingStart="18dp"
                             android:text="Top Rated Movies"
                             android:textColor="@color/movieTextTheme"
-                            android:textSize="24dp" />
+                            android:textSize="20dp" />
 
                         <ImageView
                             android:id="@+id/M_TopRated"
@@ -182,8 +231,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
+
                             android:layout_marginEnd="10dp"
                             android:padding="4dp"
                             android:gravity="center"
@@ -197,7 +245,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:elevation="8dp">
 
 
@@ -205,70 +253,25 @@
                             android:id="@+id/top_rated_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#212121" />
+                            android:background="#000" />
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
-                            android:paddingStart="18dp"
-                            android:text="Popular Movies"
-                            android:textColor="@color/movieTextTheme"
-                            android:textSize="24dp" />
-                        <ImageView
-                            android:id="@+id/M_popular"
-                            android:src="@drawable/morebtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
-                            android:layout_marginEnd="10dp"
-                            android:padding="4dp"
-                            android:gravity="center"
-                            android:paddingStart="4dp"
-                            android:paddingEnd="4dp"
-                            android:onClick="MshowMore"
-
-                            tools:ignore="OnClick" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
-                        android:elevation="8dp">
-
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/popular_movie_recycle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#212121" />
-                    </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:elevation="8dp"
-                        android:paddingTop="20dp">
+                        android:paddingTop="14dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/roboto"
                             android:paddingStart="18dp"
                             android:text="Now Playing Movies"
                             android:textColor="@color/movieTextTheme"
-                            android:textSize="24dp" />
+                            android:textSize="20dp" />
 
                         <ImageView
                             android:id="@+id/M_playing"
@@ -276,8 +279,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
-                            android:scaleY="1.5"
-                            android:scaleX="1.5"
                             android:layout_marginEnd="10dp"
                             android:padding="4dp"
                             android:gravity="center"
@@ -292,7 +293,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:elevation="8dp">
 
 
@@ -300,7 +301,7 @@
                             android:id="@+id/now_playing_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#212121" />
+                            android:background="#000" />
                     </RelativeLayout>
 
 <!--                    <RelativeLayout-->

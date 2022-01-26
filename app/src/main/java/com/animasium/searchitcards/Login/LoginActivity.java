@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.animasium.searchitcards.Anime.MainActivity;
+import com.animasium.searchitcards.Movie.Movies_activity;
 import com.animasium.searchitcards.R;
 import com.parse.ParseUser;
 import com.shashank.sony.fancytoastlib.FancyToast;
@@ -40,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         if(ParseUser.getCurrentUser() != null){
-            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            Intent i = new Intent(LoginActivity.this, Movies_activity.class);
             startActivity(i);
             FancyToast.makeText(this,"LogIn",FancyToast.LENGTH_LONG,FancyToast.INFO,false);
             finish();
@@ -157,7 +158,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     dialog.cancel();
                     // don't forget to change the line below with the names of your Activities
                     if (!error) {
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, Movies_activity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         finish();

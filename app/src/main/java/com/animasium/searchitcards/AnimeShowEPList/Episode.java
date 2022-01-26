@@ -11,6 +11,33 @@ public class Episode {
     private String episodeDetails;
     private String ShowID;
     private String Season;
+    private String subLink;
+    private String dubLink;
+    private String downloadLink;
+
+    public String getSubLink() {
+        return subLink;
+    }
+
+    public void setSubLink(String subLink) {
+        this.subLink = subLink;
+    }
+
+    public String getDubLink() {
+        return dubLink;
+    }
+
+    public void setDubLink(String dubLink) {
+        this.dubLink = dubLink;
+    }
+
+    public String getDownloadLink() {
+        return downloadLink;
+    }
+
+    public void setDownloadLink(String downloadLink) {
+        this.downloadLink = downloadLink;
+    }
 
     public String getEpisodeImage() {
         return episodeImage;

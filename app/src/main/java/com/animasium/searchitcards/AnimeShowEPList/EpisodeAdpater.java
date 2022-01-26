@@ -3,6 +3,7 @@ package com.animasium.searchitcards.AnimeShowEPList;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.animasium.searchitcards.AnimeWeb;
 import com.animasium.searchitcards.R;
 import com.animasium.searchitcards.WebView;
 import com.squareup.picasso.Picasso;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
 import java.util.List;
 
 public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHolder> {
@@ -36,10 +42,11 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
     @NonNull
     @Override
     public EviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        @SuppressLint("ResourceType") View view = EInflator.inflate(R.layout.custom_episode_layout,parent,false);
+        @SuppressLint("ResourceType") View view = EInflator.inflate(R.layout.custom_episode_layout, parent, false);
         return new EviewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull EviewHolder holder, int position) {
         holder.title.setText(episodeList.get(position).getTitle());
@@ -48,16 +55,24 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
         holder.filler.setText(episodeList.get(position).getFiller());
         idSh = episodeList.get(position).getShowID();
         Seas = episodeList.get(position).getSeason();
-        EP = position+"";
-        if (episodeList.get(position).getEpisodeDetails() == null){
+        EP = position + "";
+        String dub = episodeList.get(position).getDubLink();
+
+        if (episodeList.get(position).getEpisodeDetails() == null) {
             holder.details.setVisibility(View.GONE);
             holder.image.setVisibility(View.GONE);
-        }else {
+            holder.HD.setText("Sub");
+            holder.FHD.setText("Dub");
+            if (dub.equals("a")) {
+                holder.FHD.setVisibility(View.INVISIBLE);
+            } else if (!dub.equals("a")) {
+                holder.FHD.setVisibility(View.VISIBLE);
+            }
+        } else {
             holder.details.setText(episodeList.get(position).getEpisodeDetails());
-            Picasso.get().load("https://image.tmdb.org/t/p/w500"+ episodeList.get(position).getEpisodeImage()).into(holder.image);
+            Picasso.get().load("https://image.tmdb.org/t/p/w500" + episodeList.get(position).getEpisodeImage()).into(holder.image);
 
         }
-
     }
 
     @Override
@@ -65,11 +80,12 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
         return episodeList.size();
     }
 
-    public class EviewHolder extends RecyclerView.ViewHolder{
+    public class EviewHolder extends RecyclerView.ViewHolder {
 
-        TextView title, aired, episodeNo,filler,details;
+        TextView title, aired, episodeNo, filler, details;
         ImageView image;
-        Button HD, FHD;
+        Button HD, FHD, FHDplus;
+        String l;
 
         public EviewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,29 +98,76 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
             image = itemView.findViewById(R.id.episode_image);
             HD = itemView.findViewById(R.id.play_HD);
             FHD = itemView.findViewById(R.id.play_FHD);
+            FHDplus = itemView.findViewById(R.id.play_FHDplus);
+
 
             HD.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(itemView.getContext(), WebView.class);
-                    String link = "https://series.databasegdriveplayer.co/player.php?type=series&tmdb="+idSh+"&season="+Seas+"&episode="+episodeNo.getText();
-                    Log.i("LinkSHow",link);
-                    i.putExtra("watchID",link);
-                    v.getContext().startActivity(i);
+                    if (episodeList.get(getAdapterPosition()).getEpisodeDetails() == null) {
+                        Intent i = new Intent(itemView.getContext(), AnimeWeb.class);
+                        i.putExtra("AnimewatchID", episodeList.get(getAdapterPosition()).getSubLink());
+                        v.getContext().startActivity(i);
+                    } else {
+                        Intent i = new Intent(itemView.getContext(), WebView.class);
+                        String link = "https://series.databasegdriveplayer.co/player.php?type=series&tmdb=" + idSh + "&season=" + Seas + "&episode=" + episodeNo.getText();
+                        Log.i("LinkSHow", link);
+                        i.putExtra("watchID", link);
+                        v.getContext().startActivity(i);
+
+                    }
                 }
             });
             FHD.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(itemView.getContext(), WebView.class);
-                    String link = "https://www.2embed.ru/embed/tmdb/tv?id="+idSh+"&s="+Seas+"&e="+episodeNo.getText();
-                    Log.i("LinkSHow",link);
-                    i.putExtra("watchID",link);
-                    v.getContext().startActivity(i);
+
+                    if (episodeList.get(getAdapterPosition()).getEpisodeDetails() == null) {
+                        Intent i = new Intent(itemView.getContext(), AnimeWeb.class);
+                        i.putExtra("AnimewatchID", episodeList.get(getAdapterPosition()).getDubLink());
+                        v.getContext().startActivity(i);
+                    } else {
+                        Intent i = new Intent(itemView.getContext(), WebView.class);
+                        String link = "https://www.2embed.ru/embed/tmdb/tv?id=" + idSh + "&s=" + Seas + "&e=" + episodeNo.getText();
+//                    String link = "https://curtstream.ir/series/imdb/"+idSh+"/"+Seas+"/"+episodeNo.getText();
+                        Log.i("LinkSHow", link);
+                        i.putExtra("watchID", link);
+                        v.getContext().startActivity(i);
+                    }
+
+
                 }
             });
+//            FHDplus.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+////                    try { getLink(idSh,Seas,episodeNo.getText()+"");
+////                    } catch (IOException e) {
+////                        e.printStackTrace();
+////                    }
+//
+//                    Intent i = new Intent(itemView.getContext(), WebView.class);
+//                    i.putExtra("watchID2", "https://getsuperembed.link/?video_id="+idSh+"&tmdb=1&s="+Seas+"&e="+episodeNo.getText());
+//                    itemView.getContext().startActivity(i);
+//                }
+//            });
 
 
         }
+
+        public void getLink(String id, String season, String episode) throws IOException {
+            Document document = Jsoup.connect("https://getsuperembed.link/?video_id=" + id + "&tmdb=1&s=" + season + "&e=" + episode).get();
+            String l = document.getElementsByTag("body").text();
+            Handler h = new Handler();
+            h.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            }, 2000);
+        }
+
     }
+
+
 }
