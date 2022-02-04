@@ -97,13 +97,13 @@ public class Favourites extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext()
                                 , Movies_activity.class));
                         overridePendingTransition(0, 0);
-                        finish();
+
                         return true;
                     case R.id.nav_home:
                         startActivity(new Intent(getApplicationContext()
                                 , MainActivity.class));
                         overridePendingTransition(0, 0);
-                        finish();
+
                         return true;
                     case R.id.nav_news:
 
@@ -118,7 +118,7 @@ public class Favourites extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext()
                                 , TVShows.class));
                         overridePendingTransition(0, 0);
-                        finish();
+
                         return true;
 
                 }
@@ -144,6 +144,13 @@ public class Favourites extends AppCompatActivity {
 //
 //    }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+        finish();
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

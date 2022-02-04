@@ -302,19 +302,19 @@ public class TVShows extends AppCompatActivity implements View.OnClickListener {
                         startActivity(new Intent(getApplicationContext()
                                 , Movies_activity.class));
                         overridePendingTransition(0, 0);
-                        finish();
+
                         return true;
                     case R.id.nav_home:
                         startActivity(new Intent(getApplicationContext()
                                 , MainActivity.class));
                         overridePendingTransition(0, 0);
-                        finish();
+
                         return true;
                     case R.id.nav_news:
                         startActivity(new Intent(getApplicationContext()
                                 , Favourites.class));
                         overridePendingTransition(0, 0);
-                        finish();
+
                         return true;
                     case R.id.nav_tv:
 
@@ -331,6 +331,12 @@ public class TVShows extends AppCompatActivity implements View.OnClickListener {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+        finish();    }
 
     public void SshowMore(View view){
         Intent intent = new Intent(this, TMShowMore.class);
@@ -380,4 +386,5 @@ public class TVShows extends AppCompatActivity implements View.OnClickListener {
             return true;
         }
     };
+
 }

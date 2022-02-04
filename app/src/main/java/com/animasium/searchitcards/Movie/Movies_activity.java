@@ -138,7 +138,8 @@ public void pMethod(String top){
         }
     });
     requestQueue.add(request);
-//
+
+    //
 }
 
     public void uMethod(String top){
@@ -360,19 +361,16 @@ public void pMethod(String top){
                         startActivity(new Intent(getApplicationContext()
                                 , MainActivity.class));
                         overridePendingTransition(0, 0);
-                        finish();
                         return true;
                     case R.id.nav_news:
                         startActivity(new Intent(getApplicationContext()
                                 , Favourites.class));
                         overridePendingTransition(0, 0);
-                        finish();
                         return true;
                     case R.id.nav_tv:
                         startActivity(new Intent(getApplicationContext()
                                 , TVShows.class));
                         overridePendingTransition(0, 0);
-                        finish();
                         return true;
                     case R.id.nav_dashboard:
                         startActivity(new Intent(getApplicationContext()
@@ -464,5 +462,10 @@ public void MshowMore(View view){
 //
 //    }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+        finish();
+    }
 }

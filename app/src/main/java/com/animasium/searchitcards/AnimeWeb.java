@@ -45,7 +45,7 @@ public class AnimeWeb extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anime_web);
-
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         link = getIntent().getStringExtra("AnimewatchID");
@@ -100,6 +100,7 @@ public class AnimeWeb extends AppCompatActivity {
 
             try {
                 gogoAnimePageDocument = Jsoup.connect(link).get();
+//                gogoAnimePageDocument = Jsoup.connect(link).referrer()
                 vidStreamUrl = "https:" + gogoAnimePageDocument.getElementsByClass("play-video").get(0).getElementsByTag("iframe").get(0).attr("src");
                 Log.i("Linktoplay", vidStreamUrl);
 

@@ -20,6 +20,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
+import com.islamdidarmd.adblockerwebview.AdBlockerUtil;
 import com.monstertechno.adblocker.AdBlockerWebView;
 import com.monstertechno.adblocker.util.AdBlocker;
 import com.unity3d.services.ads.webplayer.WebPlayerView;
@@ -43,7 +44,7 @@ public class WebView extends AppCompatActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    @SuppressLint("WrongViewCast")
+    @SuppressLint({"WrongViewCast", "SetJavaScriptEnabled"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +70,15 @@ public class WebView extends AppCompatActivity {
 //        });
 //        webView.setWebViewClient(new MyBrowser());
 //        webView.getSettings().setDomStorageEnabled(true);
+//        AdBlockerUtil.getInstance().initialize(context);
+        if (!id.contains("streamtape")){
         webView.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
+
+        }
         webView.setWebChromeClient(new MyWebClient());
+        webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setBuiltInZoomControls(true);
+
 
 
         webView.getSettings().setJavaScriptEnabled(true);
@@ -125,6 +133,7 @@ public class WebView extends AppCompatActivity {
         protected FrameLayout mFullscreenContainer;
         private int mOriginalOrientation;
         private int mOriginalSystemUiVisibility;
+
 
         public MyWebClient() {
         }

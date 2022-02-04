@@ -5,6 +5,7 @@ package com.animasium.searchitcards.Movie;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,6 +49,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.animasium.searchitcards.Scraper.BeatScraper;
 import com.animasium.searchitcards.Scraper.HScraper;
+import com.animasium.searchitcards.VideoPlayerActivity;
 import com.animasium.searchitcards.WebView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
@@ -98,6 +100,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import de.mustafagercek.materialloadingbutton.LoadingButton;
+
 import static android.content.ContentValues.TAG;
 
 
@@ -139,7 +143,7 @@ public class DeatailsMovie extends AppCompatActivity {
     String id2 = "";
     Uri shortLink;
     String gogoAnimeUrl = null;
-
+    String year = "";
 
     String MovieImageURl;
 
@@ -170,16 +174,24 @@ public class DeatailsMovie extends AppCompatActivity {
     private String watchonlineLink;
     private ArrayList<String> HindiLink = null;
     private Button D_button;
-    private Button getMovieServer;
+    private LoadingButton getMovieServer;
 
 
+    CardView cardView1;
+    CardView cardView2;
+
+    Button fastServer;
+    Button hdServer;
+    LoadingButton hindiserverButton;
+    LinearLayout hindiserverLayout;
+    List<String> hindiserverList;
     //ads section
 
     private String unityGameId = "4157281";
     private boolean testMode = false;
+    private String interPlacement = "Interstitial_Android";
     private String placementId = "Banner_Android";
     private View bannerView;
-    private String interPlacement = "Interstitial_Android";
     private String rewardedPlacement = "Rewarded_Android";
 
     public class MoviesDetails extends Thread {
@@ -224,7 +236,8 @@ public class DeatailsMovie extends AppCompatActivity {
                         movieRevenue.setText(response.getString("revenue"));
                         movieScore.setText(response.getString("vote_average"));
                         moviePopularity.setText(response.getString("popularity"));
-                        movieAired.setText(response.getString("release_date"));
+                        year = response.getString("release_date");
+                        movieAired.setText(year);
                         imdb_id = response.getString("imdb_id");
                         tmdb_id = response.getString("id");
 
@@ -431,25 +444,13 @@ public class DeatailsMovie extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deatails_movie);
-
-//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-//            @Override
-//            public void onInitializationComplete(InitializationStatus initializationStatus) {
-//            }
-//        });
-//
-//        mAdView = findViewById(R.id.adMoiveDetails);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
-
         // Declare a new banner listener, and set it as the active banner listener:
-//        final Activity myActivity = this;
-//        final IUnityBannerListener myBannerListener = new UnityBannerListener ();
-//        UnityBanners.setBannerListener (myBannerListener);
-//        // Initialize the Ads SDK:
-//        UnityAds.initialize (this, unityGameId, testMode);
-//
-//        ToggleBannerAd();
+        //        final Activity myActivity = this;
+        //        final IUnityBannerListener myBannerListener = new UnityBannerListener ();
+        //        UnityBanners.setBannerListener (myBannerListener);
+        //        // Initialize the Ads SDK:
+        //        UnityAds.initialize (this, unityGameId, testMode);
+        //        ToggleBannerAd();
 
         UnityAds.initialize(this, unityGameId, testMode);
 //        IUnityBannerListener bannerListener = new IUnityBannerListener() {
@@ -487,31 +488,7 @@ public class DeatailsMovie extends AppCompatActivity {
 //        UnityBanners.setBannerListener(bannerListener);
 //        UnityBanners.loadBanner(DeatailsMovie.this, placementId);
 
-//        IUnityAdsListener interListner = new IUnityAdsListener() {
-//            @Override
-//            public void onUnityAdsReady(String s) {
-//
-//            }
-//
-//            @Override
-//            public void onUnityAdsStart(String s) {
-//
-//            }
-//
-//            @Override
-//            public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
-//
-//            }
-//
-//            @Override
-//            public void onUnityAdsError(UnityAds.UnityAdsError unityAdsError, String s) {
-//
-//            }
-//        };
-//        UnityAds.setListener(interListner);
-//        UnityAds.load(interPlacement);
-
-        IUnityAdsListener rewardedListner = new IUnityAdsListener() {
+        IUnityAdsListener interListner = new IUnityAdsListener() {
             @Override
             public void onUnityAdsReady(String s) {
 
@@ -524,41 +501,66 @@ public class DeatailsMovie extends AppCompatActivity {
 
             @Override
             public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
-                // Implement conditional logic for each ad completion status:
-                if (finishState.equals(UnityAds.FinishState.COMPLETED)) {
-                    // Reward the user for watching the ad to completion.
-                    Toast.makeText(DeatailsMovie.this, "Completed", Toast.LENGTH_SHORT).show();
 
-                } else if (finishState == UnityAds.FinishState.SKIPPED) {
-                    // Do not reward the user for skipping the ad.
-                    Toast.makeText(DeatailsMovie.this, "Skipped", Toast.LENGTH_SHORT).show();
-                } else if (finishState == UnityAds.FinishState.ERROR) {
-                    // Log an error.
-                    Toast.makeText(DeatailsMovie.this, "Error", Toast.LENGTH_SHORT).show();
-                }
             }
 
             @Override
             public void onUnityAdsError(UnityAds.UnityAdsError unityAdsError, String s) {
-                Toast.makeText(DeatailsMovie.this, "Error " + unityAdsError, Toast.LENGTH_SHORT).show();
+
             }
         };
-        UnityAds.setListener(rewardedListner);
-        UnityAds.load(rewardedPlacement);
+        UnityAds.setListener(interListner);
+        UnityAds.load(interPlacement);
+
+//        IUnityAdsListener rewardedListner = new IUnityAdsListener() {
+//            @Override
+//            public void onUnityAdsReady(String s) {
+//
+//            }
+//
+//            @Override
+//            public void onUnityAdsStart(String s) {
+//
+//            }
+//
+//            @Override
+//            public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
+//                // Implement conditional logic for each ad completion status:
+//                if (finishState.equals(UnityAds.FinishState.COMPLETED)) {
+//                    // Reward the user for watching the ad to completion.
+//                    Toast.makeText(DeatailsMovie.this, "Completed", Toast.LENGTH_SHORT).show();
+//
+//                } else if (finishState == UnityAds.FinishState.SKIPPED) {
+//                    // Do not reward the user for skipping the ad.
+//                    Toast.makeText(DeatailsMovie.this, "Skipped", Toast.LENGTH_SHORT).show();
+//                } else if (finishState == UnityAds.FinishState.ERROR) {
+//                    // Log an error.
+//                    Toast.makeText(DeatailsMovie.this, "Error", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onUnityAdsError(UnityAds.UnityAdsError unityAdsError, String s) {
+//                Toast.makeText(DeatailsMovie.this, "Error " + unityAdsError, Toast.LENGTH_SHORT).show();
+//            }
+//        };
+//        UnityAds.setListener(interListner);
+//        UnityAds.load(rewardedPlacement);
         Intialization();
         ReciveDynamicLinks();
         getIDandRunCode();
         favDialogBox();
         watchMovie();
 
-        getMovieServer.setOnClickListener(new View.OnClickListener() {
+        getMovieServer.setButtonOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 new GetLink(name, DeatailsMovie.this).execute();
 
-//                if (UnityAds.isReady(interPlacement)) {
-//                    UnityAds.show(DeatailsMovie.this, interPlacement);
-//                }
+                if (UnityAds.isReady(interPlacement)) {
+                    UnityAds.show(DeatailsMovie.this, interPlacement);
+                }
 //                if (UnityAds.isReady(rewardedPlacement)) {
 //                    UnityAds.show(DeatailsMovie.this, rewardedPlacement);
 //                }
@@ -566,21 +568,87 @@ public class DeatailsMovie extends AppCompatActivity {
         });
         //================================================Button===========================================================================//
 
-
-        new Thread(new Runnable() {
+        hindiserverButton.setButtonOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                // Run whatever background code you want here.
-                try {
-                    Document document = Jsoup.connect(gogoAnimeUrl).get();
-                    watchonlineLink = document.body().text();
-                } catch (IOException e) {
-                    e.printStackTrace();
+            public void onClick(View v) {
+                hindiserverButton.onStartLoading();
+                if (UnityAds.isReady(interPlacement)) {
+                    UnityAds.show(DeatailsMovie.this, interPlacement);
                 }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        HScraper hScraper = new HScraper();
+                        String mN;
+                        try {
+                            if (year.contains("-")) {
+                                mN = year.substring(0, 4);
+                            } else {
+                                mN = year;
+                            }
+                            hindiserverList = hScraper.Hscraper(name, mN);
+                            if (hindiserverList != null) {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        hindiserverLayout.setVisibility(View.VISIBLE);
+                                        hindiserverButton.setVisibility(View.GONE);
+                                        hindiserverButton.onStopLoading();
+                                    }
+                                });
+
+                                if (hindiserverList.get(0) == null){
+                                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            fastServer.setEnabled(false);
+                                            fastServer.setBackgroundColor(Color.RED);
+                                        }
+                                    });
+                                }else if (hindiserverList.get(1) == null){
+                                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                           hdServer.setEnabled(false);
+                                           hdServer.setBackgroundColor(Color.RED);
+                                        }
+                                    });
+                                }
+
+                            } else {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        hindiserverButton.setButtonEnabled(false);
+                                        hindiserverButton.onStopLoading();
+                                        FancyToast.makeText(getApplicationContext(), "Not Found", FancyToast.LENGTH_SHORT, FancyToast.CONFUSING, false).show();
+                                    }
+                                });
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }
-        }).start();
+        });
 
-
+        fastServer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DeatailsMovie.this, VideoPlayerActivity.class);
+                i.putExtra("movie_videoLink", hindiserverList.get(0));
+                startActivity(i);
+            }
+        });
+        hdServer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DeatailsMovie.this, WebView.class);
+                i.putExtra("watchID", hindiserverList.get(1));
+                startActivity(i);
+            }
+        });
     }
 
 
@@ -747,14 +815,11 @@ public class DeatailsMovie extends AppCompatActivity {
         LWatch = findViewById(R.id.movie_watch_online);
         HWatch = findViewById(R.id.movie_watch_online2);
         layout = findViewById(R.id.movieDetailsLayout);
-//        movieLisensor = findViewById(R.id.movie_licensors);
-//        movieStudios = findViewById(R.id.movie_studios);
-//        moviePrequel = findViewById(R.id.movie_prequel);
-//        movieSequel = findViewById(R.id.movie_sequel);
-//        movieSideStory = findViewById(R.id.movie_sideStory);
-//        movieSummery = findViewById(R.id.movie_summery);
-//        movieEpisodes = findViewById(R.id.movie_episodes);
+        fastServer = findViewById(R.id.movieFastServer);
+        hdServer = findViewById(R.id.moviehdServer);
         movieAired = findViewById(R.id.movie_aired);
+        hindiserverButton = findViewById(R.id.movieHindiServer);
+        hindiserverLayout = findViewById(R.id.hindiserverLayout);
 //        movieType = findViewById(R.id.movie_type);
         // episodeButton = findViewById(R.id.movie_episodes_button);
         slider = findViewById(R.id.moive_pictures);
@@ -768,9 +833,12 @@ public class DeatailsMovie extends AppCompatActivity {
         RMRecycle2 = findViewById(R.id.movie_recommended_recycle);
         progressBar = findViewById(R.id.m_progressBar);
         m_watch = findViewById(R.id.m_server);
-        h_watch = findViewById(R.id.h_server);
-
+//        h_watch = findViewById(R.id.h_server);
+        hindiserverList = new ArrayList<>();
         ServerLayout = findViewById(R.id.SeverLayout);
+
+        cardView1 = findViewById(R.id.cardView2);
+        cardView2 = findViewById(R.id.cardView22);
     }
 
     private void ReciveDynamicLinks() {
@@ -1031,21 +1099,22 @@ public class DeatailsMovie extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressBar.setVisibility(View.VISIBLE);
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    Log.d("UI thread", "I am the UI thread");
-                    FancyToast.makeText(getApplicationContext(), "Searching Hindi Links Wait...", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
-
-                }
-            });
+            getMovieServer.onStartLoading();
+//            new Handler(Looper.getMainLooper()).post(new Runnable() {
+//                @Override
+//                public void run() {
+//
+//                    Log.d("UI thread", "I am the UI thread");
+//                    FancyToast.makeText(getApplicationContext(), "Searching Hindi Links Wait...", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+//
+//                }
+//            });
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             ServerLayout.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
+            getMovieServer.onStopLoading();
             getMovieServer.setVisibility(View.GONE);
             super.onPostExecute(aVoid);
 
@@ -1055,9 +1124,10 @@ public class DeatailsMovie extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
 
 //            Log.i(TAG, "doInBackground: " + getHindilink(name));
-            BeatScraper beatScraper = new BeatScraper();
-            HScraper hScraper = new HScraper();
+//            BeatScraper beatScraper = new BeatScraper();
             try {
+                Document document = Jsoup.connect(gogoAnimeUrl).get();
+                watchonlineLink = document.body().text();
                 String separator = " -";
                 String mN = "";
                 if (movieName.contains(separator)) {
@@ -1070,31 +1140,31 @@ public class DeatailsMovie extends AppCompatActivity {
                     mN = movieName;
                 }
 
-                linkList = hScraper.Hscraper(movieName);
-                String streaminglink = beatScraper.scraper(mN);
 
-                if (streaminglink != null) {
-                    Log.i("linkfound", streaminglink);
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.d("UI thread", "I am the UI thread");
-                            FancyToast.makeText(getApplicationContext(), "Hindi Links Found", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
-
-                        }
-                    });
-                    HlinkCLick(streaminglink, true);
-                } else {
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.d("UI thread", "I am the UI thread");
-                            FancyToast.makeText(getApplicationContext(), "Hindi Links Not Found", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
-
-                        }
-                    });
-                    h_watch.setBackgroundColor(Color.RED);
-                }
+//                String streaminglink = beatScraper.scraper(mN);
+//
+//                if (streaminglink != null) {
+//                    Log.i("linkfound", streaminglink);
+//                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Log.d("UI thread", "I am the UI thread");
+//                            FancyToast.makeText(getApplicationContext(), "Hindi Links Found", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
+//
+//                        }
+//                    });
+//                    HlinkCLick(streaminglink, true);
+//                } else {
+//                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Log.d("UI thread", "I am the UI thread");
+//                            FancyToast.makeText(getApplicationContext(), "Hindi Links Not Found", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
+//
+//                        }
+//                    });
+//                    h_watch.setBackgroundColor(Color.RED);
+//                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -1177,19 +1247,19 @@ public class DeatailsMovie extends AppCompatActivity {
     public void
     HlinkCLick(String key, Boolean found) {
 
-
-        h_watch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (found) {
-                    Intent i = new Intent(DeatailsMovie.this, WebView.class);
-                    i.putExtra("watchID", "https:" + key);
-                    startActivity(i);
-                } else {
-                    Toast.makeText(DeatailsMovie.this, "Hindi Dub Not Available", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//
+//        h_watch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (found) {
+//                    Intent i = new Intent(DeatailsMovie.this, WebView.class);
+//                    i.putExtra("watchID", "https:" + key);
+//                    startActivity(i);
+//                } else {
+//                    Toast.makeText(DeatailsMovie.this, "Hindi Dub Not Available", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
     }
 

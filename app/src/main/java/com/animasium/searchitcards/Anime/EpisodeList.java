@@ -154,7 +154,7 @@ public class EpisodeList extends AppCompatActivity implements AdapterView.OnItem
                     @Override
                     public void run() {
                         episodeRecycle.setLayoutManager(new LinearLayoutManager(EpisodeList.this));
-                        episodeAdpater = new EpisodeAdpater(EpisodeList.this, episodeList);
+                        episodeAdpater = new EpisodeAdpater(EpisodeList.this, episodeList,EpisodeList.this);
                         episodeRecycle.setAdapter(episodeAdpater);
                         progressBar.setVisibility(View.GONE);
                     }
@@ -217,7 +217,7 @@ public class EpisodeList extends AppCompatActivity implements AdapterView.OnItem
                     @Override
                     public void run() {
                         episodeRecycle.setLayoutManager(new LinearLayoutManager(EpisodeList.this));
-                        episodeAdpater = new EpisodeAdpater(EpisodeList.this, episodeList);
+                        episodeAdpater = new EpisodeAdpater(EpisodeList.this, episodeList,EpisodeList.this);
                         episodeRecycle.setAdapter(episodeAdpater);
                         progressBar.setVisibility(View.GONE);
                     }

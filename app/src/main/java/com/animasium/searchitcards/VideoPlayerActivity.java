@@ -57,29 +57,29 @@ public class VideoPlayerActivity extends AppCompatActivity implements ExoPlayer.
     String[] speed = {"0.25x","0.5x","Normal","1.5x","2x"};
     //demo url
     String url1 = "";
+//    String url1 = "https://vadold.megaupload.to/hls/4ib57bb6emi7bh3jenhakyhng7waj5x5nea4wc3ur,g2bxteag6gqcxxn3hpa,62bxteag6grwixkd2dq,.urlset/master.m3u8";
+//    String url1 = "https:/\\/thumb.tapecontent.net\\/remotecaption\\/expires=1643286867&ip=FROOD0yPEkWNFt&token=1qVOzDHUptkD";
     //https://www05.anicdn.stream/videos/hls/ep.788.1605068771.m3u8
 
     PlayerView playerView;
     SimpleExoPlayer simpleExoPlayer;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_video_player);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_video_player);
         Intent i = getIntent();
-        url1 = i.getStringExtra("liveLink");
-
-
-
-
+        url1 = i.getStringExtra("movie_videoLink");
 
         trackSelector = new DefaultTrackSelector(this);
         simpleExoPlayer = new SimpleExoPlayer.Builder(this).setTrackSelector(trackSelector).build();
         playerView = findViewById(R.id.exoPlayerView);
         playerView.setPlayer(simpleExoPlayer);
         MediaItem mediaItem = MediaItem.fromUri(url1);
+
         simpleExoPlayer.addMediaItem(mediaItem);
         simpleExoPlayer.prepare();
         simpleExoPlayer.play();
@@ -93,104 +93,104 @@ public class VideoPlayerActivity extends AppCompatActivity implements ExoPlayer.
 
 
 
-//        speedBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//                AlertDialog.Builder builder = new AlertDialog.Builder(VideoPlayerActivity.this);
-//                builder.setTitle("Set Speed");
-//                builder.setItems(speed, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        // the user clicked on colors[which]
-//
-//                        if (which==0){
-//
-//                            speedTxt.setVisibility(View.VISIBLE);
-//                            speedTxt.setText("0.25X");
-//                            PlaybackParameters param = new PlaybackParameters(0.5f);
-//                            simpleExoPlayer.setPlaybackParameters(param);
-//
-//
-//                        }  if (which==1){
-//
-//                            speedTxt.setVisibility(View.VISIBLE);
-//                            speedTxt.setText("0.5X");
-//                            PlaybackParameters param = new PlaybackParameters(0.5f);
-//                            simpleExoPlayer.setPlaybackParameters(param);
-//
-//
-//                        }
-//                        if (which==2){
-//
-//                            speedTxt.setVisibility(View.GONE);
-//                            PlaybackParameters param = new PlaybackParameters(1f);
-//                            simpleExoPlayer.setPlaybackParameters(param);
-//
-//
-//                        }
-//                        if (which==3){
-//                            speedTxt.setVisibility(View.VISIBLE);
-//                            speedTxt.setText("1.5X");
-//                            PlaybackParameters param = new PlaybackParameters(1.5f);
-//                            simpleExoPlayer.setPlaybackParameters(param);
-//
-//                        }
-//                        if (which==4){
-//
-//
-//                            speedTxt.setVisibility(View.VISIBLE);
-//                            speedTxt.setText("2X");
-//
-//                            PlaybackParameters param = new PlaybackParameters(2f);
-//                            simpleExoPlayer.setPlaybackParameters(param);
-//
-//
-//
-//                        }
-//
-//
-//
-//                    }
-//                });
-//                builder.show();
-//
-//
-//
-//
-//
-//            }
-//        });
+        speedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
 
-//        farwordBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                simpleExoPlayer.seekTo(simpleExoPlayer.getCurrentPosition() + 10000);
-//
-//            }
-//        });
-//        rewBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                long num = simpleExoPlayer.getCurrentPosition() - 10000;
-//                if (num < 0) {
-//
-//                    simpleExoPlayer.seekTo(0);
-//
-//
-//                } else {
-//
-//                    simpleExoPlayer.seekTo(simpleExoPlayer.getCurrentPosition() - 10000);
-//
-//                }
-//
-//
-//            }
-//        });
+                AlertDialog.Builder builder = new AlertDialog.Builder(VideoPlayerActivity.this);
+                builder.setTitle("Set Speed");
+                builder.setItems(speed, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // the user clicked on colors[which]
+
+                        if (which==0){
+
+                            speedTxt.setVisibility(View.VISIBLE);
+                            speedTxt.setText("0.25X");
+                            PlaybackParameters param = new PlaybackParameters(0.5f);
+                            simpleExoPlayer.setPlaybackParameters(param);
+
+
+                        }  if (which==1){
+
+                            speedTxt.setVisibility(View.VISIBLE);
+                            speedTxt.setText("0.5X");
+                            PlaybackParameters param = new PlaybackParameters(0.5f);
+                            simpleExoPlayer.setPlaybackParameters(param);
+
+
+                        }
+                        if (which==2){
+
+                            speedTxt.setVisibility(View.GONE);
+                            PlaybackParameters param = new PlaybackParameters(1f);
+                            simpleExoPlayer.setPlaybackParameters(param);
+
+
+                        }
+                        if (which==3){
+                            speedTxt.setVisibility(View.VISIBLE);
+                            speedTxt.setText("1.5X");
+                            PlaybackParameters param = new PlaybackParameters(1.5f);
+                            simpleExoPlayer.setPlaybackParameters(param);
+
+                        }
+                        if (which==4){
+
+
+                            speedTxt.setVisibility(View.VISIBLE);
+                            speedTxt.setText("2X");
+
+                            PlaybackParameters param = new PlaybackParameters(2f);
+                            simpleExoPlayer.setPlaybackParameters(param);
+
+
+
+                        }
+
+
+
+                    }
+                });
+                builder.show();
+
+
+
+
+
+            }
+        });
+
+
+        farwordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                simpleExoPlayer.seekTo(simpleExoPlayer.getCurrentPosition() + 10000);
+
+            }
+        });
+        rewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                long num = simpleExoPlayer.getCurrentPosition() - 10000;
+                if (num < 0) {
+
+                    simpleExoPlayer.seekTo(0);
+
+
+                } else {
+
+                    simpleExoPlayer.seekTo(simpleExoPlayer.getCurrentPosition() - 10000);
+
+                }
+
+
+            }
+        });
 
         ImageView fullscreenButton = playerView.findViewById(R.id.fullscreen);
         fullscreenButton.setOnClickListener(new View.OnClickListener() {
@@ -237,15 +237,15 @@ public class VideoPlayerActivity extends AppCompatActivity implements ExoPlayer.
         });
 
 
-//        simpleExoPlayer.addListener(new Player.Listener() {
-//            @Override
-//            public void onPlaybackStateChanged(int state) {
-//                if (state == ExoPlayer.STATE_ENDED) {
-//
-//                }
-//
-//            }
-//        });
+        simpleExoPlayer.addListener(new Player.Listener() {
+            @Override
+            public void onPlaybackStateChanged(int state) {
+                if (state == ExoPlayer.STATE_ENDED) {
+
+                }
+
+            }
+        });
 
 
         playerView.setControllerVisibilityListener(new PlayerControlView.VisibilityListener() {
@@ -274,8 +274,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements ExoPlayer.
 
             }
         });
-
-
 
     }
     protected void releasePlayer() {

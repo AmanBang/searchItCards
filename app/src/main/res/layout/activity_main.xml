@@ -64,7 +64,7 @@
                                 android:paddingEnd="10dp"
                                 android:text="Anime"
                                 android:textColor="@color/textTheme"
-                                android:textSize="50sp" />
+                                android:textSize="30dp" />
 
                         </RelativeLayout>
 
@@ -130,11 +130,11 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif-smallcaps"
+                                android:fontFamily="@font/roboto"
                                 android:paddingStart="18dp"
                                 android:text="Top Anime Ranking"
                                 android:textColor="@color/textTheme"
-                                android:textSize="24dp" />
+                                android:textSize="20dp" />
 
                             <ImageView
                                 android:id="@+id/AM_top"
@@ -147,8 +147,6 @@
                                 android:padding="4dp"
                                 android:paddingStart="4dp"
                                 android:paddingEnd="4dp"
-                                android:scaleX="1.5"
-                                android:scaleY="1.5"
                                 android:src="@drawable/morebtn"
 
                                 />
@@ -166,7 +164,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="6dp"
                             android:background="#F4EFEF"
                             android:elevation="8dp">
 
@@ -176,22 +174,23 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fitsSystemWindows="true"
-                                android:hapticFeedbackEnabled="true" />
+                                android:hapticFeedbackEnabled="true"
+                                android:background="@color/black"/>
                         </RelativeLayout>
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp">
+                            android:layout_marginTop="14dp">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif-smallcaps"
+                                android:fontFamily="@font/roboto"
                                 android:paddingStart="18dp"
                                 android:text="Top Anime Airing"
                                 android:textColor="@color/textTheme"
-                                android:textSize="24dp" />
+                                android:textSize="20dp" />
 
                             <ImageView
                                 android:id="@+id/AM_airing"
@@ -204,8 +203,6 @@
                                 android:padding="4dp"
                                 android:paddingStart="4dp"
                                 android:paddingEnd="4dp"
-                                android:scaleX="1.5"
-                                android:scaleY="1.5"
                                 android:src="@drawable/morebtn"
 
                                 />
@@ -217,7 +214,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="6dp"
                             android:elevation="8dp">
 
 
@@ -225,7 +222,7 @@
                                 android:id="@+id/top_anime_airing_recycle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="#F4EFEF"
+                                android:background="@color/black"
                                 android:fitsSystemWindows="true"
                                 android:hapticFeedbackEnabled="true" />
                         </RelativeLayout>
@@ -233,16 +230,16 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp">
+                            android:layout_marginTop="14dp">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif-smallcaps"
+                                android:fontFamily="@font/roboto"
                                 android:paddingStart="18dp"
                                 android:text="Top Upcoming Anime"
                                 android:textColor="@color/textTheme"
-                                android:textSize="24dp" />
+                                android:textSize="20dp" />
 
                             <ImageView
                                 android:id="@+id/AM_upcoming"
@@ -255,8 +252,6 @@
                                 android:padding="4dp"
                                 android:paddingStart="4dp"
                                 android:paddingEnd="4dp"
-                                android:scaleX="1.5"
-                                android:scaleY="1.5"
                                 android:src="@drawable/morebtn"
 
                                 />
@@ -268,7 +263,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="6dp"
                             android:elevation="8dp">
 
 
@@ -276,7 +271,7 @@
                                 android:id="@+id/top_upcoming_anime_recycle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="#F4EFEF"
+                                android:background="@color/black"
                                 android:fitsSystemWindows="true"
                                 android:hapticFeedbackEnabled="true" />
                         </RelativeLayout>
@@ -285,16 +280,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:elevation="8dp"
-                            android:paddingTop="20dp">
+                            android:paddingTop="14dp">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif-smallcaps"
+                                android:fontFamily="@font/roboto"
                                 android:paddingStart="18dp"
                                 android:text="Popular Anime"
                                 android:textColor="@color/textTheme"
-                                android:textSize="24dp" />
+                                android:textSize="20dp" />
 
                             <ImageView
                                 android:id="@+id/AM_popular"
@@ -307,8 +302,6 @@
                                 android:padding="4dp"
                                 android:paddingStart="4dp"
                                 android:paddingEnd="4dp"
-                                android:scaleX="1.5"
-                                android:scaleY="1.5"
                                 android:src="@drawable/morebtn"
 
                                 />
@@ -320,7 +313,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="6dp"
                             android:elevation="8dp">
 
 
@@ -328,7 +321,7 @@
                                 android:id="@+id/popular_anime_recycle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="#F4EFEF"
+                                android:background="@color/black"
                                 android:fitsSystemWindows="true"
                                 android:hapticFeedbackEnabled="true" />
                         </RelativeLayout>
@@ -336,16 +329,16 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp">
+                            android:layout_marginTop="14dp">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif-smallcaps"
+                                android:fontFamily="@font/roboto"
                                 android:paddingStart="18dp"
                                 android:text="Top Anime Movie"
                                 android:textColor="@color/textTheme"
-                                android:textSize="24dp" />
+                                android:textSize="20dp" />
 
                             <ImageView
                                 android:id="@+id/AM_Movie"
@@ -358,8 +351,6 @@
                                 android:padding="4dp"
                                 android:paddingStart="4dp"
                                 android:paddingEnd="4dp"
-                                android:scaleX="1.5"
-                                android:scaleY="1.5"
                                 android:src="@drawable/morebtn"
 
                                 />
@@ -370,7 +361,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="0dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="6dp"
                             android:elevation="8dp"
                             android:layout_marginBottom="50dp">
 
@@ -379,7 +370,7 @@
                                 android:id="@+id/top_movie_recycle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="#F4EFEF" />
+                                android:background="@color/black" />
                         </RelativeLayout>
 
 

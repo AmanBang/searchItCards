@@ -1,6 +1,7 @@
 package com.animasium.searchitcards.AnimeShowEPList;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -17,14 +18,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.animasium.searchitcards.AnimeWeb;
 import com.animasium.searchitcards.R;
+import com.animasium.searchitcards.Scraper.TVshowScraper;
 import com.animasium.searchitcards.WebView;
 import com.squareup.picasso.Picasso;
+import com.unity3d.ads.IUnityAdsListener;
+import com.unity3d.ads.UnityAds;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.util.List;
+
+import de.mustafagercek.materialloadingbutton.LoadingButton;
 
 public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHolder> {
 
@@ -34,9 +40,17 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
     String Seas;
     String EP = "";
 
-    public EpisodeAdpater(Context EInflator, List<Episode> episodeList) {
+    Activity activity;
+
+    private String unityGameId = "4157281";
+    private boolean testMode = false;
+    private String interPlacement = "Interstitial_Android";
+
+
+    public EpisodeAdpater(Context EInflator, List<Episode> episodeList, Activity activity) {
         this.EInflator = LayoutInflater.from(EInflator);
         this.episodeList = episodeList;
+        this.activity = activity;
     }
 
     @NonNull
@@ -84,11 +98,37 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
 
         TextView title, aired, episodeNo, filler, details;
         ImageView image;
-        Button HD, FHD, FHDplus;
+        Button HD, FHD;
+        LoadingButton FHDplus;
         String l;
 
         public EviewHolder(@NonNull View itemView) {
             super(itemView);
+
+            UnityAds.initialize(activity, unityGameId, testMode);
+            IUnityAdsListener interListner = new IUnityAdsListener() {
+                @Override
+                public void onUnityAdsReady(String s) {
+
+                }
+
+                @Override
+                public void onUnityAdsStart(String s) {
+
+                }
+
+                @Override
+                public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
+
+                }
+
+                @Override
+                public void onUnityAdsError(UnityAds.UnityAdsError unityAdsError, String s) {
+
+                }
+            };
+            UnityAds.setListener(interListner);
+            UnityAds.load(interPlacement);
 
             title = itemView.findViewById(R.id.episode_title);
             aired = itemView.findViewById(R.id.episode_airdate);
@@ -104,6 +144,11 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
             HD.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    if (UnityAds.isReady(interPlacement)) {
+                        UnityAds.show(activity, interPlacement);
+                    }
+
                     if (episodeList.get(getAdapterPosition()).getEpisodeDetails() == null) {
                         Intent i = new Intent(itemView.getContext(), AnimeWeb.class);
                         i.putExtra("AnimewatchID", episodeList.get(getAdapterPosition()).getSubLink());
@@ -121,7 +166,9 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
             FHD.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    if (UnityAds.isReady(interPlacement)) {
+                        UnityAds.show(activity, interPlacement);
+                    }
                     if (episodeList.get(getAdapterPosition()).getEpisodeDetails() == null) {
                         Intent i = new Intent(itemView.getContext(), AnimeWeb.class);
                         i.putExtra("AnimewatchID", episodeList.get(getAdapterPosition()).getDubLink());
@@ -136,6 +183,32 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
                     }
 
 
+                }
+            });
+            FHDplus.setButtonOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (UnityAds.isReady(interPlacement)) {
+                        UnityAds.show(activity, interPlacement);
+                    }
+                    final String[] linktt = new String[1];
+                            FHDplus.onStartLoading();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                TVshowScraper tVshowScraper = new TVshowScraper();
+                                linktt[0] = tVshowScraper.scraper(idSh, Seas, (String) episodeNo.getText());
+                                    Log.d("linkaspa", "onClick: "+linktt[0]);
+                                    Intent i = new Intent(itemView.getContext(), WebView.class);
+                                    i.putExtra("watchID", linktt[0]);
+                                    itemView.getContext().startActivity(i);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
+                                    FHDplus.onStopLoading();
                 }
             });
 //            FHDplus.setOnClickListener(new View.OnClickListener() {

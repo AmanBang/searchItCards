@@ -28,6 +28,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SearchItCards">
+        <activity android:name=".AnimeEpisodeList"></activity>
         <activity
             android:name=".AnimeWeb"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -37,6 +38,7 @@
             android:name=".VideoPlayerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:hardwareAccelerated="true"
+            android:screenOrientation="userLandscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".WebView"
@@ -96,7 +98,8 @@
         <activity
             android:name=".Movie.Movies_activity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            tools:ignore="Instantiatable" />
+            tools:ignore="Instantiatable"
+            />
         <activity
             android:name=".Anime.AnimeDeatails"
             android:configChanges="keyboardHidden|orientation|screenSize"

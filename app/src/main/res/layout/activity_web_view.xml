@@ -24,8 +24,6 @@
         android:id="@+id/ASZ"
         android:layout_gravity="center"
         android:background="#000"
-
-
         />
     <FrameLayout
         android:id="@+id/customViewContainer"
