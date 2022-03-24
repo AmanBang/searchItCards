@@ -6,9 +6,16 @@ public class Movies {
     private String poster_path;
     private String release_date;
     private int id;
+    boolean upcoming;
 
 
+    public boolean isUpcoming() {
+        return upcoming;
+    }
 
+    public void setUpcoming(boolean upcoming) {
+        this.upcoming = upcoming;
+    }
 
     public String getTitle() {
         return title;

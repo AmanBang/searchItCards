@@ -331,7 +331,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="12dp"
-                android:layout_marginVertical="8dp"
+                android:layout_marginVertical="2dp"
                 app:cardCornerRadius="4dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -352,7 +352,7 @@
 
                         <TextView
                             android:id="@+id/englishText1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="start"
                             android:background="@color/black"
@@ -388,27 +388,48 @@
                         android:gravity="center"
                         android:orientation="horizontal"
                         android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintBaseline_toBottomOf="@id/cardView31"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/cardView31">
-
+                        app:layout_constraintStart_toEndOf="@+id/cardView31"
+                        app:layout_constraintTop_toTopOf="@+id/cardView31"
+                        tools:ignore="NotSibling">
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
                             android:layout_marginHorizontal="4dp"
+                            android:layout_marginVertical="5dp"
                             app:cardCornerRadius="4dp">
+
                             <Button
-                                android:id="@+id/movieFastServer"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/hindLinksServer"
+                                android:layout_width="75dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="2dp"
                                 android:background="#152D35"
                                 android:backgroundTintMode="src_atop"
                                 android:hapticFeedbackEnabled="true"
-                                android:paddingHorizontal="20dp"
-                                android:text="server 1"
+                                android:text="S1"
+                                android:textColor="#4FBDBA" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="4dp"
+                            android:layout_marginVertical="5dp"
+
+
+                            app:cardCornerRadius="4dp">
+
+                            <Button
+                                android:id="@+id/movieFastServer"
+                                android:layout_width="75dp"
+                                android:layout_height="wrap_content"
+                                android:background="#152D35"
+                                android:backgroundTintMode="src_atop"
+                                android:hapticFeedbackEnabled="true"
+                                android:text="S2"
                                 android:textColor="#4FBDBA" />
 
                         </androidx.cardview.widget.CardView>
@@ -417,19 +438,18 @@
                         <androidx.cardview.widget.CardView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="5dp"
                             android:layout_marginHorizontal="4dp"
+                            android:layout_marginVertical="5dp"
                             app:cardCornerRadius="4dp">
+
                             <Button
                                 android:id="@+id/moviehdServer"
-                                android:layout_width="wrap_content"
+                                android:layout_width="75dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="2dp"
                                 android:background="#152D35"
                                 android:backgroundTintMode="src_atop"
                                 android:hapticFeedbackEnabled="true"
-                                android:paddingHorizontal="20dp"
-                                android:text="server 2"
+                                android:text="FHD"
                                 android:textColor="#4FBDBA" />
 
                         </androidx.cardview.widget.CardView>
@@ -454,10 +474,12 @@
 
 
             <TextView
+                android:paddingTop="4dp"
+                android:id="@+id/serverInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="* Check all server according to your need *"
+                android:text="* Check all server according to your need * \n *VPN may required for Hindi Links*"
                 android:textColor="@color/white"
                 android:visibility="visible" />
 
@@ -875,7 +897,8 @@
                 android:paddingBottom="6dp"
                 android:text="Similar Movies"
                 android:textColor="#fff"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:layout_gravity="start"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/movie_similar_recycle"
@@ -883,22 +906,30 @@
                 android:layout_height="wrap_content"
                 android:background="#000" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/roboto"
-                android:paddingTop="8dp"
-                android:paddingBottom="6dp"
-                android:text="Recommended Movies"
-                android:textColor="#fff"
-                android:textSize="20dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/movie_recommended_recycle"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#000" />
+                android:id="@+id/recommedation_section_movie"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/roboto"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="6dp"
+                    android:text="Recommended Movies"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:layout_gravity="start"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/movie_recommended_recycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#000" />
+            </LinearLayout>
+
 
 
         </LinearLayout>

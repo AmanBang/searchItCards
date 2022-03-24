@@ -3,90 +3,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Favoutites.Fragments.TVShowsFragment"
     android:orientation="vertical"
-    >
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="@color/black">-->
+    tools:context=".Favoutites.Fragments.TVShowsFragment">
+    <!--    <ScrollView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:background="@color/black">-->
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:orientation="vertical"-->
-<!--            >-->
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Pending"-->
-<!--                android:textSize="24dp"-->
-<!--                android:layout_margin="8dp"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:fontFamily="@font/roboto"-->
-<!--                android:textStyle="bold"-->
-<!--                android:paddingStart="10dp"-->
-<!--                />-->
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:orientation="vertical"-->
+    <!--            >-->
+    <!--            <TextView-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:text="Pending"-->
+    <!--                android:textSize="24dp"-->
+    <!--                android:layout_margin="8dp"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:fontFamily="@font/roboto"-->
+    <!--                android:textStyle="bold"-->
+    <!--                android:paddingStart="10dp"-->
+    <!--                />-->
+    <ProgressBar
+        android:id="@+id/movie_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:elevation="2dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/MF_pending_recycleView"
-                android:layout_margin="2dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/MF_pending_recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp" />
 
-<!--            <View-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginBottom="16dp"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="0.5dp"-->
-<!--                tools:ignore="NotSibling"-->
-<!--                android:background="@color/white"/>-->
 
-            <!--   <TextView-->
-            <!--       android:layout_width="match_parent"-->
-            <!--       android:layout_height="wrap_content"-->
-            <!--       android:layout_margin="8dp"-->
-            <!--       android:fontFamily="@font/roboto"-->
-            <!--       android:text="Ongoing"-->
-            <!--       android:textColor="@color/white"-->
-            <!--       android:textSize="24dp"-->
-            <!--       android:paddingStart="10dp"/>-->
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/movie_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:src="@drawable/empty" />
+    <!--            <View-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginBottom="16dp"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="0.5dp"-->
+    <!--                tools:ignore="NotSibling"-->
+    <!--                android:background="@color/white"/>-->
 
-            <!--   <androidx.recyclerview.widget.RecyclerView-->
-            <!--       android:layout_width="match_parent"-->
-            <!--       android:layout_height="wrap_content"-->
-            <!--       android:id="@+id/FV_ongoing_recycleView"-->
-            <!--       android:layout_margin="2dp"/>-->
+    <!--   <TextView-->
+    <!--       android:layout_width="match_parent"-->
+    <!--       android:layout_height="wrap_content"-->
+    <!--       android:layout_margin="8dp"-->
+    <!--       android:fontFamily="@font/roboto"-->
+    <!--       android:text="Ongoing"-->
+    <!--       android:textColor="@color/white"-->
+    <!--       android:textSize="24dp"-->
+    <!--       android:paddingStart="10dp"/>-->
 
-<!--            <View-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginBottom="16dp"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="0.5dp"-->
-<!--                tools:ignore="NotSibling"-->
-<!--                android:background="@color/white"/>-->
+    <!--   <androidx.recyclerview.widget.RecyclerView-->
+    <!--       android:layout_width="match_parent"-->
+    <!--       android:layout_height="wrap_content"-->
+    <!--       android:id="@+id/FV_ongoing_recycleView"-->
+    <!--       android:layout_margin="2dp"/>-->
 
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Watched"-->
-<!--                android:textSize="24dp"-->
-<!--                android:layout_margin="8dp"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:fontFamily="@font/roboto"-->
-<!--                android:textStyle="bold"-->
-<!--                android:paddingStart="10dp"-->
-<!--                />-->
+    <!--            <View-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginBottom="16dp"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="0.5dp"-->
+    <!--                tools:ignore="NotSibling"-->
+    <!--                android:background="@color/white"/>-->
 
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/MF_watched_recycleView"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="2dp"-->
-<!--                />-->
+    <!--            <TextView-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:text="Watched"-->
+    <!--                android:textSize="24dp"-->
+    <!--                android:layout_margin="8dp"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:fontFamily="@font/roboto"-->
+    <!--                android:textStyle="bold"-->
+    <!--                android:paddingStart="10dp"-->
+    <!--                />-->
 
-<!--        </LinearLayout>-->
+    <!--            <androidx.recyclerview.widget.RecyclerView-->
+    <!--                android:id="@+id/MF_watched_recycleView"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_margin="2dp"-->
+    <!--                />-->
 
-<!--    </ScrollView>-->
+    <!--        </LinearLayout>-->
+
+    <!--    </ScrollView>-->
 
 </RelativeLayout>

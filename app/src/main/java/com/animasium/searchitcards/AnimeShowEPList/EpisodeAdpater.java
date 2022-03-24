@@ -39,7 +39,6 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
     String idSh;
     String Seas;
     String EP = "";
-
     Activity activity;
 
     private String unityGameId = "4157281";
@@ -102,6 +101,7 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
         LoadingButton FHDplus;
         String l;
 
+        LoadingButton hindiTVshow;
         public EviewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -139,15 +139,16 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
             HD = itemView.findViewById(R.id.play_HD);
             FHD = itemView.findViewById(R.id.play_FHD);
             FHDplus = itemView.findViewById(R.id.play_FHDplus);
+            hindiTVshow = itemView.findViewById(R.id.TVLinksServer);
 
 
             HD.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    if (UnityAds.isReady(interPlacement)) {
-                        UnityAds.show(activity, interPlacement);
-                    }
+//                    if (UnityAds.isReady(interPlacement)) {
+//                        UnityAds.show(activity, interPlacement);
+//                    }
 
                     if (episodeList.get(getAdapterPosition()).getEpisodeDetails() == null) {
                         Intent i = new Intent(itemView.getContext(), AnimeWeb.class);
@@ -166,9 +167,9 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
             FHD.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (UnityAds.isReady(interPlacement)) {
-                        UnityAds.show(activity, interPlacement);
-                    }
+//                    if (UnityAds.isReady(interPlacement)) {
+//                        UnityAds.show(activity, interPlacement);
+//                    }
                     if (episodeList.get(getAdapterPosition()).getEpisodeDetails() == null) {
                         Intent i = new Intent(itemView.getContext(), AnimeWeb.class);
                         i.putExtra("AnimewatchID", episodeList.get(getAdapterPosition()).getDubLink());
@@ -188,11 +189,11 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
             FHDplus.setButtonOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (UnityAds.isReady(interPlacement)) {
-                        UnityAds.show(activity, interPlacement);
-                    }
-                    final String[] linktt = new String[1];
+//                    if (UnityAds.isReady(interPlacement)) {
+//                        UnityAds.show(activity, interPlacement);
+//                    }
                             FHDplus.onStartLoading();
+                    final String[] linktt = new String[1];
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -211,19 +212,6 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
                                     FHDplus.onStopLoading();
                 }
             });
-//            FHDplus.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-////                    try { getLink(idSh,Seas,episodeNo.getText()+"");
-////                    } catch (IOException e) {
-////                        e.printStackTrace();
-////                    }
-//
-//                    Intent i = new Intent(itemView.getContext(), WebView.class);
-//                    i.putExtra("watchID2", "https://getsuperembed.link/?video_id="+idSh+"&tmdb=1&s="+Seas+"&e="+episodeNo.getText());
-//                    itemView.getContext().startActivity(i);
-//                }
-//            });
 
 
         }

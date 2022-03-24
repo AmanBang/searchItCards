@@ -9,10 +9,10 @@
         android:id="@+id/nav_movie"
         android:icon="@drawable/ic_baseline_movie_24"
         android:title="Movies" />
-    <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home" />
+<!--    <item-->
+<!--        android:id="@+id/nav_home"-->
+<!--        android:icon="@drawable/ic_baseline_home_24"-->
+<!--        android:title="Home" />-->
     <item
         android:id="@+id/nav_tv"
         android:icon="@drawable/ic_tv"
@@ -20,8 +20,8 @@
 
     <item
         android:id="@+id/nav_dashboard"
-        android:icon="@drawable/ic_account"
-        android:title="Dashboard" />
+        android:icon="@drawable/ic_live_tv"
+        android:title="Live TV" />
 
 
 </menu>

@@ -2,15 +2,21 @@ package com.animasium.searchitcards.TVshows;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +34,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.animasium.searchitcards.Anime.AdapterCLass.SMAdapter;
+import com.animasium.searchitcards.Anime.AnimeShowMore;
+import com.animasium.searchitcards.BottomSheetAdapter;
+import com.animasium.searchitcards.Movie.DeatailsMovie;
+import com.animasium.searchitcards.Scraper.HindiTVShowScraper;
+import com.animasium.searchitcards.SeasonListPOJO;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.animasium.searchitcards.Anime.Adapter.AdapterClass.Promo;
@@ -42,6 +54,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.parse.FindCallback;
 import com.parse.ParseACL;
 import com.parse.ParseException;
@@ -51,13 +64,20 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 import com.squareup.picasso.Picasso;
+import com.unity3d.ads.IUnityAdsListener;
+import com.unity3d.ads.UnityAds;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.mustafagercek.materialloadingbutton.LoadingButton;
 
 public class ShowDetails extends AppCompatActivity {
 
@@ -76,6 +96,8 @@ public class ShowDetails extends AppCompatActivity {
     TextView showEpisodes;
     TextView showAired;
     TextView showType;
+
+    LoadingButton hindiTVshow;
 
 
     RecyclerView showTrailerRecycle;
@@ -110,6 +132,12 @@ public class ShowDetails extends AppCompatActivity {
     String switchText = "Pending";
     String nxtDate = "";
     private AdView mAdView;
+    private String showDate;
+    List<SeasonListPOJO> SeasonLinkList = new ArrayList<>();
+
+    private String unityGameId = "4157281";
+    private boolean testMode = false;
+    private String interPlacement = "Interstitial_Android";
 
     //-----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -153,7 +181,8 @@ public class ShowDetails extends AppCompatActivity {
 
                         showTitle.setText(response.getString("original_name"));
                         showDuration.setText(response.getString("episode_run_time") + " Min");//this
-                        showPremier.setText(response.getString("first_air_date"));//first episode to air
+                        showDate = response.getString("first_air_date");
+                        showPremier.setText(showDate);//first episode to air
                         showBroadcast.setText(response.getString("last_air_date"));//last episode to air
                         showScore.setText(response.getString("vote_average"));
                         showPopularity.setText(response.getString("popularity"));
@@ -329,7 +358,7 @@ public class ShowDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_details);
 
-
+        UnityAds.initialize(this, unityGameId, testMode);
         showPoster = findViewById(R.id.show_poster);
         showTitleEng = findViewById(R.id.show_title_eng);
         showGenres = findViewById(R.id.show_genres);
@@ -346,11 +375,35 @@ public class ShowDetails extends AppCompatActivity {
         showEpisodes = findViewById(R.id.show_episodes);
         showType = findViewById(R.id.show_type);
 
+        hindiTVshow = findViewById(R.id.TVLinksServer);
+
         showTrailerRecycle = findViewById(R.id.show_trailer_recycle);
         showTrailerRecycle.setHasFixedSize(true);
         showRecommendationRecycle = findViewById(R.id.show_recommendation_recycle);
         showRecommendationRecycle.setHasFixedSize(true);
+        IUnityAdsListener interListner = new IUnityAdsListener() {
+            @Override
+            public void onUnityAdsReady(String s) {
 
+            }
+
+            @Override
+            public void onUnityAdsStart(String s) {
+
+            }
+
+            @Override
+            public void onUnityAdsFinish(String s, UnityAds.FinishState finishState) {
+
+            }
+
+            @Override
+            public void onUnityAdsError(UnityAds.UnityAdsError unityAdsError, String s) {
+
+            }
+        };
+        UnityAds.setListener(interListner);
+        UnityAds.load(interPlacement);
 
         modelList = new ArrayList<>();
         Yvideos = new ArrayList<>();
@@ -394,11 +447,14 @@ public class ShowDetails extends AppCompatActivity {
                 Intent op = new Intent(ShowDetails.this, EpisodeList.class);
                 op.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 op.putExtra("episodeList_2", passMe);
+                op.putExtra("ShowNameEpisode",name);
                 op.putExtra("season_Numbers", seasonNumber);
                 // op.putExtra("episodes_number",eNumb);
                 ShowDetails.this.startActivity(op);
             }
         });
+
+
 //        MobileAds.initialize(this, new OnInitializationCompleteListener() {
 //            @Override
 //            public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -408,6 +464,49 @@ public class ShowDetails extends AppCompatActivity {
 //        mAdView = findViewById(R.id.showDetails_ads);
 //        AdRequest adRequest = new AdRequest.Builder().build();
 //        mAdView.loadAd(adRequest);
+        hindiTVshow.setButtonOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hindiTVshow.onStartLoading();
+//                if (UnityAds.isReady(interPlacement)) {
+//                    UnityAds.show(ShowDetails.this, interPlacement);
+//                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        HindiTVShowScraper s = new HindiTVShowScraper();
+                        try {
+                            Log.d("HindiTVShow", "run: "+name);
+                            SeasonLinkList= s.scraper(name);
+                            Log.d("HindiTVShow", "run: recived:  "+SeasonLinkList);
+                            if (SeasonLinkList != null){
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        hindiTVshow.onStopLoading();
+                                        showBottomSheetDialog();
+                                    }
+                                });
+                            }else {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        hindiTVshow.onStopLoading();
+                                        hindiTVshow.setButtonText("Not Found");
+                                        hindiTVshow.setButtonEnabled(false);
+                                    }
+                                });
+                            }
+
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+
+            }
+        });
 
 
         //========================================================================================================================================================================//
@@ -504,6 +603,22 @@ public class ShowDetails extends AppCompatActivity {
 
         });
     }
+
+    private void showBottomSheetDialog() {
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog_layout);
+
+        RecyclerView seasonRecycler = bottomSheetDialog.findViewById(R.id.bottomSheetRecyclerView);
+        TextView sName = bottomSheetDialog.findViewById(R.id.bottomsheeetShowName);
+        BottomSheetAdapter bottomSheetAdapter;
+
+        sName.setText(name);
+
+        seasonRecycler.setLayoutManager(new GridLayoutManager(ShowDetails.this,1));
+        bottomSheetAdapter = new BottomSheetAdapter(ShowDetails.this, SeasonLinkList);
+        seasonRecycler.setAdapter(bottomSheetAdapter);
+        bottomSheetDialog.show();
+    }
 //-------------------------------------------------------------------------------------------------------------------------------------------------------//
 
     @Override
@@ -521,4 +636,6 @@ public class ShowDetails extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

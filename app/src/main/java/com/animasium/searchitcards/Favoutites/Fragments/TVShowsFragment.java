@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.android.volley.Request;
@@ -90,6 +91,7 @@ public class TVShowsFragment extends Fragment {
     List<RecommendedMovies> showRecivedList;
     List<RecommendedMovies> showOngoing;
     List<RecommendedMovies> showWatched;
+    ImageView emptyview;
     ArrayList<String> dateFirst;
     ArrayList<String> dateLast;
     ShowRAdapter showRAdapter;
@@ -228,6 +230,7 @@ public class TVShowsFragment extends Fragment {
         showWatched = new ArrayList<>();
         IDtoNotify = new ArrayList<>();
         IDtoUpdate = new ArrayList<>();
+        emptyview = view.findViewById(R.id.tv_empty);
         progressBar = view.findViewById(R.id.fav_progressbar);
 
 
@@ -238,6 +241,7 @@ public class TVShowsFragment extends Fragment {
 //        cal.clear();
 
         //  cal.set(2021, 3, 19);
+        emptyview.setVisibility(View.GONE);
         parseQuery = new ParseQuery<ParseObject>("tShow");
 
 
@@ -351,10 +355,11 @@ public class TVShowsFragment extends Fragment {
 //                }
 //            });
 //            parseQuery.whereMatches("type", "Pending");
+
             parseQuery.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> objects, ParseException e) {
-                    Log.i("recivedObjects", objects+"");
+                    Log.i("recivedObjects", objects + "");
 
                     if (e == null) {
                         if (!objects.isEmpty()) {
@@ -367,8 +372,7 @@ public class TVShowsFragment extends Fragment {
                                 showReciver.setTitle(parseObject.get("showName") + "");
                                 showRecivedList.add(showReciver);
                                 try {
-                                    LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(), 3);
-                                    linearLayoutManager.setReverseLayout(false);
+                                    LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(), 3, RecyclerView.VERTICAL, false);
                                     pendingRecycleView.setLayoutManager(linearLayoutManager);
                                     showRAdapter = new ShowRAdapter(getContext(), showRecivedList);
                                     pendingRecycleView.setAdapter(showRAdapter);
@@ -380,6 +384,7 @@ public class TVShowsFragment extends Fragment {
 
 
                         } else {
+                            emptyview.setVisibility(View.VISIBLE);
                             progressBar.setVisibility(View.GONE);
                             addsomething.setVisibility(View.VISIBLE);
                         }

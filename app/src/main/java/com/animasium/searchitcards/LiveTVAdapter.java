@@ -59,7 +59,7 @@ public class LiveTVAdapter extends RecyclerView.Adapter<LiveTVAdapter.LiveTVHold
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(v.getContext(),VideoPlayerActivity.class);
-                        i.putExtra("liveLink",moviesList.get(getAdapterPosition()).getUrl());
+                        i.putExtra("movie_videoLink",moviesList.get(getAdapterPosition()).getUrl());
                         v.getContext().startActivity(i);
                     }
                 });

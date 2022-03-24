@@ -15,10 +15,10 @@
 
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:id="@+id/movieLayoutBelow"
             android:layout_height="wrap_content"
             android:background="#000"
-           >
+            android:layout_width="match_parent">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -38,14 +38,13 @@
                         android:paddingRight="5dp">
 
 
-
-<!--                        <ImageView-->
-<!--                            android:layout_width="40dp"-->
-<!--                            android:layout_height="50dp"-->
-<!--                            android:layout_alignParentEnd="true"-->
-<!--                            android:layout_centerVertical="true"-->
-<!--                            android:padding="5dp"-->
-<!--                            android:src="@drawable/ic_account" />-->
+                        <!--                        <ImageView-->
+                        <!--                            android:layout_width="40dp"-->
+                        <!--                            android:layout_height="50dp"-->
+                        <!--                            android:layout_alignParentEnd="true"-->
+                        <!--                            android:layout_centerVertical="true"-->
+                        <!--                            android:padding="5dp"-->
+                        <!--                            android:src="@drawable/ic_account" />-->
 
                         <TextView
                             android:id="@+id/app_name"
@@ -61,10 +60,10 @@
                             android:textSize="32dp" />
 
                     </RelativeLayout>
-
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
@@ -72,72 +71,82 @@
                             android:layout_marginLeft="25dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginRight="25dp"
-                            android:layout_marginBottom="20dp"
+                            android:layout_marginBottom="10dp"
                             android:elevation="50dp">
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:background="@color/white"
-                            android:elevation="8dp">
 
-                            <EditText
-                                android:id="@+id/searchEditTextMovie"
-                                android:layout_width="290dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginLeft="15dp"
-                                android:fontFamily="@font/roboto"
-                                android:hint="Search Movie..."
-                                android:imeOptions="actionSearch"
-                                android:inputType="text"
-                                android:textColor="#000000"
-                                android:textColorHint="@color/black"
-                                android:textSize="18sp" />
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@color/white"
+                                android:elevation="50dp"
+                                android:outlineAmbientShadowColor="@color/white"
+                                android:requiresFadingEdge="vertical">
 
-                            <ImageView
-                                android:id="@+id/movieSearchIcon"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginRight="15dp"
-                                android:layout_toEndOf="@+id/searchEditTextMovie"
-                                android:onClick="SMovies"
-                                android:src="@drawable/search_icon"
-                                tools:ignore="OnClick" />
+                                <EditText
+                                    android:id="@+id/searchEditTextMovie"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_toStartOf="@+id/animeSearchIcon"
+                                    android:fontFamily="@font/roboto"
+                                    android:hint="Movie..."
+                                    android:imeOptions="actionSearch"
+                                    android:inputType="text"
+                                    android:textColor="#000000"
+                                    android:textSize="18sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toStartOf="@+id/movieSearchIcon"
+                                    app:layout_constraintStart_toStartOf="parent" />
 
-                        </RelativeLayout>
+                                <ImageView
+                                    android:id="@+id/movieSearchIcon"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="4dp"
+                                    android:onClick="SMovies"
+                                    android:src="@drawable/search_icon"
+                                    app:layout_constraintBottom_toBottomOf="@+id/searchEditTextMovie"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/searchEditTextMovie"
+                                    tools:ignore="OnClick" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
                         </androidx.cardview.widget.CardView>
-
                     </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp">
+                        android:layout_marginTop="0dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="0dp"
                             android:fontFamily="@font/roboto"
                             android:paddingStart="18dp"
                             android:text="Popular Movies"
                             android:textColor="@color/movieTextTheme"
                             android:textSize="20dp" />
+
                         <ImageView
                             android:id="@+id/M_popular"
-                            android:src="@drawable/morebtn"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="10dp"
-                            android:padding="4dp"
                             android:gravity="center"
+                            android:onClick="MshowMore"
+                            android:padding="4dp"
                             android:paddingStart="4dp"
                             android:paddingEnd="4dp"
-                            android:onClick="MshowMore"
+                            android:src="@drawable/morebtn"
 
                             tools:ignore="OnClick" />
 
@@ -167,11 +176,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto"
+                            android:onClick="MshowMore"
                             android:paddingStart="18dp"
                             android:text="Upcoming Movies"
                             android:textColor="@color/movieTextTheme"
                             android:textSize="20dp"
-                            android:onClick="MshowMore"
                             tools:ignore="OnClick" />
 
                         <ImageView
@@ -203,14 +212,16 @@
                             android:id="@+id/upcoming_movie_recycle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#000"/>
+                            android:background="#000" />
                     </RelativeLayout>
+
                     <LinearLayout
-                        android:gravity="center"
                         android:id="@+id/banner_ad_home"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical" />
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -227,17 +238,17 @@
 
                         <ImageView
                             android:id="@+id/M_TopRated"
-                            android:src="@drawable/morebtn"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
-
                             android:layout_marginEnd="10dp"
-                            android:padding="4dp"
+
                             android:gravity="center"
+                            android:onClick="MshowMore"
+                            android:padding="4dp"
                             android:paddingStart="4dp"
                             android:paddingEnd="4dp"
-                            android:onClick="MshowMore"
+                            android:src="@drawable/morebtn"
                             tools:ignore="OnClick" />
                     </RelativeLayout>
 
@@ -257,7 +268,6 @@
                     </RelativeLayout>
 
 
-
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -275,16 +285,16 @@
 
                         <ImageView
                             android:id="@+id/M_playing"
-                            android:src="@drawable/morebtn"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="10dp"
-                            android:padding="4dp"
                             android:gravity="center"
+                            android:onClick="MshowMore"
+                            android:padding="4dp"
                             android:paddingStart="4dp"
                             android:paddingEnd="4dp"
-                            android:onClick="MshowMore"
+                            android:src="@drawable/morebtn"
 
                             tools:ignore="OnClick" />
                     </RelativeLayout>
@@ -304,37 +314,37 @@
                             android:background="#000" />
                     </RelativeLayout>
 
-<!--                    <RelativeLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginTop="20dp">-->
+                    <!--                    <RelativeLayout-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginTop="20dp">-->
 
-<!--                        <TextView-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:fontFamily="sans-serif"-->
-<!--                            android:paddingStart="18dp"-->
-<!--                            android:text="Top Anime Movie"-->
-<!--                            android:textColor="#eaeaea"-->
-<!--                            android:textSize="22dp" />-->
-
-
-<!--                    </RelativeLayout>-->
-
-<!--                    <RelativeLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginLeft="0dp"-->
-<!--                        android:layout_marginTop="20dp"-->
-<!--                        android:elevation="8dp">-->
+                    <!--                        <TextView-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:fontFamily="sans-serif"-->
+                    <!--                            android:paddingStart="18dp"-->
+                    <!--                            android:text="Top Anime Movie"-->
+                    <!--                            android:textColor="#eaeaea"-->
+                    <!--                            android:textSize="22dp" />-->
 
 
-<!--                        <androidx.recyclerview.widget.RecyclerView-->
-<!--                            android:id="@+id/top_movie_recycle"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:background="#F4EFEF" />-->
-<!--                    </RelativeLayout>-->
+                    <!--                    </RelativeLayout>-->
+
+                    <!--                    <RelativeLayout-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_marginLeft="0dp"-->
+                    <!--                        android:layout_marginTop="20dp"-->
+                    <!--                        android:elevation="8dp">-->
+
+
+                    <!--                        <androidx.recyclerview.widget.RecyclerView-->
+                    <!--                            android:id="@+id/top_movie_recycle"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:background="#F4EFEF" />-->
+                    <!--                    </RelativeLayout>-->
 
 
                 </LinearLayout>
@@ -347,6 +357,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/movieLayoutBelow"
         android:layout_alignParentBottom="true"
         android:background="#393e46"
         app:menu="@menu/bottom_navigation" />

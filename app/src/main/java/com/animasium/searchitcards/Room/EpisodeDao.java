@@ -24,7 +24,14 @@ public interface EpisodeDao {
     @Query("SELECT * FROM episodePOJO where name = :name and episodeNo= :episodeNo")
     EpisodePOJO getEpiByNameAndEpisodeNo(String name, String episodeNo);
 
+
+    @Query("SELECT * FROM episodePOJO where name = :name and time= :time")
+    EpisodePOJO getEpiByNameAndTime(String name, long time);
+
     //recent changes
     @Query("SELECT * FROM episodePOJO where name = :name and episodeNo= :episodeNo")
     int checkEpiByNameAndEpisodeNo(String name, String episodeNo);
+
+    @Query("SELECT * FROM episodePOJO where name = :name")
+    int checkEpiByName(String name);
 }

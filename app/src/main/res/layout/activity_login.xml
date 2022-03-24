@@ -101,6 +101,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>
         <Button
+            android:visibility="gone"
             android:id="@+id/forget_pass"
             android:layout_width="200dp"
             android:layout_height="wrap_content"

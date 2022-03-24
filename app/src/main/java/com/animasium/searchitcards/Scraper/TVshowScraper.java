@@ -21,8 +21,6 @@ public class TVshowScraper {
         return link;
     }
 
-
-
     public TVshowScraper() throws IOException {
     }
 }

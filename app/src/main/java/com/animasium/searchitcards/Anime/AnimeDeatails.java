@@ -81,6 +81,8 @@ public class AnimeDeatails extends AppCompatActivity {
     String Urlv;
 
 
+
+
     //------------------------------------------------------------------------------------------------------- ------------------------------------
 
     ImageView animePoster;

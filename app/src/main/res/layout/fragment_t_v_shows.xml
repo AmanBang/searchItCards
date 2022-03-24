@@ -20,7 +20,14 @@
        android:textSize="24dp"
        android:fontFamily="@font/actor"
        />
-
+   <ImageView
+       android:visibility="gone"
+       android:layout_margin="10dp"
+       android:id="@+id/tv_empty"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:src="@drawable/empty"
+       />
 <!--   <TextView-->
 <!--       android:layout_width="match_parent"-->
 <!--       android:layout_height="wrap_content"-->

@@ -5,9 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#1c1427"
+    android:background="#000"
     android:layout_gravity="center"
     >
+
+
+
 
     <LinearLayout
         android:id="@+id/menu_bar_layout"
@@ -90,6 +93,17 @@
 
     </LinearLayout>
 
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/not_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/saitamaa"
+        android:layout_marginTop="80dp"
+        android:layout_below="@+id/menu_bar_layout"
+        />
+
     <ProgressBar
         android:id="@+id/M_resultProgressBar"
         android:layout_width="wrap_content"
@@ -106,6 +120,8 @@
         android:layout_below="@+id/menu_bar_layout"
         android:background="@color/white"/>
     <androidx.recyclerview.widget.RecyclerView
+
+        android:background="#1c1427"
         android:id="@+id/movie_search_result_recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

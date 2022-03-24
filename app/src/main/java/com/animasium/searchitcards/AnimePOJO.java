@@ -6,6 +6,7 @@ public class AnimePOJO {
     String link;
     String Download;
     String episode;
+    long time;
 
     public String getName() {
         return Name;
@@ -37,5 +38,13 @@ public class AnimePOJO {
 
     public void setEpisode(String episode) {
         this.episode = episode;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 }

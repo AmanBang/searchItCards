@@ -155,6 +155,156 @@
 <!--                ads:adSize="BANNER"-->
 <!--                ads:adUnitId="ca-app-pub-6544805297981669/3252058456">-->
 <!--            </com.google.android.gms.ads.AdView>-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#000">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView321"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    app:cardCornerRadius="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/englishText21"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"
+                        android:background="#fff"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="4dp"
+                        android:text="ENG:"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:id="@+id/hindiserverLayout1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    app:layout_constraintBaseline_toBottomOf="@id/cardView321"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cardView321"
+                    app:layout_constraintTop_toTopOf="@+id/cardView321"
+                    tools:ignore="NotSibling">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="4dp"
+                        android:layout_marginVertical="5dp"
+                        app:cardCornerRadius="4dp">
+
+                        <Button
+                            android:id="@+id/show_episodes_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#152D35"
+                            android:backgroundTintMode="src_atop"
+                            android:hapticFeedbackEnabled="true"
+                            android:outlineProvider="background"
+                            android:paddingHorizontal="8dp"
+                            android:text="Watch Episodes"
+                            android:textColor="#4FBDBA" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#000">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView31"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    app:cardCornerRadius="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/englishText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"
+                        android:background="#fff"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:paddingHorizontal="20dp"
+                        android:paddingVertical="4dp"
+                        android:text="HIN:"
+                        android:textColor="@color/black"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:id="@+id/hindiserverLayout11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    app:layout_constraintBaseline_toBottomOf="@id/cardView321"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cardView31"
+                    app:layout_constraintTop_toTopOf="@+id/cardView31"
+                    tools:ignore="NotSibling">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="4dp"
+                        android:layout_marginVertical="1dp"
+                        app:cardCornerRadius="4dp">
+
+                        <de.mustafagercek.materialloadingbutton.LoadingButton
+                            android:id="@+id/TVLinksServer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#152D35"
+                            android:backgroundTintMode="src_atop"
+                            android:hapticFeedbackEnabled="true"
+                            android:outlineProvider="background"
+                            android:paddingHorizontal="8dp"
+                            app:buttonText="Watch Episodes"
+                            android:textColor="#4FBDBA" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textColor="@color/material_on_background_emphasis_medium"
+                android:gravity="center"
+                android:text="* Check all server according to your need * \n *VPN may required for Hindi Links*"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -229,26 +379,6 @@
 
 
                     </LinearLayout>
-
-
-                    <Button
-                        android:elevation="4dp"
-                        android:outlineProvider="background"
-                        android:id="@+id/show_episodes_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="100dp"
-                        android:layout_marginTop="7dp"
-                        android:height="40dp"
-                        android:text="Watch Episodes"
-                        android:backgroundTintMode="src_atop"
-                        android:hapticFeedbackEnabled="true"
-                        android:textColor="#4FBDBA"
-                        android:background="#152D35"
-                        android:paddingHorizontal="8dp"
-                        android:layout_marginHorizontal="4dp"
-                       />
-
 
                 </LinearLayout>
 

@@ -30,6 +30,7 @@ import com.android.volley.toolbox.Volley;
 import com.animasium.searchitcards.AnimeShowEPList.Episode;
 import com.animasium.searchitcards.AnimeShowEPList.EpisodeAdpater;
 import com.animasium.searchitcards.R;
+import com.animasium.searchitcards.Scraper.HindiTVShowScraper;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
@@ -40,8 +41,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.mustafagercek.materialloadingbutton.LoadingButton;
 
 public class EpisodeList extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -66,6 +70,9 @@ public class EpisodeList extends AppCompatActivity implements AdapterView.OnItem
     Spinner spinner;
     Spinner spinner2;
 
+
+    LoadingButton hindiTVshow;
+
     LinearLayoutManager mLayoutManager;
     private final boolean loading = true;
 
@@ -83,6 +90,7 @@ public class EpisodeList extends AppCompatActivity implements AdapterView.OnItem
     private String sea = "1";
     String links="";
     private String links1 = "";
+    private String showName;
 
     public void getList(String Urly) {
 
@@ -262,6 +270,7 @@ public class EpisodeList extends AppCompatActivity implements AdapterView.OnItem
         spinner2.setOnItemSelectedListener(this);
         pageLayout = findViewById(R.id.page_layout);
         seasonsLayout = findViewById(R.id.season_layout);
+//        hindiTVshow = findViewById(R.id.TVLinksServer);
 
         Intent i = getIntent();
         eUrl = i.getStringExtra("episodeList_1");
@@ -269,7 +278,9 @@ public class EpisodeList extends AppCompatActivity implements AdapterView.OnItem
         seasonNumber = i.getStringExtra("season_Numbers");
         links = i.getStringExtra("episodeListZ");
         links1 = i.getStringExtra("episodeListZ1");
+        showName = i.getStringExtra("ShowNameEpisode");
         Log.i("episodesare", "onCreate: "+links);
+
 //60574
 
         if (links != null){
@@ -302,6 +313,8 @@ public class EpisodeList extends AppCompatActivity implements AdapterView.OnItem
 
 
         handler = new Handler();
+
+
 
     }
 

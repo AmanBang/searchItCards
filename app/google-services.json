@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "776487948221-d65d5s98vji9i5c3hokdmigbj9cl77hb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.animasium.searchitcards",
+            "certificate_hash": "c4ac97fdd665e03108e573531d4783ac3970cd5c"
+          }
+        },
+        {
           "client_id": "776487948221-5iokccbbsrqmp3370p57ecdb2eactuut.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -4,61 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Anime.EpisodeList"
     android:gravity="center"
-    >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+    android:orientation="vertical"
+    tools:context=".Anime.EpisodeList">
+
     <LinearLayout
-        android:id="@+id/page_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/page_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Page"
-            android:padding="3dp"
-            android:fontFamily="@font/roboto"
-            android:layout_marginStart="16dp"
-            />
+            android:layout_height="wrap_content">
 
-        <Spinner
-            android:layout_marginStart="10dp"
-            android:id="@+id/episode_page_spinner"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/roboto"
+                android:padding="3dp"
+                android:text="Page" />
+
+            <Spinner
+                android:id="@+id/episode_page_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/season_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:spinnerMode="dropdown" />
+            android:layout_marginStart="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/roboto"
+                android:textSize="18dp"
+                android:padding="3dp"
+                android:text="Season" />
+
+            <Spinner
+                android:id="@+id/episode_season_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/season_layout"
-        android:layout_marginStart="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Season"
-            android:padding="3dp"
-            android:fontFamily="@font/roboto"
-            android:layout_marginStart="16dp"
-            />
-
-        <Spinner
-            android:layout_marginStart="10dp"
-            android:id="@+id/episode_season_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dropdown" />
-    </LinearLayout>
 
 
 
-</LinearLayout>
+
 
     <ProgressBar
         android:id="@+id/episodelist_probressBar"

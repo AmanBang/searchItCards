@@ -21,8 +21,6 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
 import com.islamdidarmd.adblockerwebview.AdBlockerUtil;
-import com.monstertechno.adblocker.AdBlockerWebView;
-import com.monstertechno.adblocker.util.AdBlocker;
 import com.unity3d.services.ads.webplayer.WebPlayerView;
 
 import org.jsoup.Jsoup;
@@ -49,6 +47,8 @@ public class WebView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         setContentView(R.layout.activity_web_view);
 
 
@@ -71,19 +71,18 @@ public class WebView extends AppCompatActivity {
 //        webView.setWebViewClient(new MyBrowser());
 //        webView.getSettings().setDomStorageEnabled(true);
 //        AdBlockerUtil.getInstance().initialize(context);
-        if (!id.contains("streamtape")){
-        webView.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
+        if (!id.contains("streamtape")) {
+            webView.getSettings().setUserAgentString("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
 
         }
         webView.setWebChromeClient(new MyWebClient());
-        webView.setWebViewClient(new WebViewClient());
-        webView.getSettings().setBuiltInZoomControls(true);
-
-
-
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(false);
         webView.getSettings().setSafeBrowsingEnabled(true);
+//        webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setBuiltInZoomControls(true);
+
+
         webView.getSettings().setBlockNetworkImage(true);
         webView.loadUrl(id);
 
@@ -102,21 +101,21 @@ public class WebView extends AppCompatActivity {
 
     }
 
-    private class Browser_home extends WebViewClient {
-
-        Browser_home() {
-        }
-
-        @SuppressWarnings("deprecation")
-        @Override
-        public WebResourceResponse shouldInterceptRequest(android.webkit.WebView view, String url) {
-
-            return AdBlockerWebView.blockAds(view, url) ? AdBlocker.createEmptyResource() :
-                    super.shouldInterceptRequest(view, url);
-
-        }
-
-    }
+//    private class Browser_home extends WebViewClient {
+//
+//        Browser_home() {
+//        }
+//
+//        @SuppressWarnings("deprecation")
+//        @Override
+//        public WebResourceResponse shouldInterceptRequest(android.webkit.WebView view, String url) {
+//
+//            return AdBlockerWebView.blockAds(view, url) ? AdBlocker.createEmptyResource() :
+//                    super.shouldInterceptRequest(view, url);
+//
+//        }
+//
+//    }
 
     class Browser extends WebViewClient {
         Browser() {

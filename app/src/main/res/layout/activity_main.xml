@@ -83,7 +83,7 @@
                                 android:elevation="50dp"
                                 >
 
-                                <RelativeLayout
+                                <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="40dp"
                                     android:background="@color/white"
@@ -93,19 +93,20 @@
 
                                     <EditText
                                         android:id="@+id/searchEditText"
-                                        android:layout_width="220dp"
+                                        android:layout_width="0dp"
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentStart="true"
-                                        android:layout_marginStart="15dp"
-                                        android:layout_marginLeft="15dp"
-                                        android:layout_marginEnd="11dp"
                                         android:layout_toStartOf="@+id/animeSearchIcon"
                                         android:fontFamily="sans-serif-smallcaps"
                                         android:hint="Anime..."
                                         android:imeOptions="actionSearch"
                                         android:inputType="text"
                                         android:textColor="#000000"
-                                        android:textSize="18sp" />
+                                        android:textSize="18sp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toStartOf="@+id/animeSearchIcon"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
 
                                     <ImageView
                                         android:id="@+id/animeSearchIcon"
@@ -113,11 +114,13 @@
                                         android:layout_height="30dp"
                                         android:layout_alignParentRight="true"
                                         android:layout_centerVertical="true"
-                                        android:layout_marginRight="15dp"
                                         android:onClick="searchOnClick"
-                                        android:src="@drawable/search_icon" />
+                                        android:src="@drawable/search_icon"
+                                        app:layout_constraintBottom_toBottomOf="@+id/searchEditText"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="@+id/searchEditText" />
 
-                                </RelativeLayout>
+                                </androidx.constraintlayout.widget.ConstraintLayout>
 
                             </androidx.cardview.widget.CardView>
                         </RelativeLayout>
@@ -131,7 +134,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto"
-                                android:paddingStart="18dp"
+                                android:paddingStart="12dp"
                                 android:text="Top Anime Ranking"
                                 android:textColor="@color/textTheme"
                                 android:textSize="20dp" />
@@ -187,7 +190,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto"
-                                android:paddingStart="18dp"
+                                android:paddingStart="12dp"
                                 android:text="Top Anime Airing"
                                 android:textColor="@color/textTheme"
                                 android:textSize="20dp" />
@@ -236,7 +239,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto"
-                                android:paddingStart="18dp"
+                                android:paddingStart="12dp"
                                 android:text="Top Upcoming Anime"
                                 android:textColor="@color/textTheme"
                                 android:textSize="20dp" />
@@ -286,7 +289,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto"
-                                android:paddingStart="18dp"
+                                android:paddingStart="12dp"
                                 android:text="Popular Anime"
                                 android:textColor="@color/textTheme"
                                 android:textSize="20dp" />
@@ -335,7 +338,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto"
-                                android:paddingStart="18dp"
+                                android:paddingStart="12dp"
                                 android:text="Top Anime Movie"
                                 android:textColor="@color/textTheme"
                                 android:textSize="20dp" />

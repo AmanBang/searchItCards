@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -20,6 +21,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Cache;
 import com.android.volley.Network;
@@ -48,6 +50,8 @@ import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
@@ -76,13 +80,20 @@ List<Movies> uList;
 ImageView Search;
     EditText searchText;
     private InterstitialAd mInterstitialAd;
+
+    GoogleSignInAccount googleSignInAccount;
+//    private DatabaseReference mRefToken;
 public void SMovies(View view){
-
+if (searchText.length() >0){
     String search = searchText.getText().toString();
-
     Intent myIntent = new Intent(this, MovieSearchResult.class);
- myIntent.putExtra("key-123", search); //Optional parameters
+    myIntent.putExtra("key-123", search); //Optional parameters
     this.startActivity(myIntent);
+}else{
+    searchText.setHint("Type something first :/");
+    searchText.setHintTextColor(Color.GRAY);
+}
+
 }
 
 public void pMethod(String top){
@@ -116,7 +127,7 @@ public void pMethod(String top){
                     topresults.setId(search.getInt("id"));
 //                            topresults.setRank((search.getInt("rank")));
                     topresults.setPoster_path(search.getString("poster_path"));
-
+                    topresults.setUpcoming(false);
                     pList.add(topresults);
 
                 }
@@ -167,7 +178,7 @@ public void pMethod(String top){
                         topresults.setId(search.getInt("id"));
 //                            topresults.setRank((search.getInt("rank")));
                         topresults.setPoster_path(search.getString("poster_path"));
-
+                        topresults.setUpcoming(true);
                         uList.add(topresults);
 
                     }
@@ -218,7 +229,7 @@ public void pMethod(String top){
                         topresults.setId(search.getInt("id"));
 //                            topresults.setRank((search.getInt("rank")));
                         topresults.setPoster_path(search.getString("poster_path"));
-
+                        topresults.setUpcoming(false);
                         tList.add(topresults);
 
                     }
@@ -268,7 +279,7 @@ public void pMethod(String top){
                         topresults.setId(search.getInt("id"));
 //                            topresults.setRank((search.getInt("rank")));
                         topresults.setPoster_path(search.getString("poster_path"));
-
+                        topresults.setUpcoming(false);
                         nList.add(topresults);
 
                     }
@@ -335,6 +346,12 @@ public void pMethod(String top){
 
         Date date = new Date();
          modifiedDate= new SimpleDateFormat("yyyy-MM-dd").format(date);
+        googleSignInAccount = GoogleSignIn.getLastSignedInAccount(this);
+//        if (googleSignInAccount != null) {
+//            String userName = googleSignInAccount.getDisplayName();
+//            Toast.makeText(this, userName, Toast.LENGTH_SHORT).show();
+//        }
+
 
         for (int p = 1;p<2;p++){
             pMethod("https://api.themoviedb.org/3/movie/popular?api_key=e707c6ad620e69cda284fbbc6af06e43&region=US&language=en-US&page="+p);

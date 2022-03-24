@@ -13,6 +13,9 @@ public class EpisodePOJO {
     String name;
     @ColumnInfo(name = "episodeNo")
     String episodeNo;
+    @ColumnInfo(name = "time")
+    long time;
+
 
     public EpisodePOJO(int id, String name, String episodeNo) {
         this.id = id;
@@ -24,6 +27,11 @@ public class EpisodePOJO {
         this.name = name;
         this.episodeNo = episodeNo;
     }
+//    @Ignore
+//    public EpisodePOJO( String name, long time) {
+//        this.name = name;
+//        this.time = time;
+//    }
 
     EpisodePOJO(){
 
@@ -50,5 +58,13 @@ public class EpisodePOJO {
 
     public void setEpisodeNo(String episodeNo) {
         this.episodeNo = episodeNo;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
     }
 }

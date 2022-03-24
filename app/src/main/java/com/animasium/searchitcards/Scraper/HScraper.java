@@ -2,6 +2,7 @@ package com.animasium.searchitcards.Scraper;
 
 import android.util.Log;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,6 +20,7 @@ public class HScraper {
         String link = "";
         String separator = ":";
         String mN = "";
+        Document htmmDoc = null;
         List<String> linkList = new ArrayList<>();
         if (movieName.contains(separator)) {
             mN = movieName.replace(separator, " –");
@@ -48,10 +50,20 @@ public class HScraper {
         try {
             String y =  mN +" ("+year+")";
 
-            Document html = Jsoup.connect("https://hindilinks4u.click/?s=" + y).get();
-            if (html != null){
+            Connection.Response response= Jsoup.connect("https://hindilinks4u.click/?s=" + y)
+                    .timeout(10000)
+                    .execute();
+
+            int statusCode = response.statusCode();
+
+            if (statusCode == 200) {
+                htmmDoc = response.parse().ownerDocument();
+            }else {
+                return null;
+            }
+            if (htmmDoc != null){
             Log.d("elementHinf", "Hscraper: "+ y);
-            Element element = html.select("a:contains(" +y+ ")").first();
+            Element element = htmmDoc.select("a:contains(" +y+ ")").first();
             if (element == null){
                 return null;
             }else {

@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.animasium.searchitcards.Room.EpisodeDataBase;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
@@ -63,17 +65,21 @@ public class VideoPlayerActivity extends AppCompatActivity implements ExoPlayer.
 
     PlayerView playerView;
     SimpleExoPlayer simpleExoPlayer;
-
+    EpisodeDataBase dataBase;
+String ShowName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_player);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
 
         Intent i = getIntent();
         url1 = i.getStringExtra("movie_videoLink");
-
+//        ShowName = i.getStringExtra("showName");
+//        dataBase = EpisodeDataBase.getInstance(getContext());
         trackSelector = new DefaultTrackSelector(this);
         simpleExoPlayer = new SimpleExoPlayer.Builder(this).setTrackSelector(trackSelector).build();
         playerView = findViewById(R.id.exoPlayerView);
@@ -83,6 +89,11 @@ public class VideoPlayerActivity extends AppCompatActivity implements ExoPlayer.
         simpleExoPlayer.addMediaItem(mediaItem);
         simpleExoPlayer.prepare();
         simpleExoPlayer.play();
+
+//        if (dataBase.EpiDao().checkEpiByName(ShowName) != 0){
+//            simpleExoPlayer.seekTo();
+//        }
+//        simpleExoPlayer.seekTo();
 
 
         ImageView farwordBtn = playerView.findViewById(R.id.fwd);
@@ -292,5 +303,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements ExoPlayer.
 
         releasePlayer();
     }
+
 
 }

@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.animasium.searchitcards.Movie.mAdapter.FM_adapter;
 import com.animasium.searchitcards.R;
@@ -43,10 +45,12 @@ public class MoviesFragment extends Fragment {
 
     List<RecommendedMovies> showRecivedList;
     List<RecommendedMovies> showWatched;
-//    ShowRAdapter showRAdapter;
+    //    ShowRAdapter showRAdapter;
     FM_adapter fm_adapter;
     RecyclerView pendingRecycleView;
     RecyclerView watchedRecycleView;
+    ImageView emptyview;
+    ProgressBar progressBar;
 
     public MoviesFragment() {
         // Required empty public constructor
@@ -85,37 +89,47 @@ public class MoviesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_movies, container, false);
         pendingRecycleView = view.findViewById(R.id.MF_pending_recycleView);
+        emptyview = view.findViewById(R.id.movie_empty);
+        progressBar = view.findViewById(R.id.movie_progressbar);
 //        watchedRecycleView = view.findViewById(R.id.MF_watched_recycleView);
         showRecivedList = new ArrayList<>();
         showWatched = new ArrayList<>();
 
-
+progressBar.setVisibility(View.VISIBLE);
         ParseQuery<ParseObject> parseQuery = new ParseQuery<ParseObject>("Movies");
 
 //        parseQuery.whereMatches("type","Pending");
         parseQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
-                for (ParseObject parseObject : objects){
-                    Log.i("recivedObjects", parseObject.get("showID") +"");
 
-                    RecommendedMovies showReciver = new RecommendedMovies();
-                    showReciver.setId(parseObject.get("showID")+"");
-                    showReciver.setPoster_path(parseObject.get("posterPath")+"");
-                    showReciver.setTitle(parseObject.get("showName")+"");
+                if (objects.size() > 0) {
+                    for (ParseObject parseObject : objects) {
+                        Log.i("recivedObjects", parseObject.get("showID") + "");
 
-                    showRecivedList.add(showReciver);
-                    try {
-                        LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(),3);
-                        linearLayoutManager.setReverseLayout(true);
-                        pendingRecycleView.setLayoutManager(linearLayoutManager);
+                        RecommendedMovies showReciver = new RecommendedMovies();
+                        showReciver.setId(parseObject.get("showID") + "");
+                        showReciver.setPoster_path(parseObject.get("posterPath") + "");
+                        showReciver.setTitle(parseObject.get("showName") + "");
+
+                        showRecivedList.add(showReciver);
+                        try {
+                            progressBar.setVisibility(View.GONE);
+                            LinearLayoutManager linearLayoutManager = new GridLayoutManager(getContext(), 3, LinearLayoutManager.VERTICAL, false);
+                            pendingRecycleView.setLayoutManager(linearLayoutManager);
 //                    pendingRecycleView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-                    fm_adapter = new FM_adapter(getContext(), showRecivedList);
-                    pendingRecycleView.setAdapter(fm_adapter);
-                }catch (Exception z){
-                    z.printStackTrace();
+                            fm_adapter = new FM_adapter(getContext(), showRecivedList);
+                            fm_adapter.notifyDataSetChanged();
+                            pendingRecycleView.setAdapter(fm_adapter);
+                        } catch (Exception z) {
+                            z.printStackTrace();
+                        }
+                    }
+                }else {
+                    emptyview.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
                 }
-                }
+
             }
         });
 

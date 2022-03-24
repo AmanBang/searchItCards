@@ -151,7 +151,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView22"
+                android:id="@+id/cardView22a"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="6dp"
@@ -237,7 +237,7 @@
                                     android:id="@+id/play_HD"
                                     android:layout_width="70dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="4dp"
+                                    android:paddingHorizontal="4dp"
                                     android:background="#323232"
                                     android:backgroundTintMode="src_atop"
                                     android:hapticFeedbackEnabled="true"
@@ -257,7 +257,7 @@
                                     android:id="@+id/play_FHD"
                                     android:layout_width="70dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginHorizontal="4dp"
+                                    android:paddingHorizontal="4dp"
                                     android:background="#323232"
                                     android:backgroundTintMode="src_atop"
                                     android:hapticFeedbackEnabled="true"
@@ -277,8 +277,9 @@
                                     android:id="@+id/play_FHDplus"
                                     android:layout_width="80dp"
                                     android:layout_height="match_parent"
-                                    android:layout_marginHorizontal="4dp"
+                                    android:paddingHorizontal="4dp"
                                     android:background="#323232"
+                                    app:buttonColor="@color/black"
                                     android:backgroundTintMode="src_atop"
                                     android:hapticFeedbackEnabled="true"
                                     app:buttonText="ASH" />

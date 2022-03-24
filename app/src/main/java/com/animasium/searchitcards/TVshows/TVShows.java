@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -56,12 +57,17 @@ public class TVShows extends AppCompatActivity implements View.OnClickListener {
     ImageView sBtn;
 
     public void searchShows(View view){
+        if (searchText.length() >0){
+            String search = searchText.getText().toString();
 
-        String search = searchText.getText().toString();
+            Intent myIntent = new Intent(this, MovieSearchResult.class);
+            myIntent.putExtra("key-show", search); //Optional parameters
+            this.startActivity(myIntent);
+        }else{
+            searchText.setHint("Type something first :/");
+            searchText.setHintTextColor(Color.GRAY);
+        }
 
-        Intent myIntent = new Intent(this, MovieSearchResult.class);
-        myIntent.putExtra("key-show", search); //Optional parameters
-        this.startActivity(myIntent);
     }
 
 

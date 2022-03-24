@@ -67,6 +67,7 @@ return new MovieHolder(view);
                     Intent x = new Intent(v.getContext(), DeatailsMovie.class);
                     x.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     x.putExtra("pass_id",String.valueOf(moviesList.get(getAdapterPosition()).getId()));
+                    x.putExtra("isUpcoming",moviesList.get(getAdapterPosition()).isUpcoming());
                     v.getContext().startActivity(x);
 
                 }

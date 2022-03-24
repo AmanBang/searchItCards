@@ -49,6 +49,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.animasium.searchitcards.Scraper.BeatScraper;
 import com.animasium.searchitcards.Scraper.HScraper;
+import com.animasium.searchitcards.Scraper.MovieScraper;
 import com.animasium.searchitcards.VideoPlayerActivity;
 import com.animasium.searchitcards.WebView;
 import com.denzcoskun.imageslider.ImageSlider;
@@ -105,7 +106,8 @@ import de.mustafagercek.materialloadingbutton.LoadingButton;
 import static android.content.ContentValues.TAG;
 
 
-public class DeatailsMovie extends AppCompatActivity {
+public class
+DeatailsMovie extends AppCompatActivity {
 
 
     ImageView moviePoster;
@@ -139,6 +141,9 @@ public class DeatailsMovie extends AppCompatActivity {
     String addGenres;
     String addProducer;
     String id = "";
+    CardView cardView22;
+    CardView cardView23;
+    boolean isUpcoming;
     String tmdb_id;
     String id2 = "";
     Uri shortLink;
@@ -174,6 +179,7 @@ public class DeatailsMovie extends AppCompatActivity {
     private String watchonlineLink;
     private ArrayList<String> HindiLink = null;
     private Button D_button;
+    Button hindiLink4uButton;
     private LoadingButton getMovieServer;
 
 
@@ -184,7 +190,11 @@ public class DeatailsMovie extends AppCompatActivity {
     Button hdServer;
     LoadingButton hindiserverButton;
     LinearLayout hindiserverLayout;
+
+    LinearLayout recommendedSection;
+    LinearLayout trailerSection;
     List<String> hindiserverList;
+    TextView serverInfo;
     //ads section
 
     private String unityGameId = "4157281";
@@ -193,6 +203,7 @@ public class DeatailsMovie extends AppCompatActivity {
     private String placementId = "Banner_Android";
     private View bannerView;
     private String rewardedPlacement = "Rewarded_Android";
+    private String hl4u = "";
 
     public class MoviesDetails extends Thread {
         public MoviesDetails(String src, String src2) {
@@ -269,15 +280,20 @@ public class DeatailsMovie extends AppCompatActivity {
 
                     try {
                         JSONArray mJ = response.getJSONArray("results");
-                        for (int g = 0; g < mJ.length(); g++) {
-                            JSONObject object = mJ.getJSONObject(g);
-                            Trailer trailer = new Trailer();
-                            Log.i("trailer", object.getString("key"));
-                            trailer.setKey(object.getString("key"));
-                            trailer.setName(object.getString("name"));
-                            trailer.setType(object.getString("type"));
-                            trailerList.add(trailer);
+                        if (mJ.length() > 0){
+                            for (int g = 0; g < mJ.length(); g++) {
+                                JSONObject object = mJ.getJSONObject(g);
+                                Trailer trailer = new Trailer();
+                                Log.i("trailer", object.getString("key"));
+                                trailer.setKey(object.getString("key"));
+                                trailer.setName(object.getString("name"));
+                                trailer.setType(object.getString("type"));
+                                trailerList.add(trailer);
+                            }
+                        }else {
+                            trailerSection.setVisibility(View.GONE);
                         }
+
 
 
                         //Log.i("title", string);
@@ -366,6 +382,7 @@ public class DeatailsMovie extends AppCompatActivity {
 
                 try {
                     JSONArray jsonArray = response.getJSONArray("results");
+
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
                         RecommendedMovies anime = new RecommendedMovies();
@@ -378,6 +395,8 @@ public class DeatailsMovie extends AppCompatActivity {
                         Log.i("hjlj", object.getString("id"));
 
                     }
+
+
 
 
                 } catch (JSONException e) {
@@ -404,18 +423,24 @@ public class DeatailsMovie extends AppCompatActivity {
 
                 try {
                     JSONArray jsonArray = response.getJSONArray("results");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject object = jsonArray.getJSONObject(i);
-                        RecommendedMovies anime = new RecommendedMovies();
-                        anime.setId(object.getString("id"));
-                        anime.setPoster_path(object.getString("poster_path"));
-                        anime.setTitle(object.getString("title"));
+                    Log.i(TAG, "jsonresponce: "+ jsonArray);
+                    if (jsonArray.length() == 0 && RMList2.size() == 0){
+                        recommendedSection.setVisibility(View.GONE);
+                    }else {
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject object = jsonArray.getJSONObject(i);
+                            RecommendedMovies anime = new RecommendedMovies();
+                            anime.setId(object.getString("id"));
+                            anime.setPoster_path(object.getString("poster_path"));
+                            anime.setTitle(object.getString("title"));
 
-                        RMList2.add(anime);
+                            RMList2.add(anime);
 
-                        Log.i("hjlj", object.getString("id"));
+                            Log.i("hjlj", object.getString("id"));
 
+                        }
                     }
+
 
 
                 } catch (JSONException e) {
@@ -558,9 +583,9 @@ public class DeatailsMovie extends AppCompatActivity {
 
                 new GetLink(name, DeatailsMovie.this).execute();
 
-                if (UnityAds.isReady(interPlacement)) {
-                    UnityAds.show(DeatailsMovie.this, interPlacement);
-                }
+//                if (UnityAds.isReady(interPlacement)) {
+//                    UnityAds.show(DeatailsMovie.this, interPlacement);
+//                }
 //                if (UnityAds.isReady(rewardedPlacement)) {
 //                    UnityAds.show(DeatailsMovie.this, rewardedPlacement);
 //                }
@@ -572,13 +597,14 @@ public class DeatailsMovie extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 hindiserverButton.onStartLoading();
-                if (UnityAds.isReady(interPlacement)) {
-                    UnityAds.show(DeatailsMovie.this, interPlacement);
-                }
+//                if (UnityAds.isReady(interPlacement)) {
+//                    UnityAds.show(DeatailsMovie.this, interPlacement);
+//                }
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         HScraper hScraper = new HScraper();
+                        MovieScraper Msc = new MovieScraper();
                         String mN;
                         try {
                             if (year.contains("-")) {
@@ -586,18 +612,34 @@ public class DeatailsMovie extends AppCompatActivity {
                             } else {
                                 mN = year;
                             }
+                            hl4u = Msc.scraper(name, mN,getApplicationContext());
+
                             hindiserverList = hScraper.Hscraper(name, mN);
-                            if (hindiserverList != null) {
+
+                            if (hl4u == null) {
                                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                                     @Override
                                     public void run() {
+                                        hindiLink4uButton.setEnabled(false);
+                                        hindiLink4uButton.setBackgroundColor(Color.RED);
+                                    }
+                                });
+
+                            }
+                            if (hindiserverList != null || hl4u !=null) {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getButtons();
                                         hindiserverLayout.setVisibility(View.VISIBLE);
                                         hindiserverButton.setVisibility(View.GONE);
                                         hindiserverButton.onStopLoading();
                                     }
                                 });
 
-                                if (hindiserverList.get(0) == null){
+                                if (hindiserverList != null){
+
+                                if (hindiserverList.get(0) == null) {
                                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                                         @Override
                                         public void run() {
@@ -605,12 +647,23 @@ public class DeatailsMovie extends AppCompatActivity {
                                             fastServer.setBackgroundColor(Color.RED);
                                         }
                                     });
-                                }else if (hindiserverList.get(1) == null){
+                                } else if (hindiserverList.get(1) == null) {
                                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                                         @Override
                                         public void run() {
-                                           hdServer.setEnabled(false);
-                                           hdServer.setBackgroundColor(Color.RED);
+                                            hdServer.setEnabled(false);
+                                            hdServer.setBackgroundColor(Color.RED);
+                                        }
+                                    });
+                                }
+                                }else {
+                                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            fastServer.setEnabled(false);
+                                            fastServer.setBackgroundColor(Color.RED);
+                                            hdServer.setEnabled(false);
+                                            hdServer.setBackgroundColor(Color.RED);
                                         }
                                     });
                                 }
@@ -649,6 +702,31 @@ public class DeatailsMovie extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+    }
+
+    private void getButtons() {
+        if (hl4u.contains("m3u8")) {
+
+            hindiLink4uButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(DeatailsMovie.this, VideoPlayerActivity.class);
+                    i.putExtra("movie_videoLink", hl4u);
+                    startActivity(i);
+                }
+            });
+        } else {
+            hindiLink4uButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(DeatailsMovie.this, WebView.class);
+                    i.putExtra("watchID", "https:" + hl4u);
+                    startActivity(i);
+                }
+            });
+        }
     }
 
 
@@ -757,6 +835,13 @@ public class DeatailsMovie extends AppCompatActivity {
 
             id = intent.getStringExtra("pass_id");
             id2 = jio.getStringExtra("searchToDetails");
+            isUpcoming = intent.getBooleanExtra("isUpcoming",false);
+
+
+            if (isUpcoming){
+                cardView1.setVisibility(View.GONE);
+                cardView2.setVisibility(View.GONE);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -820,6 +905,8 @@ public class DeatailsMovie extends AppCompatActivity {
         movieAired = findViewById(R.id.movie_aired);
         hindiserverButton = findViewById(R.id.movieHindiServer);
         hindiserverLayout = findViewById(R.id.hindiserverLayout);
+        recommendedSection = findViewById(R.id.recommedation_section_movie);
+        trailerSection = findViewById(R.id.movie_trailer_Layout);
 //        movieType = findViewById(R.id.movie_type);
         // episodeButton = findViewById(R.id.movie_episodes_button);
         slider = findViewById(R.id.moive_pictures);
@@ -833,9 +920,11 @@ public class DeatailsMovie extends AppCompatActivity {
         RMRecycle2 = findViewById(R.id.movie_recommended_recycle);
         progressBar = findViewById(R.id.m_progressBar);
         m_watch = findViewById(R.id.m_server);
+        hindiLink4uButton = findViewById(R.id.hindLinksServer);
 //        h_watch = findViewById(R.id.h_server);
         hindiserverList = new ArrayList<>();
         ServerLayout = findViewById(R.id.SeverLayout);
+        serverInfo = findViewById(R.id.serverInfo);
 
         cardView1 = findViewById(R.id.cardView2);
         cardView2 = findViewById(R.id.cardView22);

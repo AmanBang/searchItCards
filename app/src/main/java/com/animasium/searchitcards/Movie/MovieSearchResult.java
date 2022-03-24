@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +47,8 @@ public class MovieSearchResult extends AppCompatActivity {
     showSearchAdapter searchAdapter;
     List<MSearchResultConst> showList;
     List<MSearchResultConst> List;
+    ImageView notFound;
+
 //====================================================================================//
     private EditText edtSearchText;
     Button btnSearch;
@@ -64,6 +67,8 @@ public class MovieSearchResult extends AppCompatActivity {
     boolean isMovie = true;
 //=======================================================================================//
     public void showMovieResult(String url){
+        showRecycleView.setVisibility(View.VISIBLE);
+        notFound.setVisibility(View.GONE);
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -73,28 +78,34 @@ public class MovieSearchResult extends AppCompatActivity {
                     lastPage = response.getString("total_pages");
                     Log.i("lastPage",lastPage);
                     JSONArray movieArray = response.getJSONArray("results");
-                    for (int i = 0;i<movieArray.length();i++){
-                        JSONObject object = movieArray.getJSONObject(i);
 
-                        MSearchResultConst mov = new MSearchResultConst();
-                       mov.setTitle(object.getString("title"));
-                        mov.setPoster_path(object.getString("poster_path"));
-                        try {
-                            mov.setVote_average(object.getDouble("vote_average"));
-                            if (String.valueOf(object.getDouble("vote_average")).equals("0")){
-                                mov.setRelease_date("N/A");
-                            }else{
-                                mov.setRelease_date(object.getString("release_date"));
+                    if (movieArray.length() > 0){
+                        for (int i = 0;i<movieArray.length();i++){
+                            JSONObject object = movieArray.getJSONObject(i);
+
+                            MSearchResultConst mov = new MSearchResultConst();
+                            mov.setTitle(object.getString("title"));
+                            mov.setPoster_path(object.getString("poster_path"));
+                            try {
+                                mov.setVote_average(object.getDouble("vote_average"));
+                                if (String.valueOf(object.getDouble("vote_average")).equals("0")){
+                                    mov.setRelease_date("N/A");
+                                }else{
+                                    mov.setRelease_date(object.getString("release_date"));
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
                             }
-                        }catch (Exception e){
-                            e.printStackTrace();
+
+
+                            mov.setId(object.getString("id"));
+
+                            showList.add(mov);
+                            Log.i("sjshdk",object.getString("id"));
                         }
-
-
-                        mov.setId(object.getString("id"));
-
-                        showList.add(mov);
-                        Log.i("sjshdk",object.getString("id"));
+                    }else {
+                        notFound.setVisibility(View.VISIBLE);
+                        showRecycleView.setVisibility(View.GONE);
                     }
 
                 } catch (JSONException e) {
@@ -122,6 +133,8 @@ public class MovieSearchResult extends AppCompatActivity {
     }
 
     public void shows(String url){
+        showRecycleView.setVisibility(View.VISIBLE);
+        notFound.setVisibility(View.GONE);
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -131,26 +144,30 @@ public class MovieSearchResult extends AppCompatActivity {
                     lastPage = response.getString("total_pages");
 
                     JSONArray movieArray = response.getJSONArray("results");
-                    Log.i("LastPage",lastPage);
-                    for (int i = 0;i<movieArray.length();i++){
-                        JSONObject object = movieArray.getJSONObject(i);
 
-                        MSearchResultConst mov = new MSearchResultConst();
-                        mov.setId(object.getString("id"));
-                       mov.setTitle(object.getString("name"));
-                        mov.setPoster_path(object.getString("poster_path"));
-                         mov.setVote_average(object.getDouble("vote_average"));
+                    if (movieArray.length() > 0){
+                        for (int i = 0;i<movieArray.length();i++){
+                            JSONObject object = movieArray.getJSONObject(i);
+
+                            MSearchResultConst mov = new MSearchResultConst();
+                            mov.setId(object.getString("id"));
+                            mov.setTitle(object.getString("name"));
+                            mov.setPoster_path(object.getString("poster_path"));
+                            mov.setVote_average(object.getDouble("vote_average"));
 //                        if (String.valueOf(object.getInt("vote_average")).equals("0")){
 //                            mov.setRelease_date("N/A");
 //                        }else{
-                         //   mov.setRelease_date(object.getString("release_date"));
-                      //  }
+                            //   mov.setRelease_date(object.getString("release_date"));
+                            //  }
+                            showList.add(mov);
+                            Log.i("sjshdk",object.getString("id"));
+                        }
 
-
-
-                        showList.add(mov);
-                        Log.i("sjshdk",object.getString("id"));
+                    }else {
+                        notFound.setVisibility(View.VISIBLE);
+                        showRecycleView.setVisibility(View.GONE);
                     }
+                    Log.i("LastPage",lastPage);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -296,6 +313,7 @@ public class MovieSearchResult extends AppCompatActivity {
         edtSearchText = findViewById(R.id.M_edtSearch);
         progressBar = findViewById(R.id.M_resultProgressBar);
         loadMoreProgressBar = findViewById(R.id.M_loadmoreProgressBar);
+        notFound = findViewById(R.id.not_found);
         manager = new LinearLayoutManager(getApplicationContext());
         manage = new LinearLayoutManager(MovieSearchResult.this);
 
