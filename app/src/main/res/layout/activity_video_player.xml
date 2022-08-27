@@ -9,7 +9,9 @@
     <FrameLayout
         android:id="@+id/fram"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#000"
+        >
 
         <com.google.android.exoplayer2.ui.PlayerView
             android:padding="10dp"
@@ -23,6 +25,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:resize_mode="fixed_width"
             app:show_buffering="when_playing"
+            android:layout_marginHorizontal="30dp"
             tools:ignore="MissingClass">
 
         </com.google.android.exoplayer2.ui.PlayerView>

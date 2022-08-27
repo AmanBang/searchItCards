@@ -31,7 +31,7 @@ public class HindiTVShowScraper {
         List<String> foundLinks = new ArrayList<>();
         List<String> seasonName = new ArrayList<>();
         List<String> playLink = new ArrayList<>();
-        Connection.Response response = Jsoup.connect("https://hindilinks4u.ws/?s=" + name)
+        Connection.Response response = Jsoup.connect("https://hindilinks4u.icu/?s=" + name)
                 .timeout(10000)
                 .execute();
         int statusCode = response.statusCode();
@@ -66,7 +66,7 @@ public class HindiTVShowScraper {
                             seasonName.add(doc.getElementsByClass("mvic-desc").get(0).getElementsByTag("h3").get(0).text());
                             Log.d(TAG, "scraper: linktoJsoup: " + playlink);
                             if (playlink.contains("speedostream")) {
-                                Document speedo = Jsoup.connect(playlink).referrer("https://hindilinks4u.ws/").get();
+                                Document speedo = Jsoup.connect(playlink).referrer("https://hindilinks4u.icu/").get();
                                 String as = speedo.toString();
 //                                Log.i(TAG, "scraper: DOC:"+ as);
                                 String kl = printSubsInDelimiters(as);

@@ -82,7 +82,7 @@ public class WebView extends AppCompatActivity {
 //        webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setBuiltInZoomControls(true);
 
-
+        webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setBlockNetworkImage(true);
         webView.loadUrl(id);
 

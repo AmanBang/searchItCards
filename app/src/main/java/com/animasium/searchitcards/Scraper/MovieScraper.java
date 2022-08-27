@@ -22,13 +22,13 @@ public class MovieScraper {
 
     private final String TAG = "Hindilinks4u";
 
-    public String scraper(String name, String year, Context context) throws IOException {
-
+    public String scraper(String name, String year) throws IOException {
+        Log.d(TAG, "screaper Started");
         String link;
         String itemLink = null;
         String k = null;
-        Connection.Response response = Jsoup.connect("https://hindilinks4u.ws/?s=" + name + " (" + year + ")")
-                .timeout(5000)
+        Connection.Response response = Jsoup.connect("https://hindilinks4u.icu/?s=" + name + " (" + year + ")")
+                .timeout(100000)
                 .execute();
         int statusCode = response.statusCode();
         Log.d(TAG, "screaper Started" + statusCode);
@@ -45,10 +45,11 @@ public class MovieScraper {
             }
             }else
                 return null;
-        }else {
-            FancyToast.makeText(context,"VPN maybe required to get links", Toast.LENGTH_LONG,FancyToast.CONFUSING,false).show();
-            return null;
         }
+//        else {
+//            FancyToast.makeText(context,"VPN maybe required to get links", Toast.LENGTH_LONG,FancyToast.CONFUSING,false).show();
+//            return null;
+//        }
 
 
         if (itemLink != null) {
@@ -58,14 +59,12 @@ public class MovieScraper {
             if (moviePlay != null) {
                 link = moviePlay.getElementsByTag("iframe").attr("src");
                 if (link.contains("speedostream")) {
-                    Document speedo = Jsoup.connect(link).referrer("https://hindilinks4u.ws/").get();
+                    Document speedo = Jsoup.connect(link).referrer("https://hindilinks4u.icu/").get();
                     Log.d(TAG, "scraper: playLInk" + speedo);
                     String as = speedo.toString();
                     k = printSubsInDelimiters(as);
                     Log.d(TAG, "scraper: playLInk" + k);
-//                if (k.isEmpty()){
-//
-//
+
                 } else {
                     k = link;
                     Log.d(TAG, "scraper: playLInk" + k);

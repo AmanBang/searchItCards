@@ -176,7 +176,7 @@ public class EpisodeAdpater extends RecyclerView.Adapter<EpisodeAdpater.EviewHol
                         v.getContext().startActivity(i);
                     } else {
                         Intent i = new Intent(itemView.getContext(), WebView.class);
-                        String link = "https://www.2embed.ru/embed/tmdb/tv?id=" + idSh + "&s=" + Seas + "&e=" + episodeNo.getText();
+                        String link = "https://www.2embed.to/embed/tmdb/tv?id=" + idSh + "&s=" + Seas + "&e=" + episodeNo.getText();
 //                    String link = "https://curtstream.ir/series/imdb/"+idSh+"/"+Seas+"/"+episodeNo.getText();
                         Log.i("LinkSHow", link);
                         i.putExtra("watchID", link);

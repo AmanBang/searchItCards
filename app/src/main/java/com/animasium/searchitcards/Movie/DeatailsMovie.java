@@ -106,8 +106,7 @@ import de.mustafagercek.materialloadingbutton.LoadingButton;
 import static android.content.ContentValues.TAG;
 
 
-public class
-DeatailsMovie extends AppCompatActivity {
+public class DeatailsMovie extends AppCompatActivity {
 
 
     ImageView moviePoster;
@@ -603,8 +602,25 @@ DeatailsMovie extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        HScraper hScraper = new HScraper();
                         MovieScraper Msc = new MovieScraper();
+                        try {String mN;
+
+                            if (year.contains("-")) {
+                                mN = year.substring(0, 4);
+                            } else {
+                                mN = year;
+                            }
+                        hl4u = Msc.scraper(name, mN);
+
+                        }catch (Exception r){
+                            r.printStackTrace();
+                        }
+                    }
+                }).start();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        HScraper hScraper = new HScraper();
                         String mN;
                         try {
                             if (year.contains("-")) {
@@ -612,9 +628,8 @@ DeatailsMovie extends AppCompatActivity {
                             } else {
                                 mN = year;
                             }
-                            hl4u = Msc.scraper(name, mN,getApplicationContext());
-
                             hindiserverList = hScraper.Hscraper(name, mN);
+
 
                             if (hl4u == null) {
                                 new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -1062,7 +1077,7 @@ DeatailsMovie extends AppCompatActivity {
 //                i.putExtra("watchID","https://api.123movie.cc/jadeed.php?imdb="+imdb_id+"&server_name=vcu");
 
 //                i.putExtra("watchID", "https://autoembed.xyz/movie/tmdb/"+tmdb_id);
-                i.putExtra("watchID", "https://www.2embed.ru/embed/tmdb/movie?id=" + tmdb_id);
+                i.putExtra("watchID", "https://www.2embed.to/embed/tmdb/movie?id=" + tmdb_id);
 
 
                 startActivity(i);
